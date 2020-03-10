@@ -30,20 +30,20 @@
     </item>
     
     <item>
-      <title>Brave New World</title>
-      <link>/post/brave-new-world/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/brave-new-world/</guid>
-      <description>This is a stereotypical “first post on the blog post.</description>
-    </item>
-    
-    <item>
       <title></title>
       <link>/archives/</link>
       <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/post/2020-03-01-brave-new-world/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2020-03-01-brave-new-world/</guid>
       <description></description>
     </item>
     
