@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software. (Brought to You By: COVID-19)</title>
+      <link>/post/ppt-obs-corona/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ppt-obs-corona/</guid>
+      <description>A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19).</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>/about/</link>
       <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
@@ -36,15 +45,6 @@
       
       <guid>/archives/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.</description>
     </item>
     
   </channel>
