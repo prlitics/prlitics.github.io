@@ -1,4 +1,0 @@
-library(blogdown)
-
-setwd("C:/Users/prlic/Dropbox/Blog/")
-blogdown::serve_site()
