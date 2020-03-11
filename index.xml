@@ -2,48 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A Wild Political Nerd</title>
-    <link>/</link>
+    <link>https://www.awildpoliticalnerd.com/</link>
     <description>Recent content on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.awildpoliticalnerd.com/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software. (Brought to You By: COVID-19)</title>
-      <link>/post/ppt-obs-corona/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ppt-obs-corona/</guid>
-      <description>A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19).</description>
-    </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://www.awildpoliticalnerd.com/about/</link>
       <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://www.awildpoliticalnerd.com/about/</guid>
       <description>Hi. So, this is under construction currently. Sorry!</description>
     </item>
     
     <item>
-      <title>Brave New World</title>
-      <link>/post/brave-new-world/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/brave-new-world/</guid>
-      <description>This is a stereotypical “first post on the blog post.</description>
-    </item>
-    
-    <item>
       <title></title>
-      <link>/archives/</link>
+      <link>https://www.awildpoliticalnerd.com/archives/</link>
       <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/archives/</guid>
+      <guid>https://www.awildpoliticalnerd.com/archives/</guid>
       <description></description>
     </item>
     
