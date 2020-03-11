@@ -50,7 +50,7 @@ A number of schools are either [shutting down](https://www.nytimes.com/2020/03/0
 
 ### How to Install it
 
-First, go to the [OBS Project](https://obsproject.com/) website. Right there on the front of the screen, you should see three links that lead to downloads based off of your computer's operating software. (You are going to need about 250 MB of free space in order to install it). Click on whichever link matches your system. Once you do that, it should begin downloading your software automatically. From there, install it as you would anything else. (Personally, I reccomend just keeping everything at the default installation settings).
+First, go to the [OBS Project](https://obsproject.com/) website. Right there on the front of the screen, you should see three links that lead to downloads based off of your computer's operating software. (You are going to need about 250 MB of free space in order to install it). Click on whichever link matches your system. Once you do that, it should begin downloading your software automatically. From there, install it as you would anything else. (Personally, I recommend just keeping everything at the default installation settings).
 
 <p align = "center">
 ![](/post/2020-03-10-ppt-obs-corona_files/1.gif){width=75% height=75%}
@@ -121,7 +121,7 @@ Once you've finished, press the button on your keyboard that stops your recordin
 ![](/post/2020-03-10-ppt-obs-corona_files/9.gif){width=75% height=75%}
 </p>
 
-Once you've finished the video, you have something that you can upload to your preferred elearning platform (Blackboard or Canvas) or to YouTube. I uploaded a short minute-long demo to my personal YouTube (rather than to the [Professor Politics channel](https://www.youtube.com/c/professorpolitics)) where I went through the first couple minutes of the lecture so you guys can see a "final" product.
+Once you've finished the video, you have something that you can upload to your preferred elearning platform (Blackboard or Canvas) or to YouTube. I uploaded a short demo to my personal YouTube (rather than to the [Professor Politics channel](https://www.youtube.com/c/professorpolitics)) where I went through the first couple minutes of the lecture so you guys can see a "final" product.
 
 
 <p align = "center">
@@ -149,7 +149,7 @@ As I ever-so-slyly referenced in the last paragraph, I've been making multimedia
 
 #### This is probably going to be a stressful time for both you and your students. This transition (from offline to online) has been abrupt for and it's having very real consequences on the day-to-day lives of everyone involved. Hopefully, this tutorial will be able to ease that transition, and diminish some of those smaller issues.
 
-<br><br><br><br>
+<br><br>
 
 [^1]: Depending on how updated your graphics drivers are, you might also have to change your `Encoder` settings from `Hardware` to `Software.` For what it's worth, I had to do this---but your millieage will vary.
 
