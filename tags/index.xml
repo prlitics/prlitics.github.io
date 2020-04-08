@@ -6,64 +6,9 @@
     <description>Recent content in Tags on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Corona</title>
-      <link>/tags/corona/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/corona/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Google Slides</title>
-      <link>/tags/google-slides/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/google-slides/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>OBS</title>
-      <link>/tags/obs/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/obs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PowerPoint</title>
-      <link>/tags/powerpoint/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/powerpoint/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teaching</title>
-      <link>/tags/teaching/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/teaching/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tutorial</title>
-      <link>/tags/tutorial/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tutorial/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>
