@@ -6,7 +6,7 @@
     <description>Recent content in Tags on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,27 @@
     <item>
       <title>Corona</title>
       <link>/tags/corona/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/tags/corona/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Modeling</title>
+      <link>/tags/modeling/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Twitter</title>
+      <link>/tags/twitter/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/twitter/</guid>
       <description></description>
     </item>
     

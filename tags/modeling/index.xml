@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Corona on A Wild Political Nerd</title>
-    <link>/tags/corona/</link>
-    <description>Recent content in Corona on A Wild Political Nerd</description>
+    <title>Modeling on A Wild Political Nerd</title>
+    <link>/tags/modeling/</link>
+    <description>Recent content in Modeling on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/corona/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/modeling/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>/post/a-longish-twitter-thread-on-modeling-during-covid-19/</guid>
       <description>I came across this tweet by Republican Senator John Cornyn (TX) while trying to satisfy my brain’s dually rational responses for both information and numbness during a pandemic surfing social media.</description>
-    </item>
-    
-    <item>
-      <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software. (Brought to You By: COVID-19)</title>
-      <link>/post/ppt-obs-corona/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ppt-obs-corona/</guid>
-      <description>A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19).</description>
     </item>
     
   </channel>
