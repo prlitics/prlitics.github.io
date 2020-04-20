@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/comic/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/funny/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/meme/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/optimal-garbage/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/regression/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/xkcd/</loc>
+    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/a-longish-twitter-thread-on-modeling-during-covid-19/</loc>
     <lastmod>2020-04-10T00:00:00+00:00</lastmod>
   </url>
@@ -14,16 +54,6 @@
   
   <url>
     <loc>/tags/modeling/</loc>
-    <lastmod>2020-04-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-04-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-04-10T00:00:00+00:00</lastmod>
   </url>
   

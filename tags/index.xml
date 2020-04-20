@@ -6,10 +6,55 @@
     <description>Recent content in Tags on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Comic</title>
+      <link>/tags/comic/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/comic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Funny</title>
+      <link>/tags/funny/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/funny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Meme</title>
+      <link>/tags/meme/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/meme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regression</title>
+      <link>/tags/regression/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>XKCD</title>
+      <link>/tags/xkcd/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/xkcd/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Corona</title>
