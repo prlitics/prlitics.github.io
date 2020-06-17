@@ -29,8 +29,6 @@
     
  
     
-    <link rel="alternate" type="application/rss+xml" href="/tags/index.xml" title="A Wild Political Nerd" />
-    
     
 <script type="application/javascript">
 var doNotTrack = false;
@@ -161,45 +159,100 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
+<h1 class="post-title">How to Remove URLs from Zotero Bibtex</h1>
+    <time>June 17, 2020</time>
+    <div>
+        <p>
+        
 
-<h1>Tags</h1>
-<ul>
-    
-        <li><a href="/tags/bibtex/">Bibtex</a> 1</li>
-    
-        <li><a href="/tags/comic/">Comic</a> 1</li>
-    
-        <li><a href="/tags/corona/">Corona</a> 2</li>
-    
-        <li><a href="/tags/funny/">Funny</a> 1</li>
-    
-        <li><a href="/tags/google-slides/">Google Slides</a> 1</li>
-    
-        <li><a href="/tags/latex/">LaTeX</a> 1</li>
-    
-        <li><a href="/tags/meme/">Meme</a> 1</li>
-    
-        <li><a href="/tags/modeling/">Modeling</a> 1</li>
-    
-        <li><a href="/tags/obs/">OBS</a> 1</li>
-    
-        <li><a href="/tags/powerpoint/">PowerPoint</a> 1</li>
-    
-        <li><a href="/tags/regression/">Regression</a> 1</li>
-    
-        <li><a href="/tags/teaching/">Teaching</a> 1</li>
-    
-        <li><a href="/tags/tutorial/">Tutorial</a> 1</li>
-    
-        <li><a href="/tags/twitter/">Twitter</a> 1</li>
-    
-        <li><a href="/tags/xkcd/">XKCD</a> 1</li>
-    
-        <li><a href="/tags/zotero/">Zotero</a> 1</li>
-    
-</ul>
 
-<div class="page-footer"></div>
+<p>I’m currently in the process of transitioning my dissertation from LibreOffice into <em>LaTeX</em> because <del>I like pain</del> it’s a lot easier to fenagle all of the images and tables while making sure that I’m keeping in-line with the grad school’s style formatting requirements. I’m currently using <a href="https://www.zotero.org/">Zotero</a> to manage all of my citations. I went to just do a cursory check on how my bibliography rendered and here’s what I found:</p>
+<p align="center">
+<img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/1.PNG" />
+</p>
+<p>Yikes! URLS for the webpages for journal articles! While I’m personally pretty ambivalent towards it, that’s not something that style-guideline sticklers are gonna abide. I’d like for it to only export the URL from web sources—blogs, news articles, videos and the like—while nixing the export for others.</p>
+<p>Surprisingly, there isn’t an option in the Zotero App for this functionality. I came across this awesome post <a href="https://vxlabs.com/2012/06/29/removing-urls-from-zotero-bibtex-exports/">from vxlabs</a> that provided the code and approach that inspired this post. Their suggestion:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Go to Preferences | Advanced and click on the “Show Data Directory” button.</li>
+<li>Edit translators/BibTeX.js with your favourite text editor.</li>
+<li>In function doExport(), at around line 2040 in Zotero 3.0.7, change the “for (var field in fieldMap)” loop by adding a single line of code like this:</li>
+</ol>
+</blockquote>
+<p>then provided the following code:</p>
+<pre class="js"><code>for(var field in fieldMap) {
+    # only add the following line:
+    if (field == &quot;url&quot;) continue;
+    if(item[fieldMap[field]]) {
+        writeField(field, item[fieldMap[field]]);
+    }
+}</code></pre>
+<script type="text/javascript">
+for(var field in fieldMap) {
+    # only add the following line:
+    if (field == "url") continue;
+    if(item[fieldMap[field]]) {
+        writeField(field, item[fieldMap[field]]);
+    }
+}
+</script>
+<p>This fix makes a lot of sense! The code is just saying “hey Zotero. Just go ahead and <code>continue</code> past the <strong>url</strong> field when writing Bibtex entries.” It was almost perfect for my needs sans one small tick—it <em>also</em> nixed the urls off of webpages!</p>
+<p align="center">
+<img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/2.PNG" />
+</p>
+<p>So in order to make it perfect (that is: in order to make it so that it skips the URLs for everything but the entries coming from webpages), you just got to add this amended text.</p>
+<pre class="js"><code>        for (var field in fieldMap) {
+            if (field == &quot;url&quot; &amp; item.itemType != &quot;webpage&quot;) continue;
+            if (item[fieldMap[field]]) {
+                writeField(field, item[fieldMap[field]]);
+            }</code></pre>
+<script type="text/javascript">
+        for (var field in fieldMap) {
+            if (field == "url" & item.itemType != "webpage") continue;
+            if (item[fieldMap[field]]) {
+                writeField(field, item[fieldMap[field]]);
+            }
+</script>
+<p>The extra bit just tells the exporter “hey! <code>continue</code> on along past the URL field <strong>only</strong> when the item type <em>isn’t</em> a webpage.” Let’s see how it works!</p>
+<p align="center">
+<img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/3.PNG" />
+</p>
+<p align="center">
+<img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/4.PNG" style="width:60.0%" />
+</p>
+
+        </p>
+    </div>
+    <div id="disqus_thread"></div>
+<script>
+
+
+
+
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://awildpoliticalnerd.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/latex">#LaTeX</a>
+        
+            <a class="tag" href="/tags/zotero">#Zotero</a>
+        
+            <a class="tag" href="/tags/bibtex">#Bibtex</a>
+        
+      
+    </div>
+
 
         
 
