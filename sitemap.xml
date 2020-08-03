@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/books/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/surveying-is-a-beautifully-foolish-endeavor/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/surveys/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-08-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/bibtex/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url>
@@ -14,16 +39,6 @@
   
   <url>
     <loc>/tags/latex/</loc>
-    <lastmod>2020-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-06-17T00:00:00+00:00</lastmod>
   </url>
   
