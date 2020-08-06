@@ -166,17 +166,17 @@ if (!doNotTrack) {
         
 
 
-<p>I'm currently in the process of transitioning my dissertation from LibreOffice into <em>LaTeX</em> because <del>I like pain</del> it's a lot easier to fenagle all of the images and tables while making sure that I'm keeping in-line with the grad school's style formatting requirements. I'm currently using <a href="https://www.zotero.org/">Zotero</a> to manage all of my citations. I went to just do a cursory check on how my bibliography rendered and here's what I found:</p>
+<p>I’m currently in the process of transitioning my dissertation from LibreOffice into <em>LaTeX</em> because <del>I like pain</del> it’s a lot easier to fenagle all of the images and tables while making sure that I’m keeping in-line with the grad school’s style formatting requirements. I’m currently using <a href="https://www.zotero.org/">Zotero</a> to manage all of my citations. I went to just do a cursory check on how my bibliography rendered and here’s what I found:</p>
 <p align="center">
 <img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/1.PNG" />
 </p>
-<p>Yikes! URLS for the webpages for journal articles! While I'm personally pretty ambivalent towards it, that's not something that style-guideline sticklers are gonna abide. I'd like for it to only export the URL from web sources---blogs, news articles, videos and the like---while nixing the export for others.</p>
-<p>Surprisingly, there isn't an option in the Zotero App for this functionality. I came across this awesome post <a href="https://vxlabs.com/2012/06/29/removing-urls-from-zotero-bibtex-exports/">from vxlabs</a> that provided the code and approach that inspired this post. Their suggestion:</p>
+<p>Yikes! URLS for the webpages for journal articles! While I’m personally pretty ambivalent towards it, that’s not something that style-guideline sticklers are gonna abide. I’d like for it to only export the URL from web sources—blogs, news articles, videos and the like—while nixing the export for others.</p>
+<p>Surprisingly, there isn’t an option in the Zotero App for this functionality. I came across this awesome post <a href="https://vxlabs.com/2012/06/29/removing-urls-from-zotero-bibtex-exports/">from vxlabs</a> that provided the code and approach that inspired this post. Their suggestion:</p>
 <blockquote>
 <ol style="list-style-type: decimal">
-<li>Go to Preferences | Advanced and click on the &quot;Show Data Directory&quot; button.</li>
+<li>Go to Preferences | Advanced and click on the “Show Data Directory” button.</li>
 <li>Edit translators/BibTeX.js with your favourite text editor.</li>
-<li>In function doExport(), at around line 2040 in Zotero 3.0.7, change the &quot;for (var field in fieldMap)&quot; loop by adding a single line of code like this:</li>
+<li>In function doExport(), at around line 2040 in Zotero 3.0.7, change the “for (var field in fieldMap)” loop by adding a single line of code like this:</li>
 </ol>
 </blockquote>
 <p>then provided the following code:</p>
@@ -196,7 +196,7 @@ for(var field in fieldMap) {
     }
 }
 </script>
-<p>This fix makes a lot of sense! The code is just saying &quot;hey Zotero. Just go ahead and <code>continue</code> past the <strong>url</strong> field when writing Bibtex entries.&quot; It was almost perfect for my needs sans one small tick---it <em>also</em> nixed the urls off of webpages!</p>
+<p>This fix makes a lot of sense! The code is just saying “hey Zotero. Just go ahead and <code>continue</code> past the <strong>url</strong> field when writing Bibtex entries.” It was almost perfect for my needs sans one small tick—it <em>also</em> nixed the urls off of webpages!</p>
 <p align="center">
 <img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/2.PNG" />
 </p>
@@ -213,7 +213,7 @@ for(var field in fieldMap) {
                 writeField(field, item[fieldMap[field]]);
             }
 </script>
-<p>The extra bit just tells the exporter &quot;hey! <code>continue</code> on along past the URL field <strong>only</strong> when the item type <em>isn't</em> a webpage.&quot; Let's see how it works!</p>
+<p>The extra bit just tells the exporter “hey! <code>continue</code> on along past the URL field <strong>only</strong> when the item type <em>isn’t</em> a webpage.” Let’s see how it works!</p>
 <p align="center">
 <img src="/post/2020-06-17-how-to-remove-urls-from-zotero-bibtex_files/3.PNG" />
 </p>
