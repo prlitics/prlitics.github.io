@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.65.3" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,8 +28,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="/index.xml" title="A Wild Political Nerd" />
     
     
 <script type="application/javascript">
@@ -162,132 +159,181 @@ if (!doNotTrack) {
 </nav>
         <div id="content" class="content-container">
         
-<div class = "article-content">
+<h1 class="post-title">Grouping On Variables with Spaces in the Column Name Using dplyr</h1>
+    <time>August 18, 2020</time>
+    <div>
+        <p>
         
-        <div class="description">
-            <p>A blog by social scientist <strong><em>Peter Licari</em></strong>. <br /> <br /> <em>Writing</em>, <em>visualizing</em>, and <em>playing</em> with things at the intersection of <strong>data</strong>, <strong>science</strong>, <strong>society</strong>, and <strong>pop-culture</strong>.</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/">
-                    Grouping On Variables with Spaces in the Column Name Using dplyr
-                </a>
-            </h2>
-            <div><p>I recently had a variable with a thousand observations that could be one of four classes.</p></div>
-            <div class="post-footer">
-            <time>August 18, 2020</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/r">#R</a>
-                
-                    <a class="tag" href="/tags/dplyr">#dplyr</a>
-                
-                    <a class="tag" href="/tags/data-manipulation">#Data Manipulation</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="/post/how-to-do-unequal-randomization-in-qualtrics-surveys/">
-                    How to Do Unequal Randomization in Qualtrics Surveys
-                </a>
-            </h2>
-            <div><p>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups.</p></div>
-            <div class="post-footer">
-            <time>August 5, 2020</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/surveys">#Surveys</a>
-                
-                    <a class="tag" href="/tags/tutorial">#Tutorial</a>
-                
-                    <a class="tag" href="/tags/qualtrics">#Qualtrics</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="/post/surveying-is-a-beautifully-foolish-endeavor/">
-                    Surveying is A Beautifully Foolish Endeavor
-                </a>
-            </h2>
-            <div><p>I binged Hank Green’s A Beautifully Foolish Endeavor yesterday and it is, let me tell you, just fantastic.</p></div>
-            <div class="post-footer">
-            <time>August 3, 2020</time>
+<p>I recently had a variable with a thousand observations that could be one of four classes. I wanted to figure out how many of each class was listed within a variable. Easy enough with <code>group_by()</code> in normal circumstances. Unfortunately, the purveyors of this dataset decided to name their columns with two words. So something like <code>tasty fruit</code> rather than <code>tasty-fruit</code> or <code>tasty_fruit</code>. Unfortunately, just passing the multi-word name through <code>group_by()</code> as you normally would a standard column name won’t work <a href="#link3">for reasons I detail below</a>.</p>
+<p><strong>TLDR: There are two solutions. Click here for <a href="#link1">solution 1</a> and here for <a href="#link2">solution 2.</a></strong></p>
+<p>Now, there are a lot of different conventions for naming columns in a dataset: <code>camelCase</code>, <code>TitleCase</code>, <code>snake_case</code>, <code>mEmEcAsE</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>—but one thing that is pretty universally avoided among data analytics professionals (aside from using the same name <strong>twice</strong>), it’s using multiple words for one column name. The reasons are part historical, part technological—but many languages (R included) don’t play nice with column names containing spaces. But, it’s still an issue that can crop-up from time-to-time, so I thought I would share my solution to it.</p>
+<p>(<em>Note: I’m generally understanding if the source isn’t an analyst or is someone who, like, only works with smaller excel files and (some) SQL variants. But I’m convinced that there’s only one way to deal with the “pros” who do this: Ritual sacrifice to the coding gods.</em>)</p>
+<center>
+<p><img src="/post/2020-08-18-grouping-on-variables-with-two-word-names-in-dplyr_files/Puu_Oo_cropped.jpg" style="width:50.0%" /></p>
+<strong><em>The only logical path.</em></strong>
+</center>
+<div id="heres-how-you-group-by-variables-with-spaces-in-them-using-dplyr." class="section level3">
+<h3>Here’s how you group by variables with spaces in them using <code>dplyr</code>.</h3>
+<p>I’m going to be using the <code>penguins</code> dataset to demonstrate.</p>
+<pre class="r"><code>library(palmerpenguins) #For Data
+library(magrittr) #For pipes
+library(dplyr) #For data manipulation
 
-            
-            
-                
-                    <a class="tag" href="/tags/books">#Books</a>
-                
-                    <a class="tag" href="/tags/surveys">#Surveys</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="/post/how-to-remove-urls-from-zotero-bibtex/">
-                    How to Remove URLs from Zotero Bibtex
-                </a>
-            </h2>
-            <div><p>I’m currently in the process of transitioning my dissertation from LibreOffice into LaTeX because I like pain it’s a lot easier to fenagle all of the images and tables while making sure that I’m keeping in-line with the grad school’s style formatting requirements.</p></div>
-            <div class="post-footer">
-            <time>June 17, 2020</time>
+head(penguins)</code></pre>
+<pre><code>## # A tibble: 6 x 8
+##   species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge~           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge~           39.5          17.4              186        3800 fema~
+## 3 Adelie  Torge~           40.3          18                195        3250 fema~
+## 4 Adelie  Torge~           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge~           36.7          19.3              193        3450 fema~
+## 6 Adelie  Torge~           39.3          20.6              190        3650 male 
+## # ... with 1 more variable: year &lt;int&gt;</code></pre>
+<p>Let’s say I want to know how many different kinds of penguins there are. Normally that can be accomplished like this:</p>
+<pre class="r"><code>penguin_count &lt;- penguins %&gt;%
+  group_by(species) %&gt;%
+  summarise(n_birds = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>penguin_count</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   species   n_birds
+##   &lt;fct&gt;       &lt;int&gt;
+## 1 Adelie        152
+## 2 Chinstrap      68
+## 3 Gentoo        124</code></pre>
+<div id="we-have-152-adelie-penguins-68-chinstrap-penguins-and-124-gentoo-penguins." class="section level4">
+<h4>We have 152 Adelie penguins, 68 Chinstrap penguins, and 124 Gentoo penguins.</h4>
+<p>But what if the column wasn’t titled “species” but something like “ground birbs.” (I’m a millenial; don’t judge me.)</p>
+<p>Unfortunately for my demonstration (although fortunately for its many users!), it doesn’t have any columns with spaces. It instead uses <code>snake_case</code>. So I have to do a bit of renaming.</p>
+<pre class="r"><code>pengs &lt;- penguins %&gt;%
+  rename(&quot;ground birbs&quot; = species)
 
-            
-            
-                
-                    <a class="tag" href="/tags/latex">#LaTeX</a>
-                
-                    <a class="tag" href="/tags/zotero">#Zotero</a>
-                
-                    <a class="tag" href="/tags/bibtex">#Bibtex</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+head(pengs)</code></pre>
+<pre><code>## # A tibble: 6 x 8
+##   `ground birbs` island bill_length_mm bill_depth_mm flipper_length_~
+##   &lt;fct&gt;          &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;
+## 1 Adelie         Torge~           39.1          18.7              181
+## 2 Adelie         Torge~           39.5          17.4              186
+## 3 Adelie         Torge~           40.3          18                195
+## 4 Adelie         Torge~           NA            NA                 NA
+## 5 Adelie         Torge~           36.7          19.3              193
+## 6 Adelie         Torge~           39.3          20.6              190
+## # ... with 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div id="link3" class="section level2">
+<h2>Demonstrating the Problem</h2>
+<p>To demonstrate the issue, let’s see what happens if you try to <code>group_by()</code> the renamed “species” column in the <code>penguins</code> dataset, <code>ground birbs</code>:</p>
+<pre class="r"><code>pengs_count &lt;- pengs %&gt;%
+  group_by(&quot;ground birbs&quot;) %&gt;%
+  summarise(n_birds = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>head(pengs_count)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   `&quot;ground birbs&quot;` n_birds
+##   &lt;chr&gt;              &lt;int&gt;
+## 1 ground birbs         344</code></pre>
+<p>Ok, cool, we know that there are 344 ground birbs? Not very helpful.</p>
+<p>Maybe we could use the column index?</p>
+<pre class="r"><code>pengs_count &lt;- pengs %&gt;%
+  group_by(1) %&gt;%
+  summarise(n_birds = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>head(pengs_count)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##     `1` n_birds
+##   &lt;dbl&gt;   &lt;int&gt;
+## 1     1     344</code></pre>
+<p><strong>Yes, they are number 1 in cuteness—but that’s somehow even less informative.</strong> Could we avoid the quotes?</p>
+<pre class="r"><code>pengs_count &lt;- pengs %&gt;%
+  group_by(ground birbs) %&gt;%
+  summarise(n_birds = n())
+
+head(pengs_count)</code></pre>
+<pre><code>## Error: &lt;text&gt;:2:19: unexpected symbol
+## 1: pengs_count &lt;- pengs %&gt;%
+## 2:   group_by(ground birbs
+##                      ^</code></pre>
+<p>That’s even worse! We just get an error!</p>
+</div>
+<div id="there-are-two-ways-that-we-can-access-this-misbegotten-column." class="section level2">
+<h2>There are two ways that we can access this misbegotten column.</h2>
+<div id="link1" class="section level3">
+<h3>Solution 1: Use ` (backquotes)</h3>
+<p>If you encase the the offending name in backquotes (<code>`</code>) you’ll be able to access it normally. So instead of <code>"ground birbs"</code> it’d be <code>`ground birb`</code></p>
+<pre class="r"><code>pengs_count &lt;- pengs %&gt;%
+  group_by(`ground birbs`) %&gt;%
+  summarise(n_birds = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>head(pengs_count)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   `ground birbs` n_birds
+##   &lt;fct&gt;            &lt;int&gt;
+## 1 Adelie             152
+## 2 Chinstrap           68
+## 3 Gentoo             124</code></pre>
+</div>
+<div id="link2" class="section level3">
+<h3>Solution 2: Use the <code>across()</code> function</h3>
+<p>New in <code>dplyr 1.0.0</code> is the <a href="https://dplyr.tidyverse.org/reference/across.html"><code>across()</code></a> function, which allows you to apply functions <em>across</em> (get it) rows in your data. But, importantly in our case, <code>across()</code> lets you access variables by their column index.</p>
+<pre class="r"><code>pengs_count &lt;- pengs %&gt;%
+  group_by(across(1)) %&gt;%
+  summarise(n_birds = n())</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>head(pengs_count)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   `ground birbs` n_birds
+##   &lt;fct&gt;            &lt;int&gt;
+## 1 Adelie             152
+## 2 Chinstrap           68
+## 3 Gentoo             124</code></pre>
+<div id="so-if-you-want-to-group_by-a-column-with-a-space-in-its-name-use-backquotes-or-across-i-hope-this-helps" class="section level4">
+<h4>So if you want to <code>group_by()</code> a column with a space in its name, use backquotes or <code>across()</code>! I hope this helps!!</h4>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I’m only kidding with this one. But even this is preferable to spaces in the column name!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+        </p>
     </div>
+    <div id="disqus_thread"></div>
+<script>
+
+
+
+
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://awildpoliticalnerd.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/r">#R</a>
         
-        <p>Page 1 of 2</p>
-        <div class="paginator-group">
-            
-            
-                <a class="color-link older" href="/page/2/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/dplyr">#dplyr</a>
         
+            <a class="tag" href="/tags/data-manipulation">#Data Manipulation</a>
+        
+      
     </div>
+
 
         
 

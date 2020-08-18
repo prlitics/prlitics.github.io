@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Grouping On Variables with Spaces in the Column Name Using dplyr</title>
+      <link>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</link>
+      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</guid>
+      <description>I recently had a variable with a thousand observations that could be one of four classes.</description>
+    </item>
+    
+    <item>
       <title>How to Do Unequal Randomization in Qualtrics Surveys</title>
       <link>/post/how-to-do-unequal-randomization-in-qualtrics-surveys/</link>
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
