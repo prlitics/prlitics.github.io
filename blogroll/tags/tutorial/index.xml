@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on A Wild Political Nerd</title>
+    <link>/tags/tutorial/</link>
+    <description>Recent content in Tutorial on A Wild Political Nerd</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Do Unequal Randomization in Qualtrics Surveys</title>
+      <link>/post/how-to-do-unequal-randomization-in-qualtrics-surveys/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/how-to-do-unequal-randomization-in-qualtrics-surveys/</guid>
+      <description>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups.</description>
+    </item>
+    
+    <item>
+      <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software. (Brought to You By: COVID-19)</title>
+      <link>/post/ppt-obs-corona/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ppt-obs-corona/</guid>
+      <description>A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19).</description>
+    </item>
+    
+  </channel>
+</rss>

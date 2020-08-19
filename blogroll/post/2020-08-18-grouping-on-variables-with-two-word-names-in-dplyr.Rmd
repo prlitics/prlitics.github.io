@@ -1,0 +1,135 @@
+---
+title: Grouping On Variables with Spaces in the Column Name Using dplyr
+author: Peter Licari
+date: '2020-08-18'
+slug: grouping-on-variables-with-spaces-in-the-column-name-using-dplyr
+categories:
+  - R
+  - Tutorials
+  - Data
+tags:
+  - R
+  - dplyr
+  - Data Manipulation
+draft: yes
+---
+
+```{r setup, cache = F, include = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+I recently had a variable with a thousand observations that could be one of four classes. I wanted to figure out how many of each class was listed within a variable. Easy enough with `group_by()` in normal circumstances. Unfortunately, the purveyors of this dataset decided to name their columns with two words. So something like `tasty fruit` rather than `tasty-fruit` or `tasty_fruit`. Unfortunately, just passing the multi-word name through `group_by()` as you normally would a standard column name won't work [for reasons I detail below](#link3).
+
+**TLDR: There are two solutions. Click here for [solution 1](#link1) and here for [solution 2.](#link2)**
+
+Now, there are a lot of different conventions for naming columns in a dataset: `camelCase`, `TitleCase`, `snake_case`, `mEmEcAsE`^[I'm only kidding with this one. But even this is preferable to spaces in the column name!]---but one thing that is pretty universally avoided among data analytics professionals (aside from using the same name **twice**), it's using multiple words for one column name. The reasons are part historical, part technological---but many languages (R included) don't play nice with column names containing spaces. But, it's still an issue that can crop-up from time-to-time, so I thought I would share my solution to it.
+
+(*Note: I'm generally understanding if the source isn't an analyst or is someone who, like, only works with smaller excel files and (some) SQL variants. But I'm convinced that there's only one way to deal with the "pros" who do this: Ritual sacrifice to the coding gods.*) 
+
+
+
+<center>
+![](/post/2020-08-18-grouping-on-variables-with-two-word-names-in-dplyr_files/Puu_Oo_cropped.jpg){width=50%}
+
+**_The only logical path._**
+</center>
+
+### Here's how you group by variables with spaces in them using `dplyr`.
+
+I'm going to be using the `penguins` dataset to demonstrate. 
+
+```{r message=FALSE, warning=FALSE}
+library(palmerpenguins) #For Data
+library(magrittr) #For pipes
+library(dplyr) #For data manipulation
+
+head(penguins)
+```
+
+Let's say I want to know how many different kinds of penguins there are. Normally that can be accomplished like this:
+
+```{r}
+penguin_count <- penguins %>%
+  group_by(species) %>%
+  summarise(n_birds = n())
+
+penguin_count
+```
+
+#### We have 152 Adelie penguins, 68 Chinstrap penguins, and 124 Gentoo penguins.
+
+But what if the column wasn't titled "species" but something like "ground birbs." (I'm a millenial; don't judge me.)
+
+Unfortunately for my demonstration (although fortunately for its many users!), it doesn't have any columns with spaces. It instead uses `snake_case`. So I have to do a bit of renaming.
+
+```{r message=FALSE, warning=FALSE}
+pengs <- penguins %>%
+  rename("ground birbs" = species)
+
+head(pengs)
+```
+
+## Demonstrating the Problem {#link3}
+
+To demonstrate the issue, let's see what happens if you try to `group_by()` the renamed "species" column in the `penguins` dataset, `ground birbs`:
+
+```{r}
+pengs_count <- pengs %>%
+  group_by("ground birbs") %>%
+  summarise(n_birds = n())
+
+head(pengs_count)
+```
+
+Ok, cool, we know that there are 344 ground birbs? Not very helpful.
+
+Maybe we could use the column index? 
+
+```{r}
+pengs_count <- pengs %>%
+  group_by(1) %>%
+  summarise(n_birds = n())
+
+head(pengs_count)
+```
+
+**Yes, they are number 1 in cuteness---but that's somehow even less informative.** Could we avoid the quotes?
+
+```{r}
+pengs_count <- pengs %>%
+  group_by(ground birbs) %>%
+  summarise(n_birds = n())
+
+head(pengs_count)
+```
+
+That's even worse! We just get an error! 
+
+## There are two ways that we can access this misbegotten column.
+
+### Solution 1: Use ` (backquotes){#link1}
+
+If you encase the the offending name in backquotes (`` ` ``) you'll be able to access it normally. So instead of `"ground birbs"` it'd be  `` `ground birb` ``
+
+```{r}
+pengs_count <- pengs %>%
+  group_by(`ground birbs`) %>%
+  summarise(n_birds = n())
+
+head(pengs_count)
+```
+
+
+### Solution 2: Use the `across()` function{#link2}
+
+New in `dplyr 1.0.0` is the [`across()`](https://dplyr.tidyverse.org/reference/across.html) function, which allows you to apply functions *across* (get it) rows in your data. But, importantly in our case, `across()` lets you access variables by their column index. 
+
+```{r}
+pengs_count <- pengs %>%
+  group_by(across(1)) %>%
+  summarise(n_birds = n())
+
+head(pengs_count)
+```
+
+#### So if you want to `group_by()` a column with a space in its name, use backquotes or `across()`! I hope this helps!!

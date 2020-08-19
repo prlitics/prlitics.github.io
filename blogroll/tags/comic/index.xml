@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Comic on A Wild Political Nerd</title>
+    <link>/tags/comic/</link>
+    <description>Recent content in Comic on A Wild Political Nerd</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/comic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Optimal Garbage</title>
+      <link>/post/optimal-garbage/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/optimal-garbage/</guid>
+      <description>I saw XKCD #2295 and “Statistically Independent Garbage” inspired me to tack something on at the end.</description>
+    </item>
+    
+  </channel>
+</rss>
