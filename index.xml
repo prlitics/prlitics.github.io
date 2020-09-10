@@ -1,120 +1,113 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Election Data Science</title>
-    
-    
-    
+    <title>A Wild Political Nerd</title>
     <link>/</link>
-    <description>Recent content on Election Data Science</description>
+    <description>Recent content on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jul 2015 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Grouping On Variables with Spaces in the Column Name Using dplyr</title>
+      <link>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</link>
+      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</guid>
+      <description>I recently had a variable with a thousand observations that could be one of four classes.</description>
+    </item>
+    
+    <item>
+      <title>How to Do Unequal Randomization in Qualtrics Surveys</title>
+      <link>/post/how-to-do-unequal-randomization-in-qualtrics-surveys/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/how-to-do-unequal-randomization-in-qualtrics-surveys/</guid>
+      <description>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups.</description>
+    </item>
+    
+    <item>
+      <title>Surveying is A Beautifully Foolish Endeavor</title>
+      <link>/post/surveying-is-a-beautifully-foolish-endeavor/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/surveying-is-a-beautifully-foolish-endeavor/</guid>
+      <description>I binged Hank Green’s A Beautifully Foolish Endeavor yesterday and it is, let me tell you, just fantastic.</description>
+    </item>
+    
+    <item>
+      <title>How to Remove URLs from Zotero Bibtex</title>
+      <link>/post/how-to-remove-urls-from-zotero-bibtex/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/how-to-remove-urls-from-zotero-bibtex/</guid>
+      <description>I’m currently in the process of transitioning my dissertation from LibreOffice into LaTeX because I like pain it’s a lot easier to fenagle all of the images and tables while making sure that I’m keeping in-line with the grad school’s style formatting requirements.</description>
+    </item>
+    
+    <item>
+      <title>Optimal Garbage</title>
+      <link>/post/optimal-garbage/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/optimal-garbage/</guid>
+      <description>I saw XKCD #2295 and “Statistically Independent Garbage” inspired me to tack something on at the end.</description>
+    </item>
+    
+    <item>
+      <title>A (Longish) Twitter Thread on Modeling During COVID-19</title>
+      <link>/post/a-longish-twitter-thread-on-modeling-during-covid-19/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-longish-twitter-thread-on-modeling-during-covid-19/</guid>
+      <description>I came across this tweet by Republican Senator John Cornyn (TX) while trying to satisfy my brain’s dually rational responses for both information and numbness during a pandemic surfing social media.</description>
+    </item>
+    
+    <item>
+      <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software. (Brought to You By: COVID-19)</title>
+      <link>/post/ppt-obs-corona/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ppt-obs-corona/</guid>
+      <description>A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19).</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>/about/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          Hi there My name is Radek and I&amp;rsquo;m the author of this theme. I made it to help you present your ideas easier.
-We all know how hard is to start something on the web, especially these days. You need to prepare a bunch of stuff, configure them and when that’s done — create the content.
-This theme is pretty basic and covers all of the essentials. All you have to do is start typing!
-          
-        
-        </description>
+      <description>I’m a behavioral social scientist and PhD candidate in American Politics and Political Methodology at the University of Florida.</description>
     </item>
     
     <item>
-      <title>Showcase</title>
-      <link>/showcase/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Brave New World</title>
+      <link>/post/brave-new-world/</link>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/showcase/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          Header 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.
-          
-        
-        </description>
+      <guid>/post/brave-new-world/</guid>
+      <description>This is a stereotypical “first post on the blog post.</description>
     </item>
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title></title>
+      <link>/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          R MarkdownHello!This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.
-          
-        
-        </description>
+      <guid>/archives/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Hello Friend</title>
-      <link>/post/hello/</link>
-      <pubDate>Wed, 17 Sep 1986 00:00:00 +0000</pubDate>
+      <title>Blogroll</title>
+      <link>/blogroll/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/hello/</guid>
-      <description>
-        
-          &lt;img src=&#34;/img/hello.jpg&#34;/&gt;
-          
-        
-        
-        
-          &#34;Hello, friend?&#34; That&#39;s lame. Maybe I should give you a name?
-          
-        
-        </description>
-    </item>
-    
-    <item>
-      <title>Archive</title>
-      <link>/archive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/archive/</guid>
-      <description>
-        
-          
-          
-          
-        
-        
-        
-          
-          
-        
-        </description>
+      <guid>/blogroll/</guid>
+      <description>Here&amp;rsquo;s a list of blogs and things I read and follow:</description>
     </item>
     
   </channel>

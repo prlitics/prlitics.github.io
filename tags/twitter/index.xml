@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Twitter on A Wild Political Nerd</title>
+    <link>/tags/twitter/</link>
+    <description>Recent content in Twitter on A Wild Political Nerd</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/twitter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A (Longish) Twitter Thread on Modeling During COVID-19</title>
+      <link>/post/a-longish-twitter-thread-on-modeling-during-covid-19/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/a-longish-twitter-thread-on-modeling-during-covid-19/</guid>
+      <description>I came across this tweet by Republican Senator John Cornyn (TX) while trying to satisfy my brain’s dually rational responses for both information and numbness during a pandemic surfing social media.</description>
+    </item>
+    
+  </channel>
+</rss>
