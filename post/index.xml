@@ -6,10 +6,19 @@
     <description>Recent content in Posts on A Wild Political Nerd</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Some Thoughts about the 2020 Election</title>
+      <link>/post/some-thoughts-about-the-2020-election/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/some-thoughts-about-the-2020-election/</guid>
+      <description>I thought I would post my prediction for the election and a few thoughts regarding it more generally.</description>
+    </item>
     
     <item>
       <title>Grouping On Variables with Spaces in the Column Name Using dplyr</title>
@@ -72,15 +81,6 @@
       
       <guid>/post/ppt-obs-corona/</guid>
       <description>A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19).</description>
-    </item>
-    
-    <item>
-      <title>Brave New World</title>
-      <link>/post/brave-new-world/</link>
-      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/brave-new-world/</guid>
-      <description>This is a stereotypical “first post on the blog post.</description>
     </item>
     
   </channel>
