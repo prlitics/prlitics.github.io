@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Election 2020 | Peter Licari</title>
+    <link>/tag/election-2020/</link>
+      <atom:link href="/tag/election-2020/index.xml" rel="self" type="application/rss+xml" />
+    <description>Election 2020</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 03 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png</url>
+      <title>Election 2020</title>
+      <link>/tag/election-2020/</link>
+    </image>
+    
+    <item>
+      <title>Some Thoughts about the 2020 Election</title>
+      <link>/post/some-thoughts-about-the-2020-election/</link>
+      <pubDate>Tue, 03 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/post/some-thoughts-about-the-2020-election/</guid>
+      <description>
+&lt;script src=&#34;/post/some-thoughts-about-the-2020-election/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;I thought I would post my prediction for the election and a few thoughts regarding it more generally. I’ll be peppering in some maps that I’ve made to help illustrate my general thought process.&lt;/p&gt;
+&lt;div id=&#34;when-can-we-expect-all-this-to-wrap-up&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;When can we expect all this to wrap-up?&lt;/h1&gt;
+&lt;p&gt;First and foremost, there’s a chance that we’ll know, with a reasonable degree of certainty, who the winner of the electoral college vote will be by about 9 PM. That chance goes up if we push the deadline ’till 1 AM. But there’s also a solid chance that we won’t know for a few days to a week. Honestly, I’m not comfortable betting on which I think will happen.&lt;/p&gt;
+&lt;p&gt;Just so we’re all on the same page: That doesn’t mean there’s a snowball’s chance in Hell that we’ll know the vote &lt;em&gt;totals&lt;/em&gt; by the end of the night. We never actually know the totals for all of the states by the time election night bleeds into national political hangover day. Many states (like Alaska and California) are notoriously slow with counting their ballots–and the vast majority of other states spend a few days curing problematic ballots and/or allowing ballots post-marked prior to Election day to filter in. (Military votes are in a similar situation.) We won’t see validated totals for weeks after.&lt;/p&gt;
+&lt;p&gt;That’s how it is with &lt;strong&gt;every&lt;/strong&gt; election. However, in normal times, we’ve gotten pretty good at using a combination of exit-polls and vote totals scraped from state/county election officials’ sites to &lt;em&gt;project&lt;/em&gt; the eventual winner.&lt;/p&gt;
+&lt;p&gt;As you might have recognized, we are not in normal times.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;whats-the-hold-up.&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What’s the hold-up.&lt;/h1&gt;
+&lt;p&gt;In a word: Pennsylvania.&lt;/p&gt;
+&lt;p&gt;Through a combination of COVID-19 and general anxiety/enthusiasm catalyzed by the last four years of President Trump’s tenure, we saw mind-bogglingly high levels of early/mail-in voting. At least &lt;strong&gt;100 &lt;em&gt;million&lt;/em&gt;&lt;/strong&gt; people voted early this year, according to estimates from &lt;a href=&#34;https://twitter.com/ElectProject/status/1323663599697539074?s=20&#34;&gt;Michael McDonald’s US Elections Project&lt;/a&gt;. That translates to 73% of the nation’s 2016 vote total. Some states surpassed their 2016 totals.&lt;/p&gt;
+&lt;p&gt;However, not all states have laws that allow them to tabulate early ballots as they come in. This map from Pew Research shows which states tabulate the votes as they come in.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/AbsenteeBallots.png&#34; style=&#34;width:50.0%&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;The state throwing the biggest monkey-wrench into the works is undoubtedly Pennsylvania. For reasons that I’ll get to in a second, Pennsylvania is critical to President Trump’s pathway to victory. Without it, he has very little chance of making it into office. Complicating things more is that Pennsylvania counts day-of votes &lt;em&gt;first&lt;/em&gt; before the early vote. It could take days before the early vote totals are cleared. And given that Joe Biden appears to be leading quite dramatically among early voters, &lt;a href=&#34;https://twitter.com/Politics_Polls/status/1320698523030032384?s=20&#34;&gt;according to the polls&lt;/a&gt;, there is a solid chance that President Trump will appear to be leading in the state by the end of the night. If Joe Biden is winning PA by sunrise tomorrow—barring any irregularities in the day-of counting or insanely long lines—then he’s most likely won the election. (Even with the curse of daylight savings pushing daybreak an hour earlier.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-do-i-see-the-election-turning-out&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How Do I See the Election Turning Out?&lt;/h1&gt;
+&lt;p&gt;Here is what I see as the most likely outcome when everything is said and done. (From here on out, I’ll largely be using maps I’ve generated &lt;em&gt;via&lt;/em&gt; &lt;a href=&#34;https://www.270towin.com/&#34;&gt;270 to Win&lt;/a&gt;.)&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/likelyoutcome.png&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;I should caution that by “most likely”, I mean that I think this has somewhere between a 20-30% chance of it happening. There’s a better chance than not that I’m gonna be wrong—so don’t set your clock to it.&lt;/p&gt;
+&lt;p&gt;(Another daylight savings joke. I’m still not over it. Now that I’m a father to a newborn, I can’t even begin to fathom how &lt;em&gt;my&lt;/em&gt; parents managed this BS.)&lt;/p&gt;
+&lt;p&gt;Many of these states are seen as toss-ups: Texas, Florida, North Carolina, Georgia, and Arizona. I settled on the answers that I did largely by taking these states, case-by-case, and thinking about how they performed over the last few elections, including 2018 and 2016, and their current political momentum. Here’s an abbreviated look at my rationale:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Arizona:&lt;/strong&gt; Long-term trend towards purple, favoring Red; generally unfavorable to Trump and Trumpism in particular; 2018 strong showing for Democrats + strong polling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Florida:&lt;/strong&gt; Purple for a long time; recent history of Blue on Presidential races; super tight midterm.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Georgia:&lt;/strong&gt; Solid red in Presidential contests; maintained Red in midterms; getting closer but still a red state in the south.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Iowa:&lt;/strong&gt; Swingy the last couple decades, but a consistent polling lead for Trump.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maine-2:&lt;/strong&gt; Generally weak right as is; fairly large disdain for Trumpism; consistent Biden Lead (albeit small).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nebraska-2:&lt;/strong&gt; Consistent polling lead for Biden.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;North Carolina:&lt;/strong&gt; Swingy; solid 2018 performance; consistent advantage for Biden in Polling&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ohio:&lt;/strong&gt; The supposed king-maker. Consistent Trump advantage in the polling; solid Republican performance in 2018.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Texas:&lt;/strong&gt; Gradual demographic transition to purple accelerated by Trump. It’d be bat-💩 crazy if it went from stalwart Red to true purple within a single cycle.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;which-states-im-most-likely-to-be-wrong-about.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Which states I’m most likely to be wrong about.&lt;/h2&gt;
+&lt;p&gt;The states I’m most likely to get wrong are probably Georgia, North Carolina, Florida, and Maine-2. I think Maine-2 will be a decent indicator of how well the GOP’s senate chances will fair though; if that goes Blue, Collins is probably toast and any hopes that incumbents will be insulated from down-ballot effects stemming from Trump most likely go out the window. I’m less bullish on the senate flipping than others, but that will be a fair indicator of a bad night for the GOP all around.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;biden-pathways-to-victory&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Biden Pathways to victory&lt;/h1&gt;
+&lt;div id=&#34;biden-has-a-strong-wall&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Biden has a strong wall&lt;/h2&gt;
+&lt;p&gt;The reason I’m as bullish as I am for Biden (besides the appeal of the alliteration) is that the current toss-ups can literally &lt;strong&gt;all&lt;/strong&gt; break for President Trump and Biden would &lt;em&gt;still&lt;/em&gt; win—provided there aren’t any major surprises in the polling.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/trumpwinsall.PNG&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;Not all of these states are equal with regards to the President’s chances. No state’s return is independent of the others—if Biden won Texas, that means we’re looking at a &lt;em&gt;bona fide&lt;/em&gt; blue malestrom, let alone a wave—but some states give more information about how other states are going to break than others. &lt;a href=&#34;https://projects.fivethirtyeight.com/trump-biden-election-map/&#34;&gt;FiveThirtyEight has a tool&lt;/a&gt; that uses the correlations among polling errors to show how a victory in some states ripples out to signal what’s happening in others. A Trump win in Georgia doesn’t shift things much, nor does one in Texas, because frankly it’s a shock that they’re even in play. A win in Florida, however, drastically lowers Biden’s chances and suggests a map that looks like the one above. However, even in that case, the President is still &lt;strong&gt;&lt;em&gt;not&lt;/em&gt;&lt;/strong&gt; favored to win if only for the fact that Biden is still leading in the Electoral college.&lt;/p&gt;
+&lt;div id=&#34;the-upshot-however-is-that-if-trump-loses-any-of-those-states-his-only-path-to-victory-lies-in-there-being-large-unprecedented-degrees-of-polling-error.&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;The upshot however is that if Trump &lt;em&gt;loses&lt;/em&gt; any of those states, his only path to victory lies in there being large, unprecedented degrees of polling error.&lt;/h4&gt;
+&lt;p&gt;I know, I know. Some of you might be thinking: &lt;em&gt;“But Peter! The polls in 2016…”&lt;/em&gt; to which I will reply (for what I pray to all that is good and holy is the &lt;strong&gt;last time&lt;/strong&gt;) that even the state level polls did &lt;a href=&#34;https://fivethirtyeight.com/features/the-polls-are-all-right/&#34;&gt;reasonably well in 2016&lt;/a&gt; in the aggregate—and more pollsters have been doing more &lt;em&gt;high quality&lt;/em&gt; state-level polls than last time. There have also been adjustments across the industry to account for the biggest systematic source of polling error in 2016, which was not properly accounting for Trump’s support among White, non-college educated voters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bidens-best-cases&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Biden’s best case(s)&lt;/h2&gt;
+&lt;p&gt;The best case scenario for Biden is that he picks-up all of the toss-ups. But I should really emphasize that &lt;strong&gt;I don’t think this is a particularly likely outcome.&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/bidenlandslide.PNG&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;A more realistic “great day” scenario for Biden is that he wins picks up Florida, North Carolina, Arizona, and Georgia while Trump gets Texas, Ohio, and Iowa.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/bidenmorelikely.PNG&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;Judging from the correlations in polling errors, Florida will be a good (but not perfect) indicator of how Georgia and North Carolina go. (Georgia could be called first but that doesn’t necessarily mean that Florida will go with it; the leverage one state has over another is asymmetric. For example: North Carolina going red/blue means less for Texas’ eventual outcome than Texas going red/blue means for North Carolina.) Ohio will probably provide a good (but, again, &lt;em&gt;not perfect&lt;/em&gt;) indication for how the other three states will break.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;trump-pathways-to-victory&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Trump Pathways to victory&lt;/h1&gt;
+&lt;div id=&#34;without-pennsylvania&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Without Pennsylvania&lt;/h2&gt;
+&lt;p&gt;Just because I expect the President to lose doesn’t mean I think his loss is &lt;em&gt;inevitable.&lt;/em&gt; But it’s tough. Really tough. And it’s made all the tougher because he’s currently not favored in Pennsylvania. And by “not favored in Pennsylvania” I mean that &lt;a href=&#34;https://projects.economist.com/us-2020-forecast/president/pennsylvania&#34;&gt;&lt;em&gt;The Economist&lt;/em&gt; is giving Biden a 95% chance of carrying the state&lt;/a&gt;. Trump will have to outperform the polls by a strong margin to carry the day. The most likely states, given the margin of error for the most recent state level polls, is Nevada, New Hampshire, Maine-2 and Nebraska-2. That will give Trump 270 votes in the Electoral College.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/trumpnopa.PNG&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;But I want to stress how unlikely that is. Many of these wins are not all that correlated with each other—meaning that a win in any of them early on doesn’t necessarily portend a Biden defeat. (Other state combinations are also possible, but we’d be talking about even &lt;em&gt;less&lt;/em&gt; likely polling errors.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;with-pennsylvania&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;With Pennsylvania&lt;/h2&gt;
+&lt;p&gt;A trump victory in Pennsylvania &lt;em&gt;dramatically&lt;/em&gt; improves the President’s chances. If the President wins there, it’s likely that he’s winning in a lot of other places that he’s currently not favored. However,it should be noted that &lt;em&gt;even then&lt;/em&gt; he’d still need to pick up every one of the toss-up states. That can be helped by the fact that winning Pennsylvania would suggest a large degree of errors in the polls. But that degree of error is, I have to emphasize, really improbable. This outcome isn’t necessarily &lt;em&gt;less&lt;/em&gt; likely than the one above, but pulling-off Pennsylvania would be an incredible upset. And, honestly, I would probably need to seriously reevaluate my life choices should it happen: especially my chosen profession.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/trumpwithpa.PNG&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;The other point to consider when weighing out the importance of Pennsylvania is just how &lt;strong&gt;long&lt;/strong&gt; that would make the contest. Basically, if Trump wins every toss-up state, then we’re not going to know the election’s outcome until about the end of the week &lt;em&gt;at earliest.&lt;/em&gt; Because, as mentioned above, &lt;em&gt;Pennsylvania counts their early votes last and haven’t started counting them at all.&lt;/em&gt; If Trump is ahead by the end of the night, we’ll just have to wait and see if the Biden advantage banked-up from early voting is enough. (Although, as a Floridian, I must confess that it’ll be nice to have all of the attention away from us for once.)&lt;/p&gt;
+&lt;div id=&#34;in-short-in-order-for-the-president-to-win-hes-going-to-have-to-pull-off-one-helluva-upset.-that-doesnt-make-it-impossible-upsets-happen-all-the-time-but-by-definition-it-makes-it-unlikely.&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;In short, in order for the President to win, he’s going to have to pull-off one helluva upset. That doesn’t make it impossible (upsets happen all the time) but, by definition, it makes it &lt;em&gt;unlikely.&lt;/em&gt;&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cool.-but-what-if-trump-doesnt-leave&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Cool. But what if Trump doesn’t leave?&lt;/h1&gt;
+&lt;p&gt;I can understand the concern some have that Trump won’t leave given that, for the first time in American history, a President has repeatedly refused to commit to a peaceful transition of power. If he refuses to concede the election, we’ll be in an unprecedented situation in our country. (And, yes, I’m including &lt;a href=&#34;https://en.wikipedia.org/wiki/1876_United_States_presidential_election&#34;&gt;1876&lt;/a&gt; because there wasn’t an incumbent involved with that colossal cluster f*ck.)&lt;/p&gt;
+&lt;p&gt;However, being unprecedented here at home doesn’t mean unprecedented abroad. The last few decades are unfortunately replete with examples of democratic states backsliding into either competitive or outright authoritarianism. And there are lessons to be learned there. Namely, a Trump coup is unlikely to be fruitful if he doesn’t have the support of key power brokers in the Government as well as in the Military. And I frankly don’t think Trump has that support.&lt;/p&gt;
+&lt;p&gt;When it comes to Congressional Republicans, while they certainly have acquiesced to large expanses in executive power—and excused a number of insane controversies—they have, to their credit, largely rebuked the President when he made suggestions that are unequivocally undemocratic (such as moving election day or not peacefully conceding an electoral loss.) McConnell’s support of the President seems to extend only as far as the latter been able to reliably install conservative judges into the federal judiciary. I’m &lt;strong&gt;not&lt;/strong&gt; saying that we should sleep on the possibility that McConnell and the rest turn out to be entirely without scruples and little-d democratic principles. But I &lt;strong&gt;am&lt;/strong&gt; saying that we shouldn’t necessarily buy-in to the idea that they’ll do such open, incontrovertibly authoritarian moves.&lt;/p&gt;
+&lt;p&gt;Additionally, Trump would need the support of the Military. Looking at how they responded to his attempts to deploy troops during the height of the protests earlier this year, I feel more confident saying that he doesn’t have it. &lt;a href=&#34;https://www.nbcnews.com/politics/2020-election/more-200-retired-generals-admirals-endorse-biden-including-some-who-n1240842&#34;&gt;Additionally, 200 retired generals, including a few who served under Trump, endorsed Biden.&lt;/a&gt; I’m not saying that this means the entire current membership of the higher brass does, too—but Trump’s support would need to be far more consolidated than it appears to be.&lt;/p&gt;
+&lt;p&gt;I think it’s quite likely that Trump will be a petulant child up until Joe Biden is sworn in. It would be, without a doubt, the most bonkers lame-duck period in modern American history. But I think that, if he loses the election, there’s a far better chance that he leaves than him fighting to stay.&lt;/p&gt;
+&lt;p&gt;(A more likely issue was/is Trump stealing the election. However, a number of important lower and Supreme Court decisions over the last few weeks—even those posed to conservative justices—have largely come back against the GOP plaintiffs. The President has been open about his hopes that the election will be close so that they can be litigated in the courts. But there seems to be a better chance that it’s not close enough for them to entertain all of the challenges he and his team have cooked up.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;so-does-a-biden-win-mean-that-american-democracy-is-safe&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;So does a Biden win mean that American democracy is safe?&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;ahahhahahahahhahahhahhahhaha&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Oh.&lt;/p&gt;
+&lt;p&gt;Were you serious?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;ahahhahahahahahahahahahahahaah * laughs start breaking down into sobs *&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I think American democracy is in peril. I don’t think that’s necessarily a controversial position among those who study democratic regimes and how they degrade. But I don’t think that Joe Biden is going to single-handidly (or even jointly, with Kamala Harris and/or a unified Democratic government) save the country.&lt;/p&gt;
+&lt;p&gt;I’ll probably write (or record) more about this later so I won’t give it all away now: But we’re going to need to see governmental reforms the likes of which we haven’t seen since the post-Watergate Congress. We’re going to need that &lt;em&gt;and&lt;/em&gt; a major overhaul in our media environment &lt;em&gt;and&lt;/em&gt; strengthening of our critical institutions &lt;strong&gt;and&lt;/strong&gt; a lot of elite coordination and cooperation across both sides of the political spectrum &lt;strong&gt;&lt;em&gt;and&lt;/em&gt;&lt;/strong&gt; a public shift in what conduct we do and don’t condone, see as civil and uncivil, as acceptable and unacceptable. None of it has to be resolved day one, or even within Biden’s tenure, but we need to make serious progress in these areas. There is no other option. Because our political momentum, in this current moment, does not bode well; our trajectory follows a well-worn path into authoritarianism and there are dispiriting few junctures remaining to veer off of it.&lt;/p&gt;
+&lt;p&gt;I don’t think it’s impossible. I am ever the optimist—if only for my own sanity. But the work has only just begun. And it must be done even if I’m wrong and Biden loses.&lt;/p&gt;
+&lt;p&gt;If I’m being honest, &lt;em&gt;especially&lt;/em&gt; then.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>dumdum</title>
+      <link>/project/fl-ballot-app/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/project/fl-ballot-app/</guid>
+      <description>&lt;p&gt;Inspired by all of the chaos and craziness that was mail-in and drop-off voting in the 2020 election, my students from my 2020 Election Data Science class and I created an app designed to help people find ballot-drop-off and early voting locations. The app received thousands of hits, helped at least a few people safely find ballot drop-off locations, and is now archived on my GitHub.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>No. Youth Turnout Was Not Down on Super Tuesday Compared to 2016
+</title>
+      <link>/publication/youth-turnout-20/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/publication/youth-turnout-20/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

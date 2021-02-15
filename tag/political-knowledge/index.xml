@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Political Knowledge | Peter Licari</title>
+    <link>/tag/political-knowledge/</link>
+      <atom:link href="/tag/political-knowledge/index.xml" rel="self" type="application/rss+xml" />
+    <description>Political Knowledge</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png</url>
+      <title>Political Knowledge</title>
+      <link>/tag/political-knowledge/</link>
+    </image>
+    
+    <item>
+      <title>Sharp as a Fox: Are foxnews.com Visitors Less Politically Knowledgeable?
+</title>
+      <link>/publication/sharp-as-fox/</link>
+      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/sharp-as-fox/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

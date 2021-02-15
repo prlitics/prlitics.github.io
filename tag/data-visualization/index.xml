@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualization | Peter Licari</title>
+    <link>/tag/data-visualization/</link>
+      <atom:link href="/tag/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    <description>Data Visualization</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 27 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png</url>
+      <title>Data Visualization</title>
+      <link>/tag/data-visualization/</link>
+    </image>
+    
+    <item>
+      <title>Write-in Requirements for the 2020 election</title>
+      <link>/project/write-in-deadlines/</link>
+      <pubDate>Sun, 27 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/project/write-in-deadlines/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swamp Hacks 2020 Trump Twitter Dashboard</title>
+      <link>/project/trump-tweet-wordcloud/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/project/trump-tweet-wordcloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Trump 2020 State of the Union Word Pairs Graph</title>
+      <link>/project/sotu-dyad/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/project/sotu-dyad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Archived Data Visualizations</title>
+      <link>/project/archived-data-viz/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/project/archived-data-viz/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

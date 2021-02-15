@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fiction | Peter Licari</title>
+    <link>/category/fiction/</link>
+      <atom:link href="/category/fiction/index.xml" rel="self" type="application/rss+xml" />
+    <description>Fiction</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png</url>
+      <title>Fiction</title>
+      <link>/category/fiction/</link>
+    </image>
+    
+    <item>
+      <title>Surveying is A Beautifully Foolish Endeavor</title>
+      <link>/post/surveying-is-a-beautifully-foolish-endeavor/</link>
+      <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/surveying-is-a-beautifully-foolish-endeavor/</guid>
+      <description>&lt;p&gt;I binged Hank Green&amp;rsquo;s &lt;a href=&#34;https://www.amazon.com/Beautifully-Foolish-Endeavor-Novel-Carls/dp/152474347X&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;A Beautifully Foolish Endeavor&lt;/em&gt;&lt;/a&gt; yesterday and it is, let me tell you, just fantastic. I don&amp;rsquo;t plan on writing a longer review because I didn&amp;rsquo;t really write any notes. I didn&amp;rsquo;t &lt;em&gt;&lt;em&gt;want&lt;/em&gt;&lt;/em&gt; to take notes. Not because it was bad, but because I didn&amp;rsquo;t want to peel my eyes away from the page for the short seconds it&amp;rsquo;d take for me to grab my pen and notebook. I was too engrossed to want to do anything but live in its pages for however long it&amp;rsquo;d let me. So, no review&amp;mdash;but maybe that ardor could stand in place of one.&lt;/p&gt;
+&lt;p&gt;But aside from just being human, well-written, and the right mix of cynical and optimistic, it is also just an eminently and endlessly quotable book. There are quotes here that I plan on using when I talk about machine learning in my upcoming data science class. Quotes that just stabbed me in the chest with self-recognition (&lt;em&gt;cough cough&lt;/em&gt; Miranda being a workaholic &lt;em&gt;cough cough&lt;/em&gt;). And then there are quotes that make me feel that Green is one of the few science fiction authors who actually understand the sociology and psychology of being a practicing scientist (which, ya know, &lt;em&gt;SciShow&lt;/em&gt; and his M.S.&amp;mdash;so it makes sense). But then there&amp;rsquo;s this quote near the end of the book that so perfectly described being a survey researcher that it made me laugh out loud:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;[We wanted to] dive deep into our survey responses. Except there were just too many&amp;hellip;no matter how we filtered, there just wasn&amp;rsquo;t a good way.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;April and I were griping about this around the black marble countertop in the kitchen when Carl came in and overheard us.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;Just do a search,&amp;rdquo; Carl said.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;The searches take forever and we don&amp;rsquo;t know what to search for,&amp;rdquo; April replied. &amp;ldquo;It&amp;rsquo;s just a bunch of dumb data. Most of the useful stuff is in text responses, which is impossible to parse.&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I loved and loathed the reductionism of &amp;ldquo;dumb data&amp;rdquo;&amp;mdash;mostly because it&amp;rsquo;s right. Until we data geeks make the decisions on what to model, how to model it, and how to frame and embed our results into a digestable narrative, it is literally just that. Dumb data, (sometimes) intelligently collected. And also, it&amp;rsquo;s so, &lt;strong&gt;so&lt;/strong&gt; spot-on to note that almost all of the really juicy stuff is in the open-ended responses where people just let you know what&amp;rsquo;s &lt;em&gt;actually&lt;/em&gt; going on. Or at least their inwardly-biased interpretation of their messy cognitive processes&amp;mdash;&lt;strong&gt;which is still super cool and really interesting!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As an example: for my dissertation, I had completely written-off games like &lt;em&gt;Hearts&lt;/em&gt; as sociopolitically unimportant until some respondent mentioned that there are online lobbies where people use the game to chat about politics. I never would&amp;rsquo;ve learned that if I didn&amp;rsquo;t bother to read what my respondents had taken the time to write. And there have been a few papers that make the point that we should really pay more attention to the nuance that people write in rather than (often incorrectly) discretizing them on the basis of hardline, &lt;em&gt;ex ante&lt;/em&gt; coding rules.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m envious that April and Maya had an alien superintelligence to parse through all of that data and get to all the juicy bits. Sure we have NLP and algorithims for market segmentation&amp;mdash;but do &lt;em&gt;they&lt;/em&gt; come from a near-omniscient monkey? Didn&amp;rsquo;t think so.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

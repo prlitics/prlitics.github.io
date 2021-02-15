@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R | Peter Licari</title>
+    <link>/category/r/</link>
+      <atom:link href="/category/r/index.xml" rel="self" type="application/rss+xml" />
+    <description>R</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate>
+    <image>
+      <url>/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png</url>
+      <title>R</title>
+      <link>/category/r/</link>
+    </image>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/post/2020-12-01-r-rmarkdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      <guid>/post/2020-12-01-r-rmarkdown/</guid>
+      <description>
+&lt;script src=&#34;/post/2020-12-01-r-rmarkdown/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R Markdown&lt;/h1&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
+##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00
+fit &amp;lt;- lm(dist ~ speed, data = cars)
+fit
+## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Including Plots&lt;/h1&gt;
+&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
+pie(
+  c(280, 60, 20),
+  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
+  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
+  init.angle = -50, border = NA
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2020-12-01-r-rmarkdown/index.en_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: A fancy pie chart.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello R Markdown</title>
+      <link>/til_post/2020-12-01-r-rmarkdown/</link>
+      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      <guid>/til_post/2020-12-01-r-rmarkdown/</guid>
+      <description>
+&lt;script src=&#34;/til_post/2020-12-01-r-rmarkdown/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R Markdown&lt;/h1&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
+##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00
+fit &amp;lt;- lm(dist ~ speed, data = cars)
+fit
+## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Including Plots&lt;/h1&gt;
+&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
+pie(
+  c(280, 60, 20),
+  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
+  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
+  init.angle = -50, border = NA
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/til_post/2020-12-01-r-rmarkdown/index.en_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: A fancy pie chart.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Grouping On Variables with Spaces in the Column Name Using dplyr</title>
+      <link>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</link>
+      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</guid>
+      <description>
+&lt;script src=&#34;/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;I recently had a variable with a thousand observations that could be one of four classes. I wanted to figure out how many of each class was listed within a variable. Easy enough with &lt;code&gt;group_by()&lt;/code&gt; in normal circumstances. Unfortunately, the purveyors of this dataset decided to name their columns with two words. So something like &lt;code&gt;tasty fruit&lt;/code&gt; rather than &lt;code&gt;tasty-fruit&lt;/code&gt; or &lt;code&gt;tasty_fruit&lt;/code&gt;. Unfortunately, just passing the multi-word name through &lt;code&gt;group_by()&lt;/code&gt; as you normally would a standard column name won’t work &lt;a href=&#34;#link3&#34;&gt;for reasons I detail below&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TLDR: There are two solutions. Click here for &lt;a href=&#34;#link1&#34;&gt;solution 1&lt;/a&gt; and here for &lt;a href=&#34;#link2&#34;&gt;solution 2.&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now, there are a lot of different conventions for naming columns in a dataset: &lt;code&gt;camelCase&lt;/code&gt;, &lt;code&gt;TitleCase&lt;/code&gt;, &lt;code&gt;snake_case&lt;/code&gt;, &lt;code&gt;mEmEcAsE&lt;/code&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;—but one thing that is pretty universally avoided among data analytics professionals (aside from using the same name &lt;strong&gt;twice&lt;/strong&gt;), it’s using multiple words for one column name. The reasons are part historical, part technological—but many languages (R included) don’t play nice with column names containing spaces. But, it’s still an issue that can crop-up from time-to-time, so I thought I would share my solution to it.&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;Note: I’m generally understanding if the source isn’t an analyst or is someone who, like, only works with smaller excel files and (some) SQL variants. But I’m convinced that there’s only one way to deal with the “pros” who do this: Ritual sacrifice to the coding gods.&lt;/em&gt;)&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;images/Puu_Oo_cropped.jpg&#34; /&gt;
+&lt;strong&gt;&lt;em&gt;The only logical path.&lt;/em&gt;&lt;/strong&gt;
+&lt;/center&gt;
+&lt;div id=&#34;heres-how-you-group-by-variables-with-spaces-in-them-using-dplyr.&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Here’s how you group by variables with spaces in them using &lt;code&gt;dplyr&lt;/code&gt;.&lt;/h3&gt;
+&lt;p&gt;I’m going to be using the &lt;code&gt;penguins&lt;/code&gt; dataset to demonstrate.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(palmerpenguins) #For Data
+library(magrittr) #For pipes
+library(dplyr) #For data manipulation
+
+head(penguins)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 8
+##   species island bill_length_mm bill_depth_mm flipper_length_~ body_mass_g sex  
+##   &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;           &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;            &amp;lt;int&amp;gt;       &amp;lt;int&amp;gt; &amp;lt;fct&amp;gt;
+## 1 Adelie  Torge~           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge~           39.5          17.4              186        3800 fema~
+## 3 Adelie  Torge~           40.3          18                195        3250 fema~
+## 4 Adelie  Torge~           NA            NA                 NA          NA &amp;lt;NA&amp;gt; 
+## 5 Adelie  Torge~           36.7          19.3              193        3450 fema~
+## 6 Adelie  Torge~           39.3          20.6              190        3650 male 
+## # ... with 1 more variable: year &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s say I want to know how many different kinds of penguins there are. Normally that can be accomplished like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguin_count &amp;lt;- penguins %&amp;gt;%
+  group_by(species) %&amp;gt;%
+  summarise(n_birds = n())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguin_count&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##   species   n_birds
+##   &amp;lt;fct&amp;gt;       &amp;lt;int&amp;gt;
+## 1 Adelie        152
+## 2 Chinstrap      68
+## 3 Gentoo        124&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;we-have-152-adelie-penguins-68-chinstrap-penguins-and-124-gentoo-penguins.&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;We have 152 Adelie penguins, 68 Chinstrap penguins, and 124 Gentoo penguins.&lt;/h4&gt;
+&lt;p&gt;But what if the column wasn’t titled “species” but something like “ground birbs.” (I’m a millenial; don’t judge me.)&lt;/p&gt;
+&lt;p&gt;Unfortunately for my demonstration (although fortunately for its many users!), it doesn’t have any columns with spaces. It instead uses &lt;code&gt;snake_case&lt;/code&gt;. So I have to do a bit of renaming.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pengs &amp;lt;- penguins %&amp;gt;%
+  rename(&amp;quot;ground birbs&amp;quot; = species)
+
+head(pengs)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 8
+##   `ground birbs` island bill_length_mm bill_depth_mm flipper_length_~
+##   &amp;lt;fct&amp;gt;          &amp;lt;fct&amp;gt;           &amp;lt;dbl&amp;gt;         &amp;lt;dbl&amp;gt;            &amp;lt;int&amp;gt;
+## 1 Adelie         Torge~           39.1          18.7              181
+## 2 Adelie         Torge~           39.5          17.4              186
+## 3 Adelie         Torge~           40.3          18                195
+## 4 Adelie         Torge~           NA            NA                 NA
+## 5 Adelie         Torge~           36.7          19.3              193
+## 6 Adelie         Torge~           39.3          20.6              190
+## # ... with 3 more variables: body_mass_g &amp;lt;int&amp;gt;, sex &amp;lt;fct&amp;gt;, year &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;link3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Demonstrating the Problem&lt;/h2&gt;
+&lt;p&gt;To demonstrate the issue, let’s see what happens if you try to &lt;code&gt;group_by()&lt;/code&gt; the renamed “species” column in the &lt;code&gt;penguins&lt;/code&gt; dataset, &lt;code&gt;ground birbs&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pengs_count &amp;lt;- pengs %&amp;gt;%
+  group_by(&amp;quot;ground birbs&amp;quot;) %&amp;gt;%
+  summarise(n_birds = n())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(pengs_count)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##   `&amp;quot;ground birbs&amp;quot;` n_birds
+##   &amp;lt;chr&amp;gt;              &amp;lt;int&amp;gt;
+## 1 ground birbs         344&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ok, cool, we know that there are 344 ground birbs? Not very helpful.&lt;/p&gt;
+&lt;p&gt;Maybe we could use the column index?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pengs_count &amp;lt;- pengs %&amp;gt;%
+  group_by(1) %&amp;gt;%
+  summarise(n_birds = n())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(pengs_count)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##     `1` n_birds
+##   &amp;lt;dbl&amp;gt;   &amp;lt;int&amp;gt;
+## 1     1     344&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Yes, they are number 1 in cuteness—but that’s somehow even less informative.&lt;/strong&gt; Could we avoid the quotes?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pengs_count &amp;lt;- pengs %&amp;gt;%
+  group_by(ground birbs) %&amp;gt;%
+  summarise(n_birds = n())
+
+head(pengs_count)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Error: &amp;lt;text&amp;gt;:2:19: unexpected symbol
+## 1: pengs_count &amp;lt;- pengs %&amp;gt;%
+## 2:   group_by(ground birbs
+##                      ^&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That’s even worse! We just get an error!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;there-are-two-ways-that-we-can-access-this-misbegotten-column.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;There are two ways that we can access this misbegotten column.&lt;/h2&gt;
+&lt;div id=&#34;link1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Solution 1: Use ` (backquotes)&lt;/h3&gt;
+&lt;p&gt;If you encase the the offending name in backquotes (&lt;code&gt;`&lt;/code&gt;) you’ll be able to access it normally. So instead of &lt;code&gt;&#34;ground birbs&#34;&lt;/code&gt; it’d be &lt;code&gt;`ground birbs`&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pengs_count &amp;lt;- pengs %&amp;gt;%
+  group_by(`ground birbs`) %&amp;gt;%
+  summarise(n_birds = n())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(pengs_count)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##   `ground birbs` n_birds
+##   &amp;lt;fct&amp;gt;            &amp;lt;int&amp;gt;
+## 1 Adelie             152
+## 2 Chinstrap           68
+## 3 Gentoo             124&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;link2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Solution 2: Use the &lt;code&gt;across()&lt;/code&gt; function&lt;/h3&gt;
+&lt;p&gt;New in &lt;code&gt;dplyr 1.0.0&lt;/code&gt; is the &lt;a href=&#34;https://dplyr.tidyverse.org/reference/across.html&#34;&gt;&lt;code&gt;across()&lt;/code&gt;&lt;/a&gt; function, which allows you to apply functions &lt;em&gt;across&lt;/em&gt; (get it) rows in your data. But, importantly in our case, &lt;code&gt;across()&lt;/code&gt; lets you access variables by their column index.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pengs_count &amp;lt;- pengs %&amp;gt;%
+  group_by(across(1)) %&amp;gt;%
+  summarise(n_birds = n())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(pengs_count)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 2
+##   `ground birbs` n_birds
+##   &amp;lt;fct&amp;gt;            &amp;lt;int&amp;gt;
+## 1 Adelie             152
+## 2 Chinstrap           68
+## 3 Gentoo             124&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;so-if-you-want-to-group_by-a-column-with-a-space-in-its-name-use-backquotes-or-across-i-hope-this-helps&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;So if you want to &lt;code&gt;group_by()&lt;/code&gt; a column with a space in its name, use backquotes or &lt;code&gt;across()&lt;/code&gt;! I hope this helps!!&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;I’m only kidding with this one. But even this is preferable to spaces in the column name!&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
