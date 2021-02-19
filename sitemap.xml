@@ -38,42 +38,37 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2021-02-14T23:38:50-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/2020-12-01-r-rmarkdown/</loc>
-    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/plot/</loc>
-    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
-    <lastmod>2021-02-14T23:32:41-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-markdown/</loc>
-    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/regression/</loc>
-    <lastmod>2020-12-01T21:13:14-05:00</lastmod>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2021-02-14T23:38:50-05:00</lastmod>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/til/</loc>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/til_post/til-using-tk-as-a-placeholder-when-writing/</loc>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
   </url>
   
   <url>
     <loc>/til_post/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/writing/</loc>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/writing/</loc>
+    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
   </url>
   
   <url>
@@ -172,12 +167,12 @@
   </url>
   
   <url>
-    <loc>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</loc>
+    <loc>/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</loc>
     <lastmod>2021-02-14T23:32:41-05:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/til/</loc>
+    <loc>/category/r/</loc>
     <lastmod>2021-02-14T23:32:41-05:00</lastmod>
   </url>
   
@@ -242,7 +237,7 @@
   </url>
   
   <url>
-    <loc>/post/how-to-remove-urls-from-zotero-bibtex/</loc>
+    <loc>/til_post/how-to-remove-urls-from-zotero-bibtex/</loc>
     <lastmod>2021-02-14T22:54:21-05:00</lastmod>
   </url>
   
@@ -258,12 +253,12 @@
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/author/peter-licari/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -337,11 +332,6 @@
   </url>
   
   <url>
-    <loc>/til_post/writing-technical-content/</loc>
-    <lastmod>2019-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/courses/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
@@ -374,11 +364,6 @@
   <url>
     <loc>/publication/latino-fl-20/</loc>
     <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/jupyter/</loc>
-    <lastmod>2019-09-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -494,36 +479,6 @@
   <url>
     <loc>/tag/youtube/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/academic/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/demo/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/getting-started/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/%E5%BC%80%E6%BA%90/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-12-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>

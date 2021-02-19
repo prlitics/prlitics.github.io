@@ -14,11 +14,11 @@
     
     <item>
       <title>Grouping On Variables with Spaces in the Column Name Using dplyr</title>
-      <link>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</link>
+      <link>/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</link>
       <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</guid>
+      <guid>/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</guid>
       <description>
-&lt;script src=&#34;/post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I recently had a variable with a thousand observations that could be one of four classes. I wanted to figure out how many of each class was listed within a variable. Easy enough with &lt;code&gt;group_by()&lt;/code&gt; in normal circumstances. Unfortunately, the purveyors of this dataset decided to name their columns with two words. So something like &lt;code&gt;tasty fruit&lt;/code&gt; rather than &lt;code&gt;tasty-fruit&lt;/code&gt; or &lt;code&gt;tasty_fruit&lt;/code&gt;. Unfortunately, just passing the multi-word name through &lt;code&gt;group_by()&lt;/code&gt; as you normally would a standard column name won’t work &lt;a href=&#34;#link3&#34;&gt;for reasons I detail below&lt;/a&gt;.&lt;/p&gt;
@@ -161,11 +161,11 @@ head(pengs_count)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>How to Remove URLS from Zotero Bibtex</title>
-      <link>/post/how-to-remove-urls-from-zotero-bibtex/</link>
+      <link>/til_post/how-to-remove-urls-from-zotero-bibtex/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/post/how-to-remove-urls-from-zotero-bibtex/</guid>
+      <guid>/til_post/how-to-remove-urls-from-zotero-bibtex/</guid>
       <description>
-&lt;script src=&#34;/post/how-to-remove-urls-from-zotero-bibtex/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/til_post/how-to-remove-urls-from-zotero-bibtex/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I’m currently in the process of transitioning my dissertation from LibreOffice into &lt;em&gt;LaTeX&lt;/em&gt; because &lt;del&gt;I like pain&lt;/del&gt; it’s a lot easier to finagle all of the images and tables while making sure that I’m keeping in-line with the grad school’s style formatting requirements. I’m currently using &lt;a href=&#34;https://www.zotero.org/&#34;&gt;Zotero&lt;/a&gt; to manage all of my citations. I went to just do a cursory check on how my bibliography rendered and here’s what I found:&lt;/p&gt;
