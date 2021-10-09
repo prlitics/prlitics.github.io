@@ -1,0 +1,1393 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Peter Licari">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This is version 1.0.0 of this post. Read the note at the end for versioning information
+Over the last few weeks, I’ve been working on a project that investigates an interesting pattern in current American politics (or at least a pattern I find interesting): White liberals tend to more strongly favor other races over Whites—at least when given the opportunity to rank the groups with a feeling thermometer.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/white-liberals/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="rgb(0, 136, 204)">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" disabled>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark">
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.046e1f29d2c637b541f7966a617dd15b.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/post/white-liberals/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Peter Licari">
+  <meta property="og:url" content="/post/white-liberals/">
+  <meta property="og:title" content="Investigating Why White Liberals rank non-White groups higher than Whites | Peter Licari">
+  <meta property="og:description" content="This is version 1.0.0 of this post. Read the note at the end for versioning information
+Over the last few weeks, I’ve been working on a project that investigates an interesting pattern in current American politics (or at least a pattern I find interesting): White liberals tend to more strongly favor other races over Whites—at least when given the opportunity to rank the groups with a feeling thermometer."><meta property="og:image" content="/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-10-09T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-10-09T13:31:35-04:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/white-liberals/"
+  },
+  "headline": "Investigating Why White Liberals rank non-White groups higher than Whites",
+  
+  "datePublished": "2021-10-09T00:00:00Z",
+  "dateModified": "2021-10-09T13:31:35-04:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Peter Licari"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Peter Licari",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu7822abfb2f54ce27e2589169adb56259_3245_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "This is version 1.0.0 of this post. Read the note at the end for versioning information\nOver the last few weeks, I’ve been working on a project that investigates an interesting pattern in current American politics (or at least a pattern I find interesting): White liberals tend to more strongly favor other races over Whites—at least when given the opportunity to rank the groups with a feeling thermometer."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Investigating Why White Liberals rank non-White groups higher than Whites | Peter Licari</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper dark ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.f3550f3b700e9a9fe0f05ececf961b50.js"></script>
+
+  
+
+<aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Peter Licari</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Peter Licari</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#home"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/til"><span>Today I Learned</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication"><span>Writing</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Investigating Why White Liberals rank non-White groups higher than Whites</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Oct 9, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    13 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a>, <a href="/category/survey-research/">Survey Research</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/post/white-liberals/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p><em>This is version 1.0.0 of this post. Read the note at the end for versioning information</em></p>
+<p>Over the last few weeks, I’ve been working on a project that investigates an interesting pattern in current American politics (or at least a pattern <em>I</em> find interesting): White liberals tend to more strongly favor other races over Whites—at least when given the opportunity to rank the groups with a feeling thermometer. I’ve finished that project and I’ve published a general-audience write-up on Medium. You can check it out <a href="#">here</a> if you’d like.</p>
+<p>The topic caught my attention because, generally, people tend to report greater feelings of favoritism towards their own race versus other races. That’s not to say that they rate other enthoracial groups <em>poorly</em>—most people tend to rate other groups fairly highly, they just rate group that they identify with <strong>more</strong> positively. This pro-ingroup bias is so widespread that the deviation of White liberals away from the pattern made the little hamster in my brain hop onto his wheel and start trotting. The last data on the topic that I could find was based off the 2018 ANES pilot study; would the pattern continue into 2020? What sort of factors might it be driven by?</p>
+<p>By and large, I found that White liberals continued to have this pattern of favoring other groups over Whites. The gaps were larger among respondents who were younger, who were more strongly liberal, who were more politically interested, and who had lower feelings of linked-fate with Whites in general.</p>
+<p>I wanted to write this post because I wanted to have a place where I shed some light on my methodology and coding in a way that isn’t as conducive to the kind of writing I was going for in the main piece. If you’re interested in that stuff, read on! If you’re simply interested in the code I used to analyze and make the figures, here’s a (link to the github repository where I’ve stored it)[<a href="https://github.com/prlitics/Research-Projects/blob/main/White-Liberals-2021/analysis.R" class="uri">https://github.com/prlitics/Research-Projects/blob/main/White-Liberals-2021/analysis.R</a>]. No hard feelings! You do you, boo.</p>
+<p>This post is broken down into four parts: Data transformation, hypotheses, modeling and anaysis, and visualization.</p>
+<div id="data-transformation." class="section level2">
+<h2>Data transformation.</h2>
+<p>The data I used for the post came from the 2020 American National Election Survey (or ANES). The ANES is an indispensible resource for people studying political behavior in the American context. Thankfully, James Martherus has published the <a href="https://github.com/jamesmartherus/anesr"><code>{anesr}</code> package</a>, which has dang-near all of the data the project has collected over its decades-long span. I used this package to get a dataframe of the 2020 ANES.</p>
+<pre class="r"><code># If you don&#39;t have the package, uncomment and run this next line
+# devtools::install_github(&quot;jamesmartherus/anesr&quot;)
+library(anesr)
+
+data(&quot;timeseries_2020&quot;)
+anes20 &lt;- timeseries_2020
+dim(anes20)</code></pre>
+<pre><code>## [1] 8280 1381</code></pre>
+<pre class="r"><code>knitr::kable(head(anes20[1:5], n =10))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">version</th>
+<th align="right">V200001</th>
+<th align="right">V160001_orig</th>
+<th align="right">V200002</th>
+<th align="right">V200003</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200015</td>
+<td align="right">401318</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200022</td>
+<td align="right">300261</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200039</td>
+<td align="right">400181</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200046</td>
+<td align="right">300171</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200053</td>
+<td align="right">405145</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200060</td>
+<td align="right">400374</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200084</td>
+<td align="right">407013</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200091</td>
+<td align="right">407174</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200107</td>
+<td align="right">406264</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">ANES2020TimeSeries_20210324</td>
+<td align="right">200114</td>
+<td align="right">402782</td>
+<td align="right">3</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>The tibble has over <em>1,300</em> columns!! There’s no reason I need that many variables. Also, the labels are given the official variable names given in the data set—which are less than informative. I downloaded the <a href="https://electionstudies.org/wp-content/uploads/2021/07/anes_timeseries_2020_questionnaire_20210719.pdf">questionnaire</a> from the Election Studies site and found the variables I was most interested in, and renamed them to something more sensible. For this I needed <code>{dplyr}</code>—but I figured that I might as well just bring in the whole <code>{tidyverse}</code> in case I needed something from <code>{purrr}</code> or <code>{tidyr}</code> later.</p>
+<pre class="r"><code>library(tidyverse)
+df &lt;- anes20 %&gt;%
+  select(id = V200001,ideo = V201200, 
+         feeling_blk = V202480,
+         fate_wht = V202505, feeling_wht = V202482,
+         feeling_asn = V202478, 
+         feeling_hisp = V202479, 
+         weight = V200010a,
+         age = V201507x, race_eth = V201549x, sex = V201600, educ = V201511x,
+         interest = V202406,
+         pid = V201231x, mode = V200002)</code></pre>
+<p>This was a bit of an iterative process. I knew that, at bare minimum, I needed to have political ideology and race so that I could hone-in on my audience of choice (White liberals), and I knew I’d need the feeling thermometer variables for the different racial groups. Everything else reflected things that I immediately thought my have explanatory power (age, education, gender), things I thought would be important to control for (party identity and whether the respondents were interviewed face-to-face or online), things that I realized would be important for future data transformation steps (respondent ID), or things that I realized could be interesting to include as I took time to reflect and read more into the codebook (political interest and linked-fate.) I feel like this is a really common pattern in research; the variables you select are both driven by theoretical priors but also by necessity and by curiosity driven by initial findings. (Full transparency, I ran initial models that didn’t include interest and linked fate and then thought that it’d be fun to include them afterwards. I feel it’s better to report on the full model that gets chosen rather than present it in a step-wise way—at least so long as you’re not cherry-picking whatever specification gives you the sexiest outcomes. A hard siren’s song to resist to be sure…)</p>
+<p>I have <em>ample</em> prior history with the ANES (I used it a bunch in grad school, used it for my <a href="https://journals.sagepub.com/doi/full/10.1177/1532673X20915222">published research</a>, and used it extensively when I taught classes prior to graduating and leaving UF)—so I knew that data that could broadly be considered “missing” (the question not being asked, people not providing answers <em>when</em> asked, etc.) are given negative values or values over 100. So I made an anonymous function in a <code>mutate(across())</code> call that would assign these values, more appropriately in my personal opinion, to <code>NA</code>. This drops them from the analysis I planned to run. After that, I filtered the dataset so that I was only looking at those who identified as liberal and as non-Hispanic White.</p>
+<pre class="r"><code>df &lt;- df %&gt;%
+  mutate(across( c(everything(),-id), function(x){ifelse(x &lt; 0 | x &gt;= 100, NA, x)})) %&gt;%
+  filter(ideo %in% c(1:3) &amp; race_eth == 1)</code></pre>
+<p>In this last bit, I constructed my dependent variables—the gaps between people’s ratings of Whites and their ratings of Asians, Hispanics, and Blacks (when they offered answers to the question). I then reduced my education variable down to a dummy that looked at whether they had gotten a college degree or not. (I was thinking that there could be an interaction effect betweeh that level of degree attainment and age on the size of the gap, but I ultimately didn’t find much in support of that). Last but not least, I selected only the variables that I was going to need for the rest of the analysis. I tend to like only working with as much as I need; calculations go faster that way and I can look at things more clearly without poking around across other variables that I don’t actually need or care about.</p>
+<pre class="r"><code>df &lt;- df %&gt;%
+  mutate(feel_bw = feeling_blk - feeling_wht,
+         feel_aw = feeling_asn - feeling_wht,
+         feel_hw = feeling_hisp - feeling_wht
+  ) %&gt;%
+  mutate(college = ifelse(educ %in% 4:5,1,0)) %&gt;%
+  select(starts_with(&#39;feel_&#39;), fate_wht, id, ideo, age, sex, college, pid, mode, interest)</code></pre>
+</div>
+<div id="hypotheses" class="section level2">
+<h2>Hypotheses</h2>
+<p>As I mentioned above, my hypothesis-generating process was a bit reflexive; I had some variables I was originally interested in to be sure, but then others came along after I got my initial run of the analysis.</p>
+<p>My first set of hypotheses were basically these:</p>
+<p><strong>1. Age would be negatively associated with levels of pro-outgroup bias. </strong></p>
+<p><strong>2. Education would be positively associated with levels of pro-outgroup bias. Among White liberals, I expected education would matter.</strong></p>
+<p><strong>3. There’d be a significant interaction between age and education. Basically, I thought that young, <em>educated</em> White liberals would be different than young White liberals without a college degree—and that the latter group would be more similar to older liberals, educated or otherwise. Basically, I was wondering to what extent this was driven by socialization factors among more recent graduates who have more experience investigating concepts like race more critically.</strong></p>
+<p><strong>4. Those who identified as “more” liberal would have higher levels of pro-outgroup bias</strong></p>
+<p>From this first flight, it turns out only 1 and 4 turned out to have any support in the data. <em>c’est la vie.</em></p>
+<p>After that, I spent a few days ruminating on the findings and thought “I wonder if political interest matters. At the very least, it should probably be a control variable…” This is because people who are interested in politics are not only exposed to more in-party cues on salient topics, they’re also, broadly, more receptive. Since Race is a central part of the Democratic party’s identity right now, those who pay more attention probably had larger out-group biases. Hence hypothesis number 5"</p>
+<p><strong>5. White liberals who are more interested in politics will have higher pro-outgroup biases than those with little to know interest.</strong></p>
+<p>To be entirely honest, hypothesis 6 came as I scrolled through the codebook to rectify a coding error. (This error initially had me coming away with the opposite conclusion. The lesson, kids: Always check that your renamed variables are based off the variables you <em>think</em> they are). I happend to see linked fate in the description and thought “oh yeah! I remember reading up on that in my political socialization class. Fun times. You’ll probably see lower out-group biases in people with lower affective linkages to Whites overall; let’s chuck that in!”</p>
+<p><strong>6. I chucked it in for exactly the reason I wrote a second ago.</strong></p>
+<p>All in all, 1, 4, 5, and 6 found significant evidence supporting them. At least with my modeling strategy.</p>
+<p><em>And that, friends, is called a “segue.”</em></p>
+</div>
+<div id="modeling-and-anaysis" class="section level2">
+<h2>Modeling and Anaysis</h2>
+<div id="modeling" class="section level3">
+<h3>Modeling</h3>
+<p>A fair portion of my model choice stemmed from a single phrase from the piece where the pro-outgroup bias fact originated from (so far as I can tell at least): Work by PhD Candidate Zach Goldberg. It inspired a pretty famous piece by Matt Yglesias and Goldberg followed it up with a longer essay. It was here where I found the phrase.</p>
+<blockquote>
+<p>A related graph below displays the average differences in feelings of warmth (measured along a 0-100 scale) toward whites vs. nonwhites (i.e., Asians, Hispanics, and blacks) across different subgroups.</p>
+</blockquote>
+<p>The word <em>“average”</em> is what got me. How would one calculate the average? Simply add up the gaps from Blacks vs Whites, Asian vs Whites, and Hispanics vs Whites and divide by 3? That would only work if respondents provided non-empty answers for all three, and that wasn’t the case. I could just narrow it down to those people who <em>did</em> provide non-empty answers for all three, but I felt that was unnecessarily limiting the available data.</p>
+<p>Since I’ve been doing a fair amount of multilevel modeling at work, I figured that I’d transform the data so that <em>each individual comparison</em> would be a row, with up to 3 observations nested within each respondent. With that nesting, I opted for a multilevel model where I could make respondent-level random slopes. This would account for the fact that some people may be inclined to rank out-groups higher/lower in general—and the partial pooling would help for those who had fewer comparisons. I could then add a set of dummy variables to the model that controlled for which of the three comparisons was being made. And since the dependent variable could theoretically span between -100–100 (though, in practice, it spanned from -70–90), I went with a linear model. After converting the data to long via <code>pivot_longer</code>, I used the <code>lme</code> function from <code>{lme4}</code>. The <code>(1|id)</code> syntax means that I am specifying random intercepts based off of respondent id.</p>
+<pre class="r"><code>library(lme4)</code></pre>
+<pre><code>## Warning: package &#39;lme4&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
+## 
+##     expand, pack, unpack</code></pre>
+<pre class="r"><code>df1 &lt;- df %&gt;%
+  pivot_longer(!c(id, ideo, age, sex, college, fate_wht, pid, mode, interest))
+
+mod &lt;- lmer(value ~ ideo + fate_wht + age*as.factor(college) + as.factor(sex) + 
+              pid + as.factor(mode) + as.factor(name) + interest + (1|id), data = df1)</code></pre>
+</div>
+<div id="analysis" class="section level3">
+<h3>Analysis</h3>
+<p>The code below generates the summary of the <code>lme</code> model.</p>
+<pre class="r"><code>summary(mod)</code></pre>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: value ~ ideo + fate_wht + age * as.factor(college) + as.factor(sex) +  
+##     pid + as.factor(mode) + as.factor(name) + interest + (1 |      id)
+##    Data: df1
+## 
+## REML criterion at convergence: 21890
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -5.3445 -0.1458 -0.0312  0.1481  4.5567 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  id       (Intercept) 200.87   14.173  
+##  Residual              34.59    5.882  
+## Number of obs: 2920, groups:  id, 1228
+## 
+## Fixed effects:
+##                         Estimate Std. Error t value
+## (Intercept)             31.22241    3.61862   8.628
+## ideo                    -4.06849    0.66269  -6.139
+## fate_wht                 1.96045    0.52235   3.753
+## age                     -0.29996    0.04062  -7.384
+## as.factor(college)1     -3.70728    2.82027  -1.315
+## as.factor(sex)2          1.92603    0.87248   2.208
+## pid                     -1.37348    0.33628  -4.084
+## as.factor(mode)2         4.33555    4.62419   0.938
+## as.factor(mode)3        -0.98535    1.80398  -0.546
+## as.factor(name)feel_bw   1.03711    0.32352   3.206
+## as.factor(name)feel_hw   0.70037    0.32388   2.162
+## interest                -2.20656    0.60049  -3.675
+## age:as.factor(college)1  0.09430    0.05087   1.854</code></pre>
+</div>
+</div>
+<div id="visualization" class="section level2">
+<h2>Visualization</h2>
+<p>I honestly struggled <em>a lot</em> with the visualizations in this piece. I’m a big fan of the conept of showing as much of the data as possible without sacrificing the intended message of visualiztion. I honestly believe that the sizes of the associations between the significant findings are (mostly) substantial. We’re talking about gaps of 5-15 points on a 100 point scale—one where most people cluster towards the middle-high values. However, there’s so much heterogeneity—and so many outliers—that I worried that, in some cases, showing literally all of the data would make the effects appear smaller, and less consequential than they are. So I made the decision, when dealing with the raw data, to truncate the data to the the middle 95%. The analyses were run on the full set, but I felt that this would show both the substantial heterogeneity as well as the significant overall trend.</p>
+<p>I ran into a similar issue when trying to plot the individual effects. It dawns on me now that I should’ve just the <code>dydx</code> of the margins rather than the predicted levels—but I think that the predictions still delivers the point across. Here too, I was tempted to show the actual data but the gaps were (understandably) different in the raw counts than suggested by the regression model. Not so much that the raw data contradicts what the models show—I’m a big fan of the idea that, if it doesn’t exist in the cross-tabs, it probably doesn’t (really) exist in the regression model—but that the difference in magnitude might cause confusion to the readers. I didn’t want single points, either because they seemed too certain. So I opted for bootstrapped confidence intervals. Which, I hope, accurately conveys both the pattern as well as the uncertainty in the point estimates that it rests on.</p>
+<div id="thats-it-thank-you-for-reading-please-let-me-know-what-you-think" class="section level3">
+<h3>That’s it! Thank you for reading! Please let me know what you think!</h3>
+<p><em>This is version <strong>1.0.0</strong> of this analysis.</em></p>
+<p><em>I believe all work benefits from readers’ constructive feedback as well as the writer’s own revisiting and reflection. But not all work is fit for academic publication. To that end, for the sake of transparency, I have decided to visibly index what point my non-academic projects are at once they go live in a format where others will (hopefully) come into contact with it. Minor revisions (such as grammar or minor image formatting issues) lead to an increase in the third digit. Major revisions inspired by my own revisiting and minor revisions inspired by the suggestion of readers leads to an increase in the second digit. Major revisions driven by the suggestion of readers or by future reflection and revisiting the project leads to the an increase in the first digit. After 6 months of no updates, a version should be considered “final.” The current version was published 10/9/21. All versions of this post are maintained on <a href="https://github.com/prlitics/Research-Projects/tree/main/White-Liberals-2021">Github</a>.</em></p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/american-politics/">American Politics</a>
+  
+  <a class="badge badge-light" href="/tag/race/">Race</a>
+  
+  <a class="badge badge-light" href="/tag/white-liberals/">White Liberals</a>
+  
+  <a class="badge badge-light" href="/tag/political-behavior/">Political behavior</a>
+  
+  <a class="badge badge-light" href="/tag/survey-research/">Survey Research</a>
+  
+  <a class="badge badge-light" href="/tag/r/">R</a>
+  
+  <a class="badge badge-light" href="/tag/anes/">ANES</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/white-liberals/&amp;text=Investigating%20Why%20White%20Liberals%20rank%20non-White%20groups%20higher%20than%20Whites" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/white-liberals/&amp;t=Investigating%20Why%20White%20Liberals%20rank%20non-White%20groups%20higher%20than%20Whites" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Investigating%20Why%20White%20Liberals%20rank%20non-White%20groups%20higher%20than%20Whites&amp;body=/post/white-liberals/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/white-liberals/&amp;title=Investigating%20Why%20White%20Liberals%20rank%20non-White%20groups%20higher%20than%20Whites" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=/post/white-liberals/&amp;title=Investigating%20Why%20White%20Liberals%20rank%20non-White%20groups%20higher%20than%20Whites" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/peter-licari/avatar_hu6d7fe6c084bedc540b4597779aad5354_63287_270x270_fill_q75_lanczos_center.jpg" alt="Peter Licari">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Peter Licari</h5>
+      <h6 class="card-subtitle">Data Scientist</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/PRLPoliSci" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.youtube.com/c/professorpolitics" target="_blank" rel="noopener">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/prlitics" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:prlicari13@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/how-to-do-unequal-randomization-in-qualtrics-surveys/">How to Do Unequal Randomization in Qualtrics Surveys</a></li>
+      
+      <li><a href="/post/surveying-is-a-beautifully-foolish-endeavor/">Surveying is A Beautifully Foolish Endeavor</a></li>
+      
+      <li><a href="/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/">Grouping On Variables with Spaces in the Column Name Using dplyr</a></li>
+      
+      <li><a href="/project/fl-ballot-app/">dumdum</a></li>
+      
+      <li><a href="/project/dumdum/">dumdum</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.572b7caf7fe601716a0f74d67d754c21.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

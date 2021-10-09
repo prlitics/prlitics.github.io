@@ -37,13 +37,68 @@
   </url>
   
   <url>
+    <loc>/tag/american-politics/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/anes/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/white-liberals/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/political-behavior/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/r/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/r/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/race/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/survey-research/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/survey-research/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/white-liberals/</loc>
+    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
   </url>
   
   <url>
@@ -73,11 +128,6 @@
   
   <url>
     <loc>/tag/election-2020/</loc>
-    <lastmod>2021-02-14T23:38:50-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2021-02-14T23:38:50-05:00</lastmod>
   </url>
   
@@ -152,11 +202,6 @@
   </url>
   
   <url>
-    <loc>/tag/r/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/shiny/</loc>
     <lastmod>2020-08-27T00:00:00+00:00</lastmod>
   </url>
@@ -168,11 +213,6 @@
   
   <url>
     <loc>/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</loc>
-    <lastmod>2021-02-14T23:32:41-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
     <lastmod>2021-02-14T23:32:41-05:00</lastmod>
   </url>
   
@@ -193,16 +233,6 @@
   
   <url>
     <loc>/category/qualtrics/</loc>
-    <lastmod>2021-02-14T23:23:54-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/survey-research/</loc>
-    <lastmod>2021-02-14T23:23:54-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/survey-research/</loc>
     <lastmod>2021-02-14T23:23:54-05:00</lastmod>
   </url>
   
@@ -577,10 +607,6 @@
   
   <url>
     <loc>/publication/races/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/political-behavior/</loc>
   </url>
   
   <url>
