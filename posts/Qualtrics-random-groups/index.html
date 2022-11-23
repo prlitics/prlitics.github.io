@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peter Licari">
+<meta name="dcterms.date" content="2020-08-05">
+
+<title>Peter Licari - How to Do Unequal Randomization in Qualtrics Surveys</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Peter Licari</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../writing.html">Writing</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ongoing Projects</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+        <li>
+    <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
+ <span class="dropdown-text">YouTube Channel</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://peterlicari.substack.com/">
+ <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
+ <span class="dropdown-text">Comics (Rarely)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../other_things.html">Other Things I’ve Made</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../archive.html">
+ <span class="dropdown-text">Archive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.r-bloggers.com/">
+ <span class="dropdown-text">R Bloggers</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#starting-with-embedded-data" id="toc-starting-with-embedded-data" class="nav-link active" data-scroll-target="#starting-with-embedded-data">Starting with Embedded Data</a></li>
+  <li><a href="#omg-so-random" id="toc-omg-so-random" class="nav-link" data-scroll-target="#omg-so-random">“OMG so random…”</a>
+  <ul class="collapse">
+  <li><a href="#were-going-to-nest-randomization-conditions." id="toc-were-going-to-nest-randomization-conditions." class="nav-link" data-scroll-target="#were-going-to-nest-randomization-conditions.">We’re going to <em>nest</em> randomization conditions.</a></li>
+  </ul></li>
+  <li><a href="#branch-it-out" id="toc-branch-it-out" class="nav-link" data-scroll-target="#branch-it-out">Branch it out</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to Do Unequal Randomization in Qualtrics Surveys</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">surveys</div>
+    <div class="quarto-category">qualtrics</div>
+    <div class="quarto-category">research design</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter Licari </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 5, 2020</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<p>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups. This is something that Qualtrics can do really easily with its in-built <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/">randomizer</a> function. If you use this, and keep <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/#EvenlyPresentElements">evenly present elements</a> on, your respondents will be sorted in roughly evenly. So if you have 16 respondents and 4 groups, on average you’ll get 4 people per group.</p>
+<center>
+<p><img src="images/1.png" class="img-fluid"></p>
+</center>
+<p>But we had a different situation. We had four groups but we <strong>didn’t</strong> want it split evenly. We wanted it so that group 1 was half of the survey, and groups 2, 3, and 4 took up thirds of the remaining half.</p>
+<center>
+<p><img src="images/2.png" class="img-fluid"></p>
+</center>
+<p>Unfortunately, Qualtrics doesn’t seem to have an option that let’s you select unequal probabilities natively. If you deselect “evenly present elements” it’ll just randomize without any real concern towards whether your groups end up looking roughly equal. But that’s not what we needed. So I wanted to write about our solution to this so, hopefully, others in a similar situation might be able to find a work-around that works for them, too!</p>
+<p>Our solution used <strong>embedded data</strong>, <strong>then branches</strong>, and the standard <strong>randomizer.</strong> I’ll also talk about how you might be able to generalize this to any number of conditions (although some are more work than others).</p>
+<section id="starting-with-embedded-data" class="level2">
+<h2 class="anchored" data-anchor-id="starting-with-embedded-data">Starting with Embedded Data</h2>
+<p>As you probably know: After you’re done with your Qualtrics survey, you can export it as a csv or as a xlsx file. In addition to the answers to your questions, it’ll also include some project and respondent metadata. But you can also program the survey for it to include you’re own custom metadata to be embedded in the project. You can do this by clicking on the “add new element here” button and adding embedded data to the project.</p>
+<center>
+<p><img src="images/3.PNG" class="img-fluid"></p>
+</center>
+<p>Once you’ve done that, you can customize your field to have whatever name you want. You can also set the value for this field. Here I set a variable named “test” equal to the value “1”. When I export the results for this survey, there will be a new column called “test” where the value for every respondent will be 1.</p>
+<p><img src="images/4.PNG" class="img-fluid"> Importantly, though, you can also set multiple conditions for the embedded data field! You do this by clicking “add below” and adding more embedded data sections.</p>
+<p><img src="images/5.PNG" class="img-fluid"></p>
+<p><strong>Pop quiz! What would you get in the “test” column if you ran this survey as is?</strong></p>
+<p>You’d get <strong>4</strong> because, right now, you’re telling Qualtrics:</p>
+<ul>
+<li>Invent a column called test. Set it equal to 1.</li>
+<li>Actually, remember test? Set it to 2.</li>
+<li>I lied. Make it 3 now.</li>
+<li>Jk. 4.</li>
+</ul>
+<p>Here’s where we start using the randomizer.</p>
+</section>
+<section id="omg-so-random" class="level2">
+<h2 class="anchored" data-anchor-id="omg-so-random">“OMG so random…”</h2>
+<p>As it stands now, you’re going to end up with a field called test where the value is set to 3 for all respondents. Instead of that, we can use the randomizer to make it so that 1/4 of the sample has a value of 1 for test, 1/4 has a value of 2, 1/4 has a value of 3, and 1/4 has a value of 4.</p>
+<p><img src="images/6.PNG" class="img-fluid"> You may be thinking “Cool. But this doesn’t do anything for me. I’m right back at equal probabilities for my experimental conditions.” And you’d be right if we were stopping here.</p>
+<p>But we’re not stopping here.</p>
+<section id="were-going-to-nest-randomization-conditions." class="level4">
+<h4 class="anchored" data-anchor-id="were-going-to-nest-randomization-conditions.">We’re going to <em>nest</em> randomization conditions.</h4>
+<p><img src="images/7.PNG" class="img-fluid"></p>
+<p>This programming is pretty similar to what we ended up using. Let’s follow the logic of the flow:</p>
+<ol type="1">
+<li>Randomly pick either the test 1 condition with 50 % probability.</li>
+<li>If it is not picked, then randomly select one of the remaining 3 conditions with 1/3 probability each.</li>
+</ol>
+<p>This will mean that half of the respondents will get test1 and 1/6th will go to each test2, test3, and test4. Which is what the situation is in the second image and exactly what we were looking for in the real-life scenario.</p>
+<p>This nesting is the key thing here. <strong>By nesting your randomizers strategically, there are few combinations that you won’t be able to achieve.</strong> This sort of set up can be really useful if you’re doing a multifactorial survey experiment.</p>
+<p>We can wrap this all up with a neat bow through some branching.</p>
+</section>
+</section>
+<section id="branch-it-out" class="level2">
+<h2 class="anchored" data-anchor-id="branch-it-out">Branch it out</h2>
+<p>Now we can do some branches so that our participants only see the blocks that they’re intended to see. Then branches work off of <a href="https://en.wikipedia.org/wiki/Boolean_algebra">boolean logic</a>. If a condition is <code>TRUE</code> then it’ll run a particular course of action. If it’s <code>FALSE</code> then it won’t run that action. In Qualtrics, you can set the branching logic so that it reflects the metadata that was assigned to participants through the randomizer.</p>
+<p><img src="images/8.PNG" class="img-fluid"> After that, you can add the block that you wanted people with test condition 1 (and only test condition 1) to see. And if you repeat it out, then you can complete the whole survey flow. Here’s basically what our survey looked like once the logic is completed all the way to the end.</p>
+<p><img src="images/9.PNG" class="img-fluid"></p>
+<p>One of the things I really like about this approach (rather than, say, using a <a href="https://www.qualtrics.com/support/survey-platform/common-use-cases-rc/assigning-randomized-ids-to-respondents/">random number generator</a> and a bunch of then branches) is that this makes your later analysis pretty easy. If you’re making pivot tables, you can group off of that variable’s value. If you’re doing ANOVA in SPSS, Stata, or R, you’ve got a single variable already to go without having to do any post-hoc coding. It also makes it easier to set dummy variables if you do a more advanced regression analysis. I’m personally a big fan of doing small-to-moderate amounts of work up-front to save myself larger amounts of work down the road. I’m a big believer that work borrowed from your future self compounds with interest.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
+  author = {Peter Licari and Peter Licari},
+  title = {How to {Do} {Unequal} {Randomization} in {Qualtrics}
+    {Surveys}},
+  date = {2020-08-05},
+  url = {www.peterlicari.com/posts/Qualtrics-random-groups},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Peter Licari, and Peter Licari. 2020. <span>“How to Do Unequal
+Randomization in Qualtrics Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">www.peterlicari.com/posts/Qualtrics-random-groups</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

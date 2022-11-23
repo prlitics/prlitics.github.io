@@ -1,0 +1,42 @@
+[
+  {
+    "listing": "/archive.html",
+    "items": [
+      "/posts/theory-reality-book-review/index.html",
+      "/posts/thoughts-prior-2020-election/index.html",
+      "/posts/Qualtrics-random-groups/index.html",
+      "/posts/surveying-beautiful-endeavor/index.html",
+      "/posts/covid-video-lecture-tutorial/index.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/theory-reality-book-review/index.html",
+      "/posts/thoughts-prior-2020-election/index.html",
+      "/posts/Qualtrics-random-groups/index.html",
+      "/posts/surveying-beautiful-endeavor/index.html",
+      "/posts/covid-video-lecture-tutorial/index.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/theory-reality-book-review/index.html",
+      "/posts/thoughts-prior-2020-election/index.html",
+      "/posts/Qualtrics-random-groups/index.html",
+      "/posts/surveying-beautiful-endeavor/index.html",
+      "/posts/covid-video-lecture-tutorial/index.html"
+    ]
+  },
+  {
+    "listing": "/other_things.html",
+    "items": [
+      "/other_things/wordle-letter-frequency/index.html",
+      "/other_things/dissertation/index.html",
+      "/other_things/kanye-map/index.html",
+      "/other_things/election-app/index.html",
+      "/other_things/dumdum/index.html"
+    ]
+  }
+]

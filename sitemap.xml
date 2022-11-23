@@ -1,644 +1,67 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/courses/example/example1/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
+    <loc>www.peterlicari.com/about.html</loc>
+    <lastmod>2022-11-14T03:18:09.090Z</lastmod>
   </url>
-  
   <url>
-    <loc>/courses/example/</loc>
-    <lastmod>2018-09-09T00:00:00+00:00</lastmod>
+    <loc>www.peterlicari.com/archive.html</loc>
+    <lastmod>2022-11-14T03:18:10.295Z</lastmod>
   </url>
-  
   <url>
-    <loc>/courses/example/example2/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
+    <loc>www.peterlicari.com/blog.html</loc>
+    <lastmod>2022-11-14T03:18:11.212Z</lastmod>
   </url>
-  
   <url>
-    <loc>/blog_posts/posts/</loc>
+    <loc>www.peterlicari.com/index.html</loc>
+    <lastmod>2022-11-14T03:18:12.073Z</lastmod>
   </url>
-  
   <url>
-    <loc>/talk/example-talk/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
+    <loc>www.peterlicari.com/other_things/dissertation/index.html</loc>
+    <lastmod>2022-11-14T03:18:12.668Z</lastmod>
   </url>
-  
   <url>
-    <loc>/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
+    <loc>www.peterlicari.com/other_things/dumdum/index.html</loc>
+    <lastmod>2022-11-14T03:18:13.346Z</lastmod>
   </url>
-  
   <url>
-    <loc>/event/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
+    <loc>www.peterlicari.com/other_things/election-app/index.html</loc>
+    <lastmod>2022-11-14T03:18:13.912Z</lastmod>
   </url>
-  
   <url>
-    <loc>/tag/american-politics/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/other_things/kanye-map/index.html</loc>
+    <lastmod>2022-11-14T03:18:14.601Z</lastmod>
   </url>
-  
   <url>
-    <loc>/tag/anes/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/other_things/wordle-letter-frequency/index.html</loc>
+    <lastmod>2022-11-14T03:18:15.198Z</lastmod>
   </url>
-  
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/other_things.html</loc>
+    <lastmod>2022-11-14T03:18:16.094Z</lastmod>
   </url>
-  
   <url>
-    <loc>/post/white-liberals/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/posts/covid-video-lecture-tutorial/index.html</loc>
+    <lastmod>2022-11-14T03:18:17.031Z</lastmod>
   </url>
-  
   <url>
-    <loc>/tag/political-behavior/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/posts/Qualtrics-random-groups/index.html</loc>
+    <lastmod>2022-11-14T03:18:17.970Z</lastmod>
   </url>
-  
   <url>
-    <loc>/post/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/posts/surveying-beautiful-endeavor/index.html</loc>
+    <lastmod>2022-11-14T03:18:18.784Z</lastmod>
   </url>
-  
   <url>
-    <loc>/tag/r/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/posts/theory-reality-book-review/index.html</loc>
+    <lastmod>2022-11-14T03:18:19.761Z</lastmod>
   </url>
-  
   <url>
-    <loc>/category/r/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/posts/thoughts-prior-2020-election/index.html</loc>
+    <lastmod>2022-11-14T03:18:20.874Z</lastmod>
   </url>
-  
   <url>
-    <loc>/tag/race/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
+    <loc>www.peterlicari.com/writing.html</loc>
+    <lastmod>2022-11-14T03:18:24.206Z</lastmod>
   </url>
-  
-  <url>
-    <loc>/tag/survey-research/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/survey-research/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/white-liberals/</loc>
-    <lastmod>2021-10-09T13:31:35-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/til/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/til-using-tk-as-a-placeholder-when-writing/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/writing/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/writing/</loc>
-    <lastmod>2021-02-18T21:16:11-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/election-2020/</loc>
-    <lastmod>2021-02-14T23:38:50-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/reflection/</loc>
-    <lastmod>2021-02-14T23:38:50-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/some-thoughts-about-the-2020-election/</loc>
-    <lastmod>2021-02-14T23:38:50-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/dissertation/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/dissertation/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/political-attitudes/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/political-participation/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/dissertation/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/video-games/</loc>
-    <lastmod>2020-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/data-visualization/</loc>
-    <lastmod>2020-09-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/write-in-deadlines/</loc>
-    <lastmod>2020-09-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/apps/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/fl-ballot-app/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/early-vote-florida/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/shiny/</loc>
-    <lastmod>2020-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/dplyr/</loc>
-    <lastmod>2021-02-14T23:32:41-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/grouping-on-variables-with-spaces-in-the-column-name-using-dplyr/</loc>
-    <lastmod>2021-02-14T23:32:41-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/til/</loc>
-    <lastmod>2021-02-14T23:32:41-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/how-to-do-unequal-randomization-in-qualtrics-surveys/</loc>
-    <lastmod>2021-02-14T23:23:54-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/qualtrics/</loc>
-    <lastmod>2021-02-14T23:23:54-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/qualtrics/</loc>
-    <lastmod>2021-02-14T23:23:54-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/tutorials/</loc>
-    <lastmod>2021-02-14T23:23:54-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/abfe/</loc>
-    <lastmod>2021-02-14T22:50:48-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/fiction/</loc>
-    <lastmod>2021-02-14T22:50:48-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/hank-green/</loc>
-    <lastmod>2021-02-14T22:50:48-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/surveying-is-a-beautifully-foolish-endeavor/</loc>
-    <lastmod>2021-02-14T22:50:48-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/surveys/</loc>
-    <lastmod>2021-02-14T22:50:48-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til_post/how-to-remove-urls-from-zotero-bibtex/</loc>
-    <lastmod>2021-02-14T22:54:21-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/zotero/</loc>
-    <lastmod>2021-02-14T22:54:21-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/2/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/peter-licari/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/political-knowledge/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/sharp-as-fox/</loc>
-    <lastmod>2020-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/capturing-a-powerpoint-google-slides-lecture-with-open-source-software/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/corona/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/google-slides/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/obs/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/powerpoint/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/teaching/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/technology/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/tutorial/</loc>
-    <lastmod>2021-02-14T22:16:02-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/trump-tweet-wordcloud/</loc>
-    <lastmod>2020-01-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/sotu-dyad/</loc>
-    <lastmod>2020-01-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/courses/</loc>
-    <lastmod>2019-05-05T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/6/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/election-2016/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/florida/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/hispanic-turnout/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/michael-binder/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/latino-fl-20/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/slides/</loc>
-    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/slides/example/</loc>
-    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/projects/</loc>
-    <lastmod>2019-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/til/</loc>
-    <lastmod>2019-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/8/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/fuck-white-supremacy/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/mad/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/nuclear-disarmament/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/richard-spencer/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/spencer/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/mad/</loc>
-    <lastmod>2017-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/emotions/</loc>
-    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/jon-morris/</loc>
-    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/survey-data/</loc>
-    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/emotional-election/</loc>
-    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/archived-data-viz/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/creative/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/data-manipulation/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/dumdum/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/package/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/package/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/professor_politics/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/youtube/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/big-data/</loc>
-    <lastmod>2015-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/elections/</loc>
-    <lastmod>2015-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/lia-merivaki/</loc>
-    <lastmod>2015-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/michael-mcdonald/</loc>
-    <lastmod>2015-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/big-data/</loc>
-    <lastmod>2015-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/voter-files/</loc>
-    <lastmod>2015-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication-type/4/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/new-years-tweets/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/paris-climate/</loc>
-  </url>
-  
-  <url>
-    <loc>/blog_posts/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/brown-cows/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/capitalism/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/climate-change/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/data-science/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/democrats-socialism/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/brown-cows/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/2nd-amendment/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/election-2018/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/game-theory/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/greyhound-racing/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/nlp/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/youth-turnout-20/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/races/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/politics/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/polling/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/second-amendment/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/socialism/</loc>
-  </url>
-  
-  <url>
-    <loc>/tag/survey-statistics/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/oprah-winning/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/election-security/</loc>
-  </url>
-  
-  <url>
-    <loc>/publication/video-games-politics/</loc>
-  </url>
-  
 </urlset>

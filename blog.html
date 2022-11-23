@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Peter Licari - Data and Other Fables</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Peter Licari</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./writing.html">Writing</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ongoing Projects</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+        <li>
+    <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
+ <span class="dropdown-text">YouTube Channel</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://peterlicari.substack.com/">
+ <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
+ <span class="dropdown-text">Comics (Rarely)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./other_things.html">Other Things I’ve Made</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="./archive.html">
+ <span class="dropdown-text">Archive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.r-bloggers.com/">
+ <span class="dropdown-text">R Bloggers</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Data and Other Fables</h1>
+            <p class="subtitle lead">A blog by Peter Licari</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="elections">elections <span class="quarto-category-count">(1)</span></div><div class="category" data-category="fiction">fiction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="qualtrics">qualtrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="reflection">reflection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="research design">research design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="review">review <span class="quarto-category-count">(2)</span></div><div class="category" data-category="surveys">surveys <span class="quarto-category-count">(2)</span></div><div class="category" data-category="teaching">teaching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tutorial">tutorial <span class="quarto-category-count">(1)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="review" data-listing-date-sort="1667797200000" data-listing-file-modified-sort="1668395851265" data-listing-reading-time-sort="11.48">
+<div class="thumbnail">
+<p><a href="./posts/theory-reality-book-review/index.html"> <img src="./posts/theory-reality-book-review/images/book_cover.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/theory-reality-book-review/index.html">
+<h3 class="no-anchor listing-title">
+Book Review: Theory and Reality
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('review'); return false;">
+review
+</div>
+</div>
+<a href="./posts/theory-reality-book-review/index.html">
+<div class="listing-description">
+<em>Theory and Reality</em> is an ambitious book that aims to accessibly cover a large swath of historical and philosophical ground. In many ways, it lives up to that ambition, making it well worth the read. In other, important ways though, the book occasionally devolves into muddy paste, sometimes making a <em>re</em>-reading necessary to fully grok what’s been covered.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/theory-reality-book-review/index.html">
+<div class="listing-date">
+Nov 7, 2022
+</div>
+<div class="listing-author">
+Peter Licari, Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="elections,reflection" data-listing-date-sort="1604552400000" data-listing-file-modified-sort="1663449537793" data-listing-reading-time-sort="12.71">
+<div class="thumbnail">
+<p><a href="./posts/thoughts-prior-2020-election/index.html"> <img src="./posts/thoughts-prior-2020-election/images/likelyoutcome.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/thoughts-prior-2020-election/index.html">
+<h3 class="no-anchor listing-title">
+Thoughts on the 2020 Election
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('elections'); return false;">
+elections
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('reflection'); return false;">
+reflection
+</div>
+</div>
+<a href="./posts/thoughts-prior-2020-election/index.html">
+<div class="listing-description">
+I thought I would post my prediction for the election and a few thoughts regarding it more generally. I’ll be peppering in some maps that I’ve made to help illustrate my general thought process.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/thoughts-prior-2020-election/index.html">
+<div class="listing-date">
+Nov 5, 2020
+</div>
+<div class="listing-author">
+Peter Licari, Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="surveys,qualtrics,research design" data-listing-date-sort="1596600000000" data-listing-file-modified-sort="1663448810580" data-listing-reading-time-sort="4.71">
+<div class="thumbnail">
+<p><a href="./posts/Qualtrics-random-groups/index.html"> <img src="./posts/Qualtrics-random-groups/images/2.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/Qualtrics-random-groups/index.html">
+<h3 class="no-anchor listing-title">
+How to Do Unequal Randomization in Qualtrics Surveys
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('surveys'); return false;">
+surveys
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('qualtrics'); return false;">
+qualtrics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('research design'); return false;">
+research design
+</div>
+</div>
+<a href="./posts/Qualtrics-random-groups/index.html">
+<div class="listing-description">
+Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups. This is something that Qualtrics can do really easily with its in-built randomizer function. If you use this, and keep evenly present elements on, your respondents will be sorted in roughly evenly. So if you have 16 respondents and 4 groups, on average you’ll get 4 people per group.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Qualtrics-random-groups/index.html">
+<div class="listing-date">
+Aug 5, 2020
+</div>
+<div class="listing-author">
+Peter Licari, Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="review,surveys,fiction" data-listing-date-sort="1596427200000" data-listing-file-modified-sort="1663429905369" data-listing-reading-time-sort="2.765">
+<div class="thumbnail">
+<a href="./posts/surveying-beautiful-endeavor/index.html">
+<div class="thumbnail-image">
+
+</div>
+</a><p><a href="./posts/surveying-beautiful-endeavor/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./posts/surveying-beautiful-endeavor/index.html">
+<h3 class="no-anchor listing-title">
+Surveying is a Beautifully Foolish Endeavor
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('review'); return false;">
+review
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('surveys'); return false;">
+surveys
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('fiction'); return false;">
+fiction
+</div>
+</div>
+<a href="./posts/surveying-beautiful-endeavor/index.html">
+<div class="listing-description">
+I binged Hank Green’s <em>A Beautifully Foolish Endeavor</em> yesterday and it is, let me tell you, just fantastic. I don’t plan on writing a longer review because I didn’t really write any notes. I didn’t <em>want</em> to take notes. Not because it was bad, but because I didn’t want to peel my eyes away from the page for the short seconds it’d take for me to grab my pen and notebook. I was too engrossed to want to do anything but live in its pages for however long it’d let me. So, no review—but maybe that ardor could stand in place of one.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/surveying-beautiful-endeavor/index.html">
+<div class="listing-date">
+Aug 3, 2020
+</div>
+<div class="listing-author">
+Peter Licari, Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="tutorial,teaching" data-listing-date-sort="1583812800000" data-listing-file-modified-sort="1663450016064" data-listing-reading-time-sort="13.71">
+<div class="thumbnail">
+<p><a href="./posts/covid-video-lecture-tutorial/index.html"> <img src="./posts/covid-video-lecture-tutorial/images/1.gif" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/covid-video-lecture-tutorial/index.html">
+<h3 class="no-anchor listing-title">
+Capturing a PowerPoint/Google Slides Lecture with Open Source Software
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
+tutorial
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('teaching'); return false;">
+teaching
+</div>
+</div>
+<a href="./posts/covid-video-lecture-tutorial/index.html">
+<div class="listing-description">
+A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19). (UF just let us know Yesterday that, while it isn’t yet mandatory, we should start transitioning sooner rather than later). This isn’t going to be an easy transition for a lot of us—students and faculty alike. Not everyone makes living on the Internet basically a second job. I’m planning on writing a workflow for my intended solution—hosting lectures live in a Discord server with password-protected Google Forms as attendance—in the next few days. But I know that many people are going to feel that simpler is better for them. I got this text from a good friend of mine yesterday as we were talking about it:
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/covid-video-lecture-tutorial/index.html">
+<div class="listing-date">
+Mar 10, 2020
+</div>
+<div class="listing-author">
+Peter Licari, Peter Licari
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
