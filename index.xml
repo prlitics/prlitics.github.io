@@ -9,8 +9,292 @@
 <link>www.peterlicari.com/index.html</link>
 <atom:link href="www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.0.8</generator>
-<lastBuildDate>Mon, 07 Nov 2022 05:00:00 GMT</lastBuildDate>
+<generator>quarto-1.2.335</generator>
+<lastBuildDate>Thu, 16 Feb 2023 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Simulating My Daughter’s First Board Game in Python</title>
+  <dc:creator>Peter Licari</dc:creator>
+  <dc:creator>Peter Licari</dc:creator>
+  <link>www.peterlicari.com/posts/rosie-game-sim-23/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="learning-to-play" class="level2">
+<h2 class="anchored" data-anchor-id="learning-to-play">Learning to play</h2>
+<blockquote class="blockquote">
+<p><strong>Children learn as they play. Most importantly, in play children learn how to learn.</strong></p>
+<p>- <a href="https://www.museumofplay.org/about/play-quotes/#:~:text=Children%20learn%20as%20they%20play.%20Most%20importantly%2C%20in%20play%20children%20learn%20how%20to%20learn.">O. Fred Donaldson</a></p>
+</blockquote>
+<p>Not too long ago, my grandparents gifted my daughter her first board game: <a href="https://www.amazon.com/HABA-Very-First-Games-Cooperative/dp/B004BW8TYC">First Orchard</a>. It’s a simple little game that aims to teach kids how to follow game rules and how to take turns, as well as reinforcing toddler basics like counting, hand-eye coordination<sup>1</sup>, and colors. Here’s the premise:</p>
+<ul>
+<li><p>There are four, different colored “trees” in the gamespace (“orchard”; probably played on the floor) with four fruit apiece: Green apples, yellow pears, red apples, and blue plums.</p></li>
+<li><p>There is a hungry crow that will eat all of the fruit if they make it into the orchard; they start the game five movements away.</p></li>
+<li><p>There is a six-sided dice. Four of the sides correspond to the colors of the tree (green, yellow, red, blue), a basket that allows you to take from any tree, and one has a image of a crow.</p></li>
+<li><p>Players take turn rolling the dice. If they get a color, they take a fruit from the tree associated with that color. If all the fruit has already been picked, nothing happens. If a basket is rolled, then the player can pick a fruit from any tree. If the crow is rolled, the crow is advanced one space.</p></li>
+<li><p>The game ends when all of the fruit has been picked from the tree (the players collectively win!) or when the crow reaches the orchard (the players lose).</p></li>
+</ul>
+<p>As I spent time playing<sup>2</sup> with my daughter, I realized that we were winning. <em>A lot</em>. Which made sense to me. One lesson that all children (and all us children grown tall) must learn is how to lose—but it’s admittedly far easier to teach a kid how to follow rules if they think there’s a strong chance that the rules will lead to success. (Though not a perfect chance so that the game is engaging and has risk and stakes). I wondered though: Were we just on a lucky streak or is the game actually biased towards the players? How long do the games usually take? Are there different average lengths between successes and failures? And if it <em>is</em> biased, how much more likely is success than failure?</p>
+</section>
+<section id="simulating-the-game-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-the-game-in-python">Simulating the game in python</h2>
+<p>In order to see how generous this game is to the players, I decided to code it up in python.</p>
+<section id="set-up" class="level3">
+<h3 class="anchored" data-anchor-id="set-up">Set-up</h3>
+<p>First I imported my libraries, made a quick little “roll the dice” function, and then setup an empty array for the results:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;">import</span> pandas <span class="im" style="color: #00769E;">as</span> pd</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;">import</span> seaborn <span class="im" style="color: #00769E;">as</span> sb</span>
+<span id="cb1-4"><span class="im" style="color: #00769E;">import</span> scipy <span class="im" style="color: #00769E;">as</span> sp</span>
+<span id="cb1-5"></span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="kw" style="color: #003B4F;">def</span> die_roll():</span>
+<span id="cb1-8"> roll <span class="op" style="color: #5E5E5E;">=</span>  np.random.randint(<span class="dv" style="color: #AD0000;">1</span>,<span class="dv" style="color: #AD0000;">7</span>,<span class="dv" style="color: #AD0000;">1</span>)[<span class="dv" style="color: #AD0000;">0</span>]</span>
+<span id="cb1-9"> <span class="cf" style="color: #003B4F;">return</span>(roll)</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"></span>
+<span id="cb1-12">results <span class="op" style="color: #5E5E5E;">=</span> []</span></code></pre></div>
+</div>
+<p>From here, we can actually get down to articulating the rules/procedures of the game in python.</p>
+</section>
+<section id="encoding-the-game-rules-in-well-code" class="level3">
+<h3 class="anchored" data-anchor-id="encoding-the-game-rules-in-well-code">Encoding the game rules in, well, code</h3>
+<section id="game-start" class="level4">
+<h4 class="anchored" data-anchor-id="game-start">Game Start</h4>
+<p>First, let’s get the game instantiated. We start with 4 different colored “trees” with 4 fruit apiece, a crow that needs to move 5 spaces before getting to the “orchard” (<code>-5</code>) , the number of turns that have elapsed (starting at zero), and the “orchard”—the collection of trees and the number of fruit that have yet to be picked (16 to start)</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">red <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb2-2">green <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb2-3">yellow <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb2-4">blue <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb2-5">crow <span class="op" style="color: #5E5E5E;">=</span> <span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">5</span></span>
+<span id="cb2-6">turns <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">0</span>  </span>
+<span id="cb2-7">  </span>
+<span id="cb2-8">orchard <span class="op" style="color: #5E5E5E;">=</span> [red,green,yellow,blue]</span>
+<span id="cb2-9">orchard_sum <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">sum</span>(orchard)</span>
+<span id="cb2-10"></span>
+<span id="cb2-11">orchard_sum</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>16</code></pre>
+</div>
+</div>
+<p>The game continues while either the sum of fruit in the orchard is <em>greater</em> than 0 or the crow’s distance is <em>less</em> than zero . So going to use a while loop. Every loop is going to be a turn; so every go round is going to increment <code>turn</code> and roll the dice.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="cf" style="color: #003B4F;">while</span> orchard_sum <span class="op" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span> <span class="kw" style="color: #003B4F;">and</span> crow <span class="op" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb4-2">  turns <span class="op" style="color: #5E5E5E;">+=</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb4-3">  roll <span class="op" style="color: #5E5E5E;">=</span> die_roll()</span></code></pre></div>
+</div>
+<p>Depending on how that roll lands we’re going to do one of a few things:</p>
+</section>
+<section id="advance-the-crow" class="level4">
+<h4 class="anchored" data-anchor-id="advance-the-crow">Advance the crow:</h4>
+<p>Move the crow forward if the dice lands on a 6.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="cf" style="color: #003B4F;">if</span> roll <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">6</span>:</span>
+<span id="cb5-2">  crow <span class="op" style="color: #5E5E5E;">+=</span> <span class="dv" style="color: #AD0000;">1</span></span></code></pre></div>
+</div>
+</section>
+<section id="take-from-a-specific-tree" class="level4">
+<h4 class="anchored" data-anchor-id="take-from-a-specific-tree">Take from a specific tree:</h4>
+<p>Since I defined <code>orchard</code> as <code>[red,green,yellow,blue]</code>, rolling a 1 will take from the red tree, 2 will take from green, 3 from yellow, 4 from blue—but only if the tree that was rolled actually has some fruit left! Otherwise, no action happens.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="cf" style="color: #003B4F;">elif</span> <span class="dv" style="color: #AD0000;">1</span> <span class="op" style="color: #5E5E5E;">&lt;=</span> roll <span class="op" style="color: #5E5E5E;">&lt;=</span> <span class="dv" style="color: #AD0000;">4</span>:</span>
+<span id="cb6-2">  <span class="cf" style="color: #003B4F;">if</span> orchard[roll<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb6-3">    orchard[roll<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">=</span> orchard[roll<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb6-4">  <span class="cf" style="color: #003B4F;">else</span>:</span>
+<span id="cb6-5">    <span class="cf" style="color: #003B4F;">continue</span></span></code></pre></div>
+</div>
+</section>
+<section id="take-from-any-tree" class="level4">
+<h4 class="anchored" data-anchor-id="take-from-any-tree">Take from <em>any</em> tree</h4>
+<p>This one took a bit of thinking. What I decided to do was first ensure that all of the trees weren’t already at 0. If they weren’t then I decided to take from the tree with the most amount of fruit remaining. My thought being that, while it might feel good as a player to wrap-up a tree and bring it to zero, that would effectively prematurely eliminate one of the sides of the dice from doing anything productive. I had the feeling that a longer game would be biased towards the crow so I wanted to avoid that as much as possible.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="cf" style="color: #003B4F;">elif</span> roll <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">5</span>:</span>
+<span id="cb7-2">  <span class="cf" style="color: #003B4F;">if</span> <span class="bu" style="color: null;">max</span>(orchard) <span class="op" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb7-3">    largest_remaining <span class="op" style="color: #5E5E5E;">=</span> orchard.index(<span class="bu" style="color: null;">max</span>(orchard))</span>
+<span id="cb7-4">    orchard[largest_remaining] <span class="op" style="color: #5E5E5E;">=</span> orchard[largest_remaining] <span class="op" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb7-5">  <span class="cf" style="color: #003B4F;">else</span> :</span>
+<span id="cb7-6">    <span class="cf" style="color: #003B4F;">continue</span></span></code></pre></div>
+</div>
+</section>
+<section id="ending-the-turn-and-game" class="level4">
+<h4 class="anchored" data-anchor-id="ending-the-turn-and-game">Ending the turn (and game)</h4>
+<p>Finally, determining the new sum in the orchard to determine if it’s time to kill the while loop. But, before the loop is killed, determining if the player or the crow is the winner.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">orchard_sum <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">sum</span>(orchard)</span>
+<span id="cb8-2"><span class="cf" style="color: #003B4F;">if</span> game_sum <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb8-3">  winner <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb8-4"><span class="cf" style="color: #003B4F;">elif</span> crow <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb8-5">  winner <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">0</span></span></code></pre></div>
+</div>
+<p>And then, once the loop is broken, recording whether the player was the winner and the number of turns it took.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">results.append({<span class="st" style="color: #20794D;">'winner'</span>:winner, <span class="st" style="color: #20794D;">'turns'</span>:turns})</span></code></pre></div>
+</div>
+</section>
+</section>
+<section id="running-the-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-simulation">Running the simulation</h3>
+<p>Let’s go ahead and run this 10,000 times to get a sense of the game’s asymptotic behavior. You can click on the arrow to see how all the code comes together.</p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>10,000 simulated games</summary>
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">np.random.seed(<span class="dv" style="color: #AD0000;">131313</span>)</span>
+<span id="cb10-2"></span>
+<span id="cb10-3"><span class="cf" style="color: #003B4F;">for</span> x <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">10000</span>):</span>
+<span id="cb10-4"></span>
+<span id="cb10-5">  red <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb10-6">  green <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb10-7">  yellow <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb10-8">  blue <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">4</span></span>
+<span id="cb10-9">  crow <span class="op" style="color: #5E5E5E;">=</span> <span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">5</span></span>
+<span id="cb10-10">  turns <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">0</span></span>
+<span id="cb10-11">  </span>
+<span id="cb10-12">  orchard <span class="op" style="color: #5E5E5E;">=</span> [red,green,yellow,blue]</span>
+<span id="cb10-13">  orchard_sum <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">sum</span>(orchard)</span>
+<span id="cb10-14">  </span>
+<span id="cb10-15"></span>
+<span id="cb10-16">  </span>
+<span id="cb10-17">  <span class="cf" style="color: #003B4F;">while</span> orchard_sum <span class="op" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span> <span class="kw" style="color: #003B4F;">and</span> crow <span class="op" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb10-18">  </span>
+<span id="cb10-19">    roll <span class="op" style="color: #5E5E5E;">=</span> die_roll()</span>
+<span id="cb10-20">    turns <span class="op" style="color: #5E5E5E;">+=</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb10-21">  </span>
+<span id="cb10-22">    </span>
+<span id="cb10-23">    <span class="cf" style="color: #003B4F;">if</span> <span class="dv" style="color: #AD0000;">1</span> <span class="op" style="color: #5E5E5E;">&lt;=</span> roll <span class="op" style="color: #5E5E5E;">&lt;=</span> <span class="dv" style="color: #AD0000;">4</span>:</span>
+<span id="cb10-24">      <span class="cf" style="color: #003B4F;">if</span> orchard[roll<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">&gt;</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb10-25">        orchard[roll<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">=</span> orchard[roll<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb10-26">      <span class="cf" style="color: #003B4F;">else</span>:</span>
+<span id="cb10-27">        <span class="cf" style="color: #003B4F;">continue</span></span>
+<span id="cb10-28">      </span>
+<span id="cb10-29">    </span>
+<span id="cb10-30">    <span class="cf" style="color: #003B4F;">elif</span> roll <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">5</span>:</span>
+<span id="cb10-31">      </span>
+<span id="cb10-32">      <span class="cf" style="color: #003B4F;">if</span> <span class="bu" style="color: null;">max</span>(orchard) <span class="op" style="color: #5E5E5E;">!=</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb10-33">        largest_remaining <span class="op" style="color: #5E5E5E;">=</span> orchard.index(<span class="bu" style="color: null;">max</span>(orchard))</span>
+<span id="cb10-34">        orchard[largest_remaining] <span class="op" style="color: #5E5E5E;">=</span> orchard[largest_remaining] <span class="op" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb10-35">      <span class="cf" style="color: #003B4F;">else</span> :</span>
+<span id="cb10-36">        <span class="cf" style="color: #003B4F;">continue</span></span>
+<span id="cb10-37">  </span>
+<span id="cb10-38">    <span class="cf" style="color: #003B4F;">elif</span> roll <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">6</span>:</span>
+<span id="cb10-39">      crow <span class="op" style="color: #5E5E5E;">+=</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb10-40">    </span>
+<span id="cb10-41">    </span>
+<span id="cb10-42">    orchard_sum <span class="op" style="color: #5E5E5E;">=</span> <span class="bu" style="color: null;">sum</span>(orchard)</span>
+<span id="cb10-43"></span>
+<span id="cb10-44">    </span>
+<span id="cb10-45">    <span class="cf" style="color: #003B4F;">if</span> orchard_sum <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb10-46">      winner <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb10-47">    <span class="cf" style="color: #003B4F;">elif</span> crow <span class="op" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">0</span>:</span>
+<span id="cb10-48">      winner <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">0</span></span>
+<span id="cb10-49">      </span>
+<span id="cb10-50">  results.append({<span class="st" style="color: #20794D;">'winner'</span>:winner, <span class="st" style="color: #20794D;">'turns'</span>:turns})</span></code></pre></div>
+</details>
+</div>
+<p>And convert the results dictionary into a pandas dataframe</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">game_data <span class="op" style="color: #5E5E5E;">=</span> pd.DataFrame(results)</span></code></pre></div>
+</div>
+</section>
+</section>
+<section id="exploring-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-results">Exploring the Results</h2>
+<p>Let’s take a look at how often people win the game!</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">sb.catplot(data <span class="op" style="color: #5E5E5E;">=</span> game_data, kind <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"count"</span>, </span>
+<span id="cb12-2">x <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">"winner"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2a72bc2b7d0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="www.peterlicari.com/posts/rosie-game-sim-23/index_files/figure-html/cell-12-output-2.png" width="470" height="470"></p>
+</div>
+</div>
+<p>Seems like the players are winning it about 65% of the time! Well</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="bu" style="color: null;">print</span>(<span class="dv" style="color: #AD0000;">100</span> <span class="op" style="color: #5E5E5E;">*</span> game_data[<span class="st" style="color: #20794D;">"winner"</span>].mean(),<span class="st" style="color: #20794D;">"%"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>63.27 %</code></pre>
+</div>
+</div>
+<p>Specifically.</p>
+<p>Let’s see if the number of turns vary:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">game_data.groupby([<span class="st" style="color: #20794D;">"winner"</span>]).mean().style.set_properties(<span class="op" style="color: #5E5E5E;">**</span>{<span class="st" style="color: #20794D;">'color'</span>:<span class="st" style="color: #20794D;">'black'</span>})</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<style type="text/css">
+#T_0eaf7_row0_col0, #T_0eaf7_row1_col0 {
+  color: black;
+}
+</style>
+<table id="T_0eaf7">
+  <thead>
+    <tr>
+      <th class="blank level0">&nbsp;</th>
+      <th id="T_0eaf7_level0_col0" class="col_heading level0 col0">turns</th>
+    </tr>
+    <tr>
+      <th class="index_name level0">winner</th>
+      <th class="blank col0">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_0eaf7_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_0eaf7_row0_col0" class="data row0 col0">18.655323</td>
+    </tr>
+    <tr>
+      <th id="T_0eaf7_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_0eaf7_row1_col0" class="data row1 col0">22.012170</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<p>It looks like it takes longer for the player to win over the crow; if the crow’s going to win, it’s going to do so in about 19 turns. If the player wins, it’s going to take about 22 turns. May not sound like much but <strong><em>you</em></strong> try to keep a toddler’s attention for three extra turns!</p>
+<p>Given how many simulations I ran, I doubt that this will be anything other than “statistically significant” but it couldn’t hurt to check.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">sp.stats.ttest_ind(game_data[<span class="st" style="color: #20794D;">'turns'</span>], game_data[<span class="st" style="color: #20794D;">'winner'</span>], equal_var <span class="op" style="color: #5E5E5E;">=</span> <span class="va" style="color: #111111;">False</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>Ttest_indResult(statistic=489.4841664968918, pvalue=0.0)</code></pre>
+</div>
+</div>
+<p>LMAO a t stat of 489. NOW THIS IS <del>POD RACING</del> P-HACKING.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion:</h2>
+<p>It looks like my daughter’s first game is pretty strongly biased towards the player winning! Simulating the game 10,000 times reveals that players can expect to win about 65% of the time. Crows tend to win faster than players; if the fruit gets munched by a pesky peckish corvid, it’s going to happen sooner rather than later. This suggests to me that if the crow wins in this particular game, it’s because the player has a streak of bad luck. I might at some point tweak the rules a bit or record more granular data to delve a bit deeper, but I think I’ll cut this for now so I can go back to, you know, playing the actual game with my daughter.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>If anyone has ever seen me perform a sport that isn’t running, they’d know that needing to reinforce “hand-eye coordination” isn’t exclusively a thing for toddlers—but I digress.↩︎</p></li>
+<li id="fn2"><p>Well, at least playing as one does with a toddler: Initially sticking to the rules, trying to cajole them into continuing to stick with the rules, riffing off the original rules to maintain a semblance of order, finally surrendering on the concept of order—the pieces gleefully strewn across the room a reminder that “order” is but a fleeting punctuation in the ceaseless entropic chaos of existence that you try to convince the toddler to help tidy before trying to cajole them to continue tidying before…↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
+  author = {Peter Licari and Peter Licari},
+  title = {Simulating {My} {Daughter’s} {First} {Board} {Game} in
+    {Python}},
+  date = {2023-02-16},
+  url = {www.peterlicari.com/posts/rosie-game-sim-23},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
+Peter Licari, and Peter Licari. 2023. <span>“Simulating My Daughter’s
+First Board Game in Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/rosie-game-sim-23">www.peterlicari.com/posts/rosie-game-sim-23</a>.
+</div></div></section></div> ]]></description>
+  <category>python</category>
+  <category>simulation</category>
+  <guid>www.peterlicari.com/posts/rosie-game-sim-23/index.html</guid>
+  <pubDate>Thu, 16 Feb 2023 05:00:00 GMT</pubDate>
+  <media:content url="www.peterlicari.com/posts/rosie-game-sim-23/images/game_box.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Book Review: Theory and Reality</title>
   <dc:creator>Peter Licari</dc:creator>
@@ -23,17 +307,18 @@
 <blockquote class="blockquote">
 <p><em>Theory and Reality</em> is an ambitious book that aims to accessibly cover a large swath of historical and philosophical ground. In many ways, it lives up to that ambition, making it well worth the read. In other, important ways though, the book occasionally devolves into muddy paste, sometimes making a <em>re</em>-reading necessary to fully grok what’s been covered.</p>
 </blockquote>
-<p>When I went to graduate school, my very first class was called “Scope and Epistemology”—or “Scope” for short. It was a rite of passage for all who entered UF’s political science PhD progam. Taught by the brilliant (and brilliantly kind) Larry Dodd, the course syllabus was often mistaken as one of its textbooks. The damn thing was 30 pages and outlined thousands of pages of books and articles, from Kuhn to Gleick to Mayr, Gattone, and even freaking Asimov, that meant to show us not only the diversity of practices in social science but the equally remarkable diversity of beliefs over just what the heck this thing called “science” actually is. It was a whirlwind tour of epistemology, philosophy, and sociology of science. (Predominantly <em>social</em> science given, ya know, it was a poli sci PhD program—but not <em>exclusively</em> so, much to the course’s benefit). I was not unfamiliar with either philosophy or epistemology (I was a hair’s breath away from double-majoring in philosophy in undergrad), but it was an intimidating program. We were quickly reassured by more advanced students that, no, we didn’t have to “read” all of it—at least not in the sense one would read things in undergrad (a time-honored advisory that I would oft repeat many times myself to newer students, furthering the tradition). I still own many of those books and refer back to a few when I feel the need. The course cemented my latent loves of philosophy, epistemology, and science into (what I’m sure to be) a lifelong fascination: one focused with not only <strong>practicing</strong> social science but also interrogating “what even is this thing we call (social) science?” in philosophical terms.</p>
+<p>When I went to graduate school, my very first class was called “Scope and Epistemology”—or “Scope” for short. It was a rite of passage for all who entered UF’s political science PhD progam. Taught by the brilliant (and brilliantly kind) Larry Dodd, the course syllabus was often mistaken as one of its textbooks. The damn thing was 30 pages and outlined thousands of pages of books and articles, from Kuhn to Gleick to Mayr, Gattone, and even freaking Asimov, that meant to show us not only the diversity of practices in social science but the equally remarkable diversity of beliefs over just what the heck this thing called “science” actually is.</p>
+<p>It was a whirlwind tour of epistemology, philosophy, and sociology of science. (Predominantly <em>social</em> science given, ya know, it was a poli sci PhD program—but not <em>exclusively</em> so, much to the course’s benefit). I was not unfamiliar with either philosophy or epistemology (I was a hair’s breath away from double-majoring in philosophy in undergrad), but it was an intimidating program. We were quickly reassured by more advanced students that, no, we didn’t have to “read” all of it—at least not in the sense one would read things in undergrad (a time-honored advisory that I would oft repeat many times myself to newer students, furthering the tradition). I still own many of those books and refer back to a few when I feel the need. The course cemented my latent loves of philosophy, epistemology, and science into (what I’m sure to be) a lifelong fascination: one focused with not only <strong>practicing</strong> social science but also interrogating “what even is this thing we call (social) science?” in philosophical terms.</p>
 <p>Many of us came to realize that the syllabus for Scope was less a contract of expectations and more a gift. That “whirlwind tour” was a synthesis of decades of epistemological tumult that Dodd had lived through first hand. And since the issues were far from settled, I feel like he was also giving us a preview into many of the ideas and controversies we would have to grapple with ourselves over the course of our scientific careers.</p>
 <p>This love is what drove me to pick up <a href="https://www.amazon.com/Theory-Reality-Introduction-Philosophy-Foundations/dp/0226300633"><em>Theory and Reality</em> by Peter Godfrey-Smith (2003)</a> from Amazon’s Audible service. <sup>1</sup><em>Theory and Reality</em> is an ambitious book that aims to accessibly cover a large swath of historical and philosophical ground. In many ways, it lives up to that ambition. In other, important ways though, the book at times does feel like it devolves into, to use Godfrey-Smith’s own verbiage, a muddy paste. There were times where I would relisten to chapters (sometimes <strong>three times)</strong> just to make sure I fully understood what was covered. I feel like the book rewards this effort, but not everyone will want to exert it. Still, what it does well, it does <em>very well</em>—making this book well worth the read.</p>
 <hr>
-<p>At the outset, Godfrey-Smith expresses that his overarching aim in writing this book is to convey a history of the philosophy of science; specifically a history in two senses of the word. The first is a timelie of the predominating ideas of the discipline (as well as from adjacent fields such as sociology of science): How have we conceptualized this thing we call “science,” as well the actions (both idealized and actual) of its practitioners? The second is a narrative of how said ideas (and their progenitors) interacted with each other.</p>
-<p>This is more or less what he manages to do in the first third of the book. The first two substantive chapters start with brief discussion of early 20th century empiricism and its major philosophical tenets and issues (e.g., the issues of induction and confirmation), shift into a chapter on Popper, two on Kuhn (or, rather, two primarily on <em>The Structure of Scientific Revolutions</em>), a chapter on Lakatosh, Laudon, and Feyerabend (not apiece—<em>collectively</em>), a short chapter blitzing through the sociology of science in the middle third of the century, then a chapter on feminist contributions to the subject, before pivoting to naturalistic philosophy. He doesn’t do so as a impassive retrospective observer though; he frequently interjects the discussions with both critiques and endorsements to the material. This includes both those that are generally accepted in the field as well as some of his own—though his is admirably careful and forthright in which views fall into which category. He does have a tendency to be a bit dismissive of <em>some</em> ideas without motivating clear reasons why (and these instances are highlighted due to the equally discernible tendency for <em>other</em> objections to get more strenuous refutations), but his contributions, on balance, add rather than detract from the quality of the section.</p>
-<p>The core argument of this first section can be crystalized as follows: The early-to-middle(late) century for philosophy of science was characterized by a schism between empiricists (e.g., positivits) and those . Both sides had incredibly novel and important insights, but both often proffered leads that turned out to be dead-ends—or overplayed their philosophical hands, cornering themselves into very strange positions (Popper’s articulation of corroboration and some sociologists’ assertion that the world is in fact <em>created</em> at a <strong>foundational</strong> level by the theories and paradigms of scientists<sup>2</sup>).</p>
+<p>At the outset, Godfrey-Smith expresses that his overarching aim in writing this book is to convey a history of the philosophy of science; specifically a history in two senses of the word. The first is a timeline of the predominating ideas of the discipline (as well as from adjacent fields such as sociology of science): How have we conceptualized this thing we call “science,” as well the actions (both idealized and actual) of its practitioners? The second is a narrative of how said ideas (and their progenitors) interacted with each other.</p>
+<p>This is more or less what he manages to do in the first half(ish) of the book. The first two substantive chapters start with brief discussion of early 20th century empiricism and its major philosophical tenets and issues (e.g., the issues of induction and confirmation), shift into a chapter on Popper, two on Kuhn (or, rather, two primarily on <em>The Structure of Scientific Revolutions</em>), a chapter on Lakatosh, Laudon, and Feyerabend (not apiece—<em>collectively</em>), a short chapter blitzing through the sociology of science in the middle third of the century, then a chapter on feminist contributions to the subject, before pivoting to naturalistic philosophy. He doesn’t do so as a impassive retrospective observer though; he frequently interjects the discussions with both critiques and endorsements to the material. This includes both those that are generally accepted in the field as well as some of his own—though his is admirably careful and forthright in which views fall into which category. He does have a tendency to be a bit dismissive of <em>some</em> ideas without motivating clear reasons why (and these instances are highlighted due to the equally discernible tendency for <em>other</em> objections to get more strenuous refutations), but his contributions, on balance, add rather than detract from the quality of the section.</p>
+<p>The core argument of this first section can be crystalized as follows: The early-to-middle(late) century for philosophy of science was characterized by a schism between empiricists (e.g., positivits) and those who saw science as more an expression of social patterns rather than a distillation of empirically-identified phenomena. Both sides had incredibly novel and important insights, but both often proffered leads that turned out to be dead-ends—or overplayed their philosophical hands, cornering themselves into very strange positions (Popper’s articulation of corroboration and some sociologists’ assertion that the world is in fact <em>created</em> at a <strong>foundational</strong> level by the theories and paradigms of scientists<sup>2</sup>).</p>
 <p>It’d be a lot of ground to cover even <em>without</em> the additional commentary. But Godfrey-Smith manages to do so at a high average quality, albeit with noticeable variation. Perhaps it owes to my experience in Scope and in my undergraduate coursework prior to grad school, but I found it pretty easy to follow-along with the first few chapters—and I found the most of the interjections to be illuminating. (I especially liked his approach to the Black-Raven, White-Shoe issue in accounting inductive evidence—especially the version detailed late in the book when he discusses evidence). He was at his best when he dedicated his time to discussing narrower philosophical issues or the contributions of individual philosophers. The chapters on evidence, Popper, Kuhn, and the ensuing Lakatosh-Laudon-Feyerabend lightening round were some of the best in the book. Where things got less good (though not necessarily “bad”, for my view) is when he tried to cover entire <em>fields</em> in singular chapters. The Sociology of Science and Feminism chapters were among those aforementioned thrice-listens. I initially thought that it was because I was unfamiliar with the material, then I thought it was because I just wasn’t grokking it; but on the final time I realized that he was simply moving <em>way too fucking fast</em>. I sympathize with the challenge of distilling such large amounts of work into such a a condensed space—but considering he made <strong>two</strong> chapters out of Kuhn alone, it seems like a self-inflected wound with an obvious remedy: Split it out into a couple more chapters.</p>
 <p>If history was Godfrey-Smith’s sole aim, the book could have been cut here. But that ultimately isn’t his full intention. The second aim of the book is to discuss the contemporary paradigms (or perhaps I should say “research traditions”) that dominated philosophy of science at the writing of his book—and they largely continue to hold sway today. The final aim is his advancing his own solutions to the core problems he identifies in the second part—though they all have roots in the discussions predominating the first. Throughout the book, he refers to these aims as “thirds” of the book—but, in reality, it’s more like history takes up the first 45% of the book before pivoting to</p>
 <p>The chapter discussing naturalism more or less coincides with the transition into this pivot. Naturalism’s uptake comes nearer the end of the 20th century; but so do the other new agendas and perspectives that he focuses on. So he more or less abandons the chronological approach he took with the first section (though this doesn’t come as a surprise; he announces it as it happens). The chapters to come tackle “naturalistic” philosophies broadly, first on its own terms and then with regards to the “social structure of science;” It then pivots to “scientific realism”, a chapter on “explanation”, one on Bayesianism and evidence, and then one trying to harmonize the differences between empiricism, naturalism, and scientific realism. In this chapter, he retells the story of a reviewer warning that this final chapter has the potential to devolve into a “muddy paste.” As you might be able to guess from my use of the phrase earlier, it’s a critique that I largely agree with.</p>
-<p>But the thing about paste, muddy or otherwise, is that it’s still pretty sticky. So while the concepts tended to blur together here<sup>3</sup>, the chapters does a pretty good job at having you stick around. This was some of the most engrossing material in the book, and I found my head moving quite vigorously at different parts of the book. It was mostly vertical when talking about how the aim of science is to use different “representational vehicles” (some linguistic, some mathematical, some visual, some computationally simulated, etc.) to provide an accurate representation of phenomena and relations observed in the real world—and when defending the broader tendency of science to invoke heretofore unobservable structures as part of a broader aim to explain what happens in the world. It did shake in the other direction when discussing Bayesianism because, at times, the approach appeared too glib and dismissive (such as the odd treatment of “Dutch books” and the thin objection to it on the grounds that some people may be averse to gambling)<sup>4</sup>. And I definitely found myself agreeing with the general conclusion to the book: That science is both an individual exercise and a social one. That scientists do aim to model the real world and that it is possible (and indeed advisable) to conditionally accept inductive arguments that have survived repeated testing with risky procedures. But also that scientists are engaged in a foundationally social enterprise and that we can only best understand their work (and the philosophy of science as well) as being influenced (and at times, constrained) by these social forces.</p>
+<p>But the thing about paste, muddy or otherwise, is that it’s still pretty sticky. So while the concepts tended to blur together here<sup>3</sup>, the chapters does a pretty good job at having you stick around. This was some of the most engrossing material in the book, and I found my head moving quite vigorously at different parts of the book. It was mostly vertical when talking about how the aim of science is to use different “representational vehicles” (some linguistic, some mathematical, some visual, some computationally simulated, etc.) to provide an accurate representation of phen omena and relations observed in the real world—and when defending the broader tendency of science to invoke heretofore unobservable structures as part of a broader aim to explain what happens in the world. It did shake in the other direction when discussing Bayesianism because, at times, the approach appeared too glib and dismissive (such as the odd treatment of “Dutch books” and the thin objection to it on the grounds that some people may be averse to gambling)<sup>4</sup>. And I definitely found myself agreeing with the general conclusion to the book: That science is both an individual exercise and a social one. That scientists do aim to model the real world and that it is possible (and indeed advisable) to conditionally accept inductive arguments that have survived repeated testing with risky procedures. But also that scientists are engaged in a foundationally social enterprise and that we can only best understand their work (and the philosophy of science as well) as being influenced (and at times, constrained) by these social forces.</p>
 <hr>
 <p>All in all, I think <em>Theory and Reality</em> accomplishes what it sets out to do, though with varying degrees of clarity and persuasiveness. What it does well, it does <em>very</em> well—and there are moments where it manages to do exactly that throughout the whole book. But those moments are more heavily concentrated in the first half and in the concluding segments of a few of the final chapters; these successes, and their asymmetric spread, also serves to more severely accentuate the places where it <em>doesn’t</em> do as well. Places where the positions either expressed or taken weren’t as clear. Places where it felt too rushed to do such a large chapter-topic justice.</p>
 <p>But I believe that this book is well deserving of a read by those interested in the philosophy of science broadly. It is a good survey of many ideas in the field, it incorporates and takes seriously competing intellectual programs that don’t often get coverage in other locations (i.e., feminist epistemology and critiques of science), and offers persuasive accounts for what scientists do, how, and why. Indeed, when I finished the book my first main feeling was sadness. Not because it was bad (because it was quite good), not because it was over (because it’s hard for <em>any</em> philosophy book to be <strong>that</strong> good) but because, just this last year, Larry Dodd retired from his position at UF. I was sad because this would have been a perfect addition to the Scope syllabus had he still been teaching it. But it has inspired me to keep better track of books like these so that, maybe someday, I’ll also be able to offer interested folks a suite of books that track the evolution of knowledge (both what we know and <em>how we know</em>) over my own career. I think it speaks very highly of this work that I think it has the potential to assist in cementing in others the same love of philosophy, science, and philosophy of science that Scope did for me.</p>
@@ -42,7 +327,7 @@
 
 
 
-<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>The age of the book may discourage some from picking it up. Honestly, though, I didn’t even know it was this old as I was reading it.. It honestly reads more like a book from the time of its release onto Audible (2017) than from nearly two decades prior. I’m not sure if that is a comment of Godfrey-Smith’s perspicaciousness as a writer (and his ability to distill arguments into their more “timeless” elements) or on the rate of change in the discussed fields. To take a page from his book—literally—it’s probably something in between.↩︎</p></li>
@@ -442,7 +727,7 @@ Foolish Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Depending on how updated your graphics drivers are, you might also have to change your <code>Encoder</code> settings from <code>Hardware</code> to <code>Software.</code> For what it’s worth, I had to do this—but your mileage will vary.↩︎</p></li>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.8">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -35,7 +40,7 @@ ul.task-list{list-style: none;}
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,42 +72,49 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Peter Licari</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">About</a>
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">Blog</a>
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../writing.html">Writing</a>
+    <a class="nav-link" href="../../writing.html">
+ <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ongoing Projects</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ongoing Projects</span>
+    </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
         <li>
     <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
@@ -119,10 +131,13 @@ ul.task-list{list-style: none;}
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../other_things.html">Other Things I’ve Made</a>
+    <a class="nav-link" href="../../other_things.html">
+ <span class="menu-text">Other Things I’ve Made</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
         <li>
     <a class="dropdown-item" href="../../archive.html">
@@ -175,6 +190,7 @@ ul.task-list{list-style: none;}
       <p class="date">November 7, 2022</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -184,17 +200,18 @@ ul.task-list{list-style: none;}
 <blockquote class="blockquote">
 <p><em>Theory and Reality</em> is an ambitious book that aims to accessibly cover a large swath of historical and philosophical ground. In many ways, it lives up to that ambition, making it well worth the read. In other, important ways though, the book occasionally devolves into muddy paste, sometimes making a <em>re</em>-reading necessary to fully grok what’s been covered.</p>
 </blockquote>
-<p>When I went to graduate school, my very first class was called “Scope and Epistemology”—or “Scope” for short. It was a rite of passage for all who entered UF’s political science PhD progam. Taught by the brilliant (and brilliantly kind) Larry Dodd, the course syllabus was often mistaken as one of its textbooks. The damn thing was 30 pages and outlined thousands of pages of books and articles, from Kuhn to Gleick to Mayr, Gattone, and even freaking Asimov, that meant to show us not only the diversity of practices in social science but the equally remarkable diversity of beliefs over just what the heck this thing called “science” actually is. It was a whirlwind tour of epistemology, philosophy, and sociology of science. (Predominantly <em>social</em> science given, ya know, it was a poli sci PhD program—but not <em>exclusively</em> so, much to the course’s benefit). I was not unfamiliar with either philosophy or epistemology (I was a hair’s breath away from double-majoring in philosophy in undergrad), but it was an intimidating program. We were quickly reassured by more advanced students that, no, we didn’t have to “read” all of it—at least not in the sense one would read things in undergrad (a time-honored advisory that I would oft repeat many times myself to newer students, furthering the tradition). I still own many of those books and refer back to a few when I feel the need. The course cemented my latent loves of philosophy, epistemology, and science into (what I’m sure to be) a lifelong fascination: one focused with not only <strong>practicing</strong> social science but also interrogating “what even is this thing we call (social) science?” in philosophical terms.</p>
+<p>When I went to graduate school, my very first class was called “Scope and Epistemology”—or “Scope” for short. It was a rite of passage for all who entered UF’s political science PhD progam. Taught by the brilliant (and brilliantly kind) Larry Dodd, the course syllabus was often mistaken as one of its textbooks. The damn thing was 30 pages and outlined thousands of pages of books and articles, from Kuhn to Gleick to Mayr, Gattone, and even freaking Asimov, that meant to show us not only the diversity of practices in social science but the equally remarkable diversity of beliefs over just what the heck this thing called “science” actually is.</p>
+<p>It was a whirlwind tour of epistemology, philosophy, and sociology of science. (Predominantly <em>social</em> science given, ya know, it was a poli sci PhD program—but not <em>exclusively</em> so, much to the course’s benefit). I was not unfamiliar with either philosophy or epistemology (I was a hair’s breath away from double-majoring in philosophy in undergrad), but it was an intimidating program. We were quickly reassured by more advanced students that, no, we didn’t have to “read” all of it—at least not in the sense one would read things in undergrad (a time-honored advisory that I would oft repeat many times myself to newer students, furthering the tradition). I still own many of those books and refer back to a few when I feel the need. The course cemented my latent loves of philosophy, epistemology, and science into (what I’m sure to be) a lifelong fascination: one focused with not only <strong>practicing</strong> social science but also interrogating “what even is this thing we call (social) science?” in philosophical terms.</p>
 <p>Many of us came to realize that the syllabus for Scope was less a contract of expectations and more a gift. That “whirlwind tour” was a synthesis of decades of epistemological tumult that Dodd had lived through first hand. And since the issues were far from settled, I feel like he was also giving us a preview into many of the ideas and controversies we would have to grapple with ourselves over the course of our scientific careers.</p>
 <p>This love is what drove me to pick up <a href="https://www.amazon.com/Theory-Reality-Introduction-Philosophy-Foundations/dp/0226300633"><em>Theory and Reality</em> by Peter Godfrey-Smith (2003)</a> from Amazon’s Audible service. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a><em>Theory and Reality</em> is an ambitious book that aims to accessibly cover a large swath of historical and philosophical ground. In many ways, it lives up to that ambition. In other, important ways though, the book at times does feel like it devolves into, to use Godfrey-Smith’s own verbiage, a muddy paste. There were times where I would relisten to chapters (sometimes <strong>three times)</strong> just to make sure I fully understood what was covered. I feel like the book rewards this effort, but not everyone will want to exert it. Still, what it does well, it does <em>very well</em>—making this book well worth the read.</p>
 <hr>
-<p>At the outset, Godfrey-Smith expresses that his overarching aim in writing this book is to convey a history of the philosophy of science; specifically a history in two senses of the word. The first is a timelie of the predominating ideas of the discipline (as well as from adjacent fields such as sociology of science): How have we conceptualized this thing we call “science,” as well the actions (both idealized and actual) of its practitioners? The second is a narrative of how said ideas (and their progenitors) interacted with each other.</p>
-<p>This is more or less what he manages to do in the first third of the book. The first two substantive chapters start with brief discussion of early 20th century empiricism and its major philosophical tenets and issues (e.g., the issues of induction and confirmation), shift into a chapter on Popper, two on Kuhn (or, rather, two primarily on <em>The Structure of Scientific Revolutions</em>), a chapter on Lakatosh, Laudon, and Feyerabend (not apiece—<em>collectively</em>), a short chapter blitzing through the sociology of science in the middle third of the century, then a chapter on feminist contributions to the subject, before pivoting to naturalistic philosophy. He doesn’t do so as a impassive retrospective observer though; he frequently interjects the discussions with both critiques and endorsements to the material. This includes both those that are generally accepted in the field as well as some of his own—though his is admirably careful and forthright in which views fall into which category. He does have a tendency to be a bit dismissive of <em>some</em> ideas without motivating clear reasons why (and these instances are highlighted due to the equally discernible tendency for <em>other</em> objections to get more strenuous refutations), but his contributions, on balance, add rather than detract from the quality of the section.</p>
-<p>The core argument of this first section can be crystalized as follows: The early-to-middle(late) century for philosophy of science was characterized by a schism between empiricists (e.g., positivits) and those . Both sides had incredibly novel and important insights, but both often proffered leads that turned out to be dead-ends—or overplayed their philosophical hands, cornering themselves into very strange positions (Popper’s articulation of corroboration and some sociologists’ assertion that the world is in fact <em>created</em> at a <strong>foundational</strong> level by the theories and paradigms of scientists<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>).</p>
+<p>At the outset, Godfrey-Smith expresses that his overarching aim in writing this book is to convey a history of the philosophy of science; specifically a history in two senses of the word. The first is a timeline of the predominating ideas of the discipline (as well as from adjacent fields such as sociology of science): How have we conceptualized this thing we call “science,” as well the actions (both idealized and actual) of its practitioners? The second is a narrative of how said ideas (and their progenitors) interacted with each other.</p>
+<p>This is more or less what he manages to do in the first half(ish) of the book. The first two substantive chapters start with brief discussion of early 20th century empiricism and its major philosophical tenets and issues (e.g., the issues of induction and confirmation), shift into a chapter on Popper, two on Kuhn (or, rather, two primarily on <em>The Structure of Scientific Revolutions</em>), a chapter on Lakatosh, Laudon, and Feyerabend (not apiece—<em>collectively</em>), a short chapter blitzing through the sociology of science in the middle third of the century, then a chapter on feminist contributions to the subject, before pivoting to naturalistic philosophy. He doesn’t do so as a impassive retrospective observer though; he frequently interjects the discussions with both critiques and endorsements to the material. This includes both those that are generally accepted in the field as well as some of his own—though his is admirably careful and forthright in which views fall into which category. He does have a tendency to be a bit dismissive of <em>some</em> ideas without motivating clear reasons why (and these instances are highlighted due to the equally discernible tendency for <em>other</em> objections to get more strenuous refutations), but his contributions, on balance, add rather than detract from the quality of the section.</p>
+<p>The core argument of this first section can be crystalized as follows: The early-to-middle(late) century for philosophy of science was characterized by a schism between empiricists (e.g., positivits) and those who saw science as more an expression of social patterns rather than a distillation of empirically-identified phenomena. Both sides had incredibly novel and important insights, but both often proffered leads that turned out to be dead-ends—or overplayed their philosophical hands, cornering themselves into very strange positions (Popper’s articulation of corroboration and some sociologists’ assertion that the world is in fact <em>created</em> at a <strong>foundational</strong> level by the theories and paradigms of scientists<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>).</p>
 <p>It’d be a lot of ground to cover even <em>without</em> the additional commentary. But Godfrey-Smith manages to do so at a high average quality, albeit with noticeable variation. Perhaps it owes to my experience in Scope and in my undergraduate coursework prior to grad school, but I found it pretty easy to follow-along with the first few chapters—and I found the most of the interjections to be illuminating. (I especially liked his approach to the Black-Raven, White-Shoe issue in accounting inductive evidence—especially the version detailed late in the book when he discusses evidence). He was at his best when he dedicated his time to discussing narrower philosophical issues or the contributions of individual philosophers. The chapters on evidence, Popper, Kuhn, and the ensuing Lakatosh-Laudon-Feyerabend lightening round were some of the best in the book. Where things got less good (though not necessarily “bad”, for my view) is when he tried to cover entire <em>fields</em> in singular chapters. The Sociology of Science and Feminism chapters were among those aforementioned thrice-listens. I initially thought that it was because I was unfamiliar with the material, then I thought it was because I just wasn’t grokking it; but on the final time I realized that he was simply moving <em>way too fucking fast</em>. I sympathize with the challenge of distilling such large amounts of work into such a a condensed space—but considering he made <strong>two</strong> chapters out of Kuhn alone, it seems like a self-inflected wound with an obvious remedy: Split it out into a couple more chapters.</p>
 <p>If history was Godfrey-Smith’s sole aim, the book could have been cut here. But that ultimately isn’t his full intention. The second aim of the book is to discuss the contemporary paradigms (or perhaps I should say “research traditions”) that dominated philosophy of science at the writing of his book—and they largely continue to hold sway today. The final aim is his advancing his own solutions to the core problems he identifies in the second part—though they all have roots in the discussions predominating the first. Throughout the book, he refers to these aims as “thirds” of the book—but, in reality, it’s more like history takes up the first 45% of the book before pivoting to</p>
 <p>The chapter discussing naturalism more or less coincides with the transition into this pivot. Naturalism’s uptake comes nearer the end of the 20th century; but so do the other new agendas and perspectives that he focuses on. So he more or less abandons the chronological approach he took with the first section (though this doesn’t come as a surprise; he announces it as it happens). The chapters to come tackle “naturalistic” philosophies broadly, first on its own terms and then with regards to the “social structure of science;” It then pivots to “scientific realism”, a chapter on “explanation”, one on Bayesianism and evidence, and then one trying to harmonize the differences between empiricism, naturalism, and scientific realism. In this chapter, he retells the story of a reviewer warning that this final chapter has the potential to devolve into a “muddy paste.” As you might be able to guess from my use of the phrase earlier, it’s a critique that I largely agree with.</p>
-<p>But the thing about paste, muddy or otherwise, is that it’s still pretty sticky. So while the concepts tended to blur together here<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, the chapters does a pretty good job at having you stick around. This was some of the most engrossing material in the book, and I found my head moving quite vigorously at different parts of the book. It was mostly vertical when talking about how the aim of science is to use different “representational vehicles” (some linguistic, some mathematical, some visual, some computationally simulated, etc.) to provide an accurate representation of phenomena and relations observed in the real world—and when defending the broader tendency of science to invoke heretofore unobservable structures as part of a broader aim to explain what happens in the world. It did shake in the other direction when discussing Bayesianism because, at times, the approach appeared too glib and dismissive (such as the odd treatment of “Dutch books” and the thin objection to it on the grounds that some people may be averse to gambling)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. And I definitely found myself agreeing with the general conclusion to the book: That science is both an individual exercise and a social one. That scientists do aim to model the real world and that it is possible (and indeed advisable) to conditionally accept inductive arguments that have survived repeated testing with risky procedures. But also that scientists are engaged in a foundationally social enterprise and that we can only best understand their work (and the philosophy of science as well) as being influenced (and at times, constrained) by these social forces.</p>
+<p>But the thing about paste, muddy or otherwise, is that it’s still pretty sticky. So while the concepts tended to blur together here<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, the chapters does a pretty good job at having you stick around. This was some of the most engrossing material in the book, and I found my head moving quite vigorously at different parts of the book. It was mostly vertical when talking about how the aim of science is to use different “representational vehicles” (some linguistic, some mathematical, some visual, some computationally simulated, etc.) to provide an accurate representation of phen omena and relations observed in the real world—and when defending the broader tendency of science to invoke heretofore unobservable structures as part of a broader aim to explain what happens in the world. It did shake in the other direction when discussing Bayesianism because, at times, the approach appeared too glib and dismissive (such as the odd treatment of “Dutch books” and the thin objection to it on the grounds that some people may be averse to gambling)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. And I definitely found myself agreeing with the general conclusion to the book: That science is both an individual exercise and a social one. That scientists do aim to model the real world and that it is possible (and indeed advisable) to conditionally accept inductive arguments that have survived repeated testing with risky procedures. But also that scientists are engaged in a foundationally social enterprise and that we can only best understand their work (and the philosophy of science as well) as being influenced (and at times, constrained) by these social forces.</p>
 <hr>
 <p>All in all, I think <em>Theory and Reality</em> accomplishes what it sets out to do, though with varying degrees of clarity and persuasiveness. What it does well, it does <em>very</em> well—and there are moments where it manages to do exactly that throughout the whole book. But those moments are more heavily concentrated in the first half and in the concluding segments of a few of the final chapters; these successes, and their asymmetric spread, also serves to more severely accentuate the places where it <em>doesn’t</em> do as well. Places where the positions either expressed or taken weren’t as clear. Places where it felt too rushed to do such a large chapter-topic justice.</p>
 <p>But I believe that this book is well deserving of a read by those interested in the philosophy of science broadly. It is a good survey of many ideas in the field, it incorporates and takes seriously competing intellectual programs that don’t often get coverage in other locations (i.e., feminist epistemology and critiques of science), and offers persuasive accounts for what scientists do, how, and why. Indeed, when I finished the book my first main feeling was sadness. Not because it was bad (because it was quite good), not because it was over (because it’s hard for <em>any</em> philosophy book to be <strong>that</strong> good) but because, just this last year, Larry Dodd retired from his position at UF. I was sad because this would have been a perfect addition to the Scope syllabus had he still been teaching it. But it has inspired me to keep better track of books like these so that, maybe someday, I’ll also be able to offer interested folks a suite of books that track the evolution of knowledge (both what we know and <em>how we know</em>) over my own career. I think it speaks very highly of this work that I think it has the potential to assist in cementing in others the same love of philosophy, science, and philosophy of science that Scope did for me.</p>
@@ -203,14 +220,14 @@ ul.task-list{list-style: none;}
 
 
 
-<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1" role="doc-endnote"><p>The age of the book may discourage some from picking it up. Honestly, though, I didn’t even know it was this old as I was reading it.. It honestly reads more like a book from the time of its release onto Audible (2017) than from nearly two decades prior. I’m not sure if that is a comment of Godfrey-Smith’s perspicaciousness as a writer (and his ability to distill arguments into their more “timeless” elements) or on the rate of change in the discussed fields. To take a page from his book—literally—it’s probably something in between.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Though I did at times wonder if he was taking this argument a bit too far and, consequently, sparring with its straw man. I think he has a fair critique when he observes that theories and frames can strongly influence what we see but that their strength is fundamentally constrained by a shared external reality.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>I feel like a lot of the differences between contemporary empiricism, naturalism, and scientific realism tend to either be real but highly technical or largely imagined but wielded fiercely by invested practitioners. In either case, largely inconsequential for the lay reader.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>For the curious, this could be articulated quite easily as someone merely having a larger degree of faith in the continuation of the status quo and in greater expressed uncertainties in alternatives to it.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>I solemnly swear: 25 pages max.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>The age of the book may discourage some from picking it up. Honestly, though, I didn’t even know it was this old as I was reading it.. It honestly reads more like a book from the time of its release onto Audible (2017) than from nearly two decades prior. I’m not sure if that is a comment of Godfrey-Smith’s perspicaciousness as a writer (and his ability to distill arguments into their more “timeless” elements) or on the rate of change in the discussed fields. To take a page from his book—literally—it’s probably something in between.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Though I did at times wonder if he was taking this argument a bit too far and, consequently, sparring with its straw man. I think he has a fair critique when he observes that theories and frames can strongly influence what we see but that their strength is fundamentally constrained by a shared external reality.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I feel like a lot of the differences between contemporary empiricism, naturalism, and scientific realism tend to either be real but highly technical or largely imagined but wielded fiercely by invested practitioners. In either case, largely inconsequential for the lay reader.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For the curious, this could be articulated quite easily as someone merely having a larger degree of faith in the continuation of the status quo and in greater expressed uncertainties in alternatives to it.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>I solemnly swear: 25 pages max.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2022,
   author = {Peter Licari and Peter Licari},
@@ -225,6 +242,24 @@ Reality.”</span> November 7, 2022. <a href="https://www.peterlicari.com/posts/
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -246,7 +281,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -274,31 +326,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

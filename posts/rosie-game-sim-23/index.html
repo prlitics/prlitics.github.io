@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peter Licari">
+<meta name="dcterms.date" content="2023-02-16">
+
+<title>Peter Licari - Simulating My Daughter’s First Board Game in Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Peter Licari</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../writing.html">
+ <span class="menu-text">Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ongoing Projects</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+        <li>
+    <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
+ <span class="dropdown-text">YouTube Channel</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://peterlicari.substack.com/">
+ <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
+ <span class="dropdown-text">Comics (Rarely)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../other_things.html">
+ <span class="menu-text">Other Things I’ve Made</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../archive.html">
+ <span class="dropdown-text">Archive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.r-bloggers.com/">
+ <span class="dropdown-text">R Bloggers</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-to-play" id="toc-learning-to-play" class="nav-link active" data-scroll-target="#learning-to-play">Learning to play</a></li>
+  <li><a href="#simulating-the-game-in-python" id="toc-simulating-the-game-in-python" class="nav-link" data-scroll-target="#simulating-the-game-in-python">Simulating the game in python</a>
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set-up</a></li>
+  <li><a href="#encoding-the-game-rules-in-well-code" id="toc-encoding-the-game-rules-in-well-code" class="nav-link" data-scroll-target="#encoding-the-game-rules-in-well-code">Encoding the game rules in, well, code</a>
+  <ul class="collapse">
+  <li><a href="#game-start" id="toc-game-start" class="nav-link" data-scroll-target="#game-start">Game Start</a></li>
+  <li><a href="#advance-the-crow" id="toc-advance-the-crow" class="nav-link" data-scroll-target="#advance-the-crow">Advance the crow:</a></li>
+  <li><a href="#take-from-a-specific-tree" id="toc-take-from-a-specific-tree" class="nav-link" data-scroll-target="#take-from-a-specific-tree">Take from a specific tree:</a></li>
+  <li><a href="#take-from-any-tree" id="toc-take-from-any-tree" class="nav-link" data-scroll-target="#take-from-any-tree">Take from <em>any</em> tree</a></li>
+  <li><a href="#ending-the-turn-and-game" id="toc-ending-the-turn-and-game" class="nav-link" data-scroll-target="#ending-the-turn-and-game">Ending the turn (and game)</a></li>
+  </ul></li>
+  <li><a href="#running-the-simulation" id="toc-running-the-simulation" class="nav-link" data-scroll-target="#running-the-simulation">Running the simulation</a></li>
+  </ul></li>
+  <li><a href="#exploring-the-results" id="toc-exploring-the-results" class="nav-link" data-scroll-target="#exploring-the-results">Exploring the Results</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion:</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Simulating My Daughter’s First Board Game in Python</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">python</div>
+    <div class="quarto-category">simulation</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter Licari </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 16, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-to-play" class="level2">
+<h2 class="anchored" data-anchor-id="learning-to-play">Learning to play</h2>
+<blockquote class="blockquote">
+<p><strong>Children learn as they play. Most importantly, in play children learn how to learn.</strong></p>
+<p>- <a href="https://www.museumofplay.org/about/play-quotes/#:~:text=Children%20learn%20as%20they%20play.%20Most%20importantly%2C%20in%20play%20children%20learn%20how%20to%20learn.">O. Fred Donaldson</a></p>
+</blockquote>
+<p>Not too long ago, my grandparents gifted my daughter her first board game: <a href="https://www.amazon.com/HABA-Very-First-Games-Cooperative/dp/B004BW8TYC">First Orchard</a>. It’s a simple little game that aims to teach kids how to follow game rules and how to take turns, as well as reinforcing toddler basics like counting, hand-eye coordination<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and colors. Here’s the premise:</p>
+<ul>
+<li><p>There are four, different colored “trees” in the gamespace (“orchard”; probably played on the floor) with four fruit apiece: Green apples, yellow pears, red apples, and blue plums.</p></li>
+<li><p>There is a hungry crow that will eat all of the fruit if they make it into the orchard; they start the game five movements away.</p></li>
+<li><p>There is a six-sided dice. Four of the sides correspond to the colors of the tree (green, yellow, red, blue), a basket that allows you to take from any tree, and one has a image of a crow.</p></li>
+<li><p>Players take turn rolling the dice. If they get a color, they take a fruit from the tree associated with that color. If all the fruit has already been picked, nothing happens. If a basket is rolled, then the player can pick a fruit from any tree. If the crow is rolled, the crow is advanced one space.</p></li>
+<li><p>The game ends when all of the fruit has been picked from the tree (the players collectively win!) or when the crow reaches the orchard (the players lose).</p></li>
+</ul>
+<p>As I spent time playing<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> with my daughter, I realized that we were winning. <em>A lot</em>. Which made sense to me. One lesson that all children (and all us children grown tall) must learn is how to lose—but it’s admittedly far easier to teach a kid how to follow rules if they think there’s a strong chance that the rules will lead to success. (Though not a perfect chance so that the game is engaging and has risk and stakes). I wondered though: Were we just on a lucky streak or is the game actually biased towards the players? How long do the games usually take? Are there different average lengths between successes and failures? And if it <em>is</em> biased, how much more likely is success than failure?</p>
+</section>
+<section id="simulating-the-game-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-the-game-in-python">Simulating the game in python</h2>
+<p>In order to see how generous this game is to the players, I decided to code it up in python.</p>
+<section id="set-up" class="level3">
+<h3 class="anchored" data-anchor-id="set-up">Set-up</h3>
+<p>First I imported my libraries, made a quick little “roll the dice” function, and then setup an empty array for the results:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sb</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> die_roll():</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> roll <span class="op">=</span>  np.random.randint(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> <span class="cf">return</span>(roll)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>From here, we can actually get down to articulating the rules/procedures of the game in python.</p>
+</section>
+<section id="encoding-the-game-rules-in-well-code" class="level3">
+<h3 class="anchored" data-anchor-id="encoding-the-game-rules-in-well-code">Encoding the game rules in, well, code</h3>
+<section id="game-start" class="level4">
+<h4 class="anchored" data-anchor-id="game-start">Game Start</h4>
+<p>First, let’s get the game instantiated. We start with 4 different colored “trees” with 4 fruit apiece, a crow that needs to move 5 spaces before getting to the “orchard” (<code>-5</code>) , the number of turns that have elapsed (starting at zero), and the “orchard”—the collection of trees and the number of fruit that have yet to be picked (16 to start)</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>red <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>yellow <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>blue <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>crow <span class="op">=</span> <span class="op">-</span><span class="dv">5</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>turns <span class="op">=</span> <span class="dv">0</span>  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>orchard <span class="op">=</span> [red,green,yellow,blue]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>orchard_sum <span class="op">=</span> <span class="bu">sum</span>(orchard)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>orchard_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>16</code></pre>
+</div>
+</div>
+<p>The game continues while either the sum of fruit in the orchard is <em>greater</em> than 0 or the crow’s distance is <em>less</em> than zero . So going to use a while loop. Every loop is going to be a turn; so every go round is going to increment <code>turn</code> and roll the dice.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> orchard_sum <span class="op">!=</span> <span class="dv">0</span> <span class="kw">and</span> crow <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  turns <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  roll <span class="op">=</span> die_roll()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Depending on how that roll lands we’re going to do one of a few things:</p>
+</section>
+<section id="advance-the-crow" class="level4">
+<h4 class="anchored" data-anchor-id="advance-the-crow">Advance the crow:</h4>
+<p>Move the crow forward if the dice lands on a 6.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> roll <span class="op">==</span> <span class="dv">6</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  crow <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="take-from-a-specific-tree" class="level4">
+<h4 class="anchored" data-anchor-id="take-from-a-specific-tree">Take from a specific tree:</h4>
+<p>Since I defined <code>orchard</code> as <code>[red,green,yellow,blue]</code>, rolling a 1 will take from the red tree, 2 will take from green, 3 from yellow, 4 from blue—but only if the tree that was rolled actually has some fruit left! Otherwise, no action happens.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="dv">1</span> <span class="op">&lt;=</span> roll <span class="op">&lt;=</span> <span class="dv">4</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> orchard[roll<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    orchard[roll<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> orchard[roll<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="take-from-any-tree" class="level4">
+<h4 class="anchored" data-anchor-id="take-from-any-tree">Take from <em>any</em> tree</h4>
+<p>This one took a bit of thinking. What I decided to do was first ensure that all of the trees weren’t already at 0. If they weren’t then I decided to take from the tree with the most amount of fruit remaining. My thought being that, while it might feel good as a player to wrap-up a tree and bring it to zero, that would effectively prematurely eliminate one of the sides of the dice from doing anything productive. I had the feeling that a longer game would be biased towards the crow so I wanted to avoid that as much as possible.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> roll <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">max</span>(orchard) <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    largest_remaining <span class="op">=</span> orchard.index(<span class="bu">max</span>(orchard))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    orchard[largest_remaining] <span class="op">=</span> orchard[largest_remaining] <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> :</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ending-the-turn-and-game" class="level4">
+<h4 class="anchored" data-anchor-id="ending-the-turn-and-game">Ending the turn (and game)</h4>
+<p>Finally, determining the new sum in the orchard to determine if it’s time to kill the while loop. But, before the loop is killed, determining if the player or the crow is the winner.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>orchard_sum <span class="op">=</span> <span class="bu">sum</span>(orchard)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> game_sum <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  winner <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> crow <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  winner <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And then, once the loop is broken, recording whether the player was the winner and the number of turns it took.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>results.append({<span class="st">'winner'</span>:winner, <span class="st">'turns'</span>:turns})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="running-the-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-simulation">Running the simulation</h3>
+<p>Let’s go ahead and run this 10,000 times to get a sense of the game’s asymptotic behavior. You can click on the arrow to see how all the code comes together.</p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>10,000 simulated games</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">131313</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10000</span>):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  red <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  green <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  yellow <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  blue <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  crow <span class="op">=</span> <span class="op">-</span><span class="dv">5</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  turns <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  orchard <span class="op">=</span> [red,green,yellow,blue]</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  orchard_sum <span class="op">=</span> <span class="bu">sum</span>(orchard)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> orchard_sum <span class="op">!=</span> <span class="dv">0</span> <span class="kw">and</span> crow <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    roll <span class="op">=</span> die_roll()</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    turns <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="dv">1</span> <span class="op">&lt;=</span> roll <span class="op">&lt;=</span> <span class="dv">4</span>:</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> orchard[roll<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        orchard[roll<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> orchard[roll<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roll <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="bu">max</span>(orchard) <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        largest_remaining <span class="op">=</span> orchard.index(<span class="bu">max</span>(orchard))</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        orchard[largest_remaining] <span class="op">=</span> orchard[largest_remaining] <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> :</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> roll <span class="op">==</span> <span class="dv">6</span>:</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>      crow <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    orchard_sum <span class="op">=</span> <span class="bu">sum</span>(orchard)</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> orchard_sum <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>      winner <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> crow <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>      winner <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>  results.append({<span class="st">'winner'</span>:winner, <span class="st">'turns'</span>:turns})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>And convert the results dictionary into a pandas dataframe</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>game_data <span class="op">=</span> pd.DataFrame(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="exploring-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-results">Exploring the Results</h2>
+<p>Let’s take a look at how often people win the game!</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sb.catplot(data <span class="op">=</span> game_data, kind <span class="op">=</span> <span class="st">"count"</span>, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"winner"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2a72bc2b7d0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-12-output-2.png" width="470" height="470"></p>
+</div>
+</div>
+<p>Seems like the players are winning it about 65% of the time! Well</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">100</span> <span class="op">*</span> game_data[<span class="st">"winner"</span>].mean(),<span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>63.27 %</code></pre>
+</div>
+</div>
+<p>Specifically.</p>
+<p>Let’s see if the number of turns vary:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>game_data.groupby([<span class="st">"winner"</span>]).mean().style.set_properties(<span class="op">**</span>{<span class="st">'color'</span>:<span class="st">'black'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<style type="text/css">
+#T_0eaf7_row0_col0, #T_0eaf7_row1_col0 {
+  color: black;
+}
+</style>
+<table id="T_0eaf7">
+  <thead>
+    <tr>
+      <th class="blank level0">&nbsp;</th>
+      <th id="T_0eaf7_level0_col0" class="col_heading level0 col0">turns</th>
+    </tr>
+    <tr>
+      <th class="index_name level0">winner</th>
+      <th class="blank col0">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_0eaf7_level0_row0" class="row_heading level0 row0">0</th>
+      <td id="T_0eaf7_row0_col0" class="data row0 col0">18.655323</td>
+    </tr>
+    <tr>
+      <th id="T_0eaf7_level0_row1" class="row_heading level0 row1">1</th>
+      <td id="T_0eaf7_row1_col0" class="data row1 col0">22.012170</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<p>It looks like it takes longer for the player to win over the crow; if the crow’s going to win, it’s going to do so in about 19 turns. If the player wins, it’s going to take about 22 turns. May not sound like much but <strong><em>you</em></strong> try to keep a toddler’s attention for three extra turns!</p>
+<p>Given how many simulations I ran, I doubt that this will be anything other than “statistically significant” but it couldn’t hurt to check.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sp.stats.ttest_ind(game_data[<span class="st">'turns'</span>], game_data[<span class="st">'winner'</span>], equal_var <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>Ttest_indResult(statistic=489.4841664968918, pvalue=0.0)</code></pre>
+</div>
+</div>
+<p>LMAO a t stat of 489. NOW THIS IS <del>POD RACING</del> P-HACKING.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion:</h2>
+<p>It looks like my daughter’s first game is pretty strongly biased towards the player winning! Simulating the game 10,000 times reveals that players can expect to win about 65% of the time. Crows tend to win faster than players; if the fruit gets munched by a pesky peckish corvid, it’s going to happen sooner rather than later. This suggests to me that if the crow wins in this particular game, it’s because the player has a streak of bad luck. I might at some point tweak the rules a bit or record more granular data to delve a bit deeper, but I think I’ll cut this for now so I can go back to, you know, playing the actual game with my daughter.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>If anyone has ever seen me perform a sport that isn’t running, they’d know that needing to reinforce “hand-eye coordination” isn’t exclusively a thing for toddlers—but I digress.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Well, at least playing as one does with a toddler: Initially sticking to the rules, trying to cajole them into continuing to stick with the rules, riffing off the original rules to maintain a semblance of order, finally surrendering on the concept of order—the pieces gleefully strewn across the room a reminder that “order” is but a fleeting punctuation in the ceaseless entropic chaos of existence that you try to convince the toddler to help tidy before trying to cajole them to continue tidying before…<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
+  author = {Peter Licari and Peter Licari},
+  title = {Simulating {My} {Daughter’s} {First} {Board} {Game} in
+    {Python}},
+  date = {2023-02-16},
+  url = {www.peterlicari.com/posts/rosie-game-sim-23},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Peter Licari, and Peter Licari. 2023. <span>“Simulating My Daughter’s
+First Board Game in Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/rosie-game-sim-23">www.peterlicari.com/posts/rosie-game-sim-23</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
