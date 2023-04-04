@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Peter Licari </p>
+             <p>Peter Licari <a href="https://orcid.org/0000-0001-9701-6006" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
   </div>
     
@@ -212,11 +212,11 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups. This is something that Qualtrics can do really easily with its in-built <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/">randomizer</a> function. If you use this, and keep <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/#EvenlyPresentElements">evenly present elements</a> on, your respondents will be sorted in roughly evenly. So if you have 16 respondents and 4 groups, on average you’ll get 4 people per group.</p>
 <center>
-<p><img src="images/1.png" class="img-fluid"></p>
+<img src="images/1.png" class="img-fluid">
 </center>
 <p>But we had a different situation. We had four groups but we <strong>didn’t</strong> want it split evenly. We wanted it so that group 1 was half of the survey, and groups 2, 3, and 4 took up thirds of the remaining half.</p>
 <center>
-<p><img src="images/2.png" class="img-fluid"></p>
+<img src="images/2.png" class="img-fluid">
 </center>
 <p>Unfortunately, Qualtrics doesn’t seem to have an option that let’s you select unequal probabilities natively. If you deselect “evenly present elements” it’ll just randomize without any real concern towards whether your groups end up looking roughly equal. But that’s not what we needed. So I wanted to write about our solution to this so, hopefully, others in a similar situation might be able to find a work-around that works for them, too!</p>
 <p>Our solution used <strong>embedded data</strong>, <strong>then branches</strong>, and the standard <strong>randomizer.</strong> I’ll also talk about how you might be able to generalize this to any number of conditions (although some are more work than others).</p>
@@ -224,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="starting-with-embedded-data">Starting with Embedded Data</h2>
 <p>As you probably know: After you’re done with your Qualtrics survey, you can export it as a csv or as a xlsx file. In addition to the answers to your questions, it’ll also include some project and respondent metadata. But you can also program the survey for it to include you’re own custom metadata to be embedded in the project. You can do this by clicking on the “add new element here” button and adding embedded data to the project.</p>
 <center>
-<p><img src="images/3.PNG" class="img-fluid"></p>
+<img src="images/3.PNG" class="img-fluid">
 </center>
 <p>Once you’ve done that, you can customize your field to have whatever name you want. You can also set the value for this field. Here I set a variable named “test” equal to the value “1”. When I export the results for this survey, there will be a new column called “test” where the value for every respondent will be 1.</p>
 <p><img src="images/4.PNG" class="img-fluid"> Importantly, though, you can also set multiple conditions for the embedded data field! You do this by clicking “add below” and adding more embedded data sections.</p>
@@ -268,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {How to {Do} {Unequal} {Randomization} in {Qualtrics}
     {Surveys}},
   date = {2020-08-05},
@@ -276,8 +276,8 @@ ul.task-list li input[type="checkbox"] {
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Peter Licari, and Peter Licari. 2020. <span>“How to Do Unequal
-Randomization in Qualtrics Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">www.peterlicari.com/posts/Qualtrics-random-groups</a>.
+Peter Licari. 2020. <span>“How to Do Unequal Randomization in Qualtrics
+Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">www.peterlicari.com/posts/Qualtrics-random-groups</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

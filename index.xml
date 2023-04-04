@@ -10,16 +10,16 @@
 <atom:link href="www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Thu, 16 Feb 2023 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 04 Apr 2023 04:00:00 GMT</lastBuildDate>
 <item>
   <title>What to do when R punches you in the mouth</title>
-  <dc:creator>Peter Licari</dc:creator>
   <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/r-punch-in-face-23/index.html</link>
   <description><![CDATA[ 
 
 
 
+<p><img src="www.peterlicari.com/posts/r-punch-in-face-23/images/title_card.png" class="img-fluid"></p>
 <section id="tldr" class="level1">
 <h1>TL;DR</h1>
 <p>Attaining mastery in R is not about avoiding hiccups, but about learning what to do when you’re inevitably confronted with them. However, this is hardly covered in most introductory materials for the language; you tend to get this knowledge from the school of hard knocks. In this post, I hope to pull back the curtain a bit in a way that’s helpful to people who may be getting started with R. I write out the four most common categories of headaches I face when programming/doing analytics in R. With each headache, I talk about the things I search for and why. I’ll wrap-up by talking about my problem-solving framework.</p>
@@ -327,25 +327,24 @@ Or, at least, I thought I was. This bit of code is short enough that you should 
 <li id="fn8"><p>When I first learned it, any case that wasn’t covered in the listed cases was set to <code>NA</code> unless you did something like <code>TRUE ~ 0</code> (presuming you wanted 0 to be your default).↩︎</p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {What to Do When {R} Punches You in the Mouth},
-  date = {2023-02-16},
+  date = {2023-04-04},
   url = {www.peterlicari.com/posts/r-punch-in-face-23},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2023. <span>“What to Do When R Punches
-You in the Mouth.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/r-punch-in-face-23">www.peterlicari.com/posts/r-punch-in-face-23</a>.
+Peter Licari. 2023. <span>“What to Do When R Punches You in the
+Mouth.”</span> April 4, 2023. <a href="https://www.peterlicari.com/posts/r-punch-in-face-23">www.peterlicari.com/posts/r-punch-in-face-23</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>tutorial</category>
   <guid>www.peterlicari.com/posts/r-punch-in-face-23/index.html</guid>
-  <pubDate>Thu, 16 Feb 2023 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 04 Apr 2023 04:00:00 GMT</pubDate>
   <media:content url="www.peterlicari.com/posts/r-punch-in-face-23/images/title_card.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Simulating My Daughter’s First Board Game in Python</title>
-  <dc:creator>Peter Licari</dc:creator>
   <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/rosie-game-sim-23/index.html</link>
   <description><![CDATA[ 
@@ -610,7 +609,7 @@ You in the Mouth.”</span> February 16, 2023. <a href="https://www.peterlicari.
 <li id="fn2"><p>Well, at least playing as one does with a toddler: Initially sticking to the rules, trying to cajole them into continuing to stick with the rules, riffing off the original rules to maintain a semblance of order, finally surrendering on the concept of order—the pieces gleefully strewn across the room a reminder that “order” is but a fleeting punctuation in the ceaseless entropic chaos of existence that you try to convince the toddler to help tidy before trying to cajole them to continue tidying before…↩︎</p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {Simulating {My} {Daughter’s} {First} {Board} {Game} in
     {Python}},
   date = {2023-02-16},
@@ -618,8 +617,8 @@ You in the Mouth.”</span> February 16, 2023. <a href="https://www.peterlicari.
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2023. <span>“Simulating My Daughter’s
-First Board Game in Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/rosie-game-sim-23">www.peterlicari.com/posts/rosie-game-sim-23</a>.
+Peter Licari. 2023. <span>“Simulating My Daughter’s First Board Game in
+Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/rosie-game-sim-23">www.peterlicari.com/posts/rosie-game-sim-23</a>.
 </div></div></section></div> ]]></description>
   <category>python</category>
   <category>simulation</category>
@@ -629,7 +628,6 @@ First Board Game in Python.”</span> February 16, 2023. <a href="https://www.pe
 </item>
 <item>
   <title>Book Review: Theory and Reality</title>
-  <dc:creator>Peter Licari</dc:creator>
   <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/theory-reality-book-review/index.html</link>
   <description><![CDATA[ 
@@ -669,15 +667,15 @@ First Board Game in Python.”</span> February 16, 2023. <a href="https://www.pe
 <li id="fn5"><p>I solemnly swear: 25 pages max.↩︎</p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2022,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {Book {Review:} {Theory} and {Reality}},
   date = {2022-11-07},
   url = {www.peterlicari.com/posts/theory-reality-book-review},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2022" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2022. <span>“Book Review: Theory and
-Reality.”</span> November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book-review">www.peterlicari.com/posts/theory-reality-book-review</a>.
+Peter Licari. 2022. <span>“Book Review: Theory and Reality.”</span>
+November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book-review">www.peterlicari.com/posts/theory-reality-book-review</a>.
 </div></div></section></div> ]]></description>
   <category>review</category>
   <guid>www.peterlicari.com/posts/theory-reality-book-review/index.html</guid>
@@ -686,7 +684,6 @@ Reality.”</span> November 7, 2022. <a href="https://www.peterlicari.com/posts/
 </item>
 <item>
   <title>Thoughts on the 2020 Election</title>
-  <dc:creator>Peter Licari</dc:creator>
   <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/thoughts-prior-2020-election/index.html</link>
   <description><![CDATA[ 
@@ -809,15 +806,15 @@ Reality.”</span> November 7, 2022. <a href="https://www.peterlicari.com/posts/
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {Thoughts on the 2020 {Election}},
   date = {2020-11-05},
   url = {www.peterlicari.com/posts/thoughts-prior-2020-election},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2020. <span>“Thoughts on the 2020
-Election.”</span> November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020-election">www.peterlicari.com/posts/thoughts-prior-2020-election</a>.
+Peter Licari. 2020. <span>“Thoughts on the 2020 Election.”</span>
+November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020-election">www.peterlicari.com/posts/thoughts-prior-2020-election</a>.
 </div></div></section></div> ]]></description>
   <category>elections</category>
   <category>reflection</category>
@@ -828,7 +825,6 @@ Election.”</span> November 5, 2020. <a href="https://www.peterlicari.com/posts
 <item>
   <title>How to Do Unequal Randomization in Qualtrics Surveys</title>
   <dc:creator>Peter Licari</dc:creator>
-  <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/Qualtrics-random-groups/index.html</link>
   <description><![CDATA[ 
 
@@ -836,11 +832,11 @@ Election.”</span> November 5, 2020. <a href="https://www.peterlicari.com/posts
 
 <p>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups. This is something that Qualtrics can do really easily with its in-built <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/">randomizer</a> function. If you use this, and keep <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/#EvenlyPresentElements">evenly present elements</a> on, your respondents will be sorted in roughly evenly. So if you have 16 respondents and 4 groups, on average you’ll get 4 people per group.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/1.png" class="img-fluid"></p>
+<img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/1.png" class="img-fluid">
 </center>
 <p>But we had a different situation. We had four groups but we <strong>didn’t</strong> want it split evenly. We wanted it so that group 1 was half of the survey, and groups 2, 3, and 4 took up thirds of the remaining half.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/2.png" class="img-fluid"></p>
+<img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/2.png" class="img-fluid">
 </center>
 <p>Unfortunately, Qualtrics doesn’t seem to have an option that let’s you select unequal probabilities natively. If you deselect “evenly present elements” it’ll just randomize without any real concern towards whether your groups end up looking roughly equal. But that’s not what we needed. So I wanted to write about our solution to this so, hopefully, others in a similar situation might be able to find a work-around that works for them, too!</p>
 <p>Our solution used <strong>embedded data</strong>, <strong>then branches</strong>, and the standard <strong>randomizer.</strong> I’ll also talk about how you might be able to generalize this to any number of conditions (although some are more work than others).</p>
@@ -848,7 +844,7 @@ Election.”</span> November 5, 2020. <a href="https://www.peterlicari.com/posts
 <h2 class="anchored" data-anchor-id="starting-with-embedded-data">Starting with Embedded Data</h2>
 <p>As you probably know: After you’re done with your Qualtrics survey, you can export it as a csv or as a xlsx file. In addition to the answers to your questions, it’ll also include some project and respondent metadata. But you can also program the survey for it to include you’re own custom metadata to be embedded in the project. You can do this by clicking on the “add new element here” button and adding embedded data to the project.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/3.PNG" class="img-fluid"></p>
+<img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/3.PNG" class="img-fluid">
 </center>
 <p>Once you’ve done that, you can customize your field to have whatever name you want. You can also set the value for this field. Here I set a variable named “test” equal to the value “1”. When I export the results for this survey, there will be a new column called “test” where the value for every respondent will be 1.</p>
 <p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/4.PNG" class="img-fluid"> Importantly, though, you can also set multiple conditions for the embedded data field! You do this by clicking “add below” and adding more embedded data sections.</p>
@@ -892,7 +888,7 @@ Election.”</span> November 5, 2020. <a href="https://www.peterlicari.com/posts
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {How to {Do} {Unequal} {Randomization} in {Qualtrics}
     {Surveys}},
   date = {2020-08-05},
@@ -900,8 +896,8 @@ Election.”</span> November 5, 2020. <a href="https://www.peterlicari.com/posts
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2020. <span>“How to Do Unequal
-Randomization in Qualtrics Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">www.peterlicari.com/posts/Qualtrics-random-groups</a>.
+Peter Licari. 2020. <span>“How to Do Unequal Randomization in Qualtrics
+Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">www.peterlicari.com/posts/Qualtrics-random-groups</a>.
 </div></div></section></div> ]]></description>
   <category>surveys</category>
   <category>qualtrics</category>
@@ -912,7 +908,6 @@ Randomization in Qualtrics Surveys.”</span> August 5, 2020. <a href="https://w
 </item>
 <item>
   <title>Surveying is a Beautifully Foolish Endeavor</title>
-  <dc:creator>Peter Licari</dc:creator>
   <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/surveying-beautiful-endeavor/index.html</link>
   <description><![CDATA[ 
@@ -934,15 +929,15 @@ Randomization in Qualtrics Surveys.”</span> August 5, 2020. <a href="https://w
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {Surveying Is a {Beautifully} {Foolish} {Endeavor}},
   date = {2020-08-03},
   url = {www.peterlicari.com/posts/surveying-beautiful-endeavor},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2020. <span>“Surveying Is a Beautifully
-Foolish Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/surveying-beautiful-endeavor">www.peterlicari.com/posts/surveying-beautiful-endeavor</a>.
+Peter Licari. 2020. <span>“Surveying Is a Beautifully Foolish
+Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/surveying-beautiful-endeavor">www.peterlicari.com/posts/surveying-beautiful-endeavor</a>.
 </div></div></section></div> ]]></description>
   <category>review</category>
   <category>surveys</category>
@@ -952,7 +947,6 @@ Foolish Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com
 </item>
 <item>
   <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software</title>
-  <dc:creator>Peter Licari</dc:creator>
   <dc:creator>Peter Licari</dc:creator>
   <link>www.peterlicari.com/posts/covid-video-lecture-tutorial/index.html</link>
   <description><![CDATA[ 
@@ -1067,7 +1061,7 @@ Foolish Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com
 <li id="fn3"><p>I’m choosing to play Switzerland in the immemorial methods war.↩︎</p></li>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
-  author = {Peter Licari and Peter Licari},
+  author = {Peter Licari},
   title = {Capturing a {PowerPoint/Google} {Slides} {Lecture} with
     {Open} {Source} {Software}},
   date = {2020-03-10},
@@ -1075,9 +1069,8 @@ Foolish Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
-Peter Licari, and Peter Licari. 2020. <span>“Capturing a
-PowerPoint/Google Slides Lecture with Open Source Software.”</span>
-March 10, 2020. <a href="https://www.peterlicari.com/posts/covid-video-lecture-tutorial">www.peterlicari.com/posts/covid-video-lecture-tutorial</a>.
+Peter Licari. 2020. <span>“Capturing a PowerPoint/Google Slides Lecture
+with Open Source Software.”</span> March 10, 2020. <a href="https://www.peterlicari.com/posts/covid-video-lecture-tutorial">www.peterlicari.com/posts/covid-video-lecture-tutorial</a>.
 </div></div></section></div> ]]></description>
   <category>tutorial</category>
   <category>teaching</category>
