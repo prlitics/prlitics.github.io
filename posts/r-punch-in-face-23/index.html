@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peter Licari">
+<meta name="dcterms.date" content="2023-02-16">
+
+<title>Peter Licari - What to do when R punches you in the mouth</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Peter Licari</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../writing.html">
+ <span class="menu-text">Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ongoing Projects</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+        <li>
+    <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
+ <span class="dropdown-text">YouTube Channel</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://peterlicari.substack.com/">
+ <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
+ <span class="dropdown-text">Comics (Rarely)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../other_things.html">
+ <span class="menu-text">Other Things I’ve Made</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../archive.html">
+ <span class="dropdown-text">Archive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.r-bloggers.com/">
+ <span class="dropdown-text">R Bloggers</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">TL;DR</a></li>
+  <li><a href="#intro" id="toc-intro" class="nav-link" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#four-categories-of-headaches" id="toc-four-categories-of-headaches" class="nav-link" data-scroll-target="#four-categories-of-headaches">Four Categories of Headaches</a>
+  <ul>
+  <li><a href="#i-do-not-understand-what-this-output-is-telling-me" id="toc-i-do-not-understand-what-this-output-is-telling-me" class="nav-link" data-scroll-target="#i-do-not-understand-what-this-output-is-telling-me">I do not understand what this output is telling me</a>
+  <ul class="collapse">
+  <li><a href="#descriptive-errors" id="toc-descriptive-errors" class="nav-link" data-scroll-target="#descriptive-errors">Descriptive Errors</a></li>
+  <li><a href="#less-descriptive-errors" id="toc-less-descriptive-errors" class="nav-link" data-scroll-target="#less-descriptive-errors">Less Descriptive Errors</a></li>
+  <li><a href="#nondescriptive-errors" id="toc-nondescriptive-errors" class="nav-link" data-scroll-target="#nondescriptive-errors">Nondescriptive Errors</a></li>
+  <li><a href="#the-common-solution" id="toc-the-common-solution" class="nav-link" data-scroll-target="#the-common-solution">The Common Solution</a></li>
+  </ul></li>
+  <li><a href="#i-understand-the-output-plenty-but-dont-know-how-i-even-got-here" id="toc-i-understand-the-output-plenty-but-dont-know-how-i-even-got-here" class="nav-link" data-scroll-target="#i-understand-the-output-plenty-but-dont-know-how-i-even-got-here">I understand the output plenty but don’t know how I even got here</a>
+  <ul class="collapse">
+  <li><a href="#regressing-in-a-regression-problem" id="toc-regressing-in-a-regression-problem" class="nav-link" data-scroll-target="#regressing-in-a-regression-problem">Regressing in a Regression Problem</a></li>
+  <li><a href="#data-by-another-name" id="toc-data-by-another-name" class="nav-link" data-scroll-target="#data-by-another-name">Data by Another Name</a></li>
+  <li><a href="#the-common-solution-1" id="toc-the-common-solution-1" class="nav-link" data-scroll-target="#the-common-solution-1">The Common Solution</a></li>
+  </ul></li>
+  <li><a href="#i-do-not-know-how-to-make-this-code-return-the-type-of-output-i-expect" id="toc-i-do-not-know-how-to-make-this-code-return-the-type-of-output-i-expect" class="nav-link" data-scroll-target="#i-do-not-know-how-to-make-this-code-return-the-type-of-output-i-expect">I do not know how to make this code return the type of output I expect</a>
+  <ul class="collapse">
+  <li><a href="#common-solutions" id="toc-common-solutions" class="nav-link" data-scroll-target="#common-solutions">Common Solutions</a>
+  <ul class="collapse">
+  <li><a href="#start-with-the-end-in-mind" id="toc-start-with-the-end-in-mind" class="nav-link" data-scroll-target="#start-with-the-end-in-mind">Start with the end in mind</a></li>
+  <li><a href="#stand-on-the-shoulders-of-giants" id="toc-stand-on-the-shoulders-of-giants" class="nav-link" data-scroll-target="#stand-on-the-shoulders-of-giants">Stand on the shoulders of giants</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#i-do-not-know-how-to-make-r-do-something-that-i-think-it-should-be-able-to-do." id="toc-i-do-not-know-how-to-make-r-do-something-that-i-think-it-should-be-able-to-do." class="nav-link" data-scroll-target="#i-do-not-know-how-to-make-r-do-something-that-i-think-it-should-be-able-to-do.">I do not know how to make R do something that I think it should be able to do.</a>
+  <ul class="collapse">
+  <li><a href="#youve-done-this-kind-of-thing-before-just-cant-remember-the-steps." id="toc-youve-done-this-kind-of-thing-before-just-cant-remember-the-steps." class="nav-link" data-scroll-target="#youve-done-this-kind-of-thing-before-just-cant-remember-the-steps.">1. You’ve done this kind of thing before, just can’t remember the steps.</a></li>
+  <li><a href="#youve-worked-with-this-particular-function-before-and-are-pretty-sure-its-capable-of-doing-what-you-envision." id="toc-youve-worked-with-this-particular-function-before-and-are-pretty-sure-its-capable-of-doing-what-you-envision." class="nav-link" data-scroll-target="#youve-worked-with-this-particular-function-before-and-are-pretty-sure-its-capable-of-doing-what-you-envision.">2. You’ve worked with this particular function before and are pretty sure its capable of doing what you envision.</a></li>
+  <li><a href="#you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called." id="toc-you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called." class="nav-link" data-scroll-target="#you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called.">3. You know that this package has a function that is useful but you can’t remember what it’s called.</a></li>
+  <li><a href="#i-feel-like-the-sort-of-thing-i-want-should-be-possible-but-i-dont-know-how-to-do-it." id="toc-i-feel-like-the-sort-of-thing-i-want-should-be-possible-but-i-dont-know-how-to-do-it." class="nav-link" data-scroll-target="#i-feel-like-the-sort-of-thing-i-want-should-be-possible-but-i-dont-know-how-to-do-it.">4. I feel like the sort of thing I want <em>should</em> be possible but I don’t know how to do it.</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#my-general-problem-solving-framework" id="toc-my-general-problem-solving-framework" class="nav-link" data-scroll-target="#my-general-problem-solving-framework">My General Problem-Solving Framework</a></li>
+  <li><a href="#if-you-literally-remember-nothing-else" id="toc-if-you-literally-remember-nothing-else" class="nav-link" data-scroll-target="#if-you-literally-remember-nothing-else">If you literally remember nothing else:</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What to do when R punches you in the mouth</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">tutorial</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter Licari </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 16, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="tldr" class="level1">
+<h1>TL;DR</h1>
+<p>Attaining mastery in R is not about avoiding hiccups, but about learning what to do when you’re inevitably confronted with them. However, this is hardly covered in most introductory materials for the language; you tend to get this knowledge from the school of hard knocks. In this post, I hope to pull back the curtain a bit in a way that’s helpful to people who may be getting started with R. I write out the four most common categories of headaches I face when programming/doing analytics in R. With each headache, I talk about the things I search for and why. I’ll wrap-up by talking about my problem-solving framework.</p>
+</section>
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>I’ve been working in R for a bit over five years now<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>—and though I certainly can’t say that I’ve mastered every package, framework, or dialect, I’ve wracked up enough experience to be pretty competent as both a user and developer. But competence in R (and any other programming language for that matter) shouldn’t be thought as how effortlessly one produces working code. I’d argue it’s the opposite. It’s about what you do when your code <strong><em>doesn’t</em></strong> work.</p>
+<p>A while back, I listened to Brian Christian’s book <em>The Alignment Problem</em> and there was a story when he was discussing imitation learning that stuck with me. Specifically, it was the part where former Carnegie Mellon graduate student Stéphane Ross wanted to train a model on how to play a knock-off of <em>Super</em> <em>Mario Kart</em>. Ross was quite good at the game, so he provided the model with the training data by playing it himself—the model ingesting the visual data on screen as well as how he moved his joystick. After hours of play, he set it loose.</p>
+<p>If you think this plan would result in an agent that was, itself, good at <em>Mario Kart</em> because it was learning from someone who was good at <em>Mario Kart</em>, you’d actually be wrong. Because the model had only been trained on successful runs, it had zero clue on how to course correct when something went awry. As Christian explains:</p>
+<blockquote class="blockquote">
+<p>At its root, the problem stems from the fact that the learner sees an expert execution of the problem—and an expert almost never gets into trouble. No matter how good the learner is, though, they will make mistakes, whether blatant or subtle. But because the learner never saw the expert get into trouble, they’ve also never seen the expert get out.</p>
+</blockquote>
+<p>The situation can be summed up neatly in two of my favorite quotes:</p>
+<ul>
+<li><p>“An expert is a person who has made all the mistakes that can be made in a very narrow field” – Niels Bohr</p></li>
+<li><p>“Everyone has a plan until they get punched in the mouth” – Mike Tyson</p></li>
+</ul>
+<p>So this is a post where I pull back the curtain a bit, to show how I course-correct when something doesn’t go right. To show what I do when R punches me in the mouth.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> My hope is to convey both the types of impediments that give me grief when coding in R but also the types of resources I lean on and the kinds of things that I type into Google to get me on the right track. Because, yes, as a coder, I rely heavily on Google. The open secret: We all do.</p>
+</section>
+<section id="four-categories-of-headaches" class="level1">
+<h1>Four Categories of Headaches</h1>
+<p>From my experience as a practitioner and instructor of R, most frustrations people deal with, beginner and veteran alike, can be lumped into 4 categories:</p>
+<ol type="1">
+<li><em>I do not understand what this output\error message is telling me.</em></li>
+<li><em>I understand the output plenty, but do not understand what went wrong so as to get to this point.</em></li>
+<li><em>I do not know how to make this code return the type of output I expect.</em></li>
+<li><em>I do not know how to make R do something that I think it should be able to do.</em></li>
+</ol>
+<p>For all of these, when they get to a certain level of opaqueness and complexity, I’m going to turn to <del>the oracle</del> Google. I may also turn to ChatGPT if I’m working with a popular package or framework. I’ll talk a bit about what I’ll search <em>for</em> in each case but, to avoid being redundant, I’m going to mention what sources I’ll tend to seek out once I’ve hit the results page—mostly because they’re largely the same across issue areas.</p>
+<ul>
+<li><a href="https://stackoverflow.com/">Stack Overflow</a>: Or other parts of the Stack Exchange network that intersect data (e.g., Cross Validated, Geographic Information Systems, Mathematics).</li>
+<li>Function Documentation: You can look up the documentation for a function by writing <code>?FUNCTION_NAME</code> in the console. For instance, if I was having trouble understanding dplyr’s <code>across</code> function, I would type <code>?across</code>. You can also look at the exported functions and objects from packages by writing out the package name followed by two colons (e.g., <code>MASS::</code> or <code>ggplot2::</code>). If you want to see all objects and functions, you’d bump that up to 3 colons(<code>:::</code>).</li>
+<li><a href="https://github.com">GitHub</a>: Most frequently, the github sites for individual packages. These will often have <code>github.io</code> somewhere in their domain name. I may also just go to the individual GitHub repository to see what things they leave in their “read me” files. GitHub sites are usually good for vignettes to show what sorts of things are typically done with the functions within a package (or at least what their designers had as their intent). GitHub can also be good for when you start to do more specialty/development work; the issues opened on various projects can be a goldmine.</li>
+<li><a href="https://community.rstudio.com/">Posit Community Forum</a>: Previously known as the RStudio community forum, this is, as its name implies, a forum hosted by Posit (formerly RStudio), creators of RStudio. People will often go there if they aren’t able to find a good answer on other sites, and the commenters are usually quite knowledgeable, friendly, and specific with their insights and advice.</li>
+<li>Package sites: In a similar vein, some packages/package families have their own sites, such as with <code>tidyverse.org</code>. So if I catch a web address where the package itself (or its larger family) is part of the domain name, then I’ll often go there for documentation.</li>
+<li>Reddit: Specifically r/rstats, r/statistics, r/AskStatistics, r/rprogramming, or r/datascience.</li>
+<li><a href="https://www.r-bloggers.com/">R-Bloggers</a>: R-Bloggers is a content aggregator submitted by fans (and frenemies) of the R language. I’m often shocked with how often someone has done the exact thing I want to do as a little proof-of-concept blog post as if it simply wasn’t a big deal.</li>
+<li>Specialty Sites: There are a few sites that I’ve gone to often enough that I tend to trust them to at least get started. These include Analytics Vidhya and the UCLA statistics site (stats.oarc.ucla.edu). There are also some individual bloggers/educators like <a href="https://www.andrewheiss.com/blog/">Andrew Heiss</a>, <a href="https://www.ajordannafa.com/blog/">A. Jordan Nafa</a>, <a href="https://blog.djnavarro.net/">Danielle Navarro</a>, and <a href="https://twitter.com/ChelseaParlett">Chelsea Pelleriti</a> (as a verrrry abridged list) who could publish just about anything and I’ll just nod along vigorously, do my best to understand, and take their word for it.</li>
+</ul>
+<p>I’m going to talk about how I tend to approach errors/hiccups of these kinds. I’ll try to sprinkle in some common examples as I go.</p>
+<section id="i-do-not-understand-what-this-output-is-telling-me" class="level2">
+<h2 class="anchored" data-anchor-id="i-do-not-understand-what-this-output-is-telling-me">I do not understand what this output is telling me</h2>
+<p>The first thing I do—and I know that this is going to sound just so incredibly pedantic, but please stay with me—is do my best to read the error message <em>closely</em>.</p>
+<p>Don’t get me wrong: A lot of these error messages have been written by software engineers—and software engineers aren’t known to be, uh, particularly verbose or descriptive. But, a lot of package developers, especially those in or adjacent to the <em>Tidyverse</em>, work to include more informative errors. But, even for these, you need to know what you’re looking for.</p>
+<section id="descriptive-errors" class="level3">
+<h3 class="anchored" data-anchor-id="descriptive-errors">Descriptive Errors</h3>
+<p>Let’s say that I’m playing around with the <code>mtcars</code> dataset and I try to select a column that doesn’t exist:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `select()`:
+! Can't subset columns that don't exist.
+✖ Column `type` doesn't exist.</code></pre>
+</div>
+</div>
+<p>This error is very clear: it’s telling me that the column that I passed along to the select statement (<code>type</code>) is not a variable in the data frame. My resolution here is similarly clear: Fix what I’ve passed to the select statement so that I can get the proper output.</p>
+<p>A similarly descriptive error (at least once you’ve gotten the hang of it) will come up when you invariably put in one too many (or few) of some critical character in R: <code>+</code>, <code>}</code>, <code>,</code>, <code>)</code>, <code>]</code>, etc. It will tell you that there’s an “unexpected character” somewhere and will provide you with where the incongruity is.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: &lt;text&gt;:1:27: unexpected symbol
+1: ggplot(mtcars, aes(x = wt y
+                              ^</code></pre>
+</div>
+</div>
+<p>This error is admittedly a bit tricky sometimes to get your head around at first because it ostensibly crops up in the <em>absence</em> of a symbol and not just the “unexpected presence” of one. But it makes more sense once you remember that <code>y</code> is indeed a symbol and it isn’t expected there—function arguments are supposed to be separated by <code>,</code>s!</p>
+<p>Normally when I see <code>unexpected symbol</code> errors, my first thought is to make sure that I’m balanced on the number of left-hand symbols (i.e., <code>[</code>, <code>(</code>, <code>{</code>) and right hand symbols (<code>]</code>, <code>)</code>, <code>}</code>); if you’ve got one on the left, you need one on the right and vice-versa. Then I’ll check for errant commas—or that they are where they’re supposed to be.</p>
+</section>
+<section id="less-descriptive-errors" class="level3">
+<h3 class="anchored" data-anchor-id="less-descriptive-errors">Less Descriptive Errors</h3>
+<p>Some errors require a bit more understanding of R as a programming language to parse before they become “obvious.” Say that I want to add a new column to the mtcars data. This will work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>new_col <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will not:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>new_col <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `$&lt;-.data.frame`(`*tmp*`, new_col, value = c(1, 2, 3)): replacement has 3 rows, data has 32</code></pre>
+</div>
+</div>
+<p>Yet this will:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>new_col <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And, again, this will not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_col =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `mutate()`:
+ℹ In argument: `new_col = c(1, 2)`.
+Caused by error:
+! `new_col` must be size 32 or 1, not 2.</code></pre>
+</div>
+</div>
+<p>Why does it matter that this vector has 3 and that the data has 32?! 2 and 4 seemed fine! And why did 2 work for base R but fail in the <code>mutate</code> context?</p>
+<p>Well, because R allows for this thing called “recycling.” Basically, if you try to put two unequal vectors together but one of them can evenly divide into the other, R will “recycle” the values over and over again until they fill out the space.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y
+1 1 1
+2 2 2
+3 3 1
+4 4 2
+5 5 1
+6 6 2</code></pre>
+</div>
+</div>
+<p>3 doesn’t divide evenly into 32, so an error crops up there. However, <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html#:~:text=In%20the%20same%20way%2C%20you%20can%20unquote%20values%20from%20the%20context%20if%20these%20values%20represent%20a%20valid%20column.%20They%20must%20be%20either%20length%201%20(they%20then%20get%20recycled)%20or%20have%20the%20same%20length%20as%20the%20number%20of%20rows.">dplyr’s mutate doesn’t recycle values greater than 1</a>. It’s a quirk of that package. You will come to learn many of the quirks of the packages you use most often. But, in both cases, R told you exactly what was wrong although it only told you <em>why</em> that was an issue with <code>mutate</code>.</p>
+</section>
+<section id="nondescriptive-errors" class="level3">
+<h3 class="anchored" data-anchor-id="nondescriptive-errors">Nondescriptive Errors</h3>
+<p>Let’s say that you’re returning to your script in a new session. You were trying to filter <code>mtcars</code> by those with a value of 4 for the <code>cyl</code> column.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 'dplyr' namespace cannot be unloaded:
+  namespace 'dplyr' is imported by 'tidyr' so cannot be unloaded</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in filter(., cyl == 4): object 'cyl' not found</code></pre>
+</div>
+</div>
+<p>Ok. No problem. You’ll just go to a different part of your script where you saved a dataframe as <code>df</code> and looked at the top 6 values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                              
+1 function (x, df1, df2, ncp, log = FALSE)    
+2 {                                           
+3     if (missing(ncp))                       
+4         .Call(C_df, x, df1, df2, log)       
+5     else .Call(C_dnf, x, df1, df2, ncp, log)
+6 }                                           </code></pre>
+</div>
+</div>
+<p>Ok that’s not an error, but what even is it?!</p>
+<p>There are other cases that I’ve come across where R will warn me about something going wrong with a Hessian, or that some object is or isn’t subsetable, or that something or another is singular. Sometimes, I will have absolutely no idea what this means! So what do I do? Google it!</p>
+</section>
+<section id="the-common-solution" class="level3">
+<h3 class="anchored" data-anchor-id="the-common-solution">The Common Solution</h3>
+<p>Usually, I’ll copy the first full line or sentence of the error and pop it right into Google. However, I don’t usually copy in the full error if there’s text in there that I recognize as being driven by my specific input—like a column or object name. Including things that are only driven by what I’ve personally done in the search might reduce the number of helpful hits I’ll get.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> So I’ll go for the longest uninterrupted part of the error that doesn’t seem to contain something specific to my call.</p>
+<p>This will usually bring me to a Stack Overflow or to another forum. Good ones tell you what to do with your code so that you can keep on trucking. The <strong>great</strong> ones are those that explain what the code they’re suggesting does on an intuitive level. The <strong><em>best</em></strong> ones do all that plus provide alternative ways of approaching the problem and/or explain in clear language why the original error came up in the first place.</p>
+</section>
+</section>
+<section id="i-understand-the-output-plenty-but-dont-know-how-i-even-got-here" class="level2">
+<h2 class="anchored" data-anchor-id="i-understand-the-output-plenty-but-dont-know-how-i-even-got-here">I understand the output plenty but don’t know how I even got here</h2>
+<p>Let me give an example of this happening on a project I did at my last job.</p>
+<section id="regressing-in-a-regression-problem" class="level3">
+<h3 class="anchored" data-anchor-id="regressing-in-a-regression-problem">Regressing in a Regression Problem</h3>
+<p>I was working on functionalizing a type of analysis and spent some time with a logistic regression model. I wanted to predict outcomes from the approach I was testing to ensure it spat out reasonable estimates. First time I ran it, everything went fine—I got back a set of predicted probabilities all within the ballpark that I was expecting. I turned my attention to a marginal improvement I wanted to make in the function’s speed. Came back and re-ran the model. My predictions came back and everyone was either a 0 or a 1. Which is to say, <em>not at all a reasonable set of predictions.</em> Why did it just work before and why was it breaking all of a sudden?!</p>
+</section>
+<section id="data-by-another-name" class="level3">
+<h3 class="anchored" data-anchor-id="data-by-another-name">Data by Another Name</h3>
+<p>Here’s another example that tosses an error that might be fairly familiar. Let’s say that I import in a data set and I try to summarize the mean values of a column I’m interested in (in this case, it’s the <code>penguins</code> data from the <code>{palmerpenguins}</code> package and I’m interested in bill_length_mm).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'palmerpenguins' was built under R version 4.2.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dat4 <span class="ot">&lt;-</span> penguins</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in UseMethod("group_by"): no applicable method for 'group_by' applied to an object of class "function"</code></pre>
+</div>
+</div>
+<p>What do you mean a function?! I’m not passing a function, I’m passing data!<br>
+<br>
+Or, at least, I thought I was. This bit of code is short enough that you should be able to catch it—the data is called <code>dat4</code> but I’m invoking <code>data</code>—which, until it’s assigned something else, is actually the name of a base R function. But if you’re working in a longer script and not being careful/deliberate with your names, this sort of thing can drive you crazy for a few minutes as you question your sanity.</p>
+</section>
+<section id="the-common-solution-1" class="level3">
+<h3 class="anchored" data-anchor-id="the-common-solution-1">The Common Solution</h3>
+<p>The causes for this sort of frustration usually boil down to people not working in what I’ll call a “linear” fashion. There’s a reason why folks who have been doing this a while insist that your script should be executable running it top to bottom without having to circle back or anything. But many practitioners (especially those who don’t have a strong coding background)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> will jump around in their scripts to tinker with this, try that out, maybe open up a new file and run some of the code in there. This also very frequently happens to folks who are new to RMarkdown or Quarto who have their test output coming out correctly because they ran chunks individually—but out of order. When it comes time to knit/render, they’re stymied by errors claiming that objects don’t exist <em>but they can see the damn things in their environment—what do you mean they don’t exist?!</em>.</p>
+<p>The resulting analysis is one riddled with hidden dependencies or processes to work properly. This is pretty obvious with the second example, no data objects had been assigned to <code>data</code> so R still reserved that set of characters to refer to the function. (Which is actually a good tie-in to the first section: The error is telling you exactly what’s going wrong!). In the first example, my original data set had scaled predictors but then, in my quest to squash the minor thing, I overwrote that dataframe object to something with the same column names <em>without</em> scaled predictors. But I never updated the trained model. The result was that this “test” data had way more extreme values compared to the “training” data and, thus, everyone was given either 0s or 1s.</p>
+<p>More often than not, if you’re getting an error or output that appears to make no sense in the context of the thing that you’re trying to do, the best advice is to take a short break and come back to the problem with fresh eyes. In order to prevent it from happening in the first place, frequently restart your session and make sure that you can get back right where you were with the code you’ve already written without having to do anything fancy. That means running your code top-to-bottom.</p>
+</section>
+</section>
+<section id="i-do-not-know-how-to-make-this-code-return-the-type-of-output-i-expect" class="level2">
+<h2 class="anchored" data-anchor-id="i-do-not-know-how-to-make-this-code-return-the-type-of-output-i-expect">I do not know how to make this code return the type of output I expect</h2>
+<p>A related, but distinct, issue from the previous one is when you have a clear vision in your mind for what you’d like to accomplish but you can’t quite seem to figure out how to get the data to behave the way you’d like. This often happens to me when I’m designing a function and I know how I want the <em>output</em> to look, but I’m having a tough time figuring out how to get there from the input. Another, perhaps more common, example is trying to ingest data and/or manipulate a dataframe so as to create something structured like the outcome you have in mind. (Say, for instance, that I’m trying to take wide-formatted data and pivot it into long formatted data, but I need summary statistics and only a select few columns). There are few things more frustrating than having a gist of what you’re hunting for but not being able to actually see it to fruition.</p>
+<section id="common-solutions" class="level3">
+<h3 class="anchored" data-anchor-id="common-solutions">Common Solutions</h3>
+<section id="start-with-the-end-in-mind" class="level4">
+<h4 class="anchored" data-anchor-id="start-with-the-end-in-mind">Start with the end in mind</h4>
+<p>Oftentimes these problems will come up because we are trying to get data of some sort “shaped” in a particular way—usually not for its own sake but to prepare it for some additional step. But I find that one of the most helpful <em>first</em> steps you can take is to take a moment to fully flesh out what this subsequent step will take for you to be successful. What type of input is necessary? Does it require a vector, a list, a dataframe? How many values, of what type(s), do they have to be named—if so, are their any requirements or restrictions? Can they have <code>NA</code>/<code>NULL</code>/<code>Inf</code> values? Sketch out<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> what you need things to finish as. Just like solving a maze by starting at the end, sometimes this can clarify the direction you have to take.</p>
+<p>Once you’ve done that, continue to work backwards. Compare the number of rows/columns/values in what you need compared to what you started with. Think about what data manipulation functions and/or summary operations you’ll need to do to go from each step to the next.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> This may require some trial and error so, once you’re done, please be sure to clean up your code so that it runs top-to-bottom so that you don’t run into the mistake we were just talking about in the previous section.</p>
+</section>
+<section id="stand-on-the-shoulders-of-giants" class="level4">
+<h4 class="anchored" data-anchor-id="stand-on-the-shoulders-of-giants">Stand on the shoulders of giants</h4>
+<p>Oftentimes, for the work performed the vast majority of the time, the maintainers of the packages you are using for your transformation(s) have probably created tutorials or vignettes on how to do at least some of the steps that you’re looking to do. You don’t need to relearn how to pivot tables from wide to long and vice-versa: that documentation already exists in a way to easily grock the concepts! So when I google for things with this type of headache, I tend to keep an eye out for tutorials (on personal blogs and R-Bloggers) and on package vignettes. You may have to string multiple vignettes together to fully traverse the gap between your start and ideal end-state, but these resources can be tremendously useful. My google strategy here is to type in “how to do <code>xyz</code> in R” where “<code>xyz</code>” will refer not to my overall aim but to the specific kind of function/operation that I want to perform to complete the next step. (And, if you know the package you’re using/need to use—add it to the search query).</p>
+<p>A tool that’s becoming increasingly useful for this is ChatGPT, especially GPT4, and other Large Language Models (LLMs). If you ask the model to not only help you take your input data and translate it to the output format you sketched earlier but to also <strong><em>explicitly detail the steps involved</em></strong> it will be able to do that pretty well. Here is an excerpt from an example of me doing this with GPT3 with scraping a table from Wikipedia.</p>
+<p><img src="images/chat_gpt.png" class="img-fluid"></p>
+<p>You can also provide it your code as you currently have it and explain what you’re trying to do and it can help you debug and show you what to do instead to get to your desired endpoint.</p>
+<p>LLMs aren’t perfect, but if you have a sense of where you’re starting, and you know where you’re going, it can provide tremendous savings in your overall coding time. It may require you to troubleshoot some errors but it’ll often be a net benefit to have code that gets you 70-80% of the way there rather than try to code it all from scratch yourself. This may break down if you’re trying to do something particularly novel or niche though. In that case, it may help to return to the Internet and/or break the problem down into more discrete steps.</p>
+<p>In any event: Whether you use an LLM, Google, or you brute-force it yourself—the most helpful solution to this I’ve found is to have a concrete vision of where you want to go, an understanding of where you are, and a roadmap for the discrete steps you will have to take to get there.</p>
+</section>
+</section>
+</section>
+<section id="i-do-not-know-how-to-make-r-do-something-that-i-think-it-should-be-able-to-do." class="level2">
+<h2 class="anchored" data-anchor-id="i-do-not-know-how-to-make-r-do-something-that-i-think-it-should-be-able-to-do.">I do not know how to make R do something that I think it should be able to do.</h2>
+<p>For me, very few things are as frustrating as <em>knowing</em> that I know how to do something but finding myself flailing when actually executing it. There’s a icy panic that hits as you grasp at tendrils of a solution only to realize that you’re merely catching smoke. Then a deep frustration, almost shame, at being failed by the organ that happens to also do the bulk of constituting what you think of as “you” —and cue you sitting here wondering why you’re under-performing: if you’re just tired, stressed, or experiencing early-onset dementia. (This happens to me a lot if you haven’t guessed).</p>
+<p>For me, there are four common reasons for this to come up:</p>
+<section id="youve-done-this-kind-of-thing-before-just-cant-remember-the-steps." class="level3">
+<h3 class="anchored" data-anchor-id="youve-done-this-kind-of-thing-before-just-cant-remember-the-steps.">1. You’ve done this kind of thing before, just can’t remember the steps.</h3>
+<p>This is why I unironically say that you should save every finalized line of code. Every. Line. And you should do your best to comment and format your code in such a way that you could return to it in 6 months and know what’s going on (e.g., using a consistent naming convention, commenting periodically, using names that make sense for your objects rather than just <code>temp</code><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>). Storage is cheap and storing this will not be an issue for the vast majority of people who use R. There is absolutely no shame in going back and reusing your own code. Do not, I repeat, <strong>do not</strong> feel like you have to code every new project from scratch.</p>
+<p>If you’ve lost your code or you didn’t format it so that it runs cleanly top-to-bottom, chances are that you had a little help before in the form of tutorials and vignettes. Ideally this time, you’ll vaguely recall a search string that at least got you going down the right rabbit hole (it helps if you remember where you got the info from so that you can add it to your search term).</p>
+</section>
+<section id="youve-worked-with-this-particular-function-before-and-are-pretty-sure-its-capable-of-doing-what-you-envision." class="level3">
+<h3 class="anchored" data-anchor-id="youve-worked-with-this-particular-function-before-and-are-pretty-sure-its-capable-of-doing-what-you-envision.">2. You’ve worked with this particular function before and are pretty sure its capable of doing what you envision.</h3>
+<p>The help documentation is your friend! For instance, I learned that <code>{dplyr}</code>’s <code>case_when</code> function has an option now for you to specify what the default output should be.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> But I couldn’t remember what it’s called. So I simply did this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>?case_when</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Which pops up a super handy pane that provides all of the help documentation the developers of the function have written for it.</p>
+<p><img src="images/case_when.png" class="img-fluid"></p>
+<p>And, right there, we can see that the argument that I’m looking for is called <code>.default</code>!</p>
+<p>Another example: I was trying to remove duplicated values from a dataset using <code>{dplyr}</code> ’s <code>distinct</code>. But when I got the data back, all I had was a single column. It wasn’t until I looked at the help documentation that I was reminded that the default behavior is for a parameter called <code>.keep_all</code> to be set to <code>FALSE</code>!</p>
+</section>
+<section id="you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called." class="level3">
+<h3 class="anchored" data-anchor-id="you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called.">3. You know that this package has a function that is useful but you can’t remember what it’s called.</h3>
+<p>This is where RStudio really comes in handy. If you type in the package name plus two colons (<code>::</code>) you can see all of the exported objects from the package. I frequently space-out on the name of the function is that drops <code>NA</code> values from dataframes. I know that it’s in the <code>{tidyr}</code> package though. So I’ll write out <code>tidyr::</code>…</p>
+<p><img src="images/drop_help.png" class="img-fluid"></p>
+<p>That’s it! <code>drop_na</code>!</p>
+<p>This helps me a lot when I have a vague sense of what the function I’m looking for is named and/or what it generally does. Worst case, I’ll just Google something like “how to drop NA values in R.” That is, I’ll do a search emphasizing the kind of action that I want to take.</p>
+</section>
+<section id="i-feel-like-the-sort-of-thing-i-want-should-be-possible-but-i-dont-know-how-to-do-it." class="level3">
+<h3 class="anchored" data-anchor-id="i-feel-like-the-sort-of-thing-i-want-should-be-possible-but-i-dont-know-how-to-do-it.">4. I feel like the sort of thing I want <em>should</em> be possible but I don’t know how to do it.</h3>
+<p>I know that this will come as a terrible, Earth-shattering shock—but my recommendation here is to use either Google or a decent LLM. If you’re going the first route, it’s helpful to articulate what kind of end goal you have in mind. For instance, if I wanted to make a Waffle chart, I could Google “make waffle chart ggplot”. If I wanted to learn how to implement an upload box into my shiny app, I would go “add upload button shiny” or something to that effect. Even if I had a vaguer sense of what I wanted to do, I can type out what my end goal is and stick an “in R” at the end. (e.g., “how do I do bayesian regression in R?”, “how do I make interactive maps in R?”, “how can I connect to aws in R”, etc.). From there, find some code that others say works for the specific use case described on the page/in the forum/in the solution and apply it to yours. If you run into errors, follow the guidelines I’ve mentioned elsewhere in the post. As I mentioned at the top, learning R isn’t about knowing everything—it’s knowing that you don’t know, but learning that it’s necessary to ask!</p>
+</section>
+</section>
+</section>
+<section id="my-general-problem-solving-framework" class="level1">
+<h1>My General Problem-Solving Framework</h1>
+<p>Most of the roadblocks that I run into when I work in R can be resolved with the following general sequence of steps.</p>
+<ul>
+<li><p><strong>Start by fact-finding to identify a potential solution to your problem.</strong></p></li>
+<li><p><strong>Test the potential solution with a prototype or minimal working example.</strong></p></li>
+<li><p><strong>If it fails, tweak solution to match your context until it provides the output you were hoping for.</strong></p></li>
+<li><p><strong>Apply solution to your original problem.</strong></p></li>
+<li><p><strong>Revel in your success.</strong></p></li>
+</ul>
+<p>While this sounds like a pretty straight-forward chain, for problems of any decent complexity, it actually winds up looking a lot more like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
+
+  A((Scope-out\nFact-Find)) ----&gt;|Found\nSomething|B((Prototype\nPossible\nSolution))
+  B --&gt;|It\nworks|E((Test on\nLarger\\nFull Issue))
+  B -.-|"Fails; no\nidea why"|A
+  E --&gt;|It\nworks|C[Success]
+  E -.-&gt;|"Fails; no\nidea why"|A
+  E -.-&gt;|"Fails; you\ngot a hunch"|B
+  B -.-&gt;|"Fails; you\ngot a hunch"| D((Tweak\nSolution))
+  D --&gt;|It\nworks|C
+  D -.-&gt;|"Fails; you\ngot a hunch"|B
+  D -.-&gt;|"Fails; no\nidea why"| A((Fact-Find))
+  C -.-&gt;F{Revel?}
+  
+
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><strong><em>and that’s entirely normal.</em></strong> People think of coding as purely left-brain, rigid, logical but it’s actually a fundamentally creative act. Subsequently, learning how to do it is going to be a bit circuitous as you lay down bits of new rote knowledge in your brain and cultivate the kinds of connections between them that creative acts tend to entail: Less embarking on a mechanical sequence of steps, and more the calibrated free-fall of trundling down a staircase in the dark.</p>
+</section>
+<section id="if-you-literally-remember-nothing-else" class="level1">
+<h1>If you literally remember nothing else:</h1>
+<p>If something isn’t happening the way that you need it to in R, the first step is to gather information from trusted sources. This should clue you in to possible solutions. Test these solutions. If it works, great! If not, rinse and repeat.</p>
+<p><em>That’s it.</em> That’s all the magic. The trick is to do it often enough to know for when you need to search for <strong>general</strong> solutions (e.g., packages &amp; tutorials) versus <strong>specific</strong> solutions (e.g., code-snidbits to resolve an error or achieve a desired output); and when you need to search for <strong>novel</strong> solutions versus <strong>already discovered</strong> solutions. (And to be able to intuit from the feedback R gives you whether this is something that even needs to be searched in the first place! Once you’ve clocked enough hours under your belt, you come to be intimately familiar with the usual suspects—so you’ll have a sense of when someone would be liable to prompt that feedback and, consequently, have a sense of where in your code it’s likely to crop up.)</p>
+<p>I hope this guide has been helpful to you. Hopefully now you feel a little less intimidated by R and more empowered to expand your skills.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>My first R class was in the summer of 2016, but I didn’t start consistently working with it until about 2018.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>There’s a <code>Type closure is not subsettable</code> joke to be made here.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Plus! Learning to identify the parts of the error message that are more unique to your circumstance will help you get better at isolating the parts of the message that are trying to convey <strong>what’s</strong> wrong rather than <em>where</em> the wrong thing originates from.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>It’s me. Hi. I’m the problem it’s me.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>I’ve found it helpful to take this literally and just doodle how I want the output to look like in terms of its size, “shape”, and necessary column structure.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>It helps to be familiar with packages like <code>dplyr</code> , <code>data.table</code> , and <code>tidyr</code> to know the kinds of steps that are even possible. This can be done through gradual immersion into R (the best way), or through Googling/LLMing (to coin a phrase) through a game of keyword telephone until you strike one that seems to describe the step you’re wanting to take. I know that that last one sounds more hacky and amateur but that is also a completely valid way of learning to make things happen—especially if you’re on a tight deadline.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Hi Kettle, you can call me Pot.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>When I first learned it, any case that wasn’t covered in the listed cases was set to <code>NA</code> unless you did something like <code>TRUE ~ 0</code> (presuming you wanted 0 to be your default).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
+  author = {Peter Licari and Peter Licari},
+  title = {What to Do When {R} Punches You in the Mouth},
+  date = {2023-02-16},
+  url = {www.peterlicari.com/posts/r-punch-in-face-23},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Peter Licari, and Peter Licari. 2023. <span>“What to Do When R Punches
+You in the Mouth.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/r-punch-in-face-23">www.peterlicari.com/posts/r-punch-in-face-23</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
