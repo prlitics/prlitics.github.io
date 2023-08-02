@@ -10,7 +10,240 @@
 <atom:link href="www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Tue, 04 Apr 2023 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 01 Aug 2023 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to add a Variable Font to a Quarto PDF on Windows</title>
+  <dc:creator>Peter Licari</dc:creator>
+  <link>www.peterlicari.com/posts/quarto-custom-font-windows/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/title_card.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>The Writing on the Wall</em><br>
+Created by Author &amp; Easy Diffusion</figcaption><p></p>
+</figure>
+</div>
+<p>This is one of those posts motivated by never <strong><em>ever</em></strong> wanting to subject anyone to the insanity that I experienced while struggling through what only <em>seems</em> to be a simple idea.</p>
+<p>It was a simple dream, really. I was writing up a report in Quarto. I have an OpenType Google font that I’m fond of. I wanted to use said font in said document. Quarto supports custom fonts. It should be simple to put in my new font—right? <strong>RIGHT?!</strong></p>
+<p>(Click here to go directly to the solutions. Keep reading on if you want a bit of commentary and description of the problem. If it sounds like I went crazy, it’s because I did.)</p>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The Problem</h2>
+<p>I’ve installed a Google font called <a href="https://fonts.google.com/specimen/Vollkorn?query=Vollkorn">Vollkorn</a>—and I wanted to use it in a Quarto report that I was writing up. <a href="https://quarto.org/docs/reference/formats/pdf.html">The Quarto documentation</a> suggests that using custom fonts would be a pretty straightforward task: Just set <code>mainfont</code> in the YAML header to the name of your font family of choice and <a href="https://ctan.org/pkg/fontspec">the fontspec</a> Tex package would handle the rest on the back-end. And if I wanted to switch from the default font to something else already packaged with Windows (like Calibri or, because I’m just a troll at heart, Comic Sans), it’s very straight-forward!</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<details>
+<summary>
+<strong>Code</strong>
+</summary>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><span class="in" style="color: #5E5E5E;">```{qmd}</span></span>
+<span id="cb1-2"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb1-3"><span class="in" style="color: #5E5E5E;">title: "Example"</span></span>
+<span id="cb1-4"><span class="in" style="color: #5E5E5E;">author: "Peter Licari"</span></span>
+<span id="cb1-5"><span class="in" style="color: #5E5E5E;">editor: visual</span></span>
+<span id="cb1-6"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="in" style="color: #5E5E5E;">## This is an example</span></span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="in" style="color: #5E5E5E;">Sphinx of black quartz, judge my vow!</span></span>
+<span id="cb1-11"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+</details>
+<p><strong>Output</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure1.png" class="img-fluid figure-img" width="400"></p>
+<p></p><figcaption class="figure-caption">Figure 1: With standard font</figcaption><p></p>
+</figure>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<details>
+<summary>
+<strong>Code</strong>
+</summary>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><span class="in" style="color: #5E5E5E;">```{qmd}</span></span>
+<span id="cb2-2"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb2-3"><span class="in" style="color: #5E5E5E;">title: "Example 2"</span></span>
+<span id="cb2-4"><span class="in" style="color: #5E5E5E;">author: "Peter Licari"</span></span>
+<span id="cb2-5"><span class="in" style="color: #5E5E5E;">format: </span></span>
+<span id="cb2-6"><span class="in" style="color: #5E5E5E;">  pdf:</span></span>
+<span id="cb2-7"><span class="in" style="color: #5E5E5E;">    mainfont: 'Comic Sans MS'</span></span>
+<span id="cb2-8"><span class="in" style="color: #5E5E5E;">editor: visual</span></span>
+<span id="cb2-9"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb2-10"></span>
+<span id="cb2-11"><span class="in" style="color: #5E5E5E;">## This is an example</span></span>
+<span id="cb2-12"></span>
+<span id="cb2-13"><span class="in" style="color: #5E5E5E;">Sphinx of black quartz, judge my vow!</span></span>
+<span id="cb2-14"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+</details>
+<p><strong>Output</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure2.png" class="img-fluid figure-img" width="400"></p>
+<p></p><figcaption class="figure-caption">Figure 2: With accursed font</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But let’s take a look at what comes up when I try to use Vollkorn:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><span class="in" style="color: #5E5E5E;">```{r}</span></span>
+<span id="cb3-2">running xelatex <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb3-3">  This is XeTeX, Version <span class="fl" style="color: #AD0000;">3.141592653-2.6-0.999994</span> (TeX Live <span class="dv" style="color: #AD0000;">2022</span>) (preloaded <span class="at" style="color: #657422;">format=</span>xelatex)</span>
+<span id="cb3-4">   restricted \write18 enabled.</span>
+<span id="cb3-5">  entering extended mode</span>
+<span id="cb3-6">  </span>
+<span id="cb3-7">updating tlmgr</span>
+<span id="cb3-8"></span>
+<span id="cb3-9">updating existing packages</span>
+<span id="cb3-10">finding package <span class="cf" style="color: #003B4F;">for</span> <span class="fu" style="color: #4758AB;">Vollkorn</span>(<span class="sc" style="color: #5E5E5E;">-</span>(Bold<span class="sc" style="color: #5E5E5E;">|</span>Italic<span class="sc" style="color: #5E5E5E;">|</span>Regular).<span class="sc" style="color: #5E5E5E;">*</span>)?[.](tfm<span class="sc" style="color: #5E5E5E;">|</span>afm<span class="sc" style="color: #5E5E5E;">|</span>mf<span class="sc" style="color: #5E5E5E;">|</span>otf<span class="sc" style="color: #5E5E5E;">|</span>ttf)</span>
+<span id="cb3-11"></span>
+<span id="cb3-12">compilation failed<span class="sc" style="color: #5E5E5E;">-</span> no matching packages</span>
+<span id="cb3-13">Package fontspec Error<span class="sc" style="color: #5E5E5E;">:</span> The font <span class="st" style="color: #20794D;">"Vollkorn"</span> cannot be found.</span>
+<span id="cb3-14"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+<p>Which is <em>incredibly frustrating</em> because I can go to my Windows fonts<sup>1</sup> I can clearly see the damn font there. All installed. <strong><em>Mockingly.</em></strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 3: Vollkorn and LaTeX mocking me by claiming that the former is not installed.</figcaption><p></p>
+</figure>
+</div>
+<p>If I were to click-on and inspect the properties of the Vollkorn font and compare them to Comic Sans font, though, you’ll notice a couple of interesting things. First, as highlighted in yellow, the files are located in entirely separate roots! There are actually two ways we can solve this—but the bigger issue is with what’s highlighted in blue: Vollkorn is a Variable Font.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure5.png" class="img-fluid figure-img" width="400"></p>
+<p></p><figcaption class="figure-caption">Figure 4: File path for cursed font (Comic Sans)</figcaption><p></p>
+</figure>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure4.png" class="img-fluid figure-img" width="400"></p>
+<p></p><figcaption class="figure-caption">Figure 5: File path for Vollkorn</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://fonts.google.com/knowledge/glossary/variable_fonts">Variable fonts</a> are a specific kind of font that offers more flexibility for designers than simply having separate, static versions for, say, bold, Italic, bold italic, etc. It turns out, however, that the default Quarto pdf render engine, <code>xelatex</code> does not play well with variable fonts. And by well I mean at all—it straight-up doesn’t work.</p>
+<p>And what <em>about</em> the difference in file roots; what the heck is going on there? As I learned the hard way, this is actually standard behavior since at least Windows 10. When you install a font, you have to specify that you want it to be for <em>all</em> users. Only then will it go to the Windows/Fonts directory—which is where the <code>fontspec</code> LaTeX package looks by default. Otherwise, it’ll get installed within the AppData/Local directory. Hence why the error says the font couldn’t be found. <strong>I</strong> could find it, but it wasn’t where <code>fontspec</code> was looking! However, with Windows 11, the option to install for all users doesn’t initially appear when you right-click on the font to install it. Clicking “Install” will only install it locally.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure6.png" class="img-fluid figure-img" width="200"></p>
+<p></p><figcaption class="figure-caption">Figure 6: Standard install available at right-click won’t do what you think it should.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="sec-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="sec-solutions">The Solution(s):</h2>
+<p>There are actually a couple solutions for this: One that’s relatively simple and another that’s more involved. I’ll go simple, then go more involved. (Even though that is the exact <em>opposite</em> way that I discovered these solutions for my own purposes…)</p>
+<p>Before doing dealing with either the simple or involved routes though, let’s go ahead and knock out the file path; we’ll need to know where the file lives in order for either solution to work.</p>
+<section id="address-the-files-well-address." class="level3">
+<h3 class="anchored" data-anchor-id="address-the-files-well-address.">1. Address the file’s, well, address.</h3>
+<p>You’ve got two options for this. The first is to uninstall the fonts<sup>2</sup> and then re-install them so that they are installed for all users. You can accomplish this by selecting “Show more options” after right-clicking on the font file(s) you want to install. From there “Install for All Users” should be visible (it’ll often be accompanied by a little shield).</p>
+<p>If you don’t want to reinstall the file, you can use the <code>mainfontoptions</code> parameter and redirect where <code>fontspec</code> is looking:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><span class="in" style="color: #5E5E5E;">```{qmd}</span></span>
+<span id="cb4-2"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb4-3"><span class="in" style="color: #5E5E5E;">title: "Example 3"</span></span>
+<span id="cb4-4"><span class="in" style="color: #5E5E5E;">author: "Peter Licari"</span></span>
+<span id="cb4-5"><span class="in" style="color: #5E5E5E;">format: </span></span>
+<span id="cb4-6"><span class="in" style="color: #5E5E5E;">  pdf:</span></span>
+<span id="cb4-7"><span class="in" style="color: #5E5E5E;">    mainfont: 'Vollkorn-Regular'</span></span>
+<span id="cb4-8"><span class="in" style="color: #5E5E5E;">    mainfontoptions:</span></span>
+<span id="cb4-9"><span class="in" style="color: #5E5E5E;">      - Path = C:/Users/prlic/AppData/Local/Microsoft/Windows/Fonts/</span></span>
+<span id="cb4-10"><span class="in" style="color: #5E5E5E;">      - Extension = .ttf </span></span>
+<span id="cb4-11"><span class="in" style="color: #5E5E5E;">editor: visual</span></span>
+<span id="cb4-12"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb4-13"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+<p>For the remaining bit of advice, I’m going to assume that you’re going with the reinstall option. However, if you didn’t, all you’d have to do is make sure those two parts of <code>mainfontoptions</code> are specified.</p>
+</section>
+<section id="handle-the-variable-font-type" class="level3">
+<h3 class="anchored" data-anchor-id="handle-the-variable-font-type">2. Handle the Variable Font Type</h3>
+<section id="the-easy-way" class="level4">
+<h4 class="anchored" data-anchor-id="the-easy-way">The easy way:</h4>
+<p>While Quarto’s default Tex engine on Windows doesn’t play nice with variable fonts, one of the optional rendering engines, LuaLatex works well! So all you would have to do is specify the <code>pdf-engine</code> parameter:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><span class="in" style="color: #5E5E5E;">```{qmd}</span></span>
+<span id="cb5-2"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb5-3"><span class="in" style="color: #5E5E5E;">title: "Example 3"</span></span>
+<span id="cb5-4"><span class="in" style="color: #5E5E5E;">author: "Peter Licari"</span></span>
+<span id="cb5-5"><span class="in" style="color: #5E5E5E;">format: </span></span>
+<span id="cb5-6"><span class="in" style="color: #5E5E5E;">  pdf:</span></span>
+<span id="cb5-7"><span class="in" style="color: #5E5E5E;">    mainfont: 'Vollkorn-Regular'</span></span>
+<span id="cb5-8"><span class="in" style="color: #5E5E5E;">    pdf-engine: lualatex</span></span>
+<span id="cb5-9"><span class="in" style="color: #5E5E5E;">editor: visual</span></span>
+<span id="cb5-10"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb5-11"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+<p>Why use xelatex over lulatex or vice-versa? There’s a couple interesting Reddit threads on the topic. It seems that LuaLatex is preferred but xelatex is a bit faster (possibly) and useful for backwards compatibility on older renders.</p>
+</section>
+<section id="the-more-involved-way" class="level4">
+<h4 class="anchored" data-anchor-id="the-more-involved-way">The more involved way</h4>
+<p>But let’s say that you’re committed to xelatex. Or you’re me and you didn’t realize that a way easier option existed <strong><em>the whole goddamn time</em></strong> prior to writing a blog post.<sup>3</sup></p>
+<p>Fortunately, many of the variable font styles available from Google Fonts <em>also</em> come pre-packaged with the so-called “Static” files (the aforementioned separate <em>italic,</em> <strong>bold</strong>, and <strong><em>bold-italic</em></strong> files). So instead of installing the variable-font, you would install all of the individual types, which you can set manually in <code>mainfontoptions</code>.</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><span class="in" style="color: #5E5E5E;">```{qmd}</span></span>
+<span id="cb6-2"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb6-3"><span class="in" style="color: #5E5E5E;">title: "Example 3"</span></span>
+<span id="cb6-4"><span class="in" style="color: #5E5E5E;">author: "Peter Licari"</span></span>
+<span id="cb6-5"><span class="in" style="color: #5E5E5E;">format: </span></span>
+<span id="cb6-6"><span class="in" style="color: #5E5E5E;">  pdf:</span></span>
+<span id="cb6-7"><span class="in" style="color: #5E5E5E;">    mainfont: 'Vollkorn-Regular'</span></span>
+<span id="cb6-8"><span class="in" style="color: #5E5E5E;">    mainfontoptions:</span></span>
+<span id="cb6-9"><span class="in" style="color: #5E5E5E;">      - BoldFont = Vollkorn-Bold</span></span>
+<span id="cb6-10"><span class="in" style="color: #5E5E5E;">      - ItalicFont = Vollkorn-Italic</span></span>
+<span id="cb6-11"><span class="in" style="color: #5E5E5E;">      - BoldItalicFont= Vollkorn-Bolditalic</span></span>
+<span id="cb6-12"><span class="in" style="color: #5E5E5E;">      - Extension = .ttf </span></span>
+<span id="cb6-13"><span class="in" style="color: #5E5E5E;">editor: visual</span></span>
+<span id="cb6-14"><span class="in" style="color: #5E5E5E;">---</span></span>
+<span id="cb6-15"><span class="in" style="color: #5E5E5E;">```</span></span></code></pre></div>
+</section>
+<section id="et-viola" class="level4">
+<h4 class="anchored" data-anchor-id="et-viola">Et viola!</h4>
+<p>Either way that you do it, you’ll be able to get the fonts loaded as you’d like!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure7.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 7: Success!</figcaption><p></p>
+</figure>
+</div>
+<hr>
+<p><em>I hope this was helpful to others and saved them the headache that I dealt with when trying to just make a simple report!</em></p>
+
+
+</section>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>For those who want to find your fonts but don’t know how: Go to the search bar near the Windows logo on your desktop. Search “fonts”. It should pop up with a link to the fonts part of your control panel.↩︎</p></li>
+<li id="fn2"><p>You can do this by going to the control panel, going to fonts, clicking into the fonts you want gone, and selecting “delete.”↩︎</p></li>
+<li id="fn3"><p>On the one hand: I have always said that I write to think. On the other, man I wish I was a faster writer/thinker.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
+  author = {Peter Licari},
+  title = {How to Add a {Variable} {Font} to a {Quarto} {PDF} on
+    {Windows}},
+  date = {2023-08-01},
+  url = {www.peterlicari.com/posts/quarto-custom-font-windows},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
+Peter Licari. 2023. <span>“How to Add a Variable Font to a Quarto PDF on
+Windows.”</span> August 1, 2023. <a href="https://www.peterlicari.com/posts/quarto-custom-font-windows">www.peterlicari.com/posts/quarto-custom-font-windows</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Quarto</category>
+  <category>tutorial</category>
+  <guid>www.peterlicari.com/posts/quarto-custom-font-windows/index.html</guid>
+  <pubDate>Tue, 01 Aug 2023 04:00:00 GMT</pubDate>
+  <media:content url="www.peterlicari.com/posts/quarto-custom-font-windows/images/title_card.png" medium="image" type="image/png" height="148" width="144"/>
+</item>
 <item>
   <title>What to do when R punches you in the mouth</title>
   <dc:creator>Peter Licari</dc:creator>
