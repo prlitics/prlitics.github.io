@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peter Licari">
+<meta name="dcterms.date" content="2023-09-13">
+
+<title>Peter Licari - The Traditional Margin of Error When You Have Oversamples in Your Survey is Wrong</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<link href="../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Peter Licari</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../writing.html">
+ <span class="menu-text">Writing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Ongoing Projects</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+        <li>
+    <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
+ <span class="dropdown-text">YouTube Channel</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://peterlicari.substack.com/">
+ <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
+ <span class="dropdown-text">Comics (Rarely)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../other_things.html">
+ <span class="menu-text">Other Things I’ve Made</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../../archive.html">
+ <span class="dropdown-text">Archive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.r-bloggers.com/">
+ <span class="dropdown-text">R Bloggers</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#oversampling-and-margins-of-error" id="toc-oversampling-and-margins-of-error" class="nav-link active" data-scroll-target="#oversampling-and-margins-of-error">Oversampling and (Margins of) Error</a></li>
+  <li><a href="#what-even-is-the-margin-of-error-anyways" id="toc-what-even-is-the-margin-of-error-anyways" class="nav-link" data-scroll-target="#what-even-is-the-margin-of-error-anyways">What even is the Margin of Error anyways?</a></li>
+  <li><a href="#illustration-through-simulation" id="toc-illustration-through-simulation" class="nav-link" data-scroll-target="#illustration-through-simulation">Illustration through simulation</a>
+  <ul>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#creating-the-data" id="toc-creating-the-data" class="nav-link" data-scroll-target="#creating-the-data">Creating the Data</a></li>
+  <li><a href="#sampling" id="toc-sampling" class="nav-link" data-scroll-target="#sampling">Sampling</a></li>
+  <li><a href="#simulating-1000-pokemon-preference-surveys" id="toc-simulating-1000-pokemon-preference-surveys" class="nav-link" data-scroll-target="#simulating-1000-pokemon-preference-surveys">Simulating 1,000 Pokemon Preference Surveys</a></li>
+  </ul></li>
+  <li><a href="#in-sum" id="toc-in-sum" class="nav-link" data-scroll-target="#in-sum">In Sum</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Traditional Margin of Error When You Have Oversamples in Your Survey is Wrong</h1>
+<p class="subtitle lead">Illustrated using Pokemon</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">statistics</div>
+    <div class="quarto-category">simulation</div>
+    <div class="quarto-category">surveys</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter Licari <a href="https://orcid.org/0000-0001-9701-6006" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 13, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="oversampling-and-margins-of-error" class="level1">
+<h1>Oversampling and (Margins of) Error</h1>
+<p>Not too long ago, pollsters and social scientists on X (the decaying husk of Twitter) found themselves discussing <a href="https://www.cnn.com/2023/09/07/politics/cnn-poll-joe-biden-headwinds">a recent CNN poll</a> detailing President Biden’s job performance and people’s attitudes towards participating in the 2024 election if it involved a 2020 Trump v. Biden rematch. Not because there was anything wrong with the poll itself, but because a prominent anti-Trump account questioned whether or not the insights were valid because the poll included an oversample of Republicans and Republican-leaning independents.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/img1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>As noted by the community post appended to the original missive, oversampling is a pretty common survey stats technique that allows researchers to drill into subpopulations that are otherwise too small in normal survey samples for reliable description. Oversampling involves deliberately sampling individuals from certain subpopulations and then weighting their contribution to the overall results in the topline values reflect their true proportion of the population. If done right, it allows for more accurate estimates at the topline and subgroup levels.</p>
+<p>The kicker, of course, is “if done right.” <a href="https://peterlicari.substack.com/">I read a lot of polls.</a> Oversamples are a pretty common technique. But one thing that I notice that happens pretty frequently is that those who employ oversamples are not properly adjusting the margins of error to reflect the fact that there <em>is</em> an oversample. (Though not with the CNN poll in question, all signs point to them doing everything right). When you have an oversample, your margin of error cannot be based upon the total size of your sample alone. Doing that will make your margins of error too small for them to have the statistical properties that they’re purported to have.</p>
+<p>So this post serves two purposes. The first is to show that oversampling is a completely valid thing to do so long as you weight your sample properly. But, critically, <em>also</em> if you adjust your Margins of Error properly too.</p>
+<p>Before getting into why the “standard” Margin of Error (MoE) is wrong in this context, let’s first discuss what the MoE is supposed to mean, anyhow.</p>
+</section>
+<section id="what-even-is-the-margin-of-error-anyways" class="level1">
+<h1>What even is the Margin of Error anyways?</h1>
+<p>There’s only one way to guarantee that you have everyone’s preferences “correctly measured:” Gather every person in your population of interest and then ask them your question<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. But that’s practically impossible once your population gets large enough. Instead, you can <em>randomly</em> select a subset of individual members from the overall population and, provided you sample a decent number of them, you can get an estimate that is decently close to the Truth. But, alas, because it is just a sample, we still expect there to be some deviation away from the true values expressed in the population.</p>
+<p>The margin of error reflects our expectations for how far off from the mark we might be given the number of people we’ve sampled and the proportions we’ve observed. It constructs an interval such that, if you were to sample the same number of people from the same population infinitely many times, some large percentage of these intervals (usually 95%<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>) will contain, somewhere within them, the true population value. The margin of error reflects half the span of the confidence interval. (Hence why you’ll see them presented with a plus/minus sign). So an MoE of 3 percentage points on an estimate of 50% creates a confidence interval spanning 47%–53%. 95% of similarly constructed intervals contain, somwhere within it, the true population value. In practice, the size of this range reflects our uncertainty about the specific population proportions that we’ve observed in the sample.</p>
+<p>To explain the above another way: Let’s say that you have a basketball that you want to get into a hoop. The ball is your population parameter. The catch: the ball is somewhere in a dark gym. You don’t know where. But you have to get it into a hoop to score points, lack of knowledge be damned. So you decide to construct a hoop large enough such that, 95% of the time that you chuck it, the ball will make it in. The hoop is your confidence interval.</p>
+<p>The “classic” margin of error formula for proportions relies on two figures: The sample proportion in question and the number of observations. From a purely statistical standpoint, the MoE shrinks as you get a larger sample (though with diminishing returns). Additionally, proportions further away from 50% have smaller MoEs than those closer to 50%. However, in practice, most polling outfits and news articles about surveys report the MoE assuming a proportion of 50% because that’s the most “conservative” estimate.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> The way it’s often reported, it’ll vary purely as a function of sample size.</p>
+<p>Here’s the thing, though: When a survey includes an oversample, the MoE that’s (too) frequently reported out is based upon <em>the full sample of individuals.</em> So if there’s a sample of 1,000 people and they oversampled an additional 500 people, they’ll report out an MoE of about 2.5% based upon the total 1500 people sampled. But that isn’t correct. Doing so makes the MoE they report out smaller than it actually is. They are not properly conveying their uncertainty about the point estimate that they’re reporting out on.</p>
+<p>I think that this sort of mistake is inadvertent. Doing surveys is hard. None of us are perfect, we can only hope to get better. It’s one thing to be told this by someone on the internet, but I hope to demonstrate it in a way that sticks. So let’s go through a simulation on something objectively way more interesting than the 2024 Presidential election: Pokemon characters!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pokemon.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="illustration-through-simulation" class="level1">
+<h1>Illustration through simulation</h1>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>Let’s say that we are surveying some population of people with two sub-groups and we’re asking them about their favorite classic Pokemon starter plus Pikachu—because when you’re big enough to get your own balloon in the Thanksgiving Day parade, you get special privileges. So that brings us to four total: Charmander, Bulbasaur, Squirtle, and Pikachu. For the sake of this example, let’s say subgroup one are the folks who have played Pokemon and reflect 15% of the population. Among players, let’s imagine 40% choose Bulbasaur, 30% choose Charmander, 20% choose Squirtle, and 10% choose Pikachu<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Subgroup 2 reflects non-players and constitutes 85% of the population. 40% of these people choose Pikachu, 20% choose Charmander, 25% choose Squirtle, and 15% choose Bulbasaur. Among the full population then, 18.75% choose Bulbasaur, 24.25% choose Squirtle, 35.5% choose Pikachu, and 21.5% choose Charmander.</p>
+<p><img src="images/poke_preferences.png" class="img-fluid"></p>
+</section>
+<section id="creating-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="creating-the-data">Creating the Data</h2>
+<p>Let’s go ahead and simulate this population. I’ll be doing this in R (R version 4.2.2 (2022-10-31 ucrt)). I’m making it a total population of 10,000,000. The first part of the code chunk creates a dataframe that we’ll be using to sample from. The <code>with_seed</code> function comes from the <code>{withr}</code> package; I want to keep this reproducible on my machine since I’ll be using random sampling. The second part uses the <code>{summarytools}</code> package to make cross-tabs to illustrate that the data set construction worked as intended.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(summarytools))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(withr))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(questionr))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with_seed</span>(<span class="dv">13</span>, {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>players <span class="ot">&lt;-</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"Player"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">preference =</span> <span class="fu">sample</span>(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Bulbasaur"</span>, <span class="st">"Charmander"</span>, <span class="st">"Squirtle"</span>, <span class="st">"Pikachu"</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">40</span>, .<span class="dv">30</span>, .<span class="dv">20</span>, .<span class="dv">10</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1500000</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>non_players <span class="ot">&lt;-</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"Non Player"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">preference =</span> <span class="fu">sample</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">"Bulbasaur"</span>, <span class="st">"Charmander"</span>, <span class="st">"Squirtle"</span>, <span class="st">"Pikachu"</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">15</span>, .<span class="dv">20</span>, .<span class="dv">25</span>, .<span class="dv">40</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">8500000</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">rbind</span>(players, non_players)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> full <span class="sc">%&gt;%</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pop_id =</span> <span class="fu">row_number</span>())</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">ctable</span>(full<span class="sc">$</span>preference, full<span class="sc">$</span>type, <span class="at">prop =</span> <span class="st">'c'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cross-Tabulation, Column Proportions  
+preference * type  
+Data Frame: full  
+
+------------ ------ ------------------ ------------------ -------------------
+               type         Non Player             Player               Total
+  preference                                                                 
+   Bulbasaur          1276579 ( 15.0%)    599477 ( 40.0%)    1876056 ( 18.8%)
+  Charmander          1700113 ( 20.0%)    450589 ( 30.0%)    2150702 ( 21.5%)
+     Pikachu          3399748 ( 40.0%)    149398 ( 10.0%)    3549146 ( 35.5%)
+    Squirtle          2123560 ( 25.0%)    300536 ( 20.0%)    2424096 ( 24.2%)
+       Total          8500000 (100.0%)   1500000 (100.0%)   10000000 (100.0%)
+------------ ------ ------------------ ------------------ -------------------</code></pre>
+</div>
+</div>
+<p>Looks like this worked great! The subgroup proportions and the overall group proportions are where we expect them to be.</p>
+</section>
+<section id="sampling" class="level2">
+<h2 class="anchored" data-anchor-id="sampling">Sampling</h2>
+<p>Now let’s say that we’re going to sample 1,000 respondents from this population. But! We’d like to also do analyses of Players as a subgroup. We’d only expect to get about 150 people, which isn’t nothing but it’s not a whole lot either. So we’ll oversample an additional 500 game players for a total of 1,500 people. We’ll then weight respondents in our sample so that the overall values are unaffected.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Main 1,000 sample</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>main_sample <span class="ot">&lt;-</span> full <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1000</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>main_sample_ids <span class="ot">&lt;-</span> main_sample<span class="sc">$</span>pop_id <span class="co"># Ids of those sampled</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Oversample of 500</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>oversample <span class="ot">&lt;-</span> full <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">%in%</span> <span class="st">"Player"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>pop_id <span class="sc">%in%</span> main_sample_ids) <span class="sc">%&gt;%</span> <span class="co">#no double sampling!</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">500</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Full sample</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>full_sample <span class="ot">&lt;-</span> <span class="fu">rbind</span>(main_sample, oversample)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculating weights</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>weights_df <span class="ot">&lt;-</span> full_sample <span class="sc">%&gt;%</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight_prop =</span> <span class="fu">ifelse</span>(type <span class="sc">%in%</span> <span class="st">"Player"</span>,.<span class="dv">15</span>,.<span class="dv">85</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight =</span> (weight_prop <span class="sc">*</span> <span class="dv">1500</span>)<span class="sc">/</span>n) <span class="sc">%&gt;%</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(type, weight)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>full_sample <span class="ot">&lt;-</span> <span class="fu">left_join</span>(full_sample, weights_df, <span class="at">by =</span> <span class="st">"type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Looking at the table below, which compares the weighted versus non-weighted and the actual population proportions, we can see that the weighting does its job; it brought the actual topline values to be far closer to the actual population values than the unweighted version did. Incidentally this shows why you should always downweight your oversample—otherwise, your overall values will be off by a lot more!</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-5e738ab2{}.cl-5e686d12{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e686d1c{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e6d3a22{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e6d3a2c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e6d5534{width:0.75in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d5535{width:0.75in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d553e{width:0.75in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d553f{width:0.75in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d5540{width:0.75in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d5548{width:0.75in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-5e738ab2"><thead><tr style="overflow-wrap:break-word;"><th class="cl-5e6d5534"><p class="cl-5e6d3a22"><span class="cl-5e686d12">preference</span></p></th><th class="cl-5e6d5535"><p class="cl-5e6d3a2c"><span class="cl-5e686d12">Pop Values</span></p></th><th class="cl-5e6d5535"><p class="cl-5e6d3a2c"><span class="cl-5e686d12">Unweighted</span></p></th><th class="cl-5e6d5535"><p class="cl-5e6d3a2c"><span class="cl-5e686d12">Weighted</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-5e6d553e"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Bulbasaur</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.1876056</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.266</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.1867870</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5e6d5540"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Charmander</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2150702</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.236</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2127322</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5e6d553e"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Pikachu</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.3549146</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.266</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.3474248</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5e6d5540"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Squirtle</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2424096</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.232</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2530559</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>But the question isn’t whether downweighting an oversample gets us back in the right ballpark. It’s whether or not the purported MoE from the full 1,500 people is correct. If it is, we’d expect that, should this sample be conducted an arbitrarily large umber of times, 95% of those confidence intervals will contain the true population value.</p>
+</section>
+<section id="simulating-1000-pokemon-preference-surveys" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-1000-pokemon-preference-surveys">Simulating 1,000 Pokemon Preference Surveys</h2>
+<p>Computers may be amazing, but they can’t do something infinitely many times. But, just like with random sampling, doing something a bunch of times instead will get us in the right ball park.</p>
+<p>So let’s conduct 1,000 samples of 1,500 from our full population data—1,000 people randomly selected from the full data (players and non-players alike) and then 500 randomly selected just amongst the 15% of people that are Pokemon players. We’ll then weight these respondents correctly such that the players won’t have an outsized influence on the topline results. I’ll report out on 3 different MoEs.</p>
+<ol type="1">
+<li>The first assuming the oversample is included and not downweighted, calculated with the standard MoE.</li>
+<li>The second weighting the oversample properly, calculated with the standard MoE.</li>
+<li>The third weighting the oversample properly and calculating it with an MoE that takes the oversampling into account.</li>
+</ol>
+<p>Given that these are 95% confidence intervals, we should expect approximately 95% of intervals to contain the true population value.</p>
+<p>The chart below visualizes the results of the simulation. Each facet reflects a type of confidence interval (rows) and a Pokemon (column). The vertical bars reflect the MoEs for each of the 1,000 simulated samples. Their order up and down the Y axis is arbitrary, they happen to go bottom up from the first simulated run to the last. Moving horizontal on the X axis are smaller–larger proportions of the synthetic population. The black vertical lines reflect how popular those Pokemon truly are in our synthetic population. Horizontal lines that cross this gray reference line have successfully captured the population parameter. Those that miss have not accurately captured that Pokemon’s overall popularity in the sample. Since all of these are purportedly 95% confidence intervals, we would hope that they do so 95% of the time.</p>
+<p>In short, the more solid lines we have, the worse we’re doing. And if we have more than 5% of sample that shows a solid line, then our MoE isn’t being constructed correctly.</p>
+<div class="cell">
+
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/simulated_moe.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Looking at the first section with the Standard MoE things appear to be okay. Indeed, if we were to just eyeball it one might think that we’re actually getting 95% coverage. But we’re not. It’s actually only 91.4%. The degree to which this “standard” MoE is wrong will depend on how much we have to weight the sample versus an ideal case of perfect random sampling. This is known as the weighting efficiency. It’s possible for this to be closer to 95%. But it’s also possible for it to be further away depending on how much your weights have to work to bring values in-line with your population targets.</p>
+<p>In the second section, we’ve actually hit what we were aiming for. Here, we took the design of the sampling into account and were able to achieve 95% coverage. Right on the money<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. In practice, design-effect adjusted MoEs are slightly elongated to account for the aforementioned weighting efficiency. I’ll leave the technical details about that for another post. But, for now, know that it is not only possible but <em>necessary</em> to adjust a survey’s MoE when it has an oversample in order to accurately convey one’s uncertainty about the point estimate.</p>
+<p>Looking at the third row with the unweighted values, the coverage is absolutely abysmal. Only 25.2% of the confidence intervals contain the true population mean. And the only reason that it’s even <em>this</em> accurate is because Squirtle is about as popular with both players and non-players. Again, let it be said: <strong>ALLWAYS WEIGHT-IN YOUR OVERSAMPLES IF YOU’RE DOING TOPLINE VALUES</strong>.</p>
+</section>
+</section>
+<section id="in-sum" class="level1">
+<h1>In Sum</h1>
+<p>To be sure, misreporting the MoE for oversamples is not the most prominent survey-science sin. If anything, we shouldn’t be taking the MoE as reported as gospel anyhow. Those only reflect pure sampling error for random sampling—conditions that don’t actually exist in mainstream public opinion and survey research. There are other systematic biases that can creep into our instruments and analyses. Indeed, empirical research of surveys suggest that MoEs are actually only half as big as they’d need to be to contain the true population parameters 95% of the time<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+<p>That’s not to say that polls are worthless, of course. Just that we as consumers need to know that, while still pretty good at tracking attitudes, they’re not perfect. And that we, as producers, need to do our due diligence in reporting our confidence in these estimates more accurately. And one easy way to do this is not to report “standard” margins of error when we’re dealing with headline data with oversamples.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>It’s important to note that this would be a <em>necessary</em> step but not a sufficient step. Asking the right question—and in the right way—is a lot harder than most people give credit for. Drawing the correct conclusions from that is even harder. Yay epistemology and statistics!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Which is where we get the term “95% confidence intervals” from.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We’ll soon see that just because something is more “conservative,” it doesn’t mean it’s not wrong.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Look, unlike in the OG anime where Pikachu cheats by activating the sprinkler system, putting an electric type against an Onix is simply an easy way to get your ass handed to you.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Technically it’s 95.025 percent, but good enough for government work, right?<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Though the degree of deviation is smaller when the design effects are taken into account. That said, empirically, it doesn’t shrink the deviation to zero. Because, again, there are other issues biasing poll results other than just sampling.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
+  author = {Peter Licari},
+  title = {The {Traditional} {Margin} of {Error} {When} {You} {Have}
+    {Oversamples} in {Your} {Survey} Is {Wrong}},
+  date = {2023-09-13},
+  url = {www.peterlicari.com/posts/moe-subgroup-wrong},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Peter Licari. 2023. <span>“The Traditional Margin of Error When You Have
+Oversamples in Your Survey Is Wrong.”</span> September 13, 2023. <a href="https://www.peterlicari.com/posts/moe-subgroup-wrong">www.peterlicari.com/posts/moe-subgroup-wrong</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

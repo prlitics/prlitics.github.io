@@ -10,7 +10,222 @@
 <atom:link href="www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Tue, 01 Aug 2023 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 13 Sep 2023 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Traditional Margin of Error When You Have Oversamples in Your Survey is Wrong</title>
+  <dc:creator>Peter Licari</dc:creator>
+  <link>www.peterlicari.com/posts/moe-subgroup-wrong/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="cell">
+
+</div>
+<section id="oversampling-and-margins-of-error" class="level1">
+<h1>Oversampling and (Margins of) Error</h1>
+<p>Not too long ago, pollsters and social scientists on X (the decaying husk of Twitter) found themselves discussing <a href="https://www.cnn.com/2023/09/07/politics/cnn-poll-joe-biden-headwinds">a recent CNN poll</a> detailing President Biden’s job performance and people’s attitudes towards participating in the 2024 election if it involved a 2020 Trump v. Biden rematch. Not because there was anything wrong with the poll itself, but because a prominent anti-Trump account questioned whether or not the insights were valid because the poll included an oversample of Republicans and Republican-leaning independents.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/img1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>As noted by the community post appended to the original missive, oversampling is a pretty common survey stats technique that allows researchers to drill into subpopulations that are otherwise too small in normal survey samples for reliable description. Oversampling involves deliberately sampling individuals from certain subpopulations and then weighting their contribution to the overall results in the topline values reflect their true proportion of the population. If done right, it allows for more accurate estimates at the topline and subgroup levels.</p>
+<p>The kicker, of course, is “if done right.” <a href="https://peterlicari.substack.com/">I read a lot of polls.</a> Oversamples are a pretty common technique. But one thing that I notice that happens pretty frequently is that those who employ oversamples are not properly adjusting the margins of error to reflect the fact that there <em>is</em> an oversample. (Though not with the CNN poll in question, all signs point to them doing everything right). When you have an oversample, your margin of error cannot be based upon the total size of your sample alone. Doing that will make your margins of error too small for them to have the statistical properties that they’re purported to have.</p>
+<p>So this post serves two purposes. The first is to show that oversampling is a completely valid thing to do so long as you weight your sample properly. But, critically, <em>also</em> if you adjust your Margins of Error properly too.</p>
+<p>Before getting into why the “standard” Margin of Error (MoE) is wrong in this context, let’s first discuss what the MoE is supposed to mean, anyhow.</p>
+</section>
+<section id="what-even-is-the-margin-of-error-anyways" class="level1">
+<h1>What even is the Margin of Error anyways?</h1>
+<p>There’s only one way to guarantee that you have everyone’s preferences “correctly measured:” Gather every person in your population of interest and then ask them your question<sup>1</sup>. But that’s practically impossible once your population gets large enough. Instead, you can <em>randomly</em> select a subset of individual members from the overall population and, provided you sample a decent number of them, you can get an estimate that is decently close to the Truth. But, alas, because it is just a sample, we still expect there to be some deviation away from the true values expressed in the population.</p>
+<p>The margin of error reflects our expectations for how far off from the mark we might be given the number of people we’ve sampled and the proportions we’ve observed. It constructs an interval such that, if you were to sample the same number of people from the same population infinitely many times, some large percentage of these intervals (usually 95%<sup>2</sup>) will contain, somewhere within them, the true population value. The margin of error reflects half the span of the confidence interval. (Hence why you’ll see them presented with a plus/minus sign). So an MoE of 3 percentage points on an estimate of 50% creates a confidence interval spanning 47%–53%. 95% of similarly constructed intervals contain, somwhere within it, the true population value. In practice, the size of this range reflects our uncertainty about the specific population proportions that we’ve observed in the sample.</p>
+<p>To explain the above another way: Let’s say that you have a basketball that you want to get into a hoop. The ball is your population parameter. The catch: the ball is somewhere in a dark gym. You don’t know where. But you have to get it into a hoop to score points, lack of knowledge be damned. So you decide to construct a hoop large enough such that, 95% of the time that you chuck it, the ball will make it in. The hoop is your confidence interval.</p>
+<p>The “classic” margin of error formula for proportions relies on two figures: The sample proportion in question and the number of observations. From a purely statistical standpoint, the MoE shrinks as you get a larger sample (though with diminishing returns). Additionally, proportions further away from 50% have smaller MoEs than those closer to 50%. However, in practice, most polling outfits and news articles about surveys report the MoE assuming a proportion of 50% because that’s the most “conservative” estimate.<sup>3</sup> The way it’s often reported, it’ll vary purely as a function of sample size.</p>
+<p>Here’s the thing, though: When a survey includes an oversample, the MoE that’s (too) frequently reported out is based upon <em>the full sample of individuals.</em> So if there’s a sample of 1,000 people and they oversampled an additional 500 people, they’ll report out an MoE of about 2.5% based upon the total 1500 people sampled. But that isn’t correct. Doing so makes the MoE they report out smaller than it actually is. They are not properly conveying their uncertainty about the point estimate that they’re reporting out on.</p>
+<p>I think that this sort of mistake is inadvertent. Doing surveys is hard. None of us are perfect, we can only hope to get better. It’s one thing to be told this by someone on the internet, but I hope to demonstrate it in a way that sticks. So let’s go through a simulation on something objectively way more interesting than the 2024 Presidential election: Pokemon characters!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="illustration-through-simulation" class="level1">
+<h1>Illustration through simulation</h1>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>Let’s say that we are surveying some population of people with two sub-groups and we’re asking them about their favorite classic Pokemon starter plus Pikachu—because when you’re big enough to get your own balloon in the Thanksgiving Day parade, you get special privileges. So that brings us to four total: Charmander, Bulbasaur, Squirtle, and Pikachu. For the sake of this example, let’s say subgroup one are the folks who have played Pokemon and reflect 15% of the population. Among players, let’s imagine 40% choose Bulbasaur, 30% choose Charmander, 20% choose Squirtle, and 10% choose Pikachu<sup>4</sup>. Subgroup 2 reflects non-players and constitutes 85% of the population. 40% of these people choose Pikachu, 20% choose Charmander, 25% choose Squirtle, and 15% choose Bulbasaur. Among the full population then, 18.75% choose Bulbasaur, 24.25% choose Squirtle, 35.5% choose Pikachu, and 21.5% choose Charmander.</p>
+<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/poke_preferences.png" class="img-fluid"></p>
+</section>
+<section id="creating-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="creating-the-data">Creating the Data</h2>
+<p>Let’s go ahead and simulate this population. I’ll be doing this in R (R version 4.2.2 (2022-10-31 ucrt)). I’m making it a total population of 10,000,000. The first part of the code chunk creates a dataframe that we’ll be using to sample from. The <code>with_seed</code> function comes from the <code>{withr}</code> package; I want to keep this reproducible on my machine since I’ll be using random sampling. The second part uses the <code>{summarytools}</code> package to make cross-tabs to illustrate that the data set construction worked as intended.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">suppressPackageStartupMessages</span>(<span class="fu" style="color: #4758AB;">library</span>(tidyverse))</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">suppressPackageStartupMessages</span>(<span class="fu" style="color: #4758AB;">library</span>(summarytools))</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">suppressPackageStartupMessages</span>(<span class="fu" style="color: #4758AB;">library</span>(withr))</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">suppressPackageStartupMessages</span>(<span class="fu" style="color: #4758AB;">library</span>(questionr))</span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;">with_seed</span>(<span class="dv" style="color: #AD0000;">13</span>, {</span>
+<span id="cb1-7"></span>
+<span id="cb1-8">players <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb1-9">  <span class="fu" style="color: #4758AB;">tibble</span>(</span>
+<span id="cb1-10">    <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"Player"</span>,</span>
+<span id="cb1-11">    <span class="at" style="color: #657422;">preference =</span> <span class="fu" style="color: #4758AB;">sample</span>(</span>
+<span id="cb1-12">    <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Bulbasaur"</span>, <span class="st" style="color: #20794D;">"Charmander"</span>, <span class="st" style="color: #20794D;">"Squirtle"</span>, <span class="st" style="color: #20794D;">"Pikachu"</span>),</span>
+<span id="cb1-13">    <span class="at" style="color: #657422;">prob =</span> <span class="fu" style="color: #4758AB;">c</span>(.<span class="dv" style="color: #AD0000;">40</span>, .<span class="dv" style="color: #AD0000;">30</span>, .<span class="dv" style="color: #AD0000;">20</span>, .<span class="dv" style="color: #AD0000;">10</span>),</span>
+<span id="cb1-14">    <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">1500000</span>,</span>
+<span id="cb1-15">    <span class="at" style="color: #657422;">replace =</span> <span class="cn" style="color: #8f5902;">TRUE</span></span>
+<span id="cb1-16">  ))</span>
+<span id="cb1-17"></span>
+<span id="cb1-18"></span>
+<span id="cb1-19">non_players <span class="ot" style="color: #003B4F;">&lt;-</span></span>
+<span id="cb1-20">  <span class="fu" style="color: #4758AB;">tibble</span>(</span>
+<span id="cb1-21">    <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"Non Player"</span>,</span>
+<span id="cb1-22">    <span class="at" style="color: #657422;">preference =</span> <span class="fu" style="color: #4758AB;">sample</span>(</span>
+<span id="cb1-23">    <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"Bulbasaur"</span>, <span class="st" style="color: #20794D;">"Charmander"</span>, <span class="st" style="color: #20794D;">"Squirtle"</span>, <span class="st" style="color: #20794D;">"Pikachu"</span>),</span>
+<span id="cb1-24">    <span class="at" style="color: #657422;">prob =</span> <span class="fu" style="color: #4758AB;">c</span>(.<span class="dv" style="color: #AD0000;">15</span>, .<span class="dv" style="color: #AD0000;">20</span>, .<span class="dv" style="color: #AD0000;">25</span>, .<span class="dv" style="color: #AD0000;">40</span>),</span>
+<span id="cb1-25">    <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">8500000</span>,</span>
+<span id="cb1-26">    <span class="at" style="color: #657422;">replace =</span> <span class="cn" style="color: #8f5902;">TRUE</span></span>
+<span id="cb1-27">  ))</span>
+<span id="cb1-28"></span>
+<span id="cb1-29">full <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rbind</span>(players, non_players)</span>
+<span id="cb1-30"></span>
+<span id="cb1-31">full <span class="ot" style="color: #003B4F;">&lt;-</span> full <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb1-32">  dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">pop_id =</span> <span class="fu" style="color: #4758AB;">row_number</span>())</span>
+<span id="cb1-33"></span>
+<span id="cb1-34">})</span>
+<span id="cb1-35"></span>
+<span id="cb1-36"></span>
+<span id="cb1-37"><span class="fu" style="color: #4758AB;">ctable</span>(full<span class="sc" style="color: #5E5E5E;">$</span>preference, full<span class="sc" style="color: #5E5E5E;">$</span>type, <span class="at" style="color: #657422;">prop =</span> <span class="st" style="color: #20794D;">'c'</span>)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cross-Tabulation, Column Proportions  
+preference * type  
+Data Frame: full  
+
+------------ ------ ------------------ ------------------ -------------------
+               type         Non Player             Player               Total
+  preference                                                                 
+   Bulbasaur          1276579 ( 15.0%)    599477 ( 40.0%)    1876056 ( 18.8%)
+  Charmander          1700113 ( 20.0%)    450589 ( 30.0%)    2150702 ( 21.5%)
+     Pikachu          3399748 ( 40.0%)    149398 ( 10.0%)    3549146 ( 35.5%)
+    Squirtle          2123560 ( 25.0%)    300536 ( 20.0%)    2424096 ( 24.2%)
+       Total          8500000 (100.0%)   1500000 (100.0%)   10000000 (100.0%)
+------------ ------ ------------------ ------------------ -------------------</code></pre>
+</div>
+</div>
+<p>Looks like this worked great! The subgroup proportions and the overall group proportions are where we expect them to be.</p>
+</section>
+<section id="sampling" class="level2">
+<h2 class="anchored" data-anchor-id="sampling">Sampling</h2>
+<p>Now let’s say that we’re going to sample 1,000 respondents from this population. But! We’d like to also do analyses of Players as a subgroup. We’d only expect to get about 150 people, which isn’t nothing but it’s not a whole lot either. So we’ll oversample an additional 500 game players for a total of 1,500 people. We’ll then weight respondents in our sample so that the overall values are unaffected.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="do" style="color: #5E5E5E;
+font-style: italic;">## Main 1,000 sample</span></span>
+<span id="cb3-2">main_sample <span class="ot" style="color: #003B4F;">&lt;-</span> full <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;">sample_n</span>(<span class="dv" style="color: #AD0000;">1000</span>)</span>
+<span id="cb3-4"></span>
+<span id="cb3-5">main_sample_ids <span class="ot" style="color: #003B4F;">&lt;-</span> main_sample<span class="sc" style="color: #5E5E5E;">$</span>pop_id <span class="co" style="color: #5E5E5E;"># Ids of those sampled</span></span>
+<span id="cb3-6"></span>
+<span id="cb3-7"><span class="do" style="color: #5E5E5E;
+font-style: italic;">## Oversample of 500</span></span>
+<span id="cb3-8">oversample <span class="ot" style="color: #003B4F;">&lt;-</span> full <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-9">  <span class="fu" style="color: #4758AB;">filter</span>(type <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="st" style="color: #20794D;">"Player"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-10">  <span class="fu" style="color: #4758AB;">filter</span>(<span class="sc" style="color: #5E5E5E;">!</span>pop_id <span class="sc" style="color: #5E5E5E;">%in%</span> main_sample_ids) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="co" style="color: #5E5E5E;">#no double sampling!</span></span>
+<span id="cb3-11">  <span class="fu" style="color: #4758AB;">sample_n</span>(<span class="dv" style="color: #AD0000;">500</span>)</span>
+<span id="cb3-12"></span>
+<span id="cb3-13"><span class="do" style="color: #5E5E5E;
+font-style: italic;">## Full sample</span></span>
+<span id="cb3-14">full_sample <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rbind</span>(main_sample, oversample)</span>
+<span id="cb3-15"></span>
+<span id="cb3-16"><span class="do" style="color: #5E5E5E;
+font-style: italic;">## Calculating weights</span></span>
+<span id="cb3-17">weights_df <span class="ot" style="color: #003B4F;">&lt;-</span> full_sample <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-18">  <span class="fu" style="color: #4758AB;">count</span>(type) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-19">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">weight_prop =</span> <span class="fu" style="color: #4758AB;">ifelse</span>(type <span class="sc" style="color: #5E5E5E;">%in%</span> <span class="st" style="color: #20794D;">"Player"</span>,.<span class="dv" style="color: #AD0000;">15</span>,.<span class="dv" style="color: #AD0000;">85</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-20">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">weight =</span> (weight_prop <span class="sc" style="color: #5E5E5E;">*</span> <span class="dv" style="color: #AD0000;">1500</span>)<span class="sc" style="color: #5E5E5E;">/</span>n) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-21">  <span class="fu" style="color: #4758AB;">select</span>(type, weight)</span>
+<span id="cb3-22"></span>
+<span id="cb3-23">full_sample <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">left_join</span>(full_sample, weights_df, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"type"</span>)</span></code></pre></div>
+</details>
+</div>
+<p>Looking at the table below, which compares the weighted versus non-weighted and the actual population proportions, we can see that the weighting does its job; it brought the actual topline values to be far closer to the actual population values than the unweighted version did. Incidentally this shows why you should always downweight your oversample—otherwise, your overall values will be off by a lot more!</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-5e738ab2{}.cl-5e686d12{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e686d1c{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5e6d3a22{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e6d3a2c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5e6d5534{width:0.75in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d5535{width:0.75in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d553e{width:0.75in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d553f{width:0.75in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d5540{width:0.75in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5e6d5548{width:0.75in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-5e738ab2"><thead><tr style="overflow-wrap:break-word;"><th class="cl-5e6d5534"><p class="cl-5e6d3a22"><span class="cl-5e686d12">preference</span></p></th><th class="cl-5e6d5535"><p class="cl-5e6d3a2c"><span class="cl-5e686d12">Pop Values</span></p></th><th class="cl-5e6d5535"><p class="cl-5e6d3a2c"><span class="cl-5e686d12">Unweighted</span></p></th><th class="cl-5e6d5535"><p class="cl-5e6d3a2c"><span class="cl-5e686d12">Weighted</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-5e6d553e"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Bulbasaur</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.1876056</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.266</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.1867870</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5e6d5540"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Charmander</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2150702</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.236</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2127322</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5e6d553e"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Pikachu</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.3549146</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.266</span></p></td><td class="cl-5e6d553f"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.3474248</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5e6d5540"><p class="cl-5e6d3a22"><span class="cl-5e686d1c">Squirtle</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2424096</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.232</span></p></td><td class="cl-5e6d5548"><p class="cl-5e6d3a2c"><span class="cl-5e686d1c">0.2530559</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>But the question isn’t whether downweighting an oversample gets us back in the right ballpark. It’s whether or not the purported MoE from the full 1,500 people is correct. If it is, we’d expect that, should this sample be conducted an arbitrarily large umber of times, 95% of those confidence intervals will contain the true population value.</p>
+</section>
+<section id="simulating-1000-pokemon-preference-surveys" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-1000-pokemon-preference-surveys">Simulating 1,000 Pokemon Preference Surveys</h2>
+<p>Computers may be amazing, but they can’t do something infinitely many times. But, just like with random sampling, doing something a bunch of times instead will get us in the right ball park.</p>
+<p>So let’s conduct 1,000 samples of 1,500 from our full population data—1,000 people randomly selected from the full data (players and non-players alike) and then 500 randomly selected just amongst the 15% of people that are Pokemon players. We’ll then weight these respondents correctly such that the players won’t have an outsized influence on the topline results. I’ll report out on 3 different MoEs.</p>
+<ol type="1">
+<li>The first assuming the oversample is included and not downweighted, calculated with the standard MoE.</li>
+<li>The second weighting the oversample properly, calculated with the standard MoE.</li>
+<li>The third weighting the oversample properly and calculating it with an MoE that takes the oversampling into account.</li>
+</ol>
+<p>Given that these are 95% confidence intervals, we should expect approximately 95% of intervals to contain the true population value.</p>
+<p>The chart below visualizes the results of the simulation. Each facet reflects a type of confidence interval (rows) and a Pokemon (column). The vertical bars reflect the MoEs for each of the 1,000 simulated samples. Their order up and down the Y axis is arbitrary, they happen to go bottom up from the first simulated run to the last. Moving horizontal on the X axis are smaller–larger proportions of the synthetic population. The black vertical lines reflect how popular those Pokemon truly are in our synthetic population. Horizontal lines that cross this gray reference line have successfully captured the population parameter. Those that miss have not accurately captured that Pokemon’s overall popularity in the sample. Since all of these are purportedly 95% confidence intervals, we would hope that they do so 95% of the time.</p>
+<p>In short, the more solid lines we have, the worse we’re doing. And if we have more than 5% of sample that shows a solid line, then our MoE isn’t being constructed correctly.</p>
+<div class="cell">
+
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/simulated_moe.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Looking at the first section with the Standard MoE things appear to be okay. Indeed, if we were to just eyeball it one might think that we’re actually getting 95% coverage. But we’re not. It’s actually only 91.4%. The degree to which this “standard” MoE is wrong will depend on how much we have to weight the sample versus an ideal case of perfect random sampling. This is known as the weighting efficiency. It’s possible for this to be closer to 95%. But it’s also possible for it to be further away depending on how much your weights have to work to bring values in-line with your population targets.</p>
+<p>In the second section, we’ve actually hit what we were aiming for. Here, we took the design of the sampling into account and were able to achieve 95% coverage. Right on the money<sup>5</sup>. In practice, design-effect adjusted MoEs are slightly elongated to account for the aforementioned weighting efficiency. I’ll leave the technical details about that for another post. But, for now, know that it is not only possible but <em>necessary</em> to adjust a survey’s MoE when it has an oversample in order to accurately convey one’s uncertainty about the point estimate.</p>
+<p>Looking at the third row with the unweighted values, the coverage is absolutely abysmal. Only 25.2% of the confidence intervals contain the true population mean. And the only reason that it’s even <em>this</em> accurate is because Squirtle is about as popular with both players and non-players. Again, let it be said: <strong>ALLWAYS WEIGHT-IN YOUR OVERSAMPLES IF YOU’RE DOING TOPLINE VALUES</strong>.</p>
+</section>
+</section>
+<section id="in-sum" class="level1">
+<h1>In Sum</h1>
+<p>To be sure, misreporting the MoE for oversamples is not the most prominent survey-science sin. If anything, we shouldn’t be taking the MoE as reported as gospel anyhow. Those only reflect pure sampling error for random sampling—conditions that don’t actually exist in mainstream public opinion and survey research. There are other systematic biases that can creep into our instruments and analyses. Indeed, empirical research of surveys suggest that MoEs are actually only half as big as they’d need to be to contain the true population parameters 95% of the time<sup>6</sup>.</p>
+<p>That’s not to say that polls are worthless, of course. Just that we as consumers need to know that, while still pretty good at tracking attitudes, they’re not perfect. And that we, as producers, need to do our due diligence in reporting our confidence in these estimates more accurately. And one easy way to do this is not to report “standard” margins of error when we’re dealing with headline data with oversamples.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>It’s important to note that this would be a <em>necessary</em> step but not a sufficient step. Asking the right question—and in the right way—is a lot harder than most people give credit for. Drawing the correct conclusions from that is even harder. Yay epistemology and statistics!↩︎</p></li>
+<li id="fn2"><p>Which is where we get the term “95% confidence intervals” from.↩︎</p></li>
+<li id="fn3"><p>We’ll soon see that just because something is more “conservative,” it doesn’t mean it’s not wrong.↩︎</p></li>
+<li id="fn4"><p>Look, unlike in the OG anime where Pikachu cheats by activating the sprinkler system, putting an electric type against an Onix is simply an easy way to get your ass handed to you.↩︎</p></li>
+<li id="fn5"><p>Technically it’s 95.025 percent, but good enough for government work, right?↩︎</p></li>
+<li id="fn6"><p>Though the degree of deviation is smaller when the design effects are taken into account. That said, empirically, it doesn’t shrink the deviation to zero. Because, again, there are other issues biasing poll results other than just sampling.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2023,
+  author = {Peter Licari},
+  title = {The {Traditional} {Margin} of {Error} {When} {You} {Have}
+    {Oversamples} in {Your} {Survey} Is {Wrong}},
+  date = {2023-09-13},
+  url = {www.peterlicari.com/posts/moe-subgroup-wrong},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
+Peter Licari. 2023. <span>“The Traditional Margin of Error When You Have
+Oversamples in Your Survey Is Wrong.”</span> September 13, 2023. <a href="https://www.peterlicari.com/posts/moe-subgroup-wrong">www.peterlicari.com/posts/moe-subgroup-wrong</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>statistics</category>
+  <category>simulation</category>
+  <category>surveys</category>
+  <guid>www.peterlicari.com/posts/moe-subgroup-wrong/index.html</guid>
+  <pubDate>Wed, 13 Sep 2023 04:00:00 GMT</pubDate>
+  <media:content url="www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>How to add a Variable Font to a Quarto PDF on Windows</title>
   <dc:creator>Peter Licari</dc:creator>
