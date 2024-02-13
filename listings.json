@@ -2,6 +2,7 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
       "/posts/r-punch-in-face-23/index.html",
@@ -16,6 +17,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
       "/posts/r-punch-in-face-23/index.html",
@@ -30,6 +32,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
       "/posts/r-punch-in-face-23/index.html",
@@ -44,6 +47,7 @@
   {
     "listing": "/other_things.html",
     "items": [
+      "/other_things/infixit/index.html",
       "/other_things/wordle-letter-frequency/index.html",
       "/other_things/dissertation/index.html",
       "/other_things/kanye-map/index.html",
