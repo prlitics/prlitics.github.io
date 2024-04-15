@@ -2,6 +2,7 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/birthdays_2024/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
@@ -17,6 +18,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/birthdays_2024/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
@@ -32,6 +34,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/birthdays_2024/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
