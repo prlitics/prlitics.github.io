@@ -2,6 +2,7 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/odsc-2024/index.html",
       "/posts/birthdays_2024/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
@@ -18,6 +19,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/odsc-2024/index.html",
       "/posts/birthdays_2024/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
@@ -34,6 +36,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/odsc-2024/index.html",
       "/posts/birthdays_2024/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
