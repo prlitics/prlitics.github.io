@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.5.46">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Peter Licari">
 <meta name="dcterms.date" content="2020-11-05">
 
-<title>Peter Licari - Thoughts on the 2020 Election</title>
+<title>Thoughts on the 2020 Election – Peter Licari</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,8 +62,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -65,14 +73,14 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Peter Licari - Thoughts on the 2020 Election">
-<meta property="og:description" content="I thought I would post my prediction for the election and a few thoughts regarding it more generally. I’ll be peppering in some maps that I’ve made to help illustrate my general thought process.">
-<meta property="og:image" content="https://www.peterlicari.com/posts\thoughts-prior-2020-election\images\likelyoutcome.png">
-<meta property="og:site-name" content="Peter Licari">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/likelyoutcome.png">
+<meta property="og:site_name" content="Peter Licari">
 <meta property="og:image:height" content="379">
 <meta property="og:image:width" content="578">
 <meta name="twitter:title" content="Peter Licari - Thoughts on the 2020 Election">
-<meta name="twitter:description" content="I thought I would post my prediction for the election and a few thoughts regarding it more generally. I’ll be peppering in some maps that I’ve made to help illustrate my general thought process.">
-<meta name="twitter:image" content="https://www.peterlicari.com/posts\thoughts-prior-2020-election\images\likelyoutcome.png">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/likelyoutcome.png">
 <meta name="twitter:creator" content="@PRLPoliSci">
 <meta name="twitter:image-height" content="379">
 <meta name="twitter:image-width" content="578">
@@ -83,57 +91,58 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Peter Licari</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/prlitics"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/prlitics"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/PRLPoliSci"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/PRLPoliSci"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../archive.html">
- <span class="menu-text">Archive</span></a>
+    <a class="nav-link" href="../../archive.html"> 
+<span class="menu-text">Archive</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.technites.io">
- <span class="menu-text">Consulting</span></a>
+    <a class="nav-link" href="https://www.technites.io"> 
+<span class="menu-text">Consulting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../writing.html">
- <span class="menu-text">Writing</span></a>
+    <a class="nav-link" href="../../writing.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Ongoing Projects</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
@@ -152,11 +161,11 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../other_things.html">
- <span class="menu-text">Other Things I’ve Made</span></a>
+    <a class="nav-link" href="../../other_things.html"> 
+<span class="menu-text">Other Things I’ve Made</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Resources</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
@@ -167,8 +176,9 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -227,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Peter Licari </p>
+             <p>Peter Licari <a href="https://orcid.org/0000-0001-9701-6006" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
   </div>
     
@@ -242,7 +252,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>I thought I would post my prediction for the election and a few thoughts regarding it more generally. I’ll be peppering in some maps that I’ve made to help illustrate my general thought process.</p>
 <section id="when-can-we-expect-all-this-to-wrap-up" class="level1">
@@ -258,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Through a combination of COVID-19 and general anxiety/enthusiasm catalyzed by the last four years of President Trump’s tenure, we saw mind-bogglingly high levels of early/mail-in voting. At least <strong>100 <em>million</em></strong> people voted early this year, according to estimates from <a href="https://twitter.com/ElectProject/status/1323663599697539074?s=20">Michael McDonald’s US Elections Project</a>. That translates to 73% of the nation’s 2016 vote total. Some states surpassed their 2016 totals.</p>
 <p>However, not all states have laws that allow them to tabulate early ballots as they come in. This map from Pew Research shows which states tabulate the votes as they come in.</p>
 <center>
-<p><img src="images/AbsenteeBallots.png" class="img-fluid" style="width:50.0%"></p>
+<img src="images/AbsenteeBallots.png" class="img-fluid" style="width:50.0%">
 </center>
 <p>The state throwing the biggest monkey-wrench into the works is undoubtedly Pennsylvania. For reasons that I’ll get to in a second, Pennsylvania is critical to President Trump’s pathway to victory. Without it, he has very little chance of making it into office. Complicating things more is that Pennsylvania counts day-of votes <em>first</em> before the early vote. It could take days before the early vote totals are cleared. And given that Joe Biden appears to be leading quite dramatically among early voters, <a href="https://twitter.com/Politics_Polls/status/1320698523030032384?s=20">according to the polls</a>, there is a solid chance that President Trump will appear to be leading in the state by the end of the night. If Joe Biden is winning PA by sunrise tomorrow—barring any irregularities in the day-of counting or insanely long lines—then he’s most likely won the election. (Even with the curse of daylight savings pushing daybreak an hour earlier.)</p>
 </section>
@@ -266,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>How Do I See the Election Turning Out?</h1>
 <p>Here is what I see as the most likely outcome when everything is said and done. (From here on out, I’ll largely be using maps I’ve generated <em>via</em> <a href="https://www.270towin.com/">270 to Win</a>.)</p>
 <center>
-<p><img src="images/likelyoutcome.png" class="img-fluid"></p>
+<img src="images/likelyoutcome.png" class="img-fluid">
 </center>
 <p>I should caution that by “most likely”, I mean that I think this has somewhere between a 20-30% chance of it happening. There’s a better chance than not that I’m gonna be wrong—so don’t set your clock to it.</p>
 <p>(Another daylight savings joke. I’m still not over it. Now that I’m a father to a newborn, I can’t even begin to fathom how <em>my</em> parents managed this BS.)</p>
@@ -280,7 +292,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Nebraska-2:</strong> Consistent polling lead for Biden.</li>
 <li><strong>North Carolina:</strong> Swingy; solid 2018 performance; consistent advantage for Biden in Polling</li>
 <li><strong>Ohio:</strong> The supposed king-maker. Consistent Trump advantage in the polling; solid Republican performance in 2018.</li>
-<li><strong>Texas:</strong> Gradual demographic transition to purple accelerated by Trump. It’d be bat-💩 crazy if it went from stalwart Red to true purple within a single cycle.</li>
+<li><strong>Texas:</strong> Gradual demographic transition to purple accelerated by Trump. It’d be bat-<code>r emo::ji('poop')</code> crazy if it went from stalwart Red to true purple within a single cycle.</li>
 </ul>
 <section id="which-states-im-most-likely-to-be-wrong-about." class="level2">
 <h2 class="anchored" data-anchor-id="which-states-im-most-likely-to-be-wrong-about.">Which states I’m most likely to be wrong about.</h2>
@@ -293,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="biden-has-a-strong-wall">Biden has a strong wall</h2>
 <p>The reason I’m as bullish as I am for Biden (besides the appeal of the alliteration) is that the current toss-ups can literally <strong>all</strong> break for President Trump and Biden would <em>still</em> win—provided there aren’t any major surprises in the polling.</p>
 <center>
-<p><img src="images/trumpwinsall.PNG" class="img-fluid"></p>
+<img src="images/trumpwinsall.PNG" class="img-fluid">
 </center>
 <p>Not all of these states are equal with regards to the President’s chances. No state’s return is independent of the others—if Biden won Texas, that means we’re looking at a <em>bona fide</em> blue malestrom, let alone a wave—but some states give more information about how other states are going to break than others. <a href="https://projects.fivethirtyeight.com/trump-biden-election-map/">FiveThirtyEight has a tool</a> that uses the correlations among polling errors to show how a victory in some states ripples out to signal what’s happening in others. A Trump win in Georgia doesn’t shift things much, nor does one in Texas, because frankly it’s a shock that they’re even in play. A win in Florida, however, drastically lowers Biden’s chances and suggests a map that looks like the one above. However, even in that case, the President is still <strong><em>not</em></strong> favored to win if only for the fact that Biden is still leading in the Electoral college.</p>
 <section id="the-upshot-however-is-that-if-trump-loses-any-of-those-states-his-only-path-to-victory-lies-in-there-being-large-unprecedented-degrees-of-polling-error." class="level4">
@@ -305,11 +317,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="bidens-best-cases">Biden’s best case(s)</h2>
 <p>The best case scenario for Biden is that he picks-up all of the toss-ups. But I should really emphasize that <strong>I don’t think this is a particularly likely outcome.</strong></p>
 <center>
-<p><img src="images/bidenlandslide.PNG" class="img-fluid"></p>
+<img src="images/bidenlandslide.PNG" class="img-fluid">
 </center>
 <p>A more realistic “great day” scenario for Biden is that he wins picks up Florida, North Carolina, Arizona, and Georgia while Trump gets Texas, Ohio, and Iowa.</p>
 <center>
-<p><img src="images/bidenmorelikely.PNG" class="img-fluid"></p>
+<img src="images/bidenmorelikely.PNG" class="img-fluid">
 </center>
 <p>Judging from the correlations in polling errors, Florida will be a good (but not perfect) indicator of how Georgia and North Carolina go. (Georgia could be called first but that doesn’t necessarily mean that Florida will go with it; the leverage one state has over another is asymmetric. For example: North Carolina going red/blue means less for Texas’ eventual outcome than Texas going red/blue means for North Carolina.) Ohio will probably provide a good (but, again, <em>not perfect</em>) indication for how the other three states will break.</p>
 </section>
@@ -320,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="without-pennsylvania">Without Pennsylvania</h2>
 <p>Just because I expect the President to lose doesn’t mean I think his loss is <em>inevitable.</em> But it’s tough. Really tough. And it’s made all the tougher because he’s currently not favored in Pennsylvania. And by “not favored in Pennsylvania” I mean that <a href="https://projects.economist.com/us-2020-forecast/president/pennsylvania"><em>The Economist</em> is giving Biden a 95% chance of carrying the state</a>. Trump will have to outperform the polls by a strong margin to carry the day. The most likely states, given the margin of error for the most recent state level polls, is Nevada, New Hampshire, Maine-2 and Nebraska-2. That will give Trump 270 votes in the Electoral College.</p>
 <center>
-<p><img src="images/trumpnopa.PNG" class="img-fluid"></p>
+<img src="images/trumpnopa.PNG" class="img-fluid">
 </center>
 <p>But I want to stress how unlikely that is. Many of these wins are not all that correlated with each other—meaning that a win in any of them early on doesn’t necessarily portend a Biden defeat. (Other state combinations are also possible, but we’d be talking about even <em>less</em> likely polling errors.)</p>
 </section>
@@ -328,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="with-pennsylvania">With Pennsylvania</h2>
 <p>A trump victory in Pennsylvania <em>dramatically</em> improves the President’s chances. If the President wins there, it’s likely that he’s winning in a lot of other places that he’s currently not favored. However,it should be noted that <em>even then</em> he’d still need to pick up every one of the toss-up states. That can be helped by the fact that winning Pennsylvania would suggest a large degree of errors in the polls. But that degree of error is, I have to emphasize, really improbable. This outcome isn’t necessarily <em>less</em> likely than the one above, but pulling-off Pennsylvania would be an incredible upset. And, honestly, I would probably need to seriously reevaluate my life choices should it happen: especially my chosen profession.</p>
 <center>
-<p><img src="images/trumpwithpa.PNG" class="img-fluid"></p>
+<img src="images/trumpwithpa.PNG" class="img-fluid">
 </center>
 <p>The other point to consider when weighing out the importance of Pennsylvania is just how <strong>long</strong> that would make the contest. Basically, if Trump wins every toss-up state, then we’re not going to know the election’s outcome until about the end of the week <em>at earliest.</em> Because, as mentioned above, <em>Pennsylvania counts their early votes last and haven’t started counting them at all.</em> If Trump is ahead by the end of the night, we’ll just have to wait and see if the Biden advantage banked-up from early voting is enough. (Although, as a Floridian, I must confess that it’ll be nice to have all of the attention away from us for once.)</p>
 <section id="in-short-in-order-for-the-president-to-win-hes-going-to-have-to-pull-off-one-helluva-upset.-that-doesnt-make-it-impossible-upsets-happen-all-the-time-but-by-definition-it-makes-it-unlikely." class="level4">
@@ -359,16 +371,16 @@ ul.task-list li input[type="checkbox"] {
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
-  author = {Peter Licari},
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2020,
+  author = {Licari, Peter},
   title = {Thoughts on the 2020 {Election}},
   date = {2020-11-05},
-  url = {https://www.peterlicari.com/posts/thoughts-prior-2020-election},
+  url = {https://www.peterlicari.com/posts/thoughts-prior-2020-election/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Peter Licari. 2020. <span>“Thoughts on the 2020 Election.”</span>
-November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020-election">https://www.peterlicari.com/posts/thoughts-prior-2020-election</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas" role="listitem">
+Licari, Peter. 2020. <span>“Thoughts on the 2020 Election.”</span>
+November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020-election/">https://www.peterlicari.com/posts/thoughts-prior-2020-election/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -397,12 +409,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -434,11 +449,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.peterlicari\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -448,8 +502,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -461,9 +524,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -504,6 +803,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
