@@ -6,22 +6,22 @@
       version="2.0">
 <channel>
 <title>Peter Licari</title>
-<link>www.peterlicari.com/index.html</link>
-<atom:link href="www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://www.peterlicari.com/index.html</link>
+<atom:link href="https://www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.2.335</generator>
 <lastBuildDate>Thu, 20 Jun 2024 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Getting Worse to Get Better</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/getting_worse_getting_better_2024/index.html</link>
+  <link>https://www.peterlicari.com/posts/getting_worse_getting_better_2024/index.html</link>
   <description><![CDATA[ 
 
 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/getting_worse_getting_better_2024/images/cover.png" class="preview-image img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/getting_worse_getting_better_2024/images/cover.png" class="preview-image img-fluid figure-img"></p>
 </figure>
 </div>
 <p>It may come as a surprise to some people who know me, but I actually have other hobbies other than “doing stuff with data.” This post is concerns some experiences I’ve had with them. And, also, it’s about doing stuff with data. But before I talk about data, I want to briefly talk about bowling, golf, and running. (And then data, I promise).</p>
@@ -69,29 +69,29 @@
   author = {Peter Licari},
   title = {Getting {Worse} to {Get} {Better}},
   date = {2024-06-20},
-  url = {www.peterlicari.com/posts/getting_worse_getting_better_2024},
+  url = {https://www.peterlicari.com/posts/getting_worse_getting_better_2024},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2024" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2024. <span>“Getting Worse to Get Better.”</span> June 20,
-2024. <a href="https://www.peterlicari.com/posts/getting_worse_getting_better_2024">www.peterlicari.com/posts/getting_worse_getting_better_2024</a>.
+2024. <a href="https://www.peterlicari.com/posts/getting_worse_getting_better_2024">https://www.peterlicari.com/posts/getting_worse_getting_better_2024</a>.
 </div></div></section></div> ]]></description>
   <category>reflection</category>
-  <guid>www.peterlicari.com/posts/getting_worse_getting_better_2024/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/getting_worse_getting_better_2024/index.html</guid>
   <pubDate>Thu, 20 Jun 2024 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/getting_worse_getting_better_2024/images/cover.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://www.peterlicari.com/posts/getting_worse_getting_better_2024/images/cover.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>What I Learned From My First Non-Academic Conference</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/odsc-2024/index.html</link>
+  <link>https://www.peterlicari.com/posts/odsc-2024/index.html</link>
   <description><![CDATA[ 
 
 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/odsc-2024/images/header.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/odsc-2024/images/header.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Me, hanging out with a Boston Dynamics robot. It’s a good robot doggo.</figcaption><p></p>
 </figure>
 </div>
@@ -136,7 +136,7 @@ Peter Licari. 2024. <span>“Getting Worse to Get Better.”</span> June 20,
 <p>Another thing I noticed continues a trend I’ve seen in Data Science forums and online spaces. There’s a push to recognize “Data Engineering” and/or “Data Ops” as their own fields distinct from “Data Science”,<sup>10</sup> with these emphasizing the aspects of the gig that focus on all the critical stuff that comes before and after successfully developing a statistical/ML/AI model. You know, the “boring” but incredibly necessary stuff like data storage, transformation, governance, and deployment.<sup>11</sup> This conference not only had numerous talks on these topics but had an entire Data Engineering track! Personally, I think it’s good that we’re getting more specific language, frameworks, and paradigms around these critical infrastructural tasks. Generalists benefit from learning more rigorous and scalable approaches to necessary tasks—and specialists (ideally) are allowed to hone-in on the elements of “data science” that actually appeals to them. Everyone wins! (Hopefully). The only issue that I can foresee with this is that an explosion of platforms and standards might put us in the position of this XKCD comic.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/odsc-2024/images/standards.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/odsc-2024/images/standards.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>There are two things that I felt were relatively lacking from ODSC though. The first, though, was clearly not due to a lack of demand: Soft skill development. It’s one thing to spin-up a fancy LLM that can analyze consumer data while pretending to be Squirrel Girl or whatever—it’s another to effectively communicate the necessary whats, hows, and whys to non-technical stakeholders. The few sessions ODSC offered on this and similar topics were absolutely <strong>packed</strong> though: standing room only, folks amassed just out the door. And it reflects not only what people have been experiencing but what newer folks to the field are increasingly being told matters: All the smarts in the world, all the models living in Jupyter/Quarto notebooks, it all means <em>nothing</em> if it can’t be effectively communicated to the people in charge of making sure your check gets signed.</p>
@@ -172,22 +172,22 @@ Peter Licari. 2024. <span>“Getting Worse to Get Better.”</span> June 20,
   title = {What {I} {Learned} {From} {My} {First} {Non-Academic}
     {Conference}},
   date = {2024-04-26},
-  url = {www.peterlicari.com/posts/odsc-2024},
+  url = {https://www.peterlicari.com/posts/odsc-2024},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2024" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2024. <span>“What I Learned From My First Non-Academic
-Conference.”</span> April 26, 2024. <a href="https://www.peterlicari.com/posts/odsc-2024">www.peterlicari.com/posts/odsc-2024</a>.
+Conference.”</span> April 26, 2024. <a href="https://www.peterlicari.com/posts/odsc-2024">https://www.peterlicari.com/posts/odsc-2024</a>.
 </div></div></section></div> ]]></description>
   <category>reflection</category>
-  <guid>www.peterlicari.com/posts/odsc-2024/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/odsc-2024/index.html</guid>
   <pubDate>Fri, 26 Apr 2024 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/odsc-2024/images/header.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.peterlicari.com/posts/odsc-2024/images/header.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>How Popular Are Birthdays Over Time?</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/birthdays_2024/index.html</link>
+  <link>https://www.peterlicari.com/posts/birthdays_2024/index.html</link>
   <description><![CDATA[ 
 
 
@@ -202,7 +202,7 @@ Conference.”</span> April 26, 2024. <a href="https://www.peterlicari.com/posts
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/birthdays_2024/images/title.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/birthdays_2024/images/title.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>Folks who play with data often make the convenient assumption that birthdays are distributed uniformly along the dates of the Gregorian calendar. However, as with all convenient assumptions, we know that this isn’t actually true! Thanks to things like superstition, holidays, extreme weather events, and war, conception (and therefore births) don’t just happen at random within a population.</p>
@@ -285,7 +285,7 @@ font-style: italic;">### Read-in SSA data</span></span>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/birthdays_2024/images/birth_dist1.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/birthdays_2024/images/birth_dist1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>There are a few really interesting things about this chart! First is the lack absolute variation. If birthdays were truly uniformly spread, we’d expect the probability to be around 0.0027—which perfectly matches the actual median value in the data ( 0.0027)! Second, to the extent that some days do go above this average, the most frequent days of birth tend to be in mid-late summer. Which makes sense! The average human gestation is about 40 weeks, putting the rough period of conception in the preceding fall—a period where many folks start to spend more time indoors after the summer<sup>4</sup>. Which means, well, more <em>opportunities</em> for conception.</p>
@@ -333,7 +333,7 @@ font-style: italic;">### Read-in SSA data</span></span>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/birthdays_2024/images/bday_gif.gif" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/birthdays_2024/images/bday_gif.gif" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>I was blown away by this! I figured from the aggregate chart that there would also be a lot of gray here—but we’re actually seeing a lot of day-to-day variation within individual years! And look at that reverse Tetris patterning! It’s fascinating!! (Though, if you look closely, you’ll notice that Christmas, New Years, July 4th, Vallentine’s day, and Halloween tend to keep their characteristic patterns seen in the aggregate data).</p>
@@ -366,7 +366,7 @@ font-style: italic;">### Read-in SSA data</span></span>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/birthdays_2024/images/days_of_birth3.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/birthdays_2024/images/days_of_birth3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>Looks like this hunch is spot-on! Sundays and Saturdays appear to be less frequent than any of the other 5 days of the week. After consulting with some experts (my mother and wife—the mother of my child), our hypothesis is that many doctors are off on weekends. This means that much of the medical team that soon-to-be-parents have spent most of their pregnancy with may not be available on the weekends. Women may thus be more likely to induce on a weekday or try to “hold on” (for want of a better term) until their care team is available. Basically, the thought is that a baby born on the weekend was <em>coming</em> on that day—no negotiations.</p>
@@ -398,31 +398,31 @@ font-style: italic;">### Read-in SSA data</span></span>
   author = {Peter Licari},
   title = {How {Popular} {Are} {Birthdays} {Over} {Time?}},
   date = {2024-04-15},
-  url = {www.peterlicari.com/posts/birthdays_2024},
+  url = {https://www.peterlicari.com/posts/birthdays_2024},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2024" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2024. <span>“How Popular Are Birthdays Over Time?”</span>
-April 15, 2024. <a href="https://www.peterlicari.com/posts/birthdays_2024">www.peterlicari.com/posts/birthdays_2024</a>.
+April 15, 2024. <a href="https://www.peterlicari.com/posts/birthdays_2024">https://www.peterlicari.com/posts/birthdays_2024</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>description</category>
   <category>dataviz</category>
-  <guid>www.peterlicari.com/posts/birthdays_2024/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/birthdays_2024/index.html</guid>
   <pubDate>Mon, 15 Apr 2024 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/birthdays_2024/images/title.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://www.peterlicari.com/posts/birthdays_2024/images/title.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Some reflections, hopes, and plans for 2024</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/plans-for-2024/index.html</link>
+  <link>https://www.peterlicari.com/posts/plans-for-2024/index.html</link>
   <description><![CDATA[ 
 
 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/plans-for-2024/images/persistence_of_future_plans.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/plans-for-2024/images/persistence_of_future_plans.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">On the Persistence of Future Plans: AI Art (Copilot Designer)</figcaption><p></p>
 </figure>
 </div>
@@ -513,23 +513,23 @@ April 15, 2024. <a href="https://www.peterlicari.com/posts/birthdays_2024">www.p
   author = {Peter Licari},
   title = {Some Reflections, Hopes, and Plans for 2024},
   date = {2023-12-30},
-  url = {www.peterlicari.com/posts/plans-for-2024},
+  url = {https://www.peterlicari.com/posts/plans-for-2024},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2023. <span>“Some Reflections, Hopes, and Plans for
-2024.”</span> December 30, 2023. <a href="https://www.peterlicari.com/posts/plans-for-2024">www.peterlicari.com/posts/plans-for-2024</a>.
+2024.”</span> December 30, 2023. <a href="https://www.peterlicari.com/posts/plans-for-2024">https://www.peterlicari.com/posts/plans-for-2024</a>.
 </div></div></section></div> ]]></description>
   <category>reflection</category>
   <category>life</category>
-  <guid>www.peterlicari.com/posts/plans-for-2024/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/plans-for-2024/index.html</guid>
   <pubDate>Sat, 30 Dec 2023 05:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/plans-for-2024/images/persistence_of_future_plans.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.peterlicari.com/posts/plans-for-2024/images/persistence_of_future_plans.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>The Traditional Margin of Error When You Have Oversamples in Your Survey is Wrong</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/moe-subgroup-wrong/index.html</link>
+  <link>https://www.peterlicari.com/posts/moe-subgroup-wrong/index.html</link>
   <description><![CDATA[ 
 
 
@@ -539,7 +539,7 @@ Peter Licari. 2023. <span>“Some Reflections, Hopes, and Plans for
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <section id="oversampling-and-margins-of-error" class="level1">
@@ -547,7 +547,7 @@ Peter Licari. 2023. <span>“Some Reflections, Hopes, and Plans for
 <p>Not too long ago, pollsters and social scientists on X (the decaying husk of Twitter) found themselves discussing <a href="https://www.cnn.com/2023/09/07/politics/cnn-poll-joe-biden-headwinds">a recent CNN poll</a> detailing President Biden’s job performance and people’s attitudes towards participating in the 2024 election if it involved a 2020 Trump v. Biden rematch. Not because there was anything wrong with the poll itself, but because a prominent anti-Trump account questioned whether or not the insights were valid because the poll included an oversample of Republicans and Republican-leaning independents.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/img1.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/moe-subgroup-wrong/images/img1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>As noted by the community post appended to the original missive, oversampling is a pretty common survey stats technique that allows researchers to drill into subpopulations that are otherwise too small in normal survey samples for reliable description. Oversampling involves deliberately sampling individuals from certain subpopulations and then weighting their contribution to the overall results in the topline values reflect their true proportion of the population. If done right, it allows for more accurate estimates at the topline and subgroup levels.</p>
@@ -565,7 +565,7 @@ Peter Licari. 2023. <span>“Some Reflections, Hopes, and Plans for
 <p>I think that this sort of mistake is inadvertent. Doing surveys is hard. None of us are perfect, we can only hope to get better. It’s one thing to be told this by someone on the internet, but I hope to demonstrate it in a way that sticks. So let’s go through a simulation on something objectively way more interesting than the 2024 Presidential election: Pokemon characters!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
@@ -574,7 +574,7 @@ Peter Licari. 2023. <span>“Some Reflections, Hopes, and Plans for
 <section id="scenario" class="level2">
 <h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
 <p>Let’s say that we are surveying some population of people with two sub-groups and we’re asking them about their favorite classic Pokemon starter plus Pikachu—because when you’re big enough to get your own balloon in the Thanksgiving Day parade, you get special privileges. So that brings us to four total: Charmander, Bulbasaur, Squirtle, and Pikachu. For the sake of this example, let’s say subgroup one are the folks who have played Pokemon and reflect 15% of the population. Among players, let’s imagine 40% choose Bulbasaur, 30% choose Charmander, 20% choose Squirtle, and 10% choose Pikachu<sup>4</sup>. Subgroup 2 reflects non-players and constitutes 85% of the population. 40% of these people choose Pikachu, 20% choose Charmander, 25% choose Squirtle, and 15% choose Bulbasaur. Among the full population then, 18.75% choose Bulbasaur, 24.25% choose Squirtle, 35.5% choose Pikachu, and 21.5% choose Charmander.</p>
-<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/poke_preferences.png" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/moe-subgroup-wrong/images/poke_preferences.png" class="img-fluid"></p>
 </section>
 <section id="creating-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="creating-the-data">Creating the Data</h2>
@@ -699,7 +699,7 @@ font-style: italic;">## Calculating weights</span></span>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/moe-subgroup-wrong/images/simulated_moe.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/moe-subgroup-wrong/images/simulated_moe.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>Looking at the first section with the Standard MoE things appear to be okay. Indeed, if we were to just eyeball it one might think that we’re actually getting 95% coverage. But we’re not. It’s actually only 91.4%. The degree to which this “standard” MoE is wrong will depend on how much we have to weight the sample versus an ideal case of perfect random sampling. This is known as the weighting efficiency. It’s possible for this to be closer to 95%. But it’s also possible for it to be further away depending on how much your weights have to work to bring values in-line with your population targets.</p>
@@ -731,32 +731,32 @@ font-style: italic;">## Calculating weights</span></span>
   title = {The {Traditional} {Margin} of {Error} {When} {You} {Have}
     {Oversamples} in {Your} {Survey} Is {Wrong}},
   date = {2023-09-13},
-  url = {www.peterlicari.com/posts/moe-subgroup-wrong},
+  url = {https://www.peterlicari.com/posts/moe-subgroup-wrong},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2023. <span>“The Traditional Margin of Error When You Have
-Oversamples in Your Survey Is Wrong.”</span> September 13, 2023. <a href="https://www.peterlicari.com/posts/moe-subgroup-wrong">www.peterlicari.com/posts/moe-subgroup-wrong</a>.
+Oversamples in Your Survey Is Wrong.”</span> September 13, 2023. <a href="https://www.peterlicari.com/posts/moe-subgroup-wrong">https://www.peterlicari.com/posts/moe-subgroup-wrong</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>statistics</category>
   <category>simulation</category>
   <category>surveys</category>
-  <guid>www.peterlicari.com/posts/moe-subgroup-wrong/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/moe-subgroup-wrong/index.html</guid>
   <pubDate>Wed, 13 Sep 2023 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.peterlicari.com/posts/moe-subgroup-wrong/images/pokemon.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>How to add a Variable Font to a Quarto PDF on Windows</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/quarto-custom-font-windows/index.html</link>
+  <link>https://www.peterlicari.com/posts/quarto-custom-font-windows/index.html</link>
   <description><![CDATA[ 
 
 
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/title_card.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/title_card.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption"><em>The Writing on the Wall</em><br>
 Created by Author &amp; Easy Diffusion</figcaption><p></p>
 </figure>
@@ -788,7 +788,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 <p><strong>Output</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure1.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure1.png" class="img-fluid figure-img" width="400"></p>
 <p></p><figcaption class="figure-caption">Figure 1: With standard font</figcaption><p></p>
 </figure>
 </div>
@@ -817,7 +817,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 <p><strong>Output</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure2.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure2.png" class="img-fluid figure-img" width="400"></p>
 <p></p><figcaption class="figure-caption">Figure 2: With accursed font</figcaption><p></p>
 </figure>
 </div>
@@ -841,7 +841,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 <p>Which is <em>incredibly frustrating</em> because I can go to my Windows fonts<sup>1</sup> I can clearly see the damn font there. All installed. <strong><em>Mockingly.</em></strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure3.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure3.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure 3: Vollkorn and LaTeX mocking me by claiming that the former is not installed.</figcaption><p></p>
 </figure>
 </div>
@@ -850,7 +850,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 <div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure5.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure5.png" class="img-fluid figure-img" width="400"></p>
 <p></p><figcaption class="figure-caption">Figure 4: File path for cursed font (Comic Sans)</figcaption><p></p>
 </figure>
 </div>
@@ -859,7 +859,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure4.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure4.png" class="img-fluid figure-img" width="400"></p>
 <p></p><figcaption class="figure-caption">Figure 5: File path for Vollkorn</figcaption><p></p>
 </figure>
 </div>
@@ -869,7 +869,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 <p>And what <em>about</em> the difference in file roots; what the heck is going on there? As I learned the hard way, this is actually standard behavior since at least Windows 10. When you install a font, you have to specify that you want it to be for <em>all</em> users. Only then will it go to the Windows/Fonts directory—which is where the <code>fontspec</code> LaTeX package looks by default. Otherwise, it’ll get installed within the AppData/Local directory. Hence why the error says the font couldn’t be found. <strong>I</strong> could find it, but it wasn’t where <code>fontspec</code> was looking! However, with Windows 11, the option to install for all users doesn’t initially appear when you right-click on the font to install it. Clicking “Install” will only install it locally.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure6.png" class="img-fluid figure-img" width="200"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure6.png" class="img-fluid figure-img" width="200"></p>
 <p></p><figcaption class="figure-caption">Figure 6: Standard install available at right-click won’t do what you think it should.</figcaption><p></p>
 </figure>
 </div>
@@ -940,7 +940,7 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
 <p>Either way that you do it, you’ll be able to get the fonts loaded as you’d like!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="www.peterlicari.com/posts/quarto-custom-font-windows/images/figure7.png" class="img-fluid figure-img"></p>
+<p><img src="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/figure7.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure 7: Success!</figcaption><p></p>
 </figure>
 </div>
@@ -965,29 +965,29 @@ Created by Author &amp; Easy Diffusion</figcaption><p></p>
   title = {How to Add a {Variable} {Font} to a {Quarto} {PDF} on
     {Windows}},
   date = {2023-08-01},
-  url = {www.peterlicari.com/posts/quarto-custom-font-windows},
+  url = {https://www.peterlicari.com/posts/quarto-custom-font-windows},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2023. <span>“How to Add a Variable Font to a Quarto PDF on
-Windows.”</span> August 1, 2023. <a href="https://www.peterlicari.com/posts/quarto-custom-font-windows">www.peterlicari.com/posts/quarto-custom-font-windows</a>.
+Windows.”</span> August 1, 2023. <a href="https://www.peterlicari.com/posts/quarto-custom-font-windows">https://www.peterlicari.com/posts/quarto-custom-font-windows</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>Quarto</category>
   <category>tutorial</category>
-  <guid>www.peterlicari.com/posts/quarto-custom-font-windows/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/quarto-custom-font-windows/index.html</guid>
   <pubDate>Tue, 01 Aug 2023 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/quarto-custom-font-windows/images/title_card.png" medium="image" type="image/png" height="148" width="144"/>
+  <media:content url="https://www.peterlicari.com/posts/quarto-custom-font-windows/images/title_card.png" medium="image" type="image/png" height="148" width="144"/>
 </item>
 <item>
   <title>What to do when R punches you in the mouth</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/r-punch-in-face-23/index.html</link>
+  <link>https://www.peterlicari.com/posts/r-punch-in-face-23/index.html</link>
   <description><![CDATA[ 
 
 
 
-<p><img src="www.peterlicari.com/posts/r-punch-in-face-23/images/title_card.png" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/r-punch-in-face-23/images/title_card.png" class="img-fluid"></p>
 <section id="tldr" class="level1">
 <h1>TL;DR</h1>
 <p>Attaining mastery in R is not about avoiding hiccups, but about learning what to do when you’re inevitably confronted with them. However, this is hardly covered in most introductory materials for the language; you tend to get this knowledge from the school of hard knocks. In this post, I hope to pull back the curtain a bit in a way that’s helpful to people who may be getting started with R. I write out the four most common categories of headaches I face when programming/doing analytics in R. With each headache, I talk about the things I search for and why. I’ll wrap-up by talking about my problem-solving framework.</p>
@@ -1192,7 +1192,7 @@ Or, at least, I thought I was. This bit of code is short enough that you should 
 <h4 class="anchored" data-anchor-id="stand-on-the-shoulders-of-giants">Stand on the shoulders of giants</h4>
 <p>Oftentimes, for the work performed the vast majority of the time, the maintainers of the packages you are using for your transformation(s) have probably created tutorials or vignettes on how to do at least some of the steps that you’re looking to do. You don’t need to relearn how to pivot tables from wide to long and vice-versa: that documentation already exists in a way to easily grock the concepts! So when I google for things with this type of headache, I tend to keep an eye out for tutorials (on personal blogs and R-Bloggers) and on package vignettes. You may have to string multiple vignettes together to fully traverse the gap between your start and ideal end-state, but these resources can be tremendously useful. My google strategy here is to type in “how to do <code>xyz</code> in R” where “<code>xyz</code>” will refer not to my overall aim but to the specific kind of function/operation that I want to perform to complete the next step. (And, if you know the package you’re using/need to use—add it to the search query).</p>
 <p>A tool that’s becoming increasingly useful for this is ChatGPT, especially GPT4, and other Large Language Models (LLMs). If you ask the model to not only help you take your input data and translate it to the output format you sketched earlier but to also <strong><em>explicitly detail the steps involved</em></strong> it will be able to do that pretty well. Here is an excerpt from an example of me doing this with GPT3 with scraping a table from Wikipedia.</p>
-<p><img src="www.peterlicari.com/posts/r-punch-in-face-23/images/chat_gpt.png" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/r-punch-in-face-23/images/chat_gpt.png" class="img-fluid"></p>
 <p>You can also provide it your code as you currently have it and explain what you’re trying to do and it can help you debug and show you what to do instead to get to your desired endpoint.</p>
 <p>LLMs aren’t perfect, but if you have a sense of where you’re starting, and you know where you’re going, it can provide tremendous savings in your overall coding time. It may require you to troubleshoot some errors but it’ll often be a net benefit to have code that gets you 70-80% of the way there rather than try to code it all from scratch yourself. This may break down if you’re trying to do something particularly novel or niche though. In that case, it may help to return to the Internet and/or break the problem down into more discrete steps.</p>
 <p>In any event: Whether you use an LLM, Google, or you brute-force it yourself—the most helpful solution to this I’ve found is to have a concrete vision of where you want to go, an understanding of where you are, and a roadmap for the discrete steps you will have to take to get there.</p>
@@ -1215,14 +1215,14 @@ Or, at least, I thought I was. This bit of code is short enough that you should 
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1">?case_when</span></code></pre></div>
 </div>
 <p>Which pops up a super handy pane that provides all of the help documentation the developers of the function have written for it.</p>
-<p><img src="www.peterlicari.com/posts/r-punch-in-face-23/images/case_when.png" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/r-punch-in-face-23/images/case_when.png" class="img-fluid"></p>
 <p>And, right there, we can see that the argument that I’m looking for is called <code>.default</code>!</p>
 <p>Another example: I was trying to remove duplicated values from a dataset using <code>{dplyr}</code> ’s <code>distinct</code>. But when I got the data back, all I had was a single column. It wasn’t until I looked at the help documentation that I was reminded that the default behavior is for a parameter called <code>.keep_all</code> to be set to <code>FALSE</code>!</p>
 </section>
 <section id="you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called." class="level3">
 <h3 class="anchored" data-anchor-id="you-know-that-this-package-has-a-function-that-is-useful-but-you-cant-remember-what-its-called.">3. You know that this package has a function that is useful but you can’t remember what it’s called.</h3>
 <p>This is where RStudio really comes in handy. If you type in the package name plus two colons (<code>::</code>) you can see all of the exported objects from the package. I frequently space-out on the name of the function is that drops <code>NA</code> values from dataframes. I know that it’s in the <code>{tidyr}</code> package though. So I’ll write out <code>tidyr::</code>…</p>
-<p><img src="www.peterlicari.com/posts/r-punch-in-face-23/images/drop_help.png" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/r-punch-in-face-23/images/drop_help.png" class="img-fluid"></p>
 <p>That’s it! <code>drop_na</code>!</p>
 <p>This helps me a lot when I have a vague sense of what the function I’m looking for is named and/or what it generally does. Worst case, I’ll just Google something like “how to drop NA values in R.” That is, I’ll do a search emphasizing the kind of action that I want to take.</p>
 </section>
@@ -1298,23 +1298,23 @@ Or, at least, I thought I was. This bit of code is short enough that you should 
   author = {Peter Licari},
   title = {What to Do When {R} Punches You in the Mouth},
   date = {2023-04-04},
-  url = {www.peterlicari.com/posts/r-punch-in-face-23},
+  url = {https://www.peterlicari.com/posts/r-punch-in-face-23},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2023. <span>“What to Do When R Punches You in the
-Mouth.”</span> April 4, 2023. <a href="https://www.peterlicari.com/posts/r-punch-in-face-23">www.peterlicari.com/posts/r-punch-in-face-23</a>.
+Mouth.”</span> April 4, 2023. <a href="https://www.peterlicari.com/posts/r-punch-in-face-23">https://www.peterlicari.com/posts/r-punch-in-face-23</a>.
 </div></div></section></div> ]]></description>
   <category>R</category>
   <category>tutorial</category>
-  <guid>www.peterlicari.com/posts/r-punch-in-face-23/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/r-punch-in-face-23/index.html</guid>
   <pubDate>Tue, 04 Apr 2023 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/r-punch-in-face-23/images/title_card.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://www.peterlicari.com/posts/r-punch-in-face-23/images/title_card.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Simulating My Daughter’s First Board Game in Python</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/rosie-game-sim-23/index.html</link>
+  <link>https://www.peterlicari.com/posts/rosie-game-sim-23/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1507,7 +1507,7 @@ Mouth.”</span> April 4, 2023. <a href="https://www.peterlicari.com/posts/r-pun
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2a72bc2b7d0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="www.peterlicari.com/posts/rosie-game-sim-23/index_files/figure-html/cell-12-output-2.png" width="470" height="470"></p>
+<p><img src="https://www.peterlicari.com/posts/rosie-game-sim-23/index_files/figure-html/cell-12-output-2.png" width="470" height="470"></p>
 </div>
 </div>
 <p>Seems like the players are winning it about 65% of the time! Well</p>
@@ -1581,23 +1581,23 @@ Mouth.”</span> April 4, 2023. <a href="https://www.peterlicari.com/posts/r-pun
   title = {Simulating {My} {Daughter’s} {First} {Board} {Game} in
     {Python}},
   date = {2023-02-16},
-  url = {www.peterlicari.com/posts/rosie-game-sim-23},
+  url = {https://www.peterlicari.com/posts/rosie-game-sim-23},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2023" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2023. <span>“Simulating My Daughter’s First Board Game in
-Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/rosie-game-sim-23">www.peterlicari.com/posts/rosie-game-sim-23</a>.
+Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/rosie-game-sim-23">https://www.peterlicari.com/posts/rosie-game-sim-23</a>.
 </div></div></section></div> ]]></description>
   <category>python</category>
   <category>simulation</category>
-  <guid>www.peterlicari.com/posts/rosie-game-sim-23/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/rosie-game-sim-23/index.html</guid>
   <pubDate>Thu, 16 Feb 2023 05:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/rosie-game-sim-23/images/game_box.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.peterlicari.com/posts/rosie-game-sim-23/images/game_box.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Book Review: Theory and Reality</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/theory-reality-book-review/index.html</link>
+  <link>https://www.peterlicari.com/posts/theory-reality-book-review/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1638,22 +1638,22 @@ Python.”</span> February 16, 2023. <a href="https://www.peterlicari.com/posts/
   author = {Peter Licari},
   title = {Book {Review:} {Theory} and {Reality}},
   date = {2022-11-07},
-  url = {www.peterlicari.com/posts/theory-reality-book-review},
+  url = {https://www.peterlicari.com/posts/theory-reality-book-review},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2022" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2022. <span>“Book Review: Theory and Reality.”</span>
-November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book-review">www.peterlicari.com/posts/theory-reality-book-review</a>.
+November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book-review">https://www.peterlicari.com/posts/theory-reality-book-review</a>.
 </div></div></section></div> ]]></description>
   <category>review</category>
-  <guid>www.peterlicari.com/posts/theory-reality-book-review/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/theory-reality-book-review/index.html</guid>
   <pubDate>Mon, 07 Nov 2022 05:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/theory-reality-book-review/images/book_cover.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://www.peterlicari.com/posts/theory-reality-book-review/images/book_cover.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Thoughts on the 2020 Election</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/thoughts-prior-2020-election/index.html</link>
+  <link>https://www.peterlicari.com/posts/thoughts-prior-2020-election/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1672,7 +1672,7 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
 <p>Through a combination of COVID-19 and general anxiety/enthusiasm catalyzed by the last four years of President Trump’s tenure, we saw mind-bogglingly high levels of early/mail-in voting. At least <strong>100 <em>million</em></strong> people voted early this year, according to estimates from <a href="https://twitter.com/ElectProject/status/1323663599697539074?s=20">Michael McDonald’s US Elections Project</a>. That translates to 73% of the nation’s 2016 vote total. Some states surpassed their 2016 totals.</p>
 <p>However, not all states have laws that allow them to tabulate early ballots as they come in. This map from Pew Research shows which states tabulate the votes as they come in.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/AbsenteeBallots.png" class="img-fluid" style="width:50.0%"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/AbsenteeBallots.png" class="img-fluid" style="width:50.0%"></p>
 </center>
 <p>The state throwing the biggest monkey-wrench into the works is undoubtedly Pennsylvania. For reasons that I’ll get to in a second, Pennsylvania is critical to President Trump’s pathway to victory. Without it, he has very little chance of making it into office. Complicating things more is that Pennsylvania counts day-of votes <em>first</em> before the early vote. It could take days before the early vote totals are cleared. And given that Joe Biden appears to be leading quite dramatically among early voters, <a href="https://twitter.com/Politics_Polls/status/1320698523030032384?s=20">according to the polls</a>, there is a solid chance that President Trump will appear to be leading in the state by the end of the night. If Joe Biden is winning PA by sunrise tomorrow—barring any irregularities in the day-of counting or insanely long lines—then he’s most likely won the election. (Even with the curse of daylight savings pushing daybreak an hour earlier.)</p>
 </section>
@@ -1680,7 +1680,7 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
 <h1>How Do I See the Election Turning Out?</h1>
 <p>Here is what I see as the most likely outcome when everything is said and done. (From here on out, I’ll largely be using maps I’ve generated <em>via</em> <a href="https://www.270towin.com/">270 to Win</a>.)</p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/likelyoutcome.png" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/likelyoutcome.png" class="img-fluid"></p>
 </center>
 <p>I should caution that by “most likely”, I mean that I think this has somewhere between a 20-30% chance of it happening. There’s a better chance than not that I’m gonna be wrong—so don’t set your clock to it.</p>
 <p>(Another daylight savings joke. I’m still not over it. Now that I’m a father to a newborn, I can’t even begin to fathom how <em>my</em> parents managed this BS.)</p>
@@ -1707,7 +1707,7 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
 <h2 class="anchored" data-anchor-id="biden-has-a-strong-wall">Biden has a strong wall</h2>
 <p>The reason I’m as bullish as I am for Biden (besides the appeal of the alliteration) is that the current toss-ups can literally <strong>all</strong> break for President Trump and Biden would <em>still</em> win—provided there aren’t any major surprises in the polling.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/trumpwinsall.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/trumpwinsall.PNG" class="img-fluid"></p>
 </center>
 <p>Not all of these states are equal with regards to the President’s chances. No state’s return is independent of the others—if Biden won Texas, that means we’re looking at a <em>bona fide</em> blue malestrom, let alone a wave—but some states give more information about how other states are going to break than others. <a href="https://projects.fivethirtyeight.com/trump-biden-election-map/">FiveThirtyEight has a tool</a> that uses the correlations among polling errors to show how a victory in some states ripples out to signal what’s happening in others. A Trump win in Georgia doesn’t shift things much, nor does one in Texas, because frankly it’s a shock that they’re even in play. A win in Florida, however, drastically lowers Biden’s chances and suggests a map that looks like the one above. However, even in that case, the President is still <strong><em>not</em></strong> favored to win if only for the fact that Biden is still leading in the Electoral college.</p>
 <section id="the-upshot-however-is-that-if-trump-loses-any-of-those-states-his-only-path-to-victory-lies-in-there-being-large-unprecedented-degrees-of-polling-error." class="level4">
@@ -1719,11 +1719,11 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
 <h2 class="anchored" data-anchor-id="bidens-best-cases">Biden’s best case(s)</h2>
 <p>The best case scenario for Biden is that he picks-up all of the toss-ups. But I should really emphasize that <strong>I don’t think this is a particularly likely outcome.</strong></p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/bidenlandslide.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/bidenlandslide.PNG" class="img-fluid"></p>
 </center>
 <p>A more realistic “great day” scenario for Biden is that he wins picks up Florida, North Carolina, Arizona, and Georgia while Trump gets Texas, Ohio, and Iowa.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/bidenmorelikely.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/bidenmorelikely.PNG" class="img-fluid"></p>
 </center>
 <p>Judging from the correlations in polling errors, Florida will be a good (but not perfect) indicator of how Georgia and North Carolina go. (Georgia could be called first but that doesn’t necessarily mean that Florida will go with it; the leverage one state has over another is asymmetric. For example: North Carolina going red/blue means less for Texas’ eventual outcome than Texas going red/blue means for North Carolina.) Ohio will probably provide a good (but, again, <em>not perfect</em>) indication for how the other three states will break.</p>
 </section>
@@ -1734,7 +1734,7 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
 <h2 class="anchored" data-anchor-id="without-pennsylvania">Without Pennsylvania</h2>
 <p>Just because I expect the President to lose doesn’t mean I think his loss is <em>inevitable.</em> But it’s tough. Really tough. And it’s made all the tougher because he’s currently not favored in Pennsylvania. And by “not favored in Pennsylvania” I mean that <a href="https://projects.economist.com/us-2020-forecast/president/pennsylvania"><em>The Economist</em> is giving Biden a 95% chance of carrying the state</a>. Trump will have to outperform the polls by a strong margin to carry the day. The most likely states, given the margin of error for the most recent state level polls, is Nevada, New Hampshire, Maine-2 and Nebraska-2. That will give Trump 270 votes in the Electoral College.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/trumpnopa.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/trumpnopa.PNG" class="img-fluid"></p>
 </center>
 <p>But I want to stress how unlikely that is. Many of these wins are not all that correlated with each other—meaning that a win in any of them early on doesn’t necessarily portend a Biden defeat. (Other state combinations are also possible, but we’d be talking about even <em>less</em> likely polling errors.)</p>
 </section>
@@ -1742,7 +1742,7 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
 <h2 class="anchored" data-anchor-id="with-pennsylvania">With Pennsylvania</h2>
 <p>A trump victory in Pennsylvania <em>dramatically</em> improves the President’s chances. If the President wins there, it’s likely that he’s winning in a lot of other places that he’s currently not favored. However,it should be noted that <em>even then</em> he’d still need to pick up every one of the toss-up states. That can be helped by the fact that winning Pennsylvania would suggest a large degree of errors in the polls. But that degree of error is, I have to emphasize, really improbable. This outcome isn’t necessarily <em>less</em> likely than the one above, but pulling-off Pennsylvania would be an incredible upset. And, honestly, I would probably need to seriously reevaluate my life choices should it happen: especially my chosen profession.</p>
 <center>
-<p><img src="www.peterlicari.com/posts/thoughts-prior-2020-election/images/trumpwithpa.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/trumpwithpa.PNG" class="img-fluid"></p>
 </center>
 <p>The other point to consider when weighing out the importance of Pennsylvania is just how <strong>long</strong> that would make the contest. Basically, if Trump wins every toss-up state, then we’re not going to know the election’s outcome until about the end of the week <em>at earliest.</em> Because, as mentioned above, <em>Pennsylvania counts their early votes last and haven’t started counting them at all.</em> If Trump is ahead by the end of the night, we’ll just have to wait and see if the Biden advantage banked-up from early voting is enough. (Although, as a Floridian, I must confess that it’ll be nice to have all of the attention away from us for once.)</p>
 <section id="in-short-in-order-for-the-president-to-win-hes-going-to-have-to-pull-off-one-helluva-upset.-that-doesnt-make-it-impossible-upsets-happen-all-the-time-but-by-definition-it-makes-it-unlikely." class="level4">
@@ -1777,34 +1777,34 @@ November 7, 2022. <a href="https://www.peterlicari.com/posts/theory-reality-book
   author = {Peter Licari},
   title = {Thoughts on the 2020 {Election}},
   date = {2020-11-05},
-  url = {www.peterlicari.com/posts/thoughts-prior-2020-election},
+  url = {https://www.peterlicari.com/posts/thoughts-prior-2020-election},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2020. <span>“Thoughts on the 2020 Election.”</span>
-November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020-election">www.peterlicari.com/posts/thoughts-prior-2020-election</a>.
+November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020-election">https://www.peterlicari.com/posts/thoughts-prior-2020-election</a>.
 </div></div></section></div> ]]></description>
   <category>elections</category>
   <category>reflection</category>
-  <guid>www.peterlicari.com/posts/thoughts-prior-2020-election/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/thoughts-prior-2020-election/index.html</guid>
   <pubDate>Thu, 05 Nov 2020 05:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/thoughts-prior-2020-election/images/likelyoutcome.png" medium="image" type="image/png" height="94" width="144"/>
+  <media:content url="https://www.peterlicari.com/posts/thoughts-prior-2020-election/images/likelyoutcome.png" medium="image" type="image/png" height="94" width="144"/>
 </item>
 <item>
   <title>How to Do Unequal Randomization in Qualtrics Surveys</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/Qualtrics-random-groups/index.html</link>
+  <link>https://www.peterlicari.com/posts/Qualtrics-random-groups/index.html</link>
   <description><![CDATA[ 
 
 
 
 <p>Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups. This is something that Qualtrics can do really easily with its in-built <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/">randomizer</a> function. If you use this, and keep <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/randomizer/#EvenlyPresentElements">evenly present elements</a> on, your respondents will be sorted in roughly evenly. So if you have 16 respondents and 4 groups, on average you’ll get 4 people per group.</p>
 <center>
-<img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/1.png" class="img-fluid">
+<img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/1.png" class="img-fluid">
 </center>
 <p>But we had a different situation. We had four groups but we <strong>didn’t</strong> want it split evenly. We wanted it so that group 1 was half of the survey, and groups 2, 3, and 4 took up thirds of the remaining half.</p>
 <center>
-<img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/2.png" class="img-fluid">
+<img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/2.png" class="img-fluid">
 </center>
 <p>Unfortunately, Qualtrics doesn’t seem to have an option that let’s you select unequal probabilities natively. If you deselect “evenly present elements” it’ll just randomize without any real concern towards whether your groups end up looking roughly equal. But that’s not what we needed. So I wanted to write about our solution to this so, hopefully, others in a similar situation might be able to find a work-around that works for them, too!</p>
 <p>Our solution used <strong>embedded data</strong>, <strong>then branches</strong>, and the standard <strong>randomizer.</strong> I’ll also talk about how you might be able to generalize this to any number of conditions (although some are more work than others).</p>
@@ -1812,11 +1812,11 @@ November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020
 <h2 class="anchored" data-anchor-id="starting-with-embedded-data">Starting with Embedded Data</h2>
 <p>As you probably know: After you’re done with your Qualtrics survey, you can export it as a csv or as a xlsx file. In addition to the answers to your questions, it’ll also include some project and respondent metadata. But you can also program the survey for it to include you’re own custom metadata to be embedded in the project. You can do this by clicking on the “add new element here” button and adding embedded data to the project.</p>
 <center>
-<img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/3.PNG" class="img-fluid">
+<img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/3.PNG" class="img-fluid">
 </center>
 <p>Once you’ve done that, you can customize your field to have whatever name you want. You can also set the value for this field. Here I set a variable named “test” equal to the value “1”. When I export the results for this survey, there will be a new column called “test” where the value for every respondent will be 1.</p>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/4.PNG" class="img-fluid"> Importantly, though, you can also set multiple conditions for the embedded data field! You do this by clicking “add below” and adding more embedded data sections.</p>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/5.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/4.PNG" class="img-fluid"> Importantly, though, you can also set multiple conditions for the embedded data field! You do this by clicking “add below” and adding more embedded data sections.</p>
+<p><img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/5.PNG" class="img-fluid"></p>
 <p><strong>Pop quiz! What would you get in the “test” column if you ran this survey as is?</strong></p>
 <p>You’d get <strong>4</strong> because, right now, you’re telling Qualtrics:</p>
 <ul>
@@ -1830,11 +1830,11 @@ November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020
 <section id="omg-so-random" class="level2">
 <h2 class="anchored" data-anchor-id="omg-so-random">“OMG so random…”</h2>
 <p>As it stands now, you’re going to end up with a field called test where the value is set to 3 for all respondents. Instead of that, we can use the randomizer to make it so that 1/4 of the sample has a value of 1 for test, 1/4 has a value of 2, 1/4 has a value of 3, and 1/4 has a value of 4.</p>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/6.PNG" class="img-fluid"> You may be thinking “Cool. But this doesn’t do anything for me. I’m right back at equal probabilities for my experimental conditions.” And you’d be right if we were stopping here.</p>
+<p><img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/6.PNG" class="img-fluid"> You may be thinking “Cool. But this doesn’t do anything for me. I’m right back at equal probabilities for my experimental conditions.” And you’d be right if we were stopping here.</p>
 <p>But we’re not stopping here.</p>
 <section id="were-going-to-nest-randomization-conditions." class="level4">
 <h4 class="anchored" data-anchor-id="were-going-to-nest-randomization-conditions.">We’re going to <em>nest</em> randomization conditions.</h4>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/7.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/7.PNG" class="img-fluid"></p>
 <p>This programming is pretty similar to what we ended up using. Let’s follow the logic of the flow:</p>
 <ol type="1">
 <li>Randomly pick either the test 1 condition with 50 % probability.</li>
@@ -1848,8 +1848,8 @@ November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020
 <section id="branch-it-out" class="level2">
 <h2 class="anchored" data-anchor-id="branch-it-out">Branch it out</h2>
 <p>Now we can do some branches so that our participants only see the blocks that they’re intended to see. Then branches work off of <a href="https://en.wikipedia.org/wiki/Boolean_algebra">boolean logic</a>. If a condition is <code>TRUE</code> then it’ll run a particular course of action. If it’s <code>FALSE</code> then it won’t run that action. In Qualtrics, you can set the branching logic so that it reflects the metadata that was assigned to participants through the randomizer.</p>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/8.PNG" class="img-fluid"> After that, you can add the block that you wanted people with test condition 1 (and only test condition 1) to see. And if you repeat it out, then you can complete the whole survey flow. Here’s basically what our survey looked like once the logic is completed all the way to the end.</p>
-<p><img src="www.peterlicari.com/posts/Qualtrics-random-groups/images/9.PNG" class="img-fluid"></p>
+<p><img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/8.PNG" class="img-fluid"> After that, you can add the block that you wanted people with test condition 1 (and only test condition 1) to see. And if you repeat it out, then you can complete the whole survey flow. Here’s basically what our survey looked like once the logic is completed all the way to the end.</p>
+<p><img src="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/9.PNG" class="img-fluid"></p>
 <p>One of the things I really like about this approach (rather than, say, using a <a href="https://www.qualtrics.com/support/survey-platform/common-use-cases-rc/assigning-randomized-ids-to-respondents/">random number generator</a> and a bunch of then branches) is that this makes your later analysis pretty easy. If you’re making pivot tables, you can group off of that variable’s value. If you’re doing ANOVA in SPSS, Stata, or R, you’ve got a single variable already to go without having to do any post-hoc coding. It also makes it easier to set dummy variables if you do a more advanced regression analysis. I’m personally a big fan of doing small-to-moderate amounts of work up-front to save myself larger amounts of work down the road. I’m a big believer that work borrowed from your future self compounds with interest.</p>
 
 
@@ -1860,24 +1860,24 @@ November 5, 2020. <a href="https://www.peterlicari.com/posts/thoughts-prior-2020
   title = {How to {Do} {Unequal} {Randomization} in {Qualtrics}
     {Surveys}},
   date = {2020-08-05},
-  url = {www.peterlicari.com/posts/Qualtrics-random-groups},
+  url = {https://www.peterlicari.com/posts/Qualtrics-random-groups},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2020. <span>“How to Do Unequal Randomization in Qualtrics
-Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">www.peterlicari.com/posts/Qualtrics-random-groups</a>.
+Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qualtrics-random-groups">https://www.peterlicari.com/posts/Qualtrics-random-groups</a>.
 </div></div></section></div> ]]></description>
   <category>surveys</category>
   <category>qualtrics</category>
   <category>research design</category>
-  <guid>www.peterlicari.com/posts/Qualtrics-random-groups/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/Qualtrics-random-groups/index.html</guid>
   <pubDate>Wed, 05 Aug 2020 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/Qualtrics-random-groups/images/2.png" medium="image" type="image/png" height="144" width="144"/>
+  <media:content url="https://www.peterlicari.com/posts/Qualtrics-random-groups/images/2.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 <item>
   <title>Surveying is a Beautifully Foolish Endeavor</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/surveying-beautiful-endeavor/index.html</link>
+  <link>https://www.peterlicari.com/posts/surveying-beautiful-endeavor/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1900,23 +1900,23 @@ Surveys.”</span> August 5, 2020. <a href="https://www.peterlicari.com/posts/Qu
   author = {Peter Licari},
   title = {Surveying Is a {Beautifully} {Foolish} {Endeavor}},
   date = {2020-08-03},
-  url = {www.peterlicari.com/posts/surveying-beautiful-endeavor},
+  url = {https://www.peterlicari.com/posts/surveying-beautiful-endeavor},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2020. <span>“Surveying Is a Beautifully Foolish
-Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/surveying-beautiful-endeavor">www.peterlicari.com/posts/surveying-beautiful-endeavor</a>.
+Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/surveying-beautiful-endeavor">https://www.peterlicari.com/posts/surveying-beautiful-endeavor</a>.
 </div></div></section></div> ]]></description>
   <category>review</category>
   <category>surveys</category>
   <category>fiction</category>
-  <guid>www.peterlicari.com/posts/surveying-beautiful-endeavor/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/surveying-beautiful-endeavor/index.html</guid>
   <pubDate>Mon, 03 Aug 2020 04:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Capturing a PowerPoint/Google Slides Lecture with Open Source Software</title>
   <dc:creator>Peter Licari</dc:creator>
-  <link>www.peterlicari.com/posts/covid-video-lecture-tutorial/index.html</link>
+  <link>https://www.peterlicari.com/posts/covid-video-lecture-tutorial/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1950,36 +1950,36 @@ Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/s
 <h3 class="anchored" data-anchor-id="how-to-install-it">How to Install it</h3>
 <p>First, go to the <a href="https://obsproject.com/">OBS Project</a> website. Right there on the front of the screen, you should see three links that lead to downloads based off of your computer’s operating software. (You are going to need about 250 MB of free space in order to install it). Click on whichever link matches your system. Once you do that, it should begin downloading your software automatically. From there, install it as you would anything else. (Personally, I recommend just keeping everything at the default installation settings).</p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/1.gif" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/1.gif" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p><br></p>
 <p>##<a name="anchor2"></a>Setting Up OBS</p>
 <p>Once you’ve installed OBS Studio, go ahead and open it like you would a normal program. (If you kept the box checked that read “Open after installation” while you were installing it, the program should do that for you automatically). You should see a screen that looks something like this:</p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/2.PNG" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/2.PNG" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p><br></p>
 <p><a name="anchor3"></a>First thing you’re going to want to do is decide how and where you’re going to export your screen capture. For Windows 10 (my operating system), OBS defaults to using an .mkv recording format and plopping the output into your “videos” folder. That file location may or may not work for you—I’m going to tell you how to change it if doesn’t—but you’re definitely going to need to change the recording format to mp4 (which is more universally accepted on video sharing platforms than mkv).</p>
 <p>Look down in the lower right-hand corner and click the <code>Settings</code> button. A new screen should pop up. Look at the left-hand pane and click <code>Output</code>. Go down to the drop-down menu for <code>Recording Format</code> and change it from <code>mkv</code> to <code>mp4</code>. If you want to change where the video will end up on your computer, click on the <code>Browse</code> button that’s in-line with <code>Recording Path</code>. Then just navigate to the file location that you want to export the file to. I’m going to put it where I put the other media I’m using for this blogpost. You can put it wherever you want. (Or, if you’re cool with it exporting to your default videos folder, you don’t have to mess with it at all). <strong>Make sure you hit the <code>Apply</code> button before either clicking <code>OK</code> or exiting the screen.</strong> Otherwise, your settings won’t have saved.<sup>1</sup></p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/3.gif" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/3.gif" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p><br></p>
 <p><a name="anchor4"></a>Now let’s go ahead and get it capturing a PowerPoint presentation. Open up PowerPoint or your presentation platform of choice. I’m going to be using a <a href="www.libreoffice.org">LibreOffice</a> version of my latest lecture from the Political Behavior class I’m teaching right now. It was originally made in Google Slides, so apologies if it looks a little wonky.</p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/4.PNG" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/4.PNG" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p>Now that your presentation is open, go back to OBS. Go down to the lower left-hand panel named <code>Sources</code>. Click on the <code>+</code> icon. Start at the top and scroll down to where it says <code>Display Capture</code>. A new window will pop open titled something like “Create/Select Source.” Click <code>OK</code>. The screen should start showing a live view of your computer display. If you use multiple screens, you can go down to <code>Display</code> to set which one you’d like to record. If you have one screen (or, equivalently, if you set your display to be the same screen that OBS is sitting in), you’ll get a pretty trippy look into infinite recursion.<sup>2</sup> <em>Don’t worry. The infinite loop will not be visible during your presentation.</em></p>
 <p>Click OK to finish setting up your visual source. (You can click the eye icon in the sources panel to kill the visual feed if you don’t want to look at the recursion while you set everything else up. I’ll do that so you know how and so it won’t be a distraction.) OBS will capture anything that you have on this display. So if you want to capture a Google Slides (or Beamer presentation), simply put your browser window (pdf viewer) on that screen and OBS will capture that. This process allows you to use whatever presentation software you want. If you’re teaching programming or some kind of quantitative methods class, you can even have it display R/Stata/SPSS!<sup>3</sup></p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/5.gif" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/5.gif" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p><br></p>
 <p><a name="anchor5"></a>Next, we’ll set up your voice-over (that way your students aren’t just watching slides silently slipping by). You have a few options here. Most laptops (and some PCs) have built in microphones. While these aren’t the highest quality, they should do in a pinch. If you have a headset that you use to make Skype calls and the like, that can work as well. Thanks to my YouTubing, I happen to have a <a href="https://www.amazon.com/Blue-Snowball-Condenser-Microphone-Cardioid/dp/B014PYGTUQ/ref=pd_sbs_267_img_0/141-4904210-4469436?_encoding=UTF8&amp;pd_rd_i=B014PYGTUQ&amp;pd_rd_r=5869df98-67e3-442d-a8da-1f5b8c3dc437&amp;pd_rd_w=D89NE&amp;pd_rd_wg=KJb7d&amp;pf_rd_p=5cfcfe89-300f-47d2-b1ad-a4e27203a02a&amp;pf_rd_r=R2QY6WQTZKTPYSFCC1DA&amp;psc=1&amp;refRID=R2QY6WQTZKTPYSFCC1DA">Blue Yeti Snowball</a> on hand. (The Snowball is a solid entry-level podcast/vlogging microphone that’s really reasonably priced). In any event, you can go as basic or as fancy as you like. As long as you plug it in and it’s recognized by your computer, you can use it to record your audio.</p>
 <p>Once you’ve plugged in your microphone (or headset) of choice, go back down to the <code>Sources</code> panel and click on the <code>+</code> again. This time, stay at the top and click the button that says <code>Audio Input Capture</code>. A new panel will pop open that will say something like “Create/Select Source.” Click <code>OK</code>. A new screen will pop up which will ask you which <code>Device</code> you want to use. If you are using a device (like a headset or dedicated microphone) that isn’t your computer’s default audio input channel, click the drop-down menu and select it by name.</p>
 <p>Once you do that, click <code>OK</code>. You’ll now see a new item in the <code>Audio Mixer</code> pannel in the bottom-center of the screen. From here, you can mix the levels of your input channel and your desktop audio by moving the sliders. (If they’re further to the right, the audio from that source will be louder; further to the left and they’ll be softer.) My personal preference is to totally silence the audio coming from the Desktop (I don’t want the video to get random bings from Outlook and distract the viewers).</p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/6.gif" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/6.gif" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p><br></p>
 <p><a name="anchor6"></a>Now that you’ve got everything set up, you’re ready to record. From here you’ve got a couple of options. If you’re working on just one screen, you’re going to have to minimize OBS during recording so that you avoid the infinite recursion. <em>That’s totally fine. OBS will continue recording after you minimize the program so long as you don’t exit out of it entirely.</em> But you will have the infinite loop for however long it takes for you to click <code>Start Recording</code> and minimize in the beginning <strong>and</strong> to restore the window and click <code>Stop Recording</code> at the end. If you think your students won’t mind—although, I’ll be candid and tell you that they probably will—you could just leave it in. If you have a video editor (like iMovie), you could just chop those bits off and re-export it. Or, my preferred option, you can set it up so that you can minimize the program, press a specific button on your keyboard, and start recording without anyone having to see all the looping.</p>
@@ -1988,11 +1988,11 @@ Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/s
 <p>##<a name="anchor7"></a>Recording your Presentation</p>
 <p>Now that you’ve got all of your settings ready to go, you’re ready to start recording your presentation! If you turned off the infinite loop, click the eye logo again to turn the visual feed back on. Then <em>minimize</em> (not <strong>exit</strong>) out of OBS Studio. Start up your presentation. Then, when you’re ready, press the button on your keyboard that starts your recording. (If you decided not to use the hotkeys, click <code>Start Recording</code> before you minimize out of OBS). Talk clearly into your microphone and make your way through the slides.</p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/8.gif" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/8.gif" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p>Once you’ve finished, press the button on your keyboard that stops your recording. Reopen OBS. <strong>DO NOT IMMEDIATELY CLOSE THE PROGRAM.</strong> OBS Studio takes a while to encode your video into an mp4 format. If you close the program while it’s still in progress, you’ll just have a corrupted mess that can’t be opened let alone watched. Personally, I like to have my file viewer open to the directory that I decided to export my video to. It’ll update when the file has finished exporting.</p>
 <p align="center">
-</p><p><img src="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/9.gif" style="width:75.0%;height:75.0%"></p>
+</p><p><img src="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/9.gif" style="width:75.0%;height:75.0%"></p>
 <p></p>
 <p>Once you’ve finished the video, you have something that you can upload to your preferred elearning platform (Blackboard or Canvas) or to YouTube. I uploaded a short demo to my personal YouTube (rather than to the <a href="https://www.youtube.com/c/professorpolitics">Professor Politics channel</a>) where I went through the first couple minutes of the lecture so you guys can see a “final” product.</p>
 <p align="center">
@@ -2033,18 +2033,18 @@ Endeavor.”</span> August 3, 2020. <a href="https://www.peterlicari.com/posts/s
   title = {Capturing a {PowerPoint/Google} {Slides} {Lecture} with
     {Open} {Source} {Software}},
   date = {2020-03-10},
-  url = {www.peterlicari.com/posts/covid-video-lecture-tutorial},
+  url = {https://www.peterlicari.com/posts/covid-video-lecture-tutorial},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2020" class="csl-entry quarto-appendix-citeas">
 Peter Licari. 2020. <span>“Capturing a PowerPoint/Google Slides Lecture
-with Open Source Software.”</span> March 10, 2020. <a href="https://www.peterlicari.com/posts/covid-video-lecture-tutorial">www.peterlicari.com/posts/covid-video-lecture-tutorial</a>.
+with Open Source Software.”</span> March 10, 2020. <a href="https://www.peterlicari.com/posts/covid-video-lecture-tutorial">https://www.peterlicari.com/posts/covid-video-lecture-tutorial</a>.
 </div></div></section></div> ]]></description>
   <category>tutorial</category>
   <category>teaching</category>
-  <guid>www.peterlicari.com/posts/covid-video-lecture-tutorial/index.html</guid>
+  <guid>https://www.peterlicari.com/posts/covid-video-lecture-tutorial/index.html</guid>
   <pubDate>Tue, 10 Mar 2020 04:00:00 GMT</pubDate>
-  <media:content url="www.peterlicari.com/posts/covid-video-lecture-tutorial/images/1.gif" medium="image" type="image/gif"/>
+  <media:content url="https://www.peterlicari.com/posts/covid-video-lecture-tutorial/images/1.gif" medium="image" type="image/gif"/>
 </item>
 </channel>
 </rss>

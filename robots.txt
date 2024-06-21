@@ -1,1 +1,1 @@
-Sitemap: www.peterlicari.com/sitemap.xml
+Sitemap: https://www.peterlicari.com/sitemap.xml
