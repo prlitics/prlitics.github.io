@@ -10,7 +10,2516 @@
 <atom:link href="https://www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.5.46</generator>
-<lastBuildDate>Thu, 20 Jun 2024 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 02 Aug 2024 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>I Simulated 60,000 Games of Chutes and Ladders to See How Long the Average Game Takes.</title>
+  <dc:creator>Peter Licari</dc:creator>
+  <link>https://www.peterlicari.com/posts/snakes-ladders-2024/</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/snakes-ladders-2024/images/cover.png" class="preview-image img-fluid figure-img"></p>
+<figcaption>“CHUT3S &amp; LADD3RS” by Peter Licari. Original base image by <a href="https://commons.wikimedia.org/wiki/File:Snakes_and_Ladders_%2814125947172%29.jpg">Jacqui Brown.</a></figcaption>
+</figure>
+</div>
+<p>The other day, at my daughter’s behest, we sat down and played a game that I hadn’t played since I was close to her age: <em>Chutes and Ladders</em><sup>1</sup> I’ll be honest, I was never much of a fan. It wasn’t the style of game (I don’t—and didn’t—mind “race-to-the-finish” games) or the fact that it was entirely random (I love me a good rogueli[k|t]e)—it was the fact that the games always felt like they took forever to finish. Well that and I, inexplicably, as best as I can recall, <strong>have never won a single game of <em>Chutes and Ladders</em>.</strong><sup>2</sup>.</p>
+<p>The unlucky streak continued with my daughter…3 times. But I noticed that the games really weren’t taking as long as I had remembered. Which led me to the following two thoughts:</p>
+<ol type="1">
+<li>How long does it actually take to play a game of <em>Chutes and Ladders</em>, on average?</li>
+<li>I could probably write-up some Python to figure it out.</li>
+</ol>
+<p><em>Et voila.</em> Here we are.</p>
+<section id="background-of-chutes-and-ladders-how-to-play" class="level2">
+<h2 class="anchored" data-anchor-id="background-of-chutes-and-ladders-how-to-play">Background of <em>Chutes and Ladders</em>: How to play</h2>
+<p>For those who don’t know <em>Chutes and Ladders</em>, who haven’t played it in a while, or who join me in trying to suppress harsh memories of irrational-yet-perpetual losing streaks: <em>Chutes and Ladders</em> is a rather simple game with a storied history. You progress along a winding path usually 100 spaces long<sup>3</sup> and either roll a six-sided dice or flick a six-sectioned spinner to advance your piece. Along the path are special spaces featuring, appropriately enough, “ladders”—advancing the player further along the board—and “chutes”—sending the player backwards or down to earlier on the board. Your aim is to navigate this minefield of boons and busts to land on the 100th square. If you’re playing with multiple people,<sup>4</sup> whoever gets there first wins.</p>
+<p>Some people may remember “Snakes” instead of “Chutes”, in the title. This isn’t one of the cases of the Mandela effect like the <a href="https://en.wikipedia.org/wiki/Berenstain_Bears#:~:text=Many%20people%20incorrectly%20remember%20the,instance%20of%20the%20Mandela%20effect.">Berenstain Bears</a> or the <a href="https://www.snopes.com/fact-check/fruit-of-the-loom-cornucopia/">Cornucopia in the Fruit of the Loom logo</a>.<sup>5</sup> The “Chutes” bit was introduced by Milton Bradley in its version of the game in the 1940s, but there are loads of variants by other publishers that still use the snake motif.</p>
+<p>But as Jill Lepore explores in her book <a href="https://www.amazon.com/Mansion-Happiness-History-Life-Death/dp/0307476456"><em>The Mansion of Happiness</em></a>, just about every version of the game has served as a morality parable—intended to steer those lamentably corruptible youths<sup>6</sup> towards the righteous path. The game originated in India around the 2nd Century C.E and, in such versions, the “ladders” represented virtues and “snakes” represented vices; higher levels on the path featured iconography of the gods and lower levels featured plants, animals, and people. The idea being that proper and noble acts would elevate you along in the cycle of reincarnation whereas bad acts could lead you to being reincarnated as a lesser being. The Victorian English picked the game up and swapped-out specific icons to better adhere to their Anglican sensibilities—and, later, American versions put illustrations of kids doing “good deeds” going up the ladders and kids doing naughty stuff getting shuttled-down the chutes. The moral gist, then, is pretty much constant and universal: Do virtuous/industrious/good things to become an elevated/godly/goodly person; do bad things though, and you’ll suffer consequences—sometimes cosmic and karmic in nature.</p>
+<p>Given this extensive history, you’d expect that someone would’ve studied how many turns it’d take to win a game on average. And you’d be right! But the answers aren’t terribly consistent!</p>
+<p>According to Wikipedia, the Milton Bradley version of the game is expected to take “an average of 39.2 spins” to get to square 100. Yet a two-person game is “expected to end in 47.76 moves…based on a variant where throwing a six does not lead to an additional roll; and where the player must roll the exact number to reach square 100 and if they overshoot it their counter does not move.” The claim appears to be based upon the paper <a href="https://archimede.mat.ulaval.ca/amq/bulletins/dec12/Serpents.pdf">“Probabilites et esperances dans le jeu de serpents et echelles a deux jouers”</a>. But plays are independent of each other! Multiple players can occupy the same space, you can’t help or hinder others—you’re just two little pawns hopping around on the board. Sure, you’re going about it together, but, when it comes down do it, it’s a fundamentally solitary endeavor.<sup>7</sup> So I’m not entirely sure how the addition of a second player would shift the figure. And then this <a href="https://www.ilanman.io/blog/2015/9/26/markovchain#:~:text=Turns%20out%20the%20expected%20number,bit%20trickier%2C%20but%20not%20much.">2015 blog post from Ilan Man</a> claims that, by turn 32, players will have a 50% chance of being on square 100!</p>
+<p>I know gaps in the literature when I see them<sup>8</sup>. Not only do we have some different values, there are also apparently different ways you can play the game. (Which, spoiler alert, will absolutely affect the average duration):</p>
+<ul>
+<li>You are, apparently, supposed to roll twice if you get a six—treating a six as normal is apparently a “variant” (news to me and my wife).</li>
+<li>There are (at least) three different ways to deal with rolling a larger value than the number of spaces remaining on the board (e.g., being in space 98 and rolling a 3): You don’t proceed until you roll a value that’s no greater than the number of spaces remaining (which I’ll call “strict”); you go forward into spot 100 regardless (“permissive”); and you go forward to 100 and then go <strong>backwards</strong> however many movements remain (“harsh”).</li>
+</ul>
+<p>So apart from “settling” how long it takes to play a “normal” game (which we weren’t playing, apparently), I’d also like to look into how these variations affect the number of turns until a victory.</p>
+<p>As I alluded to earlier, one way to get at this is to code-up a set of simulations to answer the question. So I’m going to take the 6 different possible major rule variations I discussed above (<img src="https://latex.codecogs.com/png.latex?2_%7Bre-roll%7D%20%5Ctimes%203_%7Bend%5C_game%5C_rules%7D">) and play 10,000 virtual games apiece. I’m going to use Python to generate the simulation, DuckDB to record the results, and R to tidy-up and visualize.</p>
+<p>For those who are interested,<sup>9</sup> there’s a section down below that gets into how things are coded. For everyone else, though, let’s get right at the results</p>
+</section>
+<section id="wait-how-long-am-i-going-to-be-playing-this-game" class="level2">
+<h2 class="anchored" data-anchor-id="wait-how-long-am-i-going-to-be-playing-this-game">Wait, <em>how</em> long am I going to be playing this game?!</h2>
+<section id="average-game-length" class="level3">
+<h3 class="anchored" data-anchor-id="average-game-length">Average Game Length</h3>
+<p>Let’s first look at the average number of turns that it takes to finish a game. As you might expect, the different combinations of rules result in different average lengths-of-play. The table below displays the average number of turns that it took to complete a game for each set of 10,000 simulations. As a reminder, “permissive” endgame rules means that if you’re, say, 4 spaces away from the end but roll a 6 you go right in. “Strict” rules say that you have to roll a 4 or lower; any higher and you stay where you are. “Harsh” says that you can go forward 4—but then you have to move <em>backwards</em> however many remains from the spinner roll.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the table code</summary>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">connection <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbConnect</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">duckdb</span>(), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.path</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'data'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shoots_ladders.db'</span>))</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">means_table <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> </span>
+<span id="cb1-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbGetQuery</span>(connection,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span></span>
+<span id="cb1-5"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">SELECT </span></span>
+<span id="cb1-6"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    rules_endgame, </span></span>
+<span id="cb1-7"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    rules_reroll,</span></span>
+<span id="cb1-8"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    MEAN(turn) as m_turn</span></span>
+<span id="cb1-9"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">FROM results </span></span>
+<span id="cb1-10"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">WHERE </span></span>
+<span id="cb1-11"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    game_over </span></span>
+<span id="cb1-12"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">    GROUP BY </span></span>
+<span id="cb1-13"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">        rules_endgame,</span></span>
+<span id="cb1-14"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">        rules_reroll'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(rules_reroll,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"reroll 6"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"no reroll"</span>),</span>
+<span id="cb1-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_to_title</span>(rules_endgame)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-17"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_wider</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_from =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'rules_reroll'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_from =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'m_turn'</span>)</span>
+<span id="cb1-18"></span>
+<span id="cb1-19"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbDisconnect</span>(connection)</span>
+<span id="cb1-20"></span>
+<span id="cb1-21"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">flextable</span>(means_table) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-22"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_zebra</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">odd_header =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#677db7"</span>,</span>
+<span id="cb1-23">                         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">odd_body =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#f0f1fa"</span>,</span>
+<span id="cb1-24">                         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">even_body =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#C6D2EF"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-25"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set_header_labels</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> </span>
+<span id="cb1-26"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb1-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>,</span>
+<span id="cb1-28">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">reroll 6</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Reroll on 6"</span>,</span>
+<span id="cb1-29">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">no reroll</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'No Reroll on 6'</span></span>
+<span id="cb1-30"></span>
+<span id="cb1-31">)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-32">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">align</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">j =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">part =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'header'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-33">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">color</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">j =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">part =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'header'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-34">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">autofit</span>()</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-1babd352{}.cl-1ba0d38a{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 252, 249, 1.00);background-color:transparent;}.cl-1ba0d394{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1ba4c076{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1ba4c080{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1ba4c08a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1ba4e1be{width:1.032in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1c8{width:1.075in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1c9{width:1.321in;background-color:rgba(103, 125, 183, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1ca{width:1.032in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1d2{width:1.075in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1d3{width:1.321in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1dc{width:1.032in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1dd{width:1.075in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1e6{width:1.321in;background-color:rgba(198, 210, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1e7{width:1.032in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1f0{width:1.075in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1ba4e1f1{width:1.321in;background-color:rgba(240, 241, 250, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-1babd352"><thead><tr style="overflow-wrap:break-word;"><th class="cl-1ba4e1be"><p class="cl-1ba4c076"><span class="cl-1ba0d38a"></span></p></th><th class="cl-1ba4e1c8"><p class="cl-1ba4c076"><span class="cl-1ba0d38a">Reroll on 6</span></p></th><th class="cl-1ba4e1c9"><p class="cl-1ba4c076"><span class="cl-1ba0d38a">No Reroll on 6</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-1ba4e1ca"><p class="cl-1ba4c080"><span class="cl-1ba0d394">Permissive</span></p></td><td class="cl-1ba4e1d2"><p class="cl-1ba4c08a"><span class="cl-1ba0d394">27.9068</span></p></td><td class="cl-1ba4e1d3"><p class="cl-1ba4c08a"><span class="cl-1ba0d394">35.4415</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-1ba4e1dc"><p class="cl-1ba4c080"><span class="cl-1ba0d394">Harsh</span></p></td><td class="cl-1ba4e1dd"><p class="cl-1ba4c08a"><span class="cl-1ba0d394">34.0130</span></p></td><td class="cl-1ba4e1e6"><p class="cl-1ba4c08a"><span class="cl-1ba0d394">42.4694</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-1ba4e1e7"><p class="cl-1ba4c080"><span class="cl-1ba0d394">Strict</span></p></td><td class="cl-1ba4e1f0"><p class="cl-1ba4c08a"><span class="cl-1ba0d394">31.4890</span></p></td><td class="cl-1ba4e1f1"><p class="cl-1ba4c08a"><span class="cl-1ba0d394">38.7912</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>Perhaps unsurprisingly, letting people re-roll on a 6 tends to make the games shorter. Though I’m honestly surprised how much shorter: letting players re-roll after a six reduces the duration of the game <strong>a full 8 turns on average.</strong> Comparatively, the difference between end-game rules induces less variation. There’s only an average difference of 4.4 turns between them. That said, the gap between “permissive” and “harsh” games is about 50% greater (6.6 turns); the gap between the harsher two modes is smaller than the gap between either of them and the permissive.</p>
+<p>The biggest difference (again, perhaps unsurprisingly) is the most permissive set of rules (27.9 turns) compared to the harshest (42.5). Harsher rules lend to much longer games.</p>
+</section>
+<section id="distribution-of-game-length" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-game-length">Distribution of Game Length</h3>
+<p>Ok but those are just the averages—and we don’t need to limit ourselves just to a single statistic to get a sense of the results. We can also look at the distribution of turns.</p>
+<p>Each facet in the chart below plots out the 10,000 simulations ran for each of combination of end-and-reroll-rules. The X axis conveys the number of turns and the Y axis conveys how frequently the X value ended up being a game’s length.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show plot code</summary>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Establish DB connection</span></span>
+<span id="cb2-2">connection <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbConnect</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">duckdb</span>(), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.path</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'data'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shoots_ladders.db'</span>))</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extract and transform data</span></span>
+<span id="cb2-5">histogram_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbGetQuery</span>(connection, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'SELECT * from results WHERE game_over'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb2-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(rules_reroll, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Reroll on 6"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"No reroll"</span>),</span>
+<span id="cb2-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_to_title</span>(rules_endgame),</span>
+<span id="cb2-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cond =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(rules_reroll, rules_endgame)</span>
+<span id="cb2-10">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb2-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb2-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(rules_endgame, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Permissive'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Strict'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Harsh'</span>)),</span>
+<span id="cb2-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(rules_reroll, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Reroll on 6'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'No reroll'</span>))</span>
+<span id="cb2-14">  )</span>
+<span id="cb2-15"></span>
+<span id="cb2-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Disconnect from DB</span></span>
+<span id="cb2-17"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbDisconnect</span>(connection)</span>
+<span id="cb2-18"></span>
+<span id="cb2-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot</span></span>
+<span id="cb2-20"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(histogram_data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> turn,</span>
+<span id="cb2-22">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> ..count.. <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(..count..),</span>
+<span id="cb2-23">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> cond) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-24">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_histogram</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_grid</span>(rules_endgame <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> rules_reroll) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-26">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Stricter rules mean longer games'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'All games have at least some potential to drag-on, but the harshest rules</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> had a maximum length of 410 turns, compared to 165 for the most lenient.</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-27">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Number of Turns Until Game Won"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Percentage of Simulations"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> scales<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">percent_format</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-31">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#677db7'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#f18f01'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#ff36ab'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#5e8c61'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#a23b72'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#3b1f2b'</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-32">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span>),</span>
+<span id="cb2-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span>),</span>
+<span id="cb2-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#fffcf9'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb2-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.border =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#001021"</span>),</span>
+<span id="cb2-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb2-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'none'</span>,</span>
+<span id="cb2-39">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#axis.text.y = element_blank(),</span></span>
+<span id="cb2-40">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>),</span>
+<span id="cb2-41">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb2-42">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb2-43">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>,</span>
+<span id="cb2-44">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb2-45">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#001021"</span>,</span>
+<span id="cb2-46">      </span>
+<span id="cb2-47">    ),</span>
+<span id="cb2-48">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb2-49">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb2-50">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>,</span>
+<span id="cb2-51">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span></span>
+<span id="cb2-52">    )</span>
+<span id="cb2-53">  )</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/snakes-ladders-2024/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A glancing look tells us a few things. Most obviously: these distributions are super asymmetric. You’ve got huge heaps of values hovering between 20-30 turns for all of the charts but then those right-tails <em>streetttch</em> out for quite a bit. They stretch less for the simulations that allowed re-rolling on 6; those games all wrapped up at or before 210 turns. The same can’t be said for when you didn’t re-roll. The worst case scenario for each of those was 212 (permissive), 283 (strict), and a whopping 410 (harsh).<sup>10</sup></p>
+<p>So maybe my childhood memories weren’t fuzzy; there’s a decent chance that some of those games really lasted 50+ moves! Which makes it even more remarkable that, again, <em>I’m pretty sure I’ve never won one of them.</em></p>
+</section>
+<section id="survival-curves" class="level3">
+<h3 class="anchored" data-anchor-id="survival-curves">Survival Curves</h3>
+<p>If you recall, one of the pre-existing studies I mentioned in the intro really wasn’t quite like the others. (No, I’m not talking about the one with a French title). Two of the three focused on the average number of turns it would take to complete the game. The third instead focused on which turn players will start to have a greater than 50% chance of ending the game. They are semantically similar questions, but analytically distinct! The first is answered by analyzing means. We can get at the second through a little bit of survival analysis.<sup>11</sup></p>
+<p>Survival analysis is a branch of statistics that focuses on, you guessed it, <em>survival</em>. Namely, how many units of time does it take, on average, for something to perish. Applications include the obvious morbid topics (average life expectancy, disease prognostics, etc) but can be generalized quite easily to consider the rate of <em>transitioning</em> from one state into another.<sup>12</sup> Here, we’ll focus on the transition from a game being in-progress to one being finished. The chart below plots the cumulative incidence function (with incidence meaning the incidence of transitioning into a winning game).</p>
+<p>The x axis conveys the number of turns and the y conveys the probability that a game will have been completed by that turn. So for turn 0, there is a 0% chance that the game will have finished. Which, yeah, makes sense; the game hasn’t even started yet. But as we move along on the number of turns, that probability starts inching upwards. Slowly for the first couple of turns and then quite quickly. And that quicker pace persists until we start getting to truly <strong>long</strong> games of <em>Chutes and Ladders</em>, where it slows down again. It only hits 100% once we’ve hit the length of the longest game for the 6 conditions. Steeper slopes convey higher risks of a transition at that point and shallower slopes convey lower risks.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show plot code</summary>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">connection <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbConnect</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">duckdb</span>(), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.path</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'data'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shoots_ladders.db'</span>))</span>
+<span id="cb3-2"></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extract and transform data</span></span>
+<span id="cb3-4">surv_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbGetQuery</span>(connection, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'SELECT * from results'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(description) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>(turn <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(turn) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>game_over)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-8">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#Calculate KM curve</span></span>
+<span id="cb3-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(rules_endgame, rules_reroll, turn) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group_n =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n_won =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(game_over)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb3-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ind_prop =</span> (group_n <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> n_won) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> group_n,</span>
+<span id="cb3-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(rules_reroll, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Reroll on 6"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"No reroll"</span>)</span>
+<span id="cb3-14">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">km =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cumprod</span>(ind_prop)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cumrisk =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> km,</span>
+<span id="cb3-18">         <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cond =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(rules_endgame, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'_'</span> , rules_reroll)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb3-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_to_title</span>(rules_endgame),</span>
+<span id="cb3-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cond =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(rules_reroll, rules_endgame)</span>
+<span id="cb3-22">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb3-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(rules_endgame, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Permissive'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Strict'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Harsh'</span>)),</span>
+<span id="cb3-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(rules_reroll, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Reroll on 6'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'No reroll'</span>))</span>
+<span id="cb3-26">  )</span>
+<span id="cb3-27"></span>
+<span id="cb3-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Disconnect from DB</span></span>
+<span id="cb3-29"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbDisconnect</span>(connection)</span>
+<span id="cb3-30"></span>
+<span id="cb3-31"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Main Plot</span></span>
+<span id="cb3-32">p <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(surv_data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-33">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb3-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> turn,</span>
+<span id="cb3-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> cumrisk,</span>
+<span id="cb3-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> cond,</span>
+<span id="cb3-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> cond</span>
+<span id="cb3-38">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-40">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_grid</span>(rules_endgame <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> rules_reroll) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-41">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-42">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Number of Turns"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Likelihood of Game Being Over"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-44">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'By turn 30, most games have at least a</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">50% chance of being finished.'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Curves reflect the probability of a game being done by that turn. The plotted</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">numbers illustrate how the rules affect which turn the 50% tipping point appears at.'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-45">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> scales<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">percent_format</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-46">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_colour_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#677db7'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#f18f01'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#ff36ab'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#5e8c61'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#a23b72'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#3b1f2b'</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-47">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb3-48">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span>),</span>
+<span id="cb3-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span>),</span>
+<span id="cb3-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#fffcf9'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb3-51">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.border =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#001021"</span>),</span>
+<span id="cb3-52">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb3-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'none'</span>,</span>
+<span id="cb3-54">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#axis.text.y = element_blank(),</span></span>
+<span id="cb3-55">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>),</span>
+<span id="cb3-56">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb3-57">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb3-58">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>,</span>
+<span id="cb3-59">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb3-60">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#001021"</span>,</span>
+<span id="cb3-61">      </span>
+<span id="cb3-62">    ),</span>
+<span id="cb3-63">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb3-64">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb3-65">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>,</span>
+<span id="cb3-66">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span></span>
+<span id="cb3-67">    )</span>
+<span id="cb3-68">  )</span>
+<span id="cb3-69"></span>
+<span id="cb3-70"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">## summary data</span></span>
+<span id="cb3-71"></span>
+<span id="cb3-72">surv_summary <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span></span>
+<span id="cb3-73">  surv_data <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-74">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(cond) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-75">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(cumrisk <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-76">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_min</span>(cumrisk, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb3-77"></span>
+<span id="cb3-78">p <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-79">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb3-80">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> surv_summary,</span>
+<span id="cb3-81">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> turn, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> cumrisk),</span>
+<span id="cb3-82">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>,</span>
+<span id="cb3-83">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb3-84">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-85">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb3-86">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> surv_summary,</span>
+<span id="cb3-87">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xend =</span> turn, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> cumrisk),</span>
+<span id="cb3-88">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>,</span>
+<span id="cb3-89">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb3-90">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-91">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(</span>
+<span id="cb3-92">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> surv_summary,</span>
+<span id="cb3-93">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> turn, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> cumrisk),</span>
+<span id="cb3-94">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>,</span>
+<span id="cb3-95">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb3-96">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-97">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> surv_summary,</span>
+<span id="cb3-98">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> turn <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> cumrisk, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> turn),</span>
+<span id="cb3-99">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/snakes-ladders-2024/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that there are some noticeable differences in the curves for the 6 groups. Here again, we see that games with re-rolls tend to finish more quickly: 50% of permissive end-games will be done by 23 turns, 27 turns for strict end-games, and 28 for harsh end games. For those without re-rolling, 50% of permissive end-games are done in 29 turns, 32 for strict, and 34 for harsh. But these latter three also can drag out for a while. As we noted before, there were a couple simulated games that even went into the 400s!</p>
+<p>Another way to look at this through a survival analysis framework would be to look at the average number of turns remaining given a specific turn. This basically answers the question of “given that I’ve already played X turns, how much longer is this game likely to last?”<sup>13</sup> That’s what the chart below does. (I should note that I top-coded extreme values to the 99th percentile for their respective scenarios. Otherwise the small sample sizes make the charts look <em>weird</em>.)</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show plot code</summary>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Establish DB connection</span></span>
+<span id="cb4-2">connection <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbConnect</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">duckdb</span>(), <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">file.path</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'data'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shoots_ladders.db'</span>))</span>
+<span id="cb4-3"></span>
+<span id="cb4-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Extract and transform data</span></span>
+<span id="cb4-5">plot_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbGetQuery</span>(connection, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'SELECT * from results'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(description) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>(turn <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(turn) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span>  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>game_over)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">remaining =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(turn) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> turn) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(rules_endgame, rules_reroll) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(turn <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">quantile</span>(turn, .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">99</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-12">  </span>
+<span id="cb4-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(rules_endgame, rules_reroll, turn) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean_remain =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(remaining),</span>
+<span id="cb4-16">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">median_remain =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">median</span>(remaining)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cond =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(rules_endgame, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'_'</span> , rules_reroll)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb4-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(rules_reroll, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Reroll on 6"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"No reroll"</span>),</span>
+<span id="cb4-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_to_title</span>(rules_endgame)</span>
+<span id="cb4-22">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb4-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb4-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_endgame =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(rules_endgame, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Permissive'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Strict'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Harsh'</span>)),</span>
+<span id="cb4-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rules_reroll =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">factor</span>(rules_reroll, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">levels =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Reroll on 6'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'No reroll'</span>))</span>
+<span id="cb4-26">  )</span>
+<span id="cb4-27"></span>
+<span id="cb4-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Disconnect from DB</span></span>
+<span id="cb4-29"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dbDisconnect</span>(connection)</span>
+<span id="cb4-30"></span>
+<span id="cb4-31"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(plot_data) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-32">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb4-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> turn,</span>
+<span id="cb4-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> mean_remain,</span>
+<span id="cb4-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> cond,</span>
+<span id="cb4-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group =</span> cond</span>
+<span id="cb4-37">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-38">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_grid</span>(rules_endgame <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> rules_reroll) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-40">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-41">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_colour_manual</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#677db7'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#f18f01'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#ff36ab'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#5e8c61'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#a23b72'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#3b1f2b'</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-42">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Number of Turns"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylab</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average number of turns remaining"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-44">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Early on, how long you</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\'</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ve played stops being very </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">informative about how much longer the game will last.'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Curves reflect the average number of turns remaining given</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> that someone has made it this far.'</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-45">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb4-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span>),</span>
+<span id="cb4-47">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span>),</span>
+<span id="cb4-48">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#fffcf9'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb4-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.border =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#001021"</span>),</span>
+<span id="cb4-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>),</span>
+<span id="cb4-51">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'none'</span>,</span>
+<span id="cb4-52">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#axis.text.y = element_blank(),</span></span>
+<span id="cb4-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#fffcf9"</span>),</span>
+<span id="cb4-54">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb4-55">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb4-56">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>,</span>
+<span id="cb4-57">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb4-58">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#001021"</span>,</span>
+<span id="cb4-59">      </span>
+<span id="cb4-60">    ),</span>
+<span id="cb4-61">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb4-62">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb4-63">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>,</span>
+<span id="cb4-64">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4E555B"</span></span>
+<span id="cb4-65">    )</span>
+<span id="cb4-66">  )</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/snakes-ladders-2024/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that the expectations start off a bit high and then go down pretty quickly. Interestingly, they pretty much hold consistent for quite a long time. If you’ve played for 20 turns in a game with re-rolls on 6, the data suggests that you should expect about 15-20 more turns. But if you’ve played 100 turns you should expect to play…about 15-20 more turns. This implies that there’s quite a stretch of time where length that’s already transpired isn’t super informative about how many more turns you’re likely to go. This makes sense: after all, aspirations for moral cultivation aside, <em>Chutes and Ladders</em> is fundamentally a game of chance.</p>
+</section>
+</section>
+<section id="what-did-we-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-did-we-learn">What did we learn?</h2>
+<p>We’ve learned quite a few things from this analysis:</p>
+<ul>
+<li><strong>How long you can reasonably expect to play a game of <em>Chutes and Ladders</em> depends on what rules you play by</strong>—and there are a few different rulesets floating about out there. But the most important rule change appears to comes in whether you allow players to re-roll after they get a 6.</li>
+<li><strong>Long games go <em>very</em> long.</strong> Possible durations are asymmetrically distributed. Meaning that while a bunch of games may end around turn 20, there’s a decent chunk that will end somewhere north of 60—or even 100.</li>
+<li><strong>None of these results match any of the previous estimates that I found.</strong> At least not when you do an apples-to-apples comparison based off the rules they assumed during their estimations.</li>
+<li><strong>In general though, you should expect a game of Chutes and Ladders to last about 30-35 turns</strong>. Even when accounting for the different variants, it appears to be a good rule of thumb.</li>
+</ul>
+<p>Why do these results differ from the others? I suspect it’s because of a difference in approach. The other efforts modeled <em>Chutes and Ladders</em> as a Markov chain, with each space having a certain probability of transitioning into every other space on turn 1, turn 2, turn 3, etc. I, however, brute forced it by having my computer actually play 60,000 games. I’m not going to say that my results are more correct than theirs—given that there’s not actually a whole lot of daylight between them, it seems a bit silly to claim any are unimpeachably right. But they do suggest that it’s likely a bit closer to an average of 35 turns than it is 39 or 42.</p>
+<p>All in all, is that going to change how often I play with my daughter? Probably not. I recently read that parents spend 70% of the time they’re ever going to spend with their kids by the time those kids are 12. I don’t care if it’s <em>Chutes and Ladders</em> or <em>Candyland</em>, <em>Battleship</em> or the <em>Bluey Video Game</em>—I’m taking every minute I can get. And, hopefully, all these games will mean that we can push that 70% mark off for a little while; that playing together now means we’ll be able to play when she’s older. Shoot (or perhaps “chute”), maybe even when she has kids of her own. I’d like that.</p>
+<p>But, I’ll be honest, it very well may change which set of rules I suggest at the beginning—especially if, hypothetically, Daddy wants to hurry up to switch to a game where he isn’t apparently preternaturally cursed to lose.</p>
+</section>
+<section id="coding-chutes-and-ladders" class="level2">
+<h2 class="anchored" data-anchor-id="coding-chutes-and-ladders">Coding <em>Chutes and Ladders</em></h2>
+<p>The remainder of this post goes into how I coded the game. The first bit discusses how I articulated the game’s rules into a python class and the second discusses how I went about making about 2.2 million simulated turns of <em>Chutes and Ladders</em>.</p>
+<section id="turning-the-game-into-code" class="level3">
+<h3 class="anchored" data-anchor-id="turning-the-game-into-code">Turning the game into code</h3>
+<p>Below is the code defining a custom class called “<code>chute_player</code>” that empowers the actual simulation. The class has a number of methods and attributes that make it easy to pop the code into a “for” loop and let the computer go brrrr for a while. You can expand it to see how these were all actually encoded but, thematically, they can be broken out into four groups:</p>
+<ul>
+<li><strong>Rules:</strong> Methods and attributes that encode the rules of the game. E.g., whether a re-roll of 6 means we roll again and whether we need to hit the exact number to move into the finish.</li>
+<li><strong>Position:</strong> Methods and attributes that define the current position of the piece, determining if the player is on a chute, ladder, winning space, or on a standard space.</li>
+<li><strong>Movement:</strong> Methods that spin a 6-sectioned spinner<sup>14</sup> and advance the piece along the route. Critically, it also will move players forward or backwards to the correct location (at least as determined by the Milton Bradley version of the game at my local library) if they land on a chute or a ladder.</li>
+<li><strong>Informational:</strong> Identifying whether the player has currently won the game and recording their current status.</li>
+</ul>
+<p>This recording happens in a local DuckDB database. I recorded every turn and not just the last turn to facilitate the survival analysis. Plus, as I’m fond of saying: You can always aggregate individual values into more general summaries but you generally can’t decompose general summaries into individual values.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb5-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> duckdb <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> db</span>
+<span id="cb5-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> random</span>
+<span id="cb5-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> os</span>
+<span id="cb5-5"></span>
+<span id="cb5-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> chute_player:</span>
+<span id="cb5-7"></span>
+<span id="cb5-8">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, end_rules <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'permissive'</span>,  re_roll_six <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>):</span>
+<span id="cb5-9"></span>
+<span id="cb5-10">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## Attributes</span></span>
+<span id="cb5-11">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Position</span></span>
+<span id="cb5-12">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.n_turns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb5-13">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb5-14">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.current_roll <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb5-15">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.last_roll <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb5-16">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.cl_dictionary <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> { <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#### Base on MB game found in library</span></span>
+<span id="cb5-17">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">38</span>,</span>
+<span id="cb5-18">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>,</span>
+<span id="cb5-19">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">31</span>,</span>
+<span id="cb5-20">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>,</span>
+<span id="cb5-21">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">21</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>,</span>
+<span id="cb5-22">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">84</span>,</span>
+<span id="cb5-23">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">36</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">44</span>,</span>
+<span id="cb5-24">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">48</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">26</span>,</span>
+<span id="cb5-25">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>,</span>
+<span id="cb5-26">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">51</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">67</span>,</span>
+<span id="cb5-27">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">56</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">53</span>,</span>
+<span id="cb5-28">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">62</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">19</span>,</span>
+<span id="cb5-29">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">71</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">91</span>,</span>
+<span id="cb5-30">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">80</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>,</span>
+<span id="cb5-31">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">87</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>,</span>
+<span id="cb5-32">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">93</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">73</span>,</span>
+<span id="cb5-33">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">95</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">75</span>,</span>
+<span id="cb5-34">            <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">98</span>:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">78</span></span>
+<span id="cb5-35">        }</span>
+<span id="cb5-36"></span>
+<span id="cb5-37">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Rules</span></span>
+<span id="cb5-38">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.end_rules <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> end_rules</span>
+<span id="cb5-39">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.re_roll_six <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> re_roll_six</span>
+<span id="cb5-40"></span>
+<span id="cb5-41">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">match</span> end_rules:</span>
+<span id="cb5-42">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">case</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'permissive'</span>:</span>
+<span id="cb5-43">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.endgame_rule <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>._endgame_permissive</span>
+<span id="cb5-44">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">case</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'harsh'</span>:</span>
+<span id="cb5-45">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.endgame_rule <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>._endgame_harsh</span>
+<span id="cb5-46">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">case</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'strict'</span>:</span>
+<span id="cb5-47">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.endgame_rule <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>._endgame_strict</span>
+<span id="cb5-48"></span>
+<span id="cb5-49">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Game end</span></span>
+<span id="cb5-50">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.game_over <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span></span>
+<span id="cb5-51"></span>
+<span id="cb5-52">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## Methods</span></span>
+<span id="cb5-53">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Roll the dice or spin the spinner</span></span>
+<span id="cb5-54">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> roll_dice(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>):</span>
+<span id="cb5-55">        result <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> random.randint(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)</span>
+<span id="cb5-56">        <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.current_roll <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> result</span>
+<span id="cb5-57">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>)</span>
+<span id="cb5-58">    </span>
+<span id="cb5-59">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Try to advance the piece. Only if game isn't over! </span></span>
+<span id="cb5-60">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> attempt_advance_piece(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>):</span>
+<span id="cb5-61">        roll <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.current_roll</span>
+<span id="cb5-62">        current_position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position</span>
+<span id="cb5-63">        </span>
+<span id="cb5-64">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>:</span>
+<span id="cb5-65">            <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.game_over <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb5-66">        </span>
+<span id="cb5-67">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.game_over <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>:</span>
+<span id="cb5-68">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> current_position) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span> :</span>
+<span id="cb5-69">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> roll</span>
+<span id="cb5-70">                <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (roll <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.re_roll_six <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>:</span>
+<span id="cb5-71">                    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.n_turns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb5-72">                    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.roll_dice()</span>
+<span id="cb5-73">                    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.attempt_advance_piece()</span>
+<span id="cb5-74">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.n_turns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb5-75">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb5-76">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.endgame_rule(roll, current_position)</span>
+<span id="cb5-77">                <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (roll <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.re_roll_six <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>:</span>
+<span id="cb5-78">                    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.n_turns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb5-79">                    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.roll_dice()</span>
+<span id="cb5-80">                    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.attempt_advance_piece()</span>
+<span id="cb5-81">                <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.n_turns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb5-82"></span>
+<span id="cb5-83">            </span>
+<span id="cb5-84"></span>
+<span id="cb5-85">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Evaluate if space is either chute or ladder</span></span>
+<span id="cb5-86">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> check_chute_ladder(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>):</span>
+<span id="cb5-87">        </span>
+<span id="cb5-88">        current_position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position</span>
+<span id="cb5-89"></span>
+<span id="cb5-90">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">try</span>:</span>
+<span id="cb5-91">            new_position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.cl_dictionary[current_position]</span>
+<span id="cb5-92">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">except</span>:</span>
+<span id="cb5-93">            new_position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> current_position</span>
+<span id="cb5-94">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">finally</span>:</span>
+<span id="cb5-95">            <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> new_position</span>
+<span id="cb5-96"></span>
+<span id="cb5-97">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>)</span>
+<span id="cb5-98"></span>
+<span id="cb5-99">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Record information into a duckdb database</span></span>
+<span id="cb5-100">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> record_status(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, description <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>):</span>
+<span id="cb5-101"></span>
+<span id="cb5-102">        current_info <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(</span>
+<span id="cb5-103">            {</span>
+<span id="cb5-104">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'description'</span>:[description],</span>
+<span id="cb5-105">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'turn'</span>: [<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.n_turns],</span>
+<span id="cb5-106">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'position'</span>: [<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.position],</span>
+<span id="cb5-107">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'rules_endgame'</span>: [<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.end_rules],</span>
+<span id="cb5-108">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'rules_reroll'</span>: [<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.re_roll_six], </span>
+<span id="cb5-109">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'game_over'</span>: [<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>.game_over]</span>
+<span id="cb5-110">            }</span>
+<span id="cb5-111">        )</span>
+<span id="cb5-112"></span>
+<span id="cb5-113">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> db.<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">connect</span>(os.path.join(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'data'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shoots_ladders.db'</span>)) <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> con:</span>
+<span id="cb5-114">            con.sql(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'CREATE TABLE IF NOT EXISTS results (description VARCHAR, turn INTEGER, position INTEGER, rules_endgame VARCHAR, rules_reroll BOOLEAN, game_over BOOLEAN)'</span>)</span>
+<span id="cb5-115">            con.sql(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'INSERT INTO results SELECT * FROM current_info'</span>)</span>
+<span id="cb5-116"></span>
+<span id="cb5-117">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">### Various types of endgame rule checks</span></span>
+<span id="cb5-118">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> _endgame_permissive(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, roll, current_position):</span>
+<span id="cb5-119">        remaining <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> current_position</span>
+<span id="cb5-120"></span>
+<span id="cb5-121">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> remaining <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> roll:</span>
+<span id="cb5-122">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(roll)</span>
+<span id="cb5-123">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb5-124">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(remaining)</span>
+<span id="cb5-125"></span>
+<span id="cb5-126">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> _endgame_strict(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, roll, current_position):</span>
+<span id="cb5-127">        remaining <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> current_position</span>
+<span id="cb5-128"></span>
+<span id="cb5-129">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> remaining <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> roll:</span>
+<span id="cb5-130">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(roll)</span>
+<span id="cb5-131">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb5-132">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)        </span>
+<span id="cb5-133"></span>
+<span id="cb5-134">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> _endgame_harsh(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">self</span>, roll, current_position):</span>
+<span id="cb5-135">        remaining <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> current_position</span>
+<span id="cb5-136"></span>
+<span id="cb5-137">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> remaining <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> roll:</span>
+<span id="cb5-138">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>(roll)</span>
+<span id="cb5-139">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb5-140">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span>((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>(roll<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>remaining)) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> current_position)         </span></code></pre></div>
+</details>
+</div>
+<p>Let’s go ahead and just take a quick peak at the structure of the data that’s recorded to the database:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> duckdb <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> db</span>
+<span id="cb6-2"></span>
+<span id="cb6-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> db.<span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">connect</span>(os.path.join(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'data'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'shoots_ladders.db'</span>)) <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> con:</span>
+<span id="cb6-4">  con.sql(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'SELECT * FROM results LIMIT 10'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>┌─────────────────────┬───────┬──────────┬───────────────┬──────────────┬───────────┐
+│     description     │ turn  │ position │ rules_endgame │ rules_reroll │ game_over │
+│       varchar       │ int32 │  int32   │    varchar    │   boolean    │  boolean  │
+├─────────────────────┼───────┼──────────┼───────────────┼──────────────┼───────────┤
+│ permissive_reroll_0 │     1 │       14 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     2 │       17 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     3 │       22 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     4 │       27 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     5 │       34 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     6 │       37 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     7 │       26 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     8 │       84 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │     9 │       91 │ permissive    │ true         │ false     │
+│ permissive_reroll_0 │    10 │       73 │ permissive    │ true         │ false     │
+├─────────────────────┴───────┴──────────┴───────────────┴──────────────┴───────────┤
+│ 10 rows                                                                 6 columns │
+└───────────────────────────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+</div>
+<p>The first column is an identifier for one of the 60k games; turn says what the turn is; position is the piece’s position at the end of the turn; rules_endgame states what kind of end-rule we’re working with; rules_reroll states whether we re-roll on 6; and then game_over, well, tells us if the game is over!</p>
+</section>
+<section id="running-the-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-simulation">Running the simulation</h3>
+<p>In order to find out how many turns it takes to win <em>Chutes and Ladders</em>, I’m running a total of 10,000 games for all 6 combinations of end-game rules (“permissive”, “strict”, and “harsh”) and re-roll rules (re-roll on six, don’t re-roll on six). What that means with my class is basically 4 loops all nested inside each other like a Russian doll.</p>
+<p>The innermost loop is a <code>while</code> loop which terminates once an attribute titled <code>game_over</code> evaluates to <code>True</code>. Each loop can be thought of as a turn within the game and consists more-or-less of the following steps:</p>
+<ol type="1">
+<li>Check if the game is over. If not continue, otherwise break.</li>
+<li>Roll the dice/spin the spinner.</li>
+<li>Attempt to advance the piece according to the results of the roll, keeping in mind the end-game and re-roll rules.</li>
+<li>Check if the spot we’ve landed on is either a chute or ladder. Move the piece accordingly.</li>
+<li>Record the status of the move for the database.</li>
+</ol>
+<p>Rinse and repeat until the game recognizes that the piece is on space 100 and that the game is over.</p>
+<p>Next is a <code>for</code> loop, set to go for 10,000 iterations. That’s the 10,000 games which will give us a decent sense of that game mode’s distribution of results and its average tendency. After that is a <code>for</code> loop that cycles through whether you do/do not re-roll after a six. Finally is one last <code>for</code> loop which cycles through the three different endgame rules. So assuming that the games end in an average of 40ish turns, we’re looking at running <img src="https://latex.codecogs.com/png.latex?40%20%5Ctimes%2010,000%20%5Ctimes%202%20%5Ctimes%203%20=%202,400,000"> turns of digital <em>Chutes and Ladders</em>.</p>
+<p>Below is the code that runs all that looping. In case you were thinking of running this yourself though—I’ll warn you that it took my PC about 26 hours.<sup>15</sup> So, ya know, use at your own risk!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> endrule <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'permissive'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'strict'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'harsh'</span>]:</span>
+<span id="cb8-2">    </span>
+<span id="cb8-3">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> rollrule <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'reroll'</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'noreroll'</span>]:</span>
+<span id="cb8-4">        </span>
+<span id="cb8-5">        rr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> rollrule <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'reroll'</span></span>
+<span id="cb8-6">        </span>
+<span id="cb8-7">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10000</span>):</span>
+<span id="cb8-8"></span>
+<span id="cb8-9">            cl_game <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> chute_player(end_rules<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>endrule, re_roll_six<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>rr)</span>
+<span id="cb8-10"></span>
+<span id="cb8-11">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">while</span> cl_game.game_over <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>:</span>
+<span id="cb8-12">                cl_game.roll_dice()</span>
+<span id="cb8-13">                cl_game.attempt_advance_piece()</span>
+<span id="cb8-14">                cl_game.check_chute_ladder()</span>
+<span id="cb8-15">                cl_game.record_status(description<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>endrule<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>rollrule<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>i<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb8-16"></span>
+<span id="cb8-17"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Game done!'</span>)</span></code></pre></div>
+</div>
+<p>And that’s it! If you’ve gotten this far, thanks for reading! 🖤</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>We were more of a <em>Life</em> family, growing up. It was <em>Monopoly</em> for my wife—meaning that, no matter what, this kid’s in store for some harsh life lessons in board-game form.↩︎</p></li>
+<li id="fn2"><p>In hindsight, this was the universe forshadowing that I had bottomed-out my luck stat↩︎</p></li>
+<li id="fn3"><p><a href="https://en.wikipedia.org/wiki/Snakes_and_ladders">Wikipedia</a> informs me that some versions may also be 64 or 144 spaces long, being played on 8 x 8 and 12 x 12 space boards, respectively.↩︎</p></li>
+<li id="fn4"><p>To anyone who plays this game by themselves: You ok bud? I’m here if you need someone to talk to.↩︎</p></li>
+<li id="fn5"><p>Ok, but seriously, that the cornucopia actually existed and the marketing team is pulling a fast-one is a low-stakes conspiracy that I genuinely buy into.↩︎</p></li>
+<li id="fn6"><p>Which youths? All the youths! Forever!↩︎</p></li>
+<li id="fn7"><p>I guess the analogies with life go deeper than just morality.↩︎</p></li>
+<li id="fn8"><p>Hold on, let me bust out my GSAT words: I know <em>lacunae</em> when I see them.↩︎</p></li>
+<li id="fn9"><p>And, I mean, who <strong><em>doesn’t</em></strong> find multilingual data science riveting? I even use <em>Python classes</em> in all this; it’s enough to get even the most sedate fella hot under-the-coller.↩︎</p></li>
+<li id="fn10"><p>That’s part of the fun with doing a large number of simulations. 1–5,000 works plenty fine—but 10,000+ shows you the <em>really weird</em> outcomes.↩︎</p></li>
+<li id="fn11"><p>Ok, fine, yes, we could’ve also done this by looking at <em>medians</em>—which give us the exact same answer as calculating survival curves. But, I don’t get much of a chance to make survival curves in my day-to-day so I wanted to have a little fun. And, also, it’s my blog and I’ll survival-curve if I want to.↩︎</p></li>
+<li id="fn12"><p>And indeed it frequently is! One of the most prevalent non-medical/insurance uses for these methods comes in figuring out time-to-failure for mechanical parts.↩︎</p></li>
+<li id="fn13"><p>Though if we’re being realistic: If it went on too long then the expected length of time becomes infinite…because the toddler has assuredly gotten bored and has asked to do something else.↩︎</p></li>
+<li id="fn14"><p>Or, I guess, a six-sided dice. Mechanically, they’re both a pull from a categorical distribution which is all the same Python code; half-a-dozen in one hand and six in the other.↩︎</p></li>
+<li id="fn15"><p>Though I maybe could’ve shaved a bit of time off if I didn’t have the Olympics playing on a second monitor. But, jokes aside, not terribly much.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2024,
+  author = {Licari, Peter},
+  title = {I {Simulated} 60,000 {Games} of {*Chutes} and {Ladders*} to
+    {See} {How} {Long} the {Average} {Game} {Takes.}},
+  date = {2024-08-02},
+  url = {https://www.peterlicari.com/posts/snakes-ladders-2024/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2024" class="csl-entry quarto-appendix-citeas">
+Licari, Peter. 2024. <span>“I Simulated 60,000 Games of *Chutes and
+Ladders* to See How Long the Average Game Takes.”</span> August 2, 2024.
+<a href="https://www.peterlicari.com/posts/snakes-ladders-2024/">https://www.peterlicari.com/posts/snakes-ladders-2024/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>Python</category>
+  <category>simulation</category>
+  <category>games</category>
+  <guid>https://www.peterlicari.com/posts/snakes-ladders-2024/</guid>
+  <pubDate>Fri, 02 Aug 2024 04:00:00 GMT</pubDate>
+  <media:content url="https://www.peterlicari.com/posts/snakes-ladders-2024/images/cover.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Getting Worse to Get Better</title>
   <dc:creator>Peter Licari</dc:creator>
