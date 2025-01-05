@@ -1,21 +1,29 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/other_things.html",
     "items": [
-      "/posts/snakes-ladders-2024/index.html",
-      "/posts/getting_worse_getting_better_2024/index.html",
-      "/posts/odsc-2024/index.html",
-      "/posts/birthdays_2024/index.html",
-      "/posts/plans-for-2024/index.html",
-      "/posts/moe-subgroup-wrong/index.html",
-      "/posts/quarto-custom-font-windows/index.html",
-      "/posts/r-punch-in-face-23/index.html",
-      "/posts/rosie-game-sim-23/index.html",
-      "/posts/theory-reality-book-review/index.html",
-      "/posts/thoughts-prior-2020-election/index.html",
-      "/posts/Qualtrics-random-groups/index.html",
-      "/posts/surveying-beautiful-endeavor/index.html",
-      "/posts/covid-video-lecture-tutorial/index.html"
+      "/other_things/infixit/index.html",
+      "/other_things/wordle-letter-frequency/index.html",
+      "/other_things/dissertation/index.html",
+      "/other_things/kanye-map/index.html",
+      "/other_things/election-app/index.html",
+      "/other_things/dumdum/index.html"
+    ]
+  },
+  {
+    "listing": "/garden.html",
+    "items": [
+      "/garden/proof.html",
+      "/garden/llms_not_replace_qual.html",
+      "/garden/want_models_to_be_wrong.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/garden/proof.html",
+      "/garden/llms_not_replace_qual.html",
+      "/garden/want_models_to_be_wrong.html"
     ]
   },
   {
@@ -25,6 +33,7 @@
       "/posts/getting_worse_getting_better_2024/index.html",
       "/posts/odsc-2024/index.html",
       "/posts/birthdays_2024/index.html",
+      "/posts/2024_review_2025_goals/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
@@ -38,12 +47,13 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
       "/posts/snakes-ladders-2024/index.html",
       "/posts/getting_worse_getting_better_2024/index.html",
       "/posts/odsc-2024/index.html",
       "/posts/birthdays_2024/index.html",
+      "/posts/2024_review_2025_goals/index.html",
       "/posts/plans-for-2024/index.html",
       "/posts/moe-subgroup-wrong/index.html",
       "/posts/quarto-custom-font-windows/index.html",
@@ -54,17 +64,6 @@
       "/posts/Qualtrics-random-groups/index.html",
       "/posts/surveying-beautiful-endeavor/index.html",
       "/posts/covid-video-lecture-tutorial/index.html"
-    ]
-  },
-  {
-    "listing": "/other_things.html",
-    "items": [
-      "/other_things/infixit/index.html",
-      "/other_things/wordle-letter-frequency/index.html",
-      "/other_things/dissertation/index.html",
-      "/other_things/kanye-map/index.html",
-      "/other_things/election-app/index.html",
-      "/other_things/dumdum/index.html"
     ]
   }
 ]

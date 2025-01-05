@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Peter Licari">
-<meta name="dcterms.date" content="2020-08-05">
+<meta name="dcterms.date" content="2025-01-05">
 
-<title>dumdum: an R pakage for dummy variables – Peter Licari</title>
+<title>LLMs can’t replace expert qualitative research – Peter Licari</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,20 +70,14 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="dumdum: an R pakage for dummy variables – Peter Licari">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="LLMs can’t replace expert qualitative research – Peter Licari">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.peterlicari.com/other_things/dumdum/featured.png">
 <meta property="og:site_name" content="Peter Licari">
-<meta property="og:image:height" content="600">
-<meta property="og:image:width" content="572">
-<meta name="twitter:title" content="dumdum: an R pakage for dummy variables – Peter Licari">
+<meta name="twitter:title" content="LLMs can’t replace expert qualitative research – Peter Licari">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.peterlicari.com/other_things/dumdum/featured.png">
 <meta name="twitter:creator" content="@PRLPoliSci">
-<meta name="twitter:image-height" content="600">
-<meta name="twitter:image-width" content="572">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -94,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Peter Licari</span>
     </a>
   </div>
@@ -105,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -126,15 +119,15 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../garden.html"> 
+    <a class="nav-link" href="../garden.html"> 
 <span class="menu-text">Digital Garden</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../archive.html"> 
+    <a class="nav-link" href="../archive.html"> 
 <span class="menu-text">Archive</span></a>
   </li>  
   <li class="nav-item">
@@ -142,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Consulting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../writing.html"> 
+    <a class="nav-link" href="../writing.html"> 
 <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -165,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../other_things.html"> 
+    <a class="nav-link" href="../other_things.html"> 
 <span class="menu-text">Other Things I’ve Made</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -190,35 +183,34 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#most-human-generated-text-is-incredibly-banal" id="toc-most-human-generated-text-is-incredibly-banal" class="nav-link active" data-scroll-target="#most-human-generated-text-is-incredibly-banal">1. Most human-generated text is incredibly banal</a></li>
+  <li><a href="#the-architecture-of-llms-prioritize-common-correspondences" id="toc-the-architecture-of-llms-prioritize-common-correspondences" class="nav-link" data-scroll-target="#the-architecture-of-llms-prioritize-common-correspondences">2. The architecture of LLMs prioritize common correspondences</a></li>
+  <li><a href="#expertise-is-what-happens-outside-of-the-context-window" id="toc-expertise-is-what-happens-outside-of-the-context-window" class="nav-link" data-scroll-target="#expertise-is-what-happens-outside-of-the-context-window">3. Expertise is what happens outside of the context window</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">dumdum: an R pakage for dummy variables</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">R Package</div>
-  </div>
-  </div>
+<h1 class="title">LLMs can’t replace expert qualitative research</h1>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Peter Licari </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 5, 2020</p>
+      <p class="date">January 5, 2025</p>
     </div>
   </div>
   
@@ -230,12 +222,46 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><code>dumdum</code> is an R package that makes making dummy variables easier. There are functions that do this sort of work in packages like <code>caret</code>, but I wanted to make a set of functions that would help other social scientists and/or analysts who were not as deep down the machine-learning rabbit hole.</p>
-<p>I made this fuction before I started doing more package development in R for my job. While I’m still proud of this little package—it was the best I could do at the time—I’m also proud of what I can do now. Such as <em>waves arms at website.</em></p>
+<p>I notice that there is a belief among folk that preside over qualitative research that large language models (such as Ollama and GPT-4o)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> will be able to replace the work done by qualitative researchers. Echoing back to the (unfulfilled) promises of quantitative data mining, there are folks who believe that LLMs will not just be able to perform at parity with expert qualitative researchers in the synthesis of non-numeric information, but that they will be able to uncover <strong>deeper</strong> things. That they’ll find patterns that our feeble cranial blobs are simply too unsophisticated to detect. And with these new, deep insights, we’ll be able to have unprecedented success and make several zillion dollars.</p>
+<p>However, those who have actually practiced with LLMs know that out-of-the-box solutions rarely perform as well as non-novices in crystallizing various themes from textual responses provided by users, survey respondents, etc. What they can do is perform passable, surface-level analyses faster than any human can<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>—but anyone who thinks that they, in their current form, can replace trained qualitative researchers are wrong for three reasons.</p>
+<section id="most-human-generated-text-is-incredibly-banal" class="level2">
+<h2 class="anchored" data-anchor-id="most-human-generated-text-is-incredibly-banal">1. Most human-generated text is incredibly banal</h2>
+<p>Unless you’re generating data from <em>bona fide</em> experts in whatever domain you’re studying, I can promise you that the vast majority of texts that humans create do not lend themselves to sophisticated analyses. This sounds like it can get Carlin-esque pretty quickly<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, but it’s not because your average Joes and Janes are dumb—it’s because non-experts usually don’t approach tasks in the same way as experts do. Look at how a critic breaks down a movie compared to the average Letterboxd or Rotten Tomatoes user. And now remember that even <em>these</em> “average” folks are sufficiently motivated and interested in the topic to write anything at all. They’re actually not average—the true average user writes nothing at all.</p>
+<p>I’m not saying that critics are always right or anything; this isn’t a matter of taste. But critics are often more <em>verbose</em> and expose<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> more involved thought-processes than average people do. A lot of it comes down to connections and comparisons; as you see/do more of a type of thing, you have more that you can draw from and reference. The language you use to describe it often expands and changes as you pick-up new vocabulary. If you’re sampling from a “general” population of users, attendees, citizens, etc—the vast majority of sentiments you get from their words are going to boil down to 1-2 short sentences. And these can usually be summed up as “I liked this part and I didn’t like that part.” “Hidden” meanings don’t magically emerge at greater volumes like they do in quantitative analyses<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. The best that happens is that you learn that particular words load strongly into different latent dimensions—often because they’re flexible in used in various contexts. Most text responses are short and unflourished. You cannot squeeze blood from a stone.</p>
+</section>
+<section id="the-architecture-of-llms-prioritize-common-correspondences" class="level2">
+<h2 class="anchored" data-anchor-id="the-architecture-of-llms-prioritize-common-correspondences">2. The architecture of LLMs prioritize common correspondences</h2>
+<p>For the vast majority of people, LLMs are basically magic. You submit some sort of text (for most people, it will be through a chatbot interface) and you—often—get a cogent, reasonably accurate response. These outputs can appear to be very “creative” in that they are usually responses to relatively unique or off-the-wall prompts (“write a poem about my dog going on a walk in the style of Homer’s Odyssey”). But they <em>aren’t</em> “creative” in the sense of reliably synthesizing disparate threads of information into a novel-yet-accurate statements. That is by design. I strongly recommend everyone interested in LLMs watch 3Blue1Brown’s series on <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">neural networks and LLMs</a> (or, at least, <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs">this 8 minute short version</a>), but here’s the TLDW: These models effectively work by ingesting gargantuan volumes of text data to create a predictive model that answers the following question: “Given all of the text that has come before, what is the most <em>likely</em> word to come next?” “Likely” here usually means “with the greatest probability”—and that probability is largely informed <em>empirically</em>. It’s determined by looking at the text in the training data. So if the words the model saw were <code>"It was a dark and stormy"</code>, it’d be much more likely to return <code>"night"</code> over <code>"afternoon"</code>—but both of those are way more likely to be spat out than <code>"cocker spaniel"</code>. Because I’m pretty sure that I’m the first human being ever to imply that “cocker spaniel” be associated with that phrase.</p>
+<p>Let’s pause on that point for a moment. The model’s job is to predict <em>the most likely next word</em> and that determination is made <em>based on preexisting combinations of text</em>—which, again, are overwhelmingly unsophisticated and average. The whole idea of “finding entirely novel meanings” is completely anathema to the model’s architecture! Its whole job is to return <em>expected</em> and <em>quotidian</em> words.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Think of what the alternative would entail: a model that shot back <strong>un</strong>expected results would be prone to gibberish and hallucinations. It wouldn’t be at all useful! But that then necessarily means that those looking at these models to deliver them better-than-expert syntheses are tilting at windmills.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+</section>
+<section id="expertise-is-what-happens-outside-of-the-context-window" class="level2">
+<h2 class="anchored" data-anchor-id="expertise-is-what-happens-outside-of-the-context-window">3. Expertise is what happens outside of the context window</h2>
+<p>So If I’ve just spent the last few paragraphs arguing that:</p>
+<ol type="1">
+<li>Human text is often too short and banal to find “deeper meanings.”</li>
+<li>LLMs are designed to present expected (and therefore common and unoriginal) “interpretations” of text.</li>
+</ol>
+<p>Why on earth should it be the case that human qualitative researchers will do better? Machines beat us at Chess, Go, and—if you’re a scrub like me—first person shooters and real-time strategy games. Why should people do this better?</p>
+<p>First, I would like to remind everyone that there are, in facts, lots of things that are actually pretty tough for machines to do that humans can do quite reliably. Like understand objects in 3 dimensional space or count the number of <a href="https://www.reddit.com/r/LocalLLaMA/comments/1fi5uwz/no_model_x_cannot_count_the_number_of_letters_r/">“r”s in “strawberry”</a>.</p>
+<p>Second, it’s because LLMs are not omniscient. They are incredibly impressive, but one of their core limitations is their so-called “context window”. That is, the number of tokens that they can reliably use when doing the whole “predicting what word comes next” thing. Some models boast truly impressive context windows: Hundreds of thousands to a million tokens. Most, though, are in the tens of thousands. This is why many long-running chat conversations often seem to involve the AI “forgetting” what was said before. But unless you’ve managed to translate someone’s knowledge into perfectly parseable text—knowledge gained over hundreds if not thousands of hours of study, observation, and experience—the LLMs are simply not going to have access to it. And if they don’t have access to it, they can’t draw the connections that actually generate new insights.</p>
+<p>In practice, generating “novel insights” is less about what words are within the text you’re analyzing. It’s about how those words relate to other knowledge that experts have about the subject matter. For example, if I had a bunch of comments talking about people feeling hot standing in a queue, the LLM might derive the novel insight of “provide shade and fans to people so that they’re more comfortable.” But I might know that the line is actually <em>inside</em> a building—so putting in shade would be a pretty silly use of my time. But what might be a better use would be to check if the AC is working properly or if we need to have fewer people within that room, etc. Actual, useful business decisions come from knowing the context of the business. And that’s not often something that LLM’s can magically deduce just from the text that was provided. But the humans paid to understand both the text <em>and</em> the business context in which that text was generated are likely to do pretty decent at offering a next step forward.</p>
 
 
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Or whatever the current trendy player is by the time you read this; the landscape is changing almost daily.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I know that this verbiage sounds pejorative, but sometimes “passable, surface-level analyses” is <strong>more</strong> than sufficient for a particular analysis in very much the same way how a simple cross-tab or <code>COUNT</code> query is more appropriate than a full-on multilevel Bayesian regression analysis.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><em>a la</em> “Think of how stupid the average person is and realize that half of them are stupider than that.”<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Emphasis is on “expose” here. I genuinely think the stuff that goes on between most people’s ears is far more complex than they are able to reliably write down. Even the most verbose, effectual, locquacious writers flail about when trying to clearly convey what’s happening in their heads.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>And, I want to emphasize, that a lot of “hidden relationships” found in “big data mining” exercises are either entirely spurious or too small to practically matter.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>At least, to an extent. You can change the “creativity” by changing the “temperature” of the models—but this largely has the effect of artificially tweaking the probabilities of selection for that next word. But it’s a tweak. It’ll make <code>"afternoon"</code> more likely to pop up in the <code>"dark and stormy"</code> example, but you’d better not hold your breath waiting on <code>"bamboo shoot"</code> or something.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>It’s not impossible to train or fine-tune a model to do <em>better</em>, but that also means that you have a large enough volume of the specific type of text to teach it new associations. And, remember, these things were trained off the <em>entire bloody internet.</em><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

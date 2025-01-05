@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Peter Licari">
-<meta name="dcterms.date" content="2020-08-05">
 
-<title>dumdum: an R pakage for dummy variables – Peter Licari</title>
+<title>proof – Peter Licari</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,20 +69,14 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="dumdum: an R pakage for dummy variables – Peter Licari">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Peter Licari">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.peterlicari.com/other_things/dumdum/featured.png">
 <meta property="og:site_name" content="Peter Licari">
-<meta property="og:image:height" content="600">
-<meta property="og:image:width" content="572">
-<meta name="twitter:title" content="dumdum: an R pakage for dummy variables – Peter Licari">
+<meta name="twitter:title" content="Peter Licari">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.peterlicari.com/other_things/dumdum/featured.png">
 <meta name="twitter:creator" content="@PRLPoliSci">
-<meta name="twitter:image-height" content="600">
-<meta name="twitter:image-width" content="572">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -94,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Peter Licari</span>
     </a>
   </div>
@@ -105,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -126,15 +118,15 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../garden.html"> 
+    <a class="nav-link" href="../garden.html"> 
 <span class="menu-text">Digital Garden</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../archive.html"> 
+    <a class="nav-link" href="../archive.html"> 
 <span class="menu-text">Archive</span></a>
   </li>  
   <li class="nav-item">
@@ -142,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Consulting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../writing.html"> 
+    <a class="nav-link" href="../writing.html"> 
 <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -165,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../other_things.html"> 
+    <a class="nav-link" href="../other_things.html"> 
 <span class="menu-text">Other Things I’ve Made</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -196,46 +188,32 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">dumdum: an R pakage for dummy variables</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">R Package</div>
-  </div>
-  </div>
 
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Peter Licari </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 5, 2020</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p><code>dumdum</code> is an R package that makes making dummy variables easier. There are functions that do this sort of work in packages like <code>caret</code>, but I wanted to make a set of functions that would help other social scientists and/or analysts who were not as deep down the machine-learning rabbit hole.</p>
-<p>I made this fuction before I started doing more package development in R for my job. While I’m still proud of this little package—it was the best I could do at the time—I’m also proud of what I can do now. Such as <em>waves arms at website.</em></p>
+<p>I had the same issue and had to do a bit more reading/thinking on it. Hopefully this will help!</p>
+<p>Let’s simplify this down to the number of ways to get to 5 spaces. There are eight.</p>
+<p>a)2+2+1 b)2+1+1+1 c)1+2+1+1 d)1+1+2+1 e)1+1+1+1+1 f)2+1+2 g)1+2+2 h)2+1+2</p>
+<p>Now let’s look at the way to get to 4 spaces:</p>
+<p>i)2+2 j)2+1+1 k)1+2+1 l)1+1+2 m)1+1+1+1</p>
+<p>Finally, let’s look at all the ways to get 3 spaces: n)2+1 o)1+2 p)1+1+1</p>
+<p>If you notice, all of the examples for getting 5 are actually ALL of the ways to get 3 and all of the ways to get 4 with just one additional step.</p>
+<ol type="1">
+<li>a = i +1</li>
+<li>b = j + 1</li>
+<li>c = k + 1</li>
+<li>d = l + 1</li>
+<li>e = m +1</li>
+<li>f = n + 2</li>
+<li>g = o +2</li>
+<li>h = p +2</li>
+</ol>
+<p>If you’ll notice, 1)-5) are all of the ways you can go to pad 4 with an additional + 1 and 6)-8) are all the ways you can get to pad 3 with an additional + 2. This is what they mean when they say that the only way you can get to the 5th lilypad is to either be at the 3rd lilypad and make a jump of 2 or to be at the 4th lilypad and make a jump of 1. Any way that you could go from pad 3 to pad 5 by first resting at 4 is already encapsulated by all the ways you can get to pad 5 via pad 4—because all of the ways to 4 necessarily include any permutation where the penultimate move is at 3. Trying to include again would be tantamount to double counting.</p>
+<p>More concisely: The number of routes to X_n is the same as the number of routes to X_{n-2} plus the number of routes to X_{-1}—but the individual unique sequences are necessarily elongated by the addition of a +2 and +1, respectively.</p>
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

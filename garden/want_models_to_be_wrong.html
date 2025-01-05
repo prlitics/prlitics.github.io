@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Peter Licari">
-<meta name="dcterms.date" content="2020-08-05">
+<meta name="dcterms.date" content="2024-04-15">
 
-<title>dumdum: an R pakage for dummy variables – Peter Licari</title>
+<title>I usually want my prediction models to be wrong – Peter Licari</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,20 +70,14 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
 
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="dumdum: an R pakage for dummy variables – Peter Licari">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="I usually want my prediction models to be wrong – Peter Licari">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.peterlicari.com/other_things/dumdum/featured.png">
 <meta property="og:site_name" content="Peter Licari">
-<meta property="og:image:height" content="600">
-<meta property="og:image:width" content="572">
-<meta name="twitter:title" content="dumdum: an R pakage for dummy variables – Peter Licari">
+<meta name="twitter:title" content="I usually want my prediction models to be wrong – Peter Licari">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.peterlicari.com/other_things/dumdum/featured.png">
 <meta name="twitter:creator" content="@PRLPoliSci">
-<meta name="twitter:image-height" content="600">
-<meta name="twitter:image-width" content="572">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -94,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Peter Licari</span>
     </a>
   </div>
@@ -105,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -126,15 +119,15 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../garden.html"> 
+    <a class="nav-link" href="../garden.html"> 
 <span class="menu-text">Digital Garden</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../archive.html"> 
+    <a class="nav-link" href="../archive.html"> 
 <span class="menu-text">Archive</span></a>
   </li>  
   <li class="nav-item">
@@ -142,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Consulting</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../writing.html"> 
+    <a class="nav-link" href="../writing.html"> 
 <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -165,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../other_things.html"> 
+    <a class="nav-link" href="../other_things.html"> 
 <span class="menu-text">Other Things I’ve Made</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -198,27 +191,18 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">dumdum: an R pakage for dummy variables</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">R Package</div>
-  </div>
-  </div>
+<h1 class="title">I usually want my prediction models to be wrong</h1>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Peter Licari </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 5, 2020</p>
+      <p class="date">April 15, 2024</p>
     </div>
   </div>
   
@@ -230,12 +214,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><code>dumdum</code> is an R package that makes making dummy variables easier. There are functions that do this sort of work in packages like <code>caret</code>, but I wanted to make a set of functions that would help other social scientists and/or analysts who were not as deep down the machine-learning rabbit hole.</p>
-<p>I made this fuction before I started doing more package development in R for my job. While I’m still proud of this little package—it was the best I could do at the time—I’m also proud of what I can do now. Such as <em>waves arms at website.</em></p>
+<p>I generally hope that my time series models wind up wrong.</p>
+<p>I don’t just mean in the flippant sense of “all models are wrong but some are useful”. I mean literally wrong. As in my prediction didn’t come to fruition.</p>
+<p>One of the fun things about doing social science is that your subjects react to your analysis. It’s kind of funny because, like, IID goes out the window for future work if your work gets popular. By observing the world, we seek to influence its evolution.</p>
+<p>9 times out of 10, I make forecasts about sociological systems. If things remain constant, we can reliably get within 10-15% mean absolute percentage errors. Sometimes less. And that’s when we try to avoid black-boxes and atheoretical modeling choices; we ultimately also have to provide <em>interpretations</em> to stakeholders. If we didn’t have that constraint (though I’m honestly glad that we do) then we could probably get closer.</p>
+<p>So it’s not that I can’t do a decent job modeling this stuff. It’s just that I make these predictions in the hopes that people with the power to change (at least some) of the inputs heed what I’m saying and try to make things better. Even if, qualitatively, my results jump off the page and have a parade because of how awesome the implications are for the business, things can always be improved. (If for no other reason than the fact that it will eventually revert to the mean and we’ll then be glad to have instituted improvements so that we’re not as low as we could’ve been).</p>
+<p>Of course, there’s a bit of grim satisfaction when things don’t change and we hit what we, in fact, predicted. But no amount of internal “I told them so” can douse the fact that it’s a Pyrrhic victory.</p>
+<p>I want to be right in a counterfactual sort of way. I want my predictions to be the reality we would observe if we were ignored. I want it to be outperformed by what actually happens because stakeholders took our predictions seriously and worked to make things better. So I want to be wrong in that I want to be <strong>proven</strong> wrong.</p>
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
