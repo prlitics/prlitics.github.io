@@ -9,8 +9,725 @@
 <link>https://www.peterlicari.com/</link>
 <atom:link href="https://www.peterlicari.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.5.55</generator>
-<lastBuildDate>Fri, 02 Aug 2024 04:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.40</generator>
+<lastBuildDate>Wed, 23 Apr 2025 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>How (and when) pre-treatment variables can help generalize experimental results</title>
+  <dc:creator>Peter Licari</dc:creator>
+  <link>https://www.peterlicari.com/posts/experiment-tranportability-2025/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This post is inspired by this <a href="https://bsky.app/profile/stephenjwild.bsky.social/post/3ln3tixkxsk2s">question from David Brady (and reposted by Stephen Wild) on Bluesky</a>:</p>
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/images/wild_question.png" class="img-fluid"></p>
+<p><a href="https://bsky.app/profile/peterlicari.bsky.social/post/3ln4hbpmgtc2m">My original response</a><sup>1</sup> to the post basically boiled down to the tried-and-true data science-ism of “it depends!”<sup>2</sup></p>
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/images/licari_initial_response.png" class="img-fluid"></p>
+<p>I wanted to elaborate on this answer a bit. Partially because this stats stuff is hard and there’s always room for more resources. (I don’t know how many times my butt’s been saved by some random technical blog post that someone whipped up and I like paying that forward.) Partially also because I enjoy deepening my knowledge of things through simulation; there’s some part of my dopamine system that just gets a kick out managing to learn something while going “hahaha computer go brrrr”.<sup>3</sup> So let’s talk about when–and how!—you should be adding pre-measurement variables to your analyses of experiments to make your estimate “generalizable” to a broader population.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Spoiler alert:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It’s when you expect the treatment effect to vary in intensity as a function of some variable that is <em>also</em> pertinent to sampling.</p>
+</div>
+</div>
+<section id="wait-isnt-randomization-enough" class="level2">
+<h2 class="anchored" data-anchor-id="wait-isnt-randomization-enough">Wait isn’t randomization enough?</h2>
+<p>One of the core promises of randomized controlled experiments<sup>4</sup> is that randomized assignment allows us to get an estimate of what the impact the treatment has. Most frequently, people are looking for the “Average Treatment Effect” or ATE—though there are lot’s of TEs that you can be interested in.<sup>5</sup> The reason that randomization manages to grant us this knowledge this is thanks to the mathematical magic of “expectation”. (<a href="https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:gz53felr7btxgmbxae5aooxi/bafkreig3abwae5jxtq45vjwnwrnpm344kc2jrzgvrblomo5obhczrhqtpq@jpeg">Here’s an image from Julia Rohrer that illustrates it beautifully.</a>) If we’re testing the effects of caffeine on written output<sup>6</sup>, we can’t simultaneously give a participant coffee and <em>not</em> give them coffee and then observe the true difference in their performance; we can’t actually <em>directly</em> observe the counter-factual. But we can calculate the expected values of those in the treatment and control conditions and then estimate the difference between them. This difference is the ATE—and so long as we’re randomly assigning people to the various conditions in the experiment, we’re getting an unbiased estimate of the expectations. Consequently, we can have an unbiased estimate of the ATE. (You know, as a treat.) Though this randomization is technically sufficient, it’s generally acknowledged (see, e.g., <a href="https://www.amazon.com/Regression-Stories-Analytical-Methods-Research/dp/110702398X">Gelman, Hill, and Vehtari 2020</a>; <a href="https://causalml-book.org/">Chernozhukov, Hansen, Kallus, Spindler, and Syrgkanis 2024</a>) that it’s fine to include some relevant pre-treatment variables into your analysis: it usually won’t cause any harm and it may actually improve the “precision” of the estimated ATE.<sup>7</sup></p>
+<p>But an unbiased estimate of the ATE <strong><em>for whom?</em></strong>.</p>
+<p>People are usually running experiments because they want to have some insight into what some “treatment” does to members of some <em>population</em> of interest. It could be customers (current or potential), US adults, website visitor adult Lego enthusiasts—whomever. But whether or not the experiment gives an estimate for the population of interest depends on a few things: most obviously, the process of how the participants were selected. If I wanted to see how a discount might induce former customers to resume their purchasing, testing on <em>current</em> customers might not get me an accurate answer. There may be things that are structurally <em>different</em> about the people who have tried my product and quit versus those who have tried it and continued—meaning the treatment could work differently across the two populations. It’d be even sillier to forgo any kind of sampling on customers (current or former) and instead perform the test on a sample comprised entirely of architects and vexilologists. Unless your product is in the weird niche of tracking the appearance of different building styles on flags.<sup>8</sup>.</p>
+<p>The point being—and this is the thrust of David’s original question—is if you want to assert that your ATE generalizes to your actual population of interest, who you’re including in the experiment is likely going to matter a lot.</p>
+<p><strong>Likely</strong> though, is doing some lifting. Because whether having a sub-sample (even a <strong>biased</strong> subsample) matters is going to <em>also</em> depend on to what extent your treatment varies across sub-groups. That is, whether or not there are heterogenous treatment effects. To prove what I mean, let’s do some simulation on 4 different scenarios:</p>
+<ol type="1">
+<li>The sub-sampling <em>is not</em> biased and there are <strong>no</strong> heterogenous treatment effects.</li>
+<li>The sub-sampling <em>is</em> biased and there are <strong>no</strong> heterogenous treatment effects.</li>
+<li>The sub-sampling <em>is not</em> biased and there <strong>are</strong> heterogenous treatment effects.</li>
+<li>The sub-sampling <em>is</em> biased and there <strong>are</strong> heterogenous treatment effects.</li>
+</ol>
+<p>In all four of these cases, we’ll compare our estimates of the ATE <em>with</em> and <em>without</em> pre-treatment measurements to show how and when they help with recovering the ATE.</p>
+</section>
+<section id="simulation-set-up" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-set-up">Simulation Set-Up</h2>
+<p>We’re going to set-up a simulated population of 100,000 individuals. For our research, we’re interested in seeing if whether playing the character “Jeff the Shark” in the hit game <em>Marvel Rivals</em> makes people more favorable towards actual sharks.<sup>9</sup></p>
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/images/jeff.jpg" class="img-fluid"></p>
+<p>The outcome measure is a sliding scale of 0–100 (<img src="https://latex.codecogs.com/png.latex?Y">). Let’s say that our population scores a 50 without any experimental interventions: they’re neither warm nor cold on sharks prior to treatment. In our simulated experiments we’re going to sample 1,000 at a time with about 500 getting the treatment of playing Jeff the Shark (<img src="https://latex.codecogs.com/png.latex?Tr">). Let’s say that the impact of playing as Jeff causes people to rank sharks as 10 points more favorable. Let’s say that, when considering heterogenous treatment effects that playing as Jeff induces a more powerful effect older people.<sup>10</sup> This will be shown with <img src="https://latex.codecogs.com/png.latex?Y_1">. Age will be denoted as <img src="https://latex.codecogs.com/png.latex?A">.In another universe, there is no different effect for age. Everyone in the treatment condition is induced into rating sharks more favorably; their total favorability score will be shown as <img src="https://latex.codecogs.com/png.latex?Y_2">. In the universes where the sampling is biased, we’re going to say that older people are more likely to participate in the experiment. This will be operationalized via a <img src="https://latex.codecogs.com/png.latex?softmax"> function on Age (<img src="https://latex.codecogs.com/png.latex?A_%7Bsampling%7D">). We’ll run 100 iterations of our simulated experiments to get a sense of how well they’re capturing the ATE. We’ll attempt to recover the ATE using ol’ reliable: Ordinary Least Squares regression.<sup>11</sup></p>
+<p>Specifically, I’ll run a regression with a treatment dummy on the dependent variable:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY%20%5Csim%20Normal(%5Cmu,%20%5Csigma)%20%5C%5C%0A"> <img src="https://latex.codecogs.com/png.latex?%0A%5Cmu%20=%20%5Cbeta_0%20+%20%5Cbeta_1Tr%0A"></p>
+<p>(At least I will…until it stops working!)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1" style="background: #f1f3f5;"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1">n <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target">A <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-3" class="code-annotation-target">fA <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> A<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-4" class="code-annotation-target">A_s <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>((A<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-50</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>))</span>
+<span id="annotated-cell-1-5">A_s <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> A_s<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(A_s)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-6" class="code-annotation-target">Tr <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%%</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="annotated-cell-1-7"></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-1-8" class="code-annotation-target">Y1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> fA<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>Tr <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-1-9" class="code-annotation-target">Y2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>Tr <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100000</span>)</span>
+<span id="annotated-cell-1-10"></span>
+<span id="annotated-cell-1-11">universe <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> tibble<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(A, Y1,Y2, A_s,fA,Tr,n)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1"><img src="https://latex.codecogs.com/png.latex?A"></span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2"><img src="https://latex.codecogs.com/png.latex?%5Cbeta_1"> for heterogenous effects</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4,5" data-code-annotation="3"><img src="https://latex.codecogs.com/png.latex?A_%7Bsampling%7D%20softmax"></span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="4"><img src="https://latex.codecogs.com/png.latex?Tr"> (treatment assignment)</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8" data-code-annotation="5"><img src="https://latex.codecogs.com/png.latex?Y_1">: Heterogenous treatment effects with mean of <img src="https://latex.codecogs.com/png.latex?10">.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="9" data-code-annotation="6"><img src="https://latex.codecogs.com/png.latex?Y_2">: Constant treatment effects at <img src="https://latex.codecogs.com/png.latex?%5Cbeta_1%20=%2010"></span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="simulations" class="level2">
+<h2 class="anchored" data-anchor-id="simulations">Simulations</h2>
+<section id="no-biased-sampling-and-non-heterogenous-treatment" class="level3">
+<h3 class="anchored" data-anchor-id="no-biased-sampling-and-non-heterogenous-treatment">No biased sampling and non-heterogenous treatment</h3>
+<p>In this condition, 1000 individuals are sampled in a totally random way<sup>12</sup> and the treatment effect of playing as Jeff is consistent for all participants.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_vec</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">    sample <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_sample</span>(universe, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>))</span>
+<span id="cb1-4">    mod_real<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(Y2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Tr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span>sample)</span>
+<span id="cb1-5">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coef</span>(mod_real)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Tr'</span>]</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(est_ate)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">})</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Take a look at the scale of the x axis! Everything is basically between 9.9 and 10.1. I would say we’ve captured the effect quite well!</p>
+<p>This is probably unsurprising: this represents, like, the absolute best case scenario! Random assignment, no weird sampling. This is the Platonic ideal of an experiment.</p>
+<p>But like other Platonic ideals: it will never exist unadulterated in reality. So let’s move on to the next case!</p>
+</section>
+<section id="biased-sampling-but-non-heterogenous-treatment-effects" class="level3">
+<h3 class="anchored" data-anchor-id="biased-sampling-but-non-heterogenous-treatment-effects">Biased sampling but non-heterogenous treatment effects</h3>
+<p>Here, we’ll look at chases where we’re not performing an unbiased sample of the population anymore. Instead we’ll sample based upon a <img src="https://latex.codecogs.com/png.latex?softmax"> function of age so that older people are more likely to participate in the experiment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_df</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">    sample <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_sample</span>(universe, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight_by =</span> A_s))</span>
+<span id="cb2-4">    mod_real<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(Y2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Tr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span>sample)</span>
+<span id="cb2-5">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coef</span>(mod_real)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Tr'</span>]</span>
+<span id="cb2-6"></span>
+<span id="cb2-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(tibble<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(est_ate, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean_age =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(sample<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>A)))</span>
+<span id="cb2-8"></span>
+<span id="cb2-9">})</span></code></pre></div>
+</div>
+<p>Recall that, by construction, the average age in the population is 50. Here, it’s 82!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This one may look a bit worse but, again, look at the x axis! We’re basically dead-on at 10—to the point where I’m pretty confident that any deviation from expectation is either the computer or me goofing something up in the code. Place your bets!</p>
+<p>For what it’s worth: This is why many experimental social scientists accept samples that seem totally unrepresentative like MTURKers or university students.<sup>13</sup> If the thing you are analyzing/testing for is more-or-less <em>universal</em> (or, at least, has no structural heterogeneity in the ways that these samples differ from the population of interest), <em>then you don’t need to get a perfectly “representative” sample to get an unbiased estimate of the ATE</em>. That said, the idea that the treatment does not vary across the dimensions that make the experimental participants different than the population of interest can be a very strong one! Possibly an <strong>implausibly</strong> strong one. It needs some form of justification.<sup>14</sup> If it <em>can</em> be justified, though, then it opens up a lot of doors for applied researchers!</p>
+</section>
+<section id="no-biased-sampling-but-heterogenous-treatment-effects" class="level3">
+<h3 class="anchored" data-anchor-id="no-biased-sampling-but-heterogenous-treatment-effects">No biased sampling but heterogenous treatment effects</h3>
+<p>Here, we’ll assume that the efficacy of the treatment is a function of age. Younger people have weaker effects and older people have stronger effects. An 18 year old told to play as Jeff the Shark only feels 3.5 points more favorable towards sharks on the 100 point scale afterwards. An 81 year old, however, is so enamored by Jeff that they are a wallopping 16.2 points higher on the scale than their non-treatment counterparts. Despite this variation, the mean treatment effect at the mean age is still 10. And because we are interested in the <strong>average</strong> treatment effect, this variability won’t really pose a problem so long as we’re not engaging in any biased sampling. The variation of our estimates will be larger to reflect the variability of the treatment effect itself, but since our sample size is fairly large (1,000), we’re likely to get quite close to the <img src="https://latex.codecogs.com/png.latex?Te=10"> mark.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_vec</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb3-2"></span>
+<span id="cb3-3">    sample <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_sample</span>(universe, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>))</span>
+<span id="cb3-4">    mod_real<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Tr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span>sample)</span>
+<span id="cb3-5">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coef</span>(mod_real)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Tr'</span>]</span>
+<span id="cb3-6"></span>
+<span id="cb3-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(est_ate)</span>
+<span id="cb3-8"></span>
+<span id="cb3-9">})</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The chart above matches those expectations exactly. If we look down at our x axis, we’ll see that we’re still clustering really tightly around 10—but our range is measured more to the tenths’ place rather than the hundreths. This is due to the variability of the treatment effect mixed with the variability of sampling. But so long as you’ve got random sampling, you still don’t need to incorporate pre-treatment covariates into the analysis.</p>
+<p>But don’t worry. That’s (finally) coming next!</p>
+</section>
+<section id="biased-sampling-and-heterogenous-treatment-effects" class="level3">
+<h3 class="anchored" data-anchor-id="biased-sampling-and-heterogenous-treatment-effects">Biased sampling and heterogenous treatment effects</h3>
+<p>Here we are, at the main event. We not only have heterogenous treatment by age—with the treatment being much more effective on older people than younger people—we also have sample composition <em>biased</em> by age—with older people being more likely to join in the sample compared to younger people.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_df</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb4-2"></span>
+<span id="cb4-3">    sample <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_sample</span>(universe, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight_by =</span> A_s))</span>
+<span id="cb4-4">    mod_real<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Tr, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span>sample)</span>
+<span id="cb4-5">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coef</span>(mod_real)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Tr'</span>]</span>
+<span id="cb4-6"></span>
+<span id="cb4-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(tibble<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(est_ate, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean_age =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(sample<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>A), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean_ate =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(sample<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>fA)))</span>
+<span id="cb4-8"></span>
+<span id="cb4-9">})</span></code></pre></div>
+</div>
+<p>Again, the average age of the universe is 50 and the ATE is 10. Here, it’s 82 and the sample ATE (or SATE)<sup>15</sup> is 16.35! Substantially higher! We can see that if we plot out the analysis that we achieve if we simply regress <img src="https://latex.codecogs.com/png.latex?Tr"> on <img src="https://latex.codecogs.com/png.latex?Y_1"> without doing anything with age.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wow, what a miss! The procedure is very accurate at estimating the SATE, but <em>completely</em> whiffs at the <strong>population</strong> ATE. In order to recover the <strong>population</strong> ATE, we’ll need to incorporate information about age into the regression. However, there’s a wrong way and a right way to go about this.</p>
+<section id="the-wrong-way-just-chuck-age-into-your-regression" class="level4">
+<h4 class="anchored" data-anchor-id="the-wrong-way-just-chuck-age-into-your-regression">The wrong way: Just chuck age into your regression</h4>
+<p>Your first instinct may be something as follows: Age is acting as an antecedent variable for both sample selection <em>and</em> the effect of the treatment. This seems pretty close to what we might experience if we were trying to perform causal inference on observational data: a confound on both our main treatment and our dependent variable. So we should be all good if we simply controlled for age, right? Adjust our equation to read as follows:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmu%20=%20%5Cbeta_0%20+%20%5Cbeta_1Tr%20+%20%5Cbeta_1A%0A"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_df</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb5-2"></span>
+<span id="cb5-3">    sample <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_sample</span>(universe, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight_by =</span> A_s))</span>
+<span id="cb5-4">    mod_real<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Tr <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> A, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span>sample)</span>
+<span id="cb5-5">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coef</span>(mod_real)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Tr'</span>]</span>
+<span id="cb5-6"></span>
+<span id="cb5-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(est_ate)</span>
+<span id="cb5-8"></span>
+<span id="cb5-9">})</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Drat! It didn’t really do anything at all!</p>
+<p>This <em>would have worked</em> if <img src="https://latex.codecogs.com/png.latex?Tr"> was a function of <img src="https://latex.codecogs.com/png.latex?A"> plus other stuff. But it’s not. <img src="https://latex.codecogs.com/png.latex?A"> actually has no path to <img src="https://latex.codecogs.com/png.latex?Y_1"> through <img src="https://latex.codecogs.com/png.latex?Tr"> in our construction. <img src="https://latex.codecogs.com/png.latex?A"> doesn’t effect <img src="https://latex.codecogs.com/png.latex?Tr">—it effects the <strong>strength</strong> of <img src="https://latex.codecogs.com/png.latex?Tr">. If older folks were more likely to be treated <em>once in</em> the experiment <em>and</em> if age was also correlated with the dependent variable, then we’d be able to control for <img src="https://latex.codecogs.com/png.latex?A"> and recover the ATE.<sup>16</sup> But the random assignment works fine; it’s the <em>sampling</em> that’s biased. Merely controlling for age by adding it as its own covariate will not be enough to recover the population ATE. In order to do that, we need to consciously model the heterogenous effects within our regression.</p>
+</section>
+<section id="the-correct-way-explicitly-modeling-the-heterogeneity-and-then-modeling-the-ate" class="level4">
+<h4 class="anchored" data-anchor-id="the-correct-way-explicitly-modeling-the-heterogeneity-and-then-modeling-the-ate">The correct way: Explicitly modeling the heterogeneity and then modeling the ATE</h4>
+<p>Fortunately, if you’re familiar with regression analysis, you’re probably already familiar with about most of what we need to do to recover the ATE: run an interaction term. This is, in fact, one of the more “basic” ways<sup>17</sup> to model yet another TE—the Conditional Average Treatment Effect or CATE. So we’ll make our formula instead:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmu%20=%20%5Cbeta_0%20+%20%5Cbeta_1Tr%20%5Ctimes%20A%20+%20%5Cbeta_2Tr%20+%20%5Cbeta_3A%0A"></p>
+<p>Just like “knowledge” in the old GI Joe cartoons: this is only half the battle. We actually need to know how the relevant factors are distributed in our population. From there, we can model what the population ATE is by estimating <img src="https://latex.codecogs.com/png.latex?E%5BY%7CTr=1,X=%5Cmu%5D%20-%20E%5BY%7CTr=0,X=%5Cmu%5D">. Or, we can take advantage of the insanely helpful <code>{marginaleffects}</code> package<sup>18</sup> and its <code>average_slopes</code> function, which allows you to estimate the slopes given specific values of other variables.<sup>19</sup></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">results <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_vec</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x){</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">    sample <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> (dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_sample</span>(universe, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight_by =</span> A_s))</span>
+<span id="cb6-4">    mod_real<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lm</span>(Y1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Tr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>A, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span>sample)</span>
+<span id="cb6-5">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> marginaleffects<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">avg_slopes</span>(mod_real, marginaleffects<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">datagrid</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">A =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>))</span>
+<span id="cb6-6">    est_ate <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> est_ate[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'estimate'</span>] <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tr is the 2nd row in the dataframe</span></span>
+<span id="cb6-7"></span>
+<span id="cb6-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(est_ate)</span>
+<span id="cb6-9"></span>
+<span id="cb6-10">})</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Et viola</em>! We’re recovering the population ATE again! This, understandably, has the most variance out of all of the means we’ve done so far, but we’re far closer than when we did nothing or when we simply added age in without accounting for the heterogeneity.</p>
+</section>
+</section>
+</section>
+<section id="answering-the-original-question" class="level1">
+<h1>Answering the original question</h1>
+<p>So, as we can see here, the answer to David’s question of whether an experiment fielded to a small sub-sample of an original group will provide a biased estimate of the treatment effect is…it depends! Nothing about all the work we did changes that fundamental answer—isn’t social science fun?!</p>
+<p>But we hopefully now have a better idea of what it depends on. It depends on:</p>
+<ol type="1">
+<li>Whether there is something structural biasing who is included in the sample. And</li>
+<li>Whether that structural force <em>also</em> influences the strength of the treatment.</li>
+</ol>
+<p>If only 1 or 2 is the case then the sample’s ATE remains a good estimate of the broader population’s ATE. However, if <em>both</em> are true then you can recover the sample’s ATE pretty easily but generalizing it to the population of interest will require explicitly modeling that treatment heterogeneity and then using your knowledge of the population to model its ATE.<sup>20</sup></p>
+<p>That’s all for now! Time to be a scientist in the tradition of Newton and perform my experiment on myself.</p>
+<p><img src="https://www.peterlicari.com/posts/experiment-tranportability-2025/images/jeff_happy_end.gif" class="img-fluid"></p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Well, technically my actual original response was to “remind” everyone that <a href="https://bsky.app/profile/peterlicari.bsky.social/post/3ln4hbozt4s2m">“with very large numbers of n’s you don’t need randomization”</a>↩︎</p></li>
+<li id="fn2"><p>Although, from my experience in graduate school, I can promise that this chestnut is hardly exclusive to data scientists. Maybe it’s more accurate to think of it as a “tried-and-true right-hand-side-of-the-Dunning-Kreuger-curve-ism”.↩︎</p></li>
+<li id="fn3"><p>I suspect that this impulse shares wiring with the parts of my brain that enjoys <a href="https://www.playbalatro.com/"><em>Bolatro</em></a>.↩︎</p></li>
+<li id="fn4"><p>or “A\\B tests” or “randomized trials”, whatever phrase you prefer.↩︎</p></li>
+<li id="fn5"><p>Such as Average Treatment Effect on the Treated (ATT), Conditional Average Treatment Effect (CATE), Local Average Treatment Effect (LATE), and more!↩︎</p></li>
+<li id="fn6"><p>Ya know, purely hypothetically—nothing to do with my lifestyle at all here.↩︎</p></li>
+<li id="fn7"><p>What you <strong>really</strong> don’t want to do is incorporate <em>post-</em>treatment variables. That can completely screw up your estimates.↩︎</p></li>
+<li id="fn8"><p>If it is, I can only assume that CGP Grey is your largest—if not only—customer. Maybe Roman Mars, too.↩︎</p></li>
+<li id="fn9"><p>An alternative experiment is under way to see how much playing <em>against</em> him makes people dislike sharks because, goddamn it, what a broken-ass character. I acknowledge this but I main-him almost exclusively.↩︎</p></li>
+<li id="fn10"><p>Why? Because, in truth, I designed the code and checked it long before coming up with the narrative contrivance—but if you’d like me to bullshit you a plausible-ish reason, I can certainly try! This PhD has to be worth more than 60k in student debt!↩︎</p></li>
+<li id="fn11"><p>“Wow Peter”, you say—and by “you” I mean the 7 or so I’ve been consistently annoying with my evangelism—“I’m surprised you didn’t go Bayesian here!” To which <em>I</em> reply: “Even I would like to have this analysis done before the heat death of the Universe.”↩︎</p></li>
+<li id="fn12"><p>Or at least as random as my computer will let me. I don’t have <a href="https://phys.org/news/2025-03-quantum-milestone-qubit-random-generation.html">quantum computer money.</a>↩︎</p></li>
+<li id="fn13"><p>Well apart from the obvious fact that these samples are cheap and research, in general, ain’t.↩︎</p></li>
+<li id="fn14"><p>However, that’s also not an invitation to blugeon prospective research. A potential critique that claims the effect aren’t static, when absent evidence, is also an unjustifiably strong claim! In my opinion, the proper course would be to let the research get published (with potential limitations clearly noted) and for people who don’t think it will generalize to a different sample to respond to it and state their case <em>publicly</em>—or maybe even conduct their own research! Let as much evidence shine as possible. Thank you for coming to my TED talk.↩︎</p></li>
+<li id="fn15"><p>No, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4965321/#:~:text=In%20contrast%2C%20the%20sample%20average,specific%20super%2Dpopulation%20of%20interest.">I’m not making that one up.</a> I told you there’s a bunch of TEs.↩︎</p></li>
+<li id="fn16"><p>At least if there weren’t also age-dependent heterogenous treatment effects. Then it’d stop working again!↩︎</p></li>
+<li id="fn17"><p>In quotes because, at this point, there’s very little “basic” about any of this!↩︎</p></li>
+<li id="fn18"><p>Arel-Bundock V, Greifer N, Heiss A (2024). “How to Interpret Statistical Models Using marginaleffects for R and Python.” <em>Journal of Statistical Software</em>, <em>111</em>(9), 1-32. doi:10.18637/jss.v111.i09 <a href="https://doi.org/10.18637/jss.v111.i09" class="uri">https://doi.org/10.18637/jss.v111.i09</a>.↩︎</p></li>
+<li id="fn19"><p>In the normal case for OLS where you’re just adding IVs together, specifying different IV values won’t do anything. But things <em>multiplied</em> is a different story.↩︎</p></li>
+<li id="fn20"><p>I just wanted to note that though the subsection where I detailed this is called “the right way”—this is merely an example of the right way of thinking and not the only mechanical way to perform it. You can do this using other methods to either estimate heterogenous effects and/or estimate <img src="https://latex.codecogs.com/png.latex?E%5BY%7CTr=1,X=%5Cmu%5D%20-%20E%5BY%7CTr=0,X=%5Cmu%5D">.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2025,
+  author = {Licari, Peter},
+  title = {How (and When) Pre-Treatment Variables Can Help Generalize
+    Experimental Results},
+  date = {2025-04-23},
+  url = {https://www.peterlicari.com/posts/experiment-tranportability-2025/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2025" class="csl-entry quarto-appendix-citeas">
+Licari, Peter. 2025. <span>“How (and When) Pre-Treatment Variables Can
+Help Generalize Experimental Results.”</span> April 23, 2025. <a href="https://www.peterlicari.com/posts/experiment-tranportability-2025/">https://www.peterlicari.com/posts/experiment-tranportability-2025/</a>.
+</div></div></section></div> ]]></description>
+  <category>R</category>
+  <category>simulation</category>
+  <category>statistics</category>
+  <guid>https://www.peterlicari.com/posts/experiment-tranportability-2025/</guid>
+  <pubDate>Wed, 23 Apr 2025 04:00:00 GMT</pubDate>
+  <media:content url="https://www.peterlicari.com/posts/experiment-tranportability-2025/images/jeff.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>I Simulated 60,000 Games of Chutes and Ladders to See How Long the Average Game Takes.</title>
   <dc:creator>Peter Licari</dc:creator>
@@ -5923,7 +6640,7 @@ font-style: inherit;">'black'</span>})</span></code></pre></div>
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
 <th id="T_0eaf7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">turns</th>
 </tr>
-<tr class="odd">
+<tr class="even">
 <th class="index_name level0" data-quarto-table-cell-role="th">winner</th>
 <th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
 </tr>
