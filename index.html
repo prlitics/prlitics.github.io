@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data and Other Fables – Peter Licari</title>
+<title>The Now Page – Peter Licari</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -40,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-20ccb148dd7f6e8e09bca34974d845f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bdd451b8c37d5477585f4a08a533b110.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e925b15e596aef75d9bb143f3dd0bbcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,101 +66,23 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-author','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Peter Licari" href="index.xml" data-external="1"><meta property="og:title" content="Data and Other Fables – Peter Licari">
-<meta property="og:description" content="A blog by Peter Licari">
-<meta property="og:image" content="https://www.peterlicari.com/posts/snakes-ladders-2024/images/cover.png">
+<meta property="og:title" content="The Now Page – Peter Licari">
+<meta property="og:description" content="What I’m Up to Now">
 <meta property="og:site_name" content="Peter Licari">
-<meta property="og:image:height" content="600">
-<meta property="og:image:width" content="800">
-<meta name="twitter:title" content="Data and Other Fables – Peter Licari">
-<meta name="twitter:description" content="A blog by Peter Licari">
-<meta name="twitter:image" content="https://www.peterlicari.com/posts/snakes-ladders-2024/images/cover.png">
+<meta name="twitter:title" content="The Now Page – Peter Licari">
+<meta name="twitter:description" content="What I’m Up to Now">
 <meta name="twitter:creator" content="@PRLPoliSci">
-<meta name="twitter:image-height" content="600">
-<meta name="twitter:image-width" content="800">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -180,13 +100,17 @@ window.Quarto = {
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.technites.io"> 
+<span class="menu-text">Consulting</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/prlitics"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/PRLPoliSci"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://bsky.app/profile/peterlicari.bsky.social"> <i class="bi bi-bluesky" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -199,47 +123,27 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Now</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./garden.html"> 
 <span class="menu-text">Digital Garden</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./archive.html"> 
-<span class="menu-text">Archive</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://www.technites.io"> 
-<span class="menu-text">Consulting</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./writing.html"> 
-<span class="menu-text">Writing</span></a>
-  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Ongoing Projects</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-stuff-i-make" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Stuff I Make</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-stuff-i-make">    
         <li>
     <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
  <span class="dropdown-text">YouTube Channel</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://peterlicari.substack.com/">
- <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
- <span class="dropdown-text">Comics (Rarely)</span></a>
-  </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./other_things.html"> 
-<span class="menu-text">Other Things I’ve Made</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Resources</span>
@@ -259,187 +163,87 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Data and Other Fables</h1>
-            <p class="subtitle lead">A blog by Peter Licari</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(17)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="ZGF0YXZpeg==">dataviz <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVzY3JpcHRpb24=">description <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWxlY3Rpb25z">elections <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZmljdGlvbg==">fiction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2FtZXM=">games <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGlmZQ==">life <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cXVhbHRyaWNz">qualtrics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmVmbGVjdGlvbg==">reflection <span class="quarto-category-count">(5)</span></div><div class="category" data-category="cmVzZWFyY2glMjBkZXNpZ24=">research design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmV2aWV3">review <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c2ltdWxhdGlvbg==">simulation <span class="quarto-category-count">(5)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="c3VydmV5cw==">surveys <span class="quarto-category-count">(3)</span></div><div class="category" data-category="dGVhY2hpbmc=">teaching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGltZSUyMHNlcmllcw==">time series <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dHV0b3JpYWw=">tutorial <span class="quarto-category-count">(3)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#media" id="toc-media" class="nav-link active" data-scroll-target="#media">Media</a></li>
+  <li><a href="#running" id="toc-running" class="nav-link" data-scroll-target="#running">Running</a></li>
+  <li><a href="#learning" id="toc-learning" class="nav-link" data-scroll-target="#learning">Learning</a></li>
+  <li><a href="#website-redesign" id="toc-website-redesign" class="nav-link" data-scroll-target="#website-redesign">Website redesign</a></li>
+  <li><a href="#work" id="toc-work" class="nav-link" data-scroll-target="#work">Work</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Now Page</h1>
+<p class="subtitle lead">What I’m Up to Now</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<p>Hello! Welcome to my <a href="https://nownownow.com/about">now page</a>! This was last updated on December 26th, 2025.</p>
+<p>Here’s what I’ve been up to lately!</p>
+<section id="media" class="level2">
+<h2 class="anchored" data-anchor-id="media">Media</h2>
+<p>I’m currently re-playing my favorite game of all time: <em>Celeste</em>. I love this game so much it’s actually a major part of my dissertation! This game saved my life—and, in recognition of that fact, I try to summit this mountain once every year. This year, I’m tackling the (optional, exceptionally challenging) “B-Sides” as well. I didn’t think that I would manage to beat them in time for 2025 to end, but it’s looking promising!</p>
+<p>I’ve also just bought a PS5 and plan on that being my primary gaming machine for 2025. Maybe even further if Microsoft keeps opting for an Xbox strategy that is effectively toss-the-pin-while-holding-the-grenade.</p>
+</section>
+<section id="running" class="level2">
+<h2 class="anchored" data-anchor-id="running">Running</h2>
+<p>After being <del>forced</del> strongly advised by my doctors to take 3 months off of running while we figured out why the hell my chest hurts <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, I started running low-and-slow milleage. I’m at about 25 miles a week right now, hoping to be averaging 35-40 by this time in 2026. We’ll see! But I’m just grateful to be out there putting miles under my feet.</p>
+</section>
+<section id="learning" class="level2">
+<h2 class="anchored" data-anchor-id="learning">Learning</h2>
+<p>I’ve decided in 2026 that I want to learn the following:</p>
+<ul>
+<li>C++</li>
+<li>Arduino programming (related to the above)</li>
+<li>Making/managing a home server</li>
+<li>Hand drawing</li>
+</ul>
+<p>There’s a bunch of other things I’m going to learn and reinforce for my vocation (because I freaking love <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Tukey/quotations/#:~:text=The%20best%20thing%20about%20being%20a%20statistician%20is%20that%20you%20get%20to%20play%20in%20everyone%27s%20backyard">playing in everyone’s backyard</a>)</p>
+</section>
+<section id="website-redesign" class="level2">
+<h2 class="anchored" data-anchor-id="website-redesign">Website redesign</h2>
+<p>I’ve been thinking a lot about how this website looks and functions for me.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> I’ve settled on a redesign plan. Or, more accurately, it’s a <em>reimagining</em>. The site is going to look a lot different and it’s going to have different things on it. Such as this now page! Wowee! And also recipes—without the SEO! You’re welcome.</p>
+</section>
+<section id="work" class="level2">
+<h2 class="anchored" data-anchor-id="work">Work</h2>
+<p>In my day job, I’m a data scientist on the global strategy and insights team at Universal Destinations and Experiences. (So, the theme parks^[No it’s not the same owner as Disney. We’re a different <a href="https://en.wikipedia.org/wiki/Universal_Destinations_%26_Experiences#:~:text=Universal%20Destinations%20%26%20Experiences%5Ba%5D%20(UDX)%2C%5B5%5D%20formerly%20Universal%20Parks%20%26%20Resorts%2C%20is%20the%20theme%20park%20unit%20of%20NBCUniversal%2C%20a%20subsidiary%20of%20Comcast.%5B6%5D">multibillion dollar subsidiary of a multibillion dollar subsidiary.</a>, not the movie company.)</p>
+<p>On nights and weekends, I <del>fight crime dressed as an oversized arachnid</del> work at the statistical/research consultancy I own called <a href="www.technites.io">Technites</a>. It’s from the Greek for “artisans” because I believe that research is, fundamentally, an art. And I want to partner with people looking to understand and do good and interesting things in the world with research.</p>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UiUyQ3NpbXVsYXRpb24lMkNzdGF0aXN0aWNzJTJDdGltZSUyMHNlcmllcw==" data-listing-date-sort="1757044800000" data-listing-file-modified-sort="1757097411431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="49" data-listing-word-count-sort="9765">
-<div class="thumbnail">
-<p><a href="./posts/simulate_ts_2025/index.html" class="no-external"></a></p><a href="./posts/simulate_ts_2025/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/simulate_ts_2025/images/thanos.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/simulate_ts_2025/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/simulate_ts_2025/index.html" class="no-external">How to Manually Simulate (Seasonal) Time Series in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/simulate_ts_2025/index.html" class="no-external">Looping through AR up through to SARIMAX series</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/simulate_ts_2025/index.html" class="no-external">
-<div class="listing-date">
-Sep 5, 2025
-</div>
-<div class="listing-author">
-Peter Licari
-</div>
-<div class="listing-reading-time">
-49 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UiUyQ3NpbXVsYXRpb24lMkNzdGF0aXN0aWNz" data-listing-date-sort="1745380800000" data-listing-file-modified-sort="1757080718819" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4146">
-<div class="thumbnail">
-<p><a href="./posts/experiment-tranportability-2025/index.html" class="no-external"></a></p><a href="./posts/experiment-tranportability-2025/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/experiment-tranportability-2025/images/jeff.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/experiment-tranportability-2025/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">How (and when) pre-treatment variables can help generalize experimental results</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">Featuring Jeff the Shark in an experiment I wish I had enough money to run.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">
-<div class="listing-date">
-Apr 23, 2025
-</div>
-<div class="listing-author">
-Peter Licari
-</div>
-<div class="listing-reading-time">
-21 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="UiUyQ1B5dGhvbiUyQ3NpbXVsYXRpb24lMkNnYW1lcw==" data-listing-date-sort="1722571200000" data-listing-file-modified-sort="1757093048853" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6758">
-<div class="thumbnail">
-<p><a href="./posts/snakes-ladders-2024/index.html" class="no-external"></a></p><a href="./posts/snakes-ladders-2024/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/snakes-ladders-2024/images/cover.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/snakes-ladders-2024/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/snakes-ladders-2024/index.html" class="no-external">I Simulated 60,000 Games of <em>Chutes and Ladders</em> to See How Long the Average Game Takes.</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/snakes-ladders-2024/index.html" class="no-external">An investigation using Python, R, and DuckDB</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/snakes-ladders-2024/index.html" class="no-external">
-<div class="listing-date">
-Aug 2, 2024
-</div>
-<div class="listing-author">
-Peter Licari
-</div>
-<div class="listing-reading-time">
-34 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="cmVmbGVjdGlvbg==" data-listing-date-sort="1718856000000" data-listing-file-modified-sort="1718980191751" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2293">
-<div class="thumbnail">
-<p><a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external"></a></p><a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/getting_worse_getting_better_2024/images/cover.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">Getting Worse to Get Better</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">Some thoughts about improving in data science…and bowling, I guess.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">
-<div class="listing-date">
-Jun 20, 2024
-</div>
-<div class="listing-author">
-Peter Licari
-</div>
-<div class="listing-reading-time">
-12 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="cmVmbGVjdGlvbg==" data-listing-date-sort="1714104000000" data-listing-file-modified-sort="1714170140579" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3242">
-<div class="thumbnail">
-<p><a href="./posts/odsc-2024/index.html" class="no-external"></a></p><a href="./posts/odsc-2024/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/odsc-2024/images/header.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/odsc-2024/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/odsc-2024/index.html" class="no-external">What I Learned From My First Non-Academic Conference</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/odsc-2024/index.html" class="no-external">Reflections on ODSC East 2024</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/odsc-2024/index.html" class="no-external">
-<div class="listing-date">
-Apr 26, 2024
-</div>
-<div class="listing-author">
-Peter Licari
-</div>
-<div class="listing-reading-time">
-17 min
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Turns out, it’s most likely a mix of GERD, IBS, and fibromyalgia! Because <em>everything</em> hurts—or burns, is sore, twitches, itches, etc., to some degree or another depending on the day.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Actually, I’ve been thinking <em>a lot</em> about <strong><em>a lot</em></strong> of stuff. Which shouldn’t surprise that many people, I guess<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

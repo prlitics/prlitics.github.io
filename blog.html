@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-20ccb148dd7f6e8e09bca34974d845f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bdd451b8c37d5477585f4a08a533b110.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e925b15e596aef75d9bb143f3dd0bbcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,9 +78,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -146,11 +146,17 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Data and Other Fables – Peter Licari">
 <meta property="og:description" content="A blog by Peter Licari">
+<meta property="og:image" content="https://www.peterlicari.com/posts/snakes-ladders-2024/images/cover.png">
 <meta property="og:site_name" content="Peter Licari">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="800">
 <meta name="twitter:title" content="Data and Other Fables – Peter Licari">
 <meta name="twitter:description" content="A blog by Peter Licari">
+<meta name="twitter:image" content="https://www.peterlicari.com/posts/snakes-ladders-2024/images/cover.png">
 <meta name="twitter:creator" content="@PRLPoliSci">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -174,13 +180,17 @@ window.Quarto = {
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.technites.io"> 
+<span class="menu-text">Consulting</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/prlitics"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/PRLPoliSci"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://bsky.app/profile/peterlicari.bsky.social"> <i class="bi bi-bluesky" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -193,47 +203,27 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Now</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./blog.html" aria-current="page"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./garden.html"> 
 <span class="menu-text">Digital Garden</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./archive.html"> 
-<span class="menu-text">Archive</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://www.technites.io"> 
-<span class="menu-text">Consulting</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./writing.html"> 
-<span class="menu-text">Writing</span></a>
-  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Ongoing Projects</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-stuff-i-make" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Stuff I Make</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-stuff-i-make">    
         <li>
     <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
  <span class="dropdown-text">YouTube Channel</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://peterlicari.substack.com/">
- <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
- <span class="dropdown-text">Comics (Rarely)</span></a>
-  </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./other_things.html"> 
-<span class="menu-text">Other Things I’ve Made</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Resources</span>
@@ -275,7 +265,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(18)</span></div><div class="category" data-category="QW5hbHlzZXM=">Analyses <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RGF0YXZpeg==">Dataviz <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXNzYXlz">Essays <span class="quarto-category-count">(8)</span></div><div class="category" data-category="RXhwZXJpbWVudHM=">Experiments <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2FtZXM=">Games <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWV0aG9kb2xvZ3k=">Methodology <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(7)</span></div><div class="category" data-category="UmVmbGVjdGlvbnM=">Reflections <span class="quarto-category-count">(5)</span></div><div class="category" data-category="UmV2aWV3cw==">Reviews <span class="quarto-category-count">(3)</span></div><div class="category" data-category="U2ltdWxhdGlvbnM=">Simulations <span class="quarto-category-count">(5)</span></div><div class="category" data-category="U3VydmV5cw==">Surveys <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VGltZSUyMFNlcmllcw==">Time Series <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHV0b3JpYWxz">Tutorials <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -314,74 +304,689 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1745466521808" data-listing-reading-time-sort="2" data-listing-word-count-sort="326">
+<div class="quarto-post image-right" data-index="0" data-categories="RXNzYXlzJTJDUmVmbGVjdGlvbnM=" data-listing-date-sort="1767589200000" data-listing-file-modified-sort="1767677632009" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5051">
 <div class="thumbnail">
-<p><a href="./garden/proof.html" class="no-external"></a></p><a href="./garden/proof.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./garden/proof.html" class="no-external"></a></p>
+<p><a href="./posts/2025_review_2026_goals/index.html" class="no-external"></a></p><a href="./posts/2025_review_2026_goals/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2025_review_2026_goals/images/janus.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2025_review_2026_goals/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./garden/proof.html" class="no-external"></a>
+<a href="./posts/2025_review_2026_goals/index.html" class="no-external">Some reflections, hopes, and plans for 2026</a>
 </h3>
 <div class="listing-subtitle">
-<a href="./garden/proof.html" class="no-external"></a>
+<a href="./posts/2025_review_2026_goals/index.html" class="no-external">And looking back on how I did in 2025</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmVmbGVjdGlvbnM='); return false;">
+Reflections
+</div>
 </div>
 <div class="listing-description">
-<a href="./garden/proof.html" class="no-external">I had the same issue and had to do a bit more reading/thinking on it. Hopefully this will help!</a>
+<a href="./posts/2025_review_2026_goals/index.html" class="no-external">2025 is (thank Christ) just about over. Last year<sup>1</sup> I wrote this blog post looking back on my goals for 2024 and outlining my goals for 2025. This will be the third year that…<em></em><sup></sup><em></em></a>
 </div>
 </div>
 <div class="metadata">
-<p><a href="./garden/proof.html" class="no-external"></a></p><a href="./garden/proof.html" class="no-external">
+<a href="./posts/2025_review_2026_goals/index.html" class="no-external">
+<div class="listing-date">
+Jan 5, 2026
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1736053200000" data-listing-file-modified-sort="1745466620390" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1534">
+<div class="quarto-post image-right" data-index="1" data-categories="U2ltdWxhdGlvbnMlMkNNZXRob2RvbG9neSUyQ1IlMkNUaW1lJTIwU2VyaWVz" data-listing-date-sort="1757044800000" data-listing-file-modified-sort="1767667354200" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="49" data-listing-word-count-sort="9765">
 <div class="thumbnail">
-<p><a href="./garden/llms_not_replace_qual.html" class="no-external"></a></p><a href="./garden/llms_not_replace_qual.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./garden/llms_not_replace_qual.html" class="no-external"></a></p>
+<p><a href="./posts/simulate_ts_2025/index.html" class="no-external"></a></p><a href="./posts/simulate_ts_2025/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/simulate_ts_2025/images/thanos.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/simulate_ts_2025/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./garden/llms_not_replace_qual.html" class="no-external">LLMs can’t replace expert qualitative research</a>
+<a href="./posts/simulate_ts_2025/index.html" class="no-external">How to Manually Simulate (Seasonal) Time Series in R</a>
 </h3>
 <div class="listing-subtitle">
-<a href="./garden/llms_not_replace_qual.html" class="no-external"></a>
+<a href="./posts/simulate_ts_2025/index.html" class="no-external">Looping through AR up through to SARIMAX series</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbnM='); return false;">
+Simulations
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TWV0aG9kb2xvZ3k='); return false;">
+Methodology
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VGltZSUyMFNlcmllcw=='); return false;">
+Time Series
+</div>
 </div>
 <div class="listing-description">
-<a href="./garden/llms_not_replace_qual.html" class="no-external">I notice that there is a belief among folk that preside over qualitative research that large language models (such as Ollama and GPT-4o)<sup>1</sup> will be able to replace the work…<strong></strong></a>
+<a href="./posts/simulate_ts_2025/index.html" class="no-external">I do a lot with time series forecasting for my day-job. Coming from a methodological background emphasizing single-shot studies (cross-sectional analyses, experiments taking…<sup></sup></a>
 </div>
 </div>
 <div class="metadata">
-<a href="./garden/llms_not_replace_qual.html" class="no-external">
+<a href="./posts/simulate_ts_2025/index.html" class="no-external">
+<div class="listing-date">
+Sep 5, 2025
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="U2ltdWxhdGlvbnMlMkNNZXRob2RvbG9neSUyQ0V4cGVyaW1lbnRzJTJDUg==" data-listing-date-sort="1745380800000" data-listing-file-modified-sort="1767669960569" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4146">
+<div class="thumbnail">
+<p><a href="./posts/experiment-tranportability-2025/index.html" class="no-external"></a></p><a href="./posts/experiment-tranportability-2025/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/experiment-tranportability-2025/images/jeff.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/experiment-tranportability-2025/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">How (and when) pre-treatment variables can help generalize experimental results</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">Featuring Jeff the Shark in an experiment I wish I had enough money to run.</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbnM='); return false;">
+Simulations
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TWV0aG9kb2xvZ3k='); return false;">
+Methodology
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RXhwZXJpbWVudHM='); return false;">
+Experiments
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">This post is inspired by this question from David Brady (and reposted by Stephen Wild) on Bluesky:</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/experiment-tranportability-2025/index.html" class="no-external">
+<div class="listing-date">
+Apr 23, 2025
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="RXNzYXlzJTJDUmVmbGVjdGlvbnM=" data-listing-date-sort="1736053200000" data-listing-file-modified-sort="1767676301682" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3403">
+<div class="thumbnail">
+<p><a href="./posts/2024_review_2025_goals/index.html" class="no-external"></a></p><a href="./posts/2024_review_2025_goals/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2024_review_2025_goals/images/janus.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2024_review_2025_goals/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/2024_review_2025_goals/index.html" class="no-external">Some reflections, hopes, and plans for 2025</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/2024_review_2025_goals/index.html" class="no-external">And looking back on how I did in 2024</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmVmbGVjdGlvbnM='); return false;">
+Reflections
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/2024_review_2025_goals/index.html" class="no-external">This is a description of my project. You can find more details on the <span>Quarto website</span> </a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/2024_review_2025_goals/index.html" class="no-external">
 <div class="listing-date">
 Jan 5, 2025
 </div>
+<div class="listing-author">
+Peter Licari
+</div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1713153600000" data-listing-file-modified-sort="1745466521808" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356">
+<div class="quarto-post image-right" data-index="4" data-categories="U2ltdWxhdGlvbnMlMkNSJTJDUHl0aG9uJTJDQW5hbHlzZXMlMkNHYW1lcw==" data-listing-date-sort="1722571200000" data-listing-file-modified-sort="1767677606594" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6758">
 <div class="thumbnail">
-<p><a href="./garden/want_models_to_be_wrong.html" class="no-external"></a></p><a href="./garden/want_models_to_be_wrong.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./garden/want_models_to_be_wrong.html" class="no-external"></a></p>
+<p><a href="./posts/snakes-ladders-2024/index.html" class="no-external"></a></p><a href="./posts/snakes-ladders-2024/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/snakes-ladders-2024/images/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/snakes-ladders-2024/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./garden/want_models_to_be_wrong.html" class="no-external">I usually want my prediction models to be wrong</a>
+<a href="./posts/snakes-ladders-2024/index.html" class="no-external">I Simulated 60,000 Games of <em>Chutes and Ladders</em> to See How Long the Average Game Takes.</a>
 </h3>
 <div class="listing-subtitle">
-<a href="./garden/want_models_to_be_wrong.html" class="no-external"></a>
+<a href="./posts/snakes-ladders-2024/index.html" class="no-external">An investigation using Python, R, and DuckDB</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbnM='); return false;">
+Simulations
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzZXM='); return false;">
+Analyses
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2FtZXM='); return false;">
+Games
+</div>
 </div>
 <div class="listing-description">
-<a href="./garden/want_models_to_be_wrong.html" class="no-external">I generally hope that my time series models wind up wrong.</a>
+<a href="./posts/snakes-ladders-2024/index.html" class="no-external">The other day, at my daughter’s behest, we sat down and played a game that I hadn’t played since I was close to her age: <em>Chutes and Ladders</em><sup>1</sup> I’ll be honest, I was never much…<strong><em></em></strong><sup></sup></a>
 </div>
 </div>
 <div class="metadata">
-<a href="./garden/want_models_to_be_wrong.html" class="no-external">
+<a href="./posts/snakes-ladders-2024/index.html" class="no-external">
+<div class="listing-date">
+Aug 2, 2024
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="RXNzYXlzJTJDUmVmbGVjdGlvbnM=" data-listing-date-sort="1718856000000" data-listing-file-modified-sort="1767669965503" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2293">
+<div class="thumbnail">
+<p><a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external"></a></p><a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/getting_worse_getting_better_2024/images/cover.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">Getting Worse to Get Better</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">Some thoughts about improving in data science…and bowling, I guess.</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmVmbGVjdGlvbnM='); return false;">
+Reflections
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">It may come as a surprise to some people who know me, but I actually have other hobbies other than “doing stuff with data.” This post is concerns some experiences I’ve had…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/getting_worse_getting_better_2024/index.html" class="no-external">
+<div class="listing-date">
+Jun 20, 2024
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="RXNzYXlzJTJDUmVmbGVjdGlvbnMlMkNSZXZpZXdz" data-listing-date-sort="1714104000000" data-listing-file-modified-sort="1767669980157" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3242">
+<div class="thumbnail">
+<p><a href="./posts/odsc-2024/index.html" class="no-external"></a></p><a href="./posts/odsc-2024/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/odsc-2024/images/header.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/odsc-2024/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/odsc-2024/index.html" class="no-external">What I Learned From My First Non-Academic Conference</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/odsc-2024/index.html" class="no-external">Reflections on ODSC East 2024</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmVmbGVjdGlvbnM='); return false;">
+Reflections
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmV2aWV3cw=='); return false;">
+Reviews
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/odsc-2024/index.html" class="no-external">This week, I attended the 2024 Open Data Science Conference (ODSC) in Boston, Massachusetts. It was the first conference I attended since Covid<sup>1</sup> and my first non-academic…<sup></sup></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/odsc-2024/index.html" class="no-external">
+<div class="listing-date">
+Apr 26, 2024
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="UiUyQ0RhdGF2aXolMkNBbmFseXNlcw==" data-listing-date-sort="1713153600000" data-listing-file-modified-sort="1767677507286" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2460">
+<div class="thumbnail">
+<p><a href="./posts/birthdays_2024/index.html" class="no-external"></a></p><a href="./posts/birthdays_2024/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/birthdays_2024/images/title.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/birthdays_2024/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/birthdays_2024/index.html" class="no-external">How Popular Are Birthdays Over Time?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/birthdays_2024/index.html" class="no-external">A datacentric way to celebrate turning 30</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YXZpeg=='); return false;">
+Dataviz
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzZXM='); return false;">
+Analyses
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/birthdays_2024/index.html" class="no-external">Here are two fun facts about 30:</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/birthdays_2024/index.html" class="no-external">
 <div class="listing-date">
 Apr 15, 2024
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="RXNzYXlzJTJDUmVmbGVjdGlvbnM=" data-listing-date-sort="1703912400000" data-listing-file-modified-sort="1767669986143" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2598">
+<div class="thumbnail">
+<p><a href="./posts/plans-for-2024/index.html" class="no-external"></a></p><a href="./posts/plans-for-2024/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/plans-for-2024/images/persistence_of_future_plans.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/plans-for-2024/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/plans-for-2024/index.html" class="no-external">Some reflections, hopes, and plans for 2024</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/plans-for-2024/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmVmbGVjdGlvbnM='); return false;">
+Reflections
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/plans-for-2024/index.html" class="no-external">2023 has just about come to a close. I thought I was due for an audit on how things went and where (I think) things are going.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/plans-for-2024/index.html" class="no-external">
+<div class="listing-date">
+Dec 30, 2023
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="U2ltdWxhdGlvbnMlMkNNZXRob2RvbG9neSUyQ1N1cnZleXMlMkNS" data-listing-date-sort="1694577600000" data-listing-file-modified-sort="1767669970787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3693">
+<div class="thumbnail">
+<p><a href="./posts/moe-subgroup-wrong/index.html" class="no-external"></a></p><a href="./posts/moe-subgroup-wrong/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/moe-subgroup-wrong/images/pokemon.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/moe-subgroup-wrong/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/moe-subgroup-wrong/index.html" class="no-external">The Traditional Margin of Error When You Have Oversamples in Your Survey is Wrong</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/moe-subgroup-wrong/index.html" class="no-external">Illustrated using Pokemon</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbnM='); return false;">
+Simulations
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TWV0aG9kb2xvZ3k='); return false;">
+Methodology
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('U3VydmV5cw=='); return false;">
+Surveys
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/moe-subgroup-wrong/index.html" class="no-external">Not too long ago, pollsters and social scientists on X (the decaying husk of Twitter) found themselves discussing a recent CNN poll detailing President Biden’s job…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/moe-subgroup-wrong/index.html" class="no-external">
+<div class="listing-date">
+Sep 13, 2023
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="VHV0b3JpYWxzJTJDUiUyQ1F1YXJ0bw==" data-listing-date-sort="1690862400000" data-listing-file-modified-sort="1767672891287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1296">
+<div class="thumbnail">
+<p><a href="./posts/quarto-custom-font-windows/index.html" class="no-external"></a></p><a href="./posts/quarto-custom-font-windows/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/quarto-custom-font-windows/images/title_card.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/quarto-custom-font-windows/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/quarto-custom-font-windows/index.html" class="no-external">How to add a Variable Font to a Quarto PDF on Windows</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/quarto-custom-font-windows/index.html" class="no-external">Or: How I was driven completely insane by Google Fonts</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWxz'); return false;">
+Tutorials
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">
+Quarto
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/quarto-custom-font-windows/index.html" class="no-external">This is one of those posts motivated by never <strong><em>ever</em></strong> wanting to subject anyone to the insanity that I experienced while struggling through what only <em>seems</em> to be a simple idea.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/quarto-custom-font-windows/index.html" class="no-external">
+<div class="listing-date">
+Aug 1, 2023
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="UiUyQ1R1dG9yaWFscw==" data-listing-date-sort="1680580800000" data-listing-file-modified-sort="1767669996491" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5125">
+<div class="thumbnail">
+<p><a href="./posts/r-punch-in-face-23/index.html" class="no-external"></a></p><a href="./posts/r-punch-in-face-23/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/r-punch-in-face-23/images/title_card.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/r-punch-in-face-23/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/r-punch-in-face-23/index.html" class="no-external">What to do when R punches you in the mouth</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/r-punch-in-face-23/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWxz'); return false;">
+Tutorials
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/r-punch-in-face-23/index.html" class="no-external">Attaining mastery in R is not about avoiding hiccups, but about learning what to do when you’re inevitably confronted with them. However, this is hardly covered in most…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/r-punch-in-face-23/index.html" class="no-external">
+<div class="listing-date">
+Apr 4, 2023
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="U2ltdWxhdGlvbnMlMkNQeXRob24lMkNHYW1lcyUyQ0FuYWx5c2Vz" data-listing-date-sort="1676523600000" data-listing-file-modified-sort="1767677524575" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1624">
+<div class="thumbnail">
+<p><a href="./posts/rosie-game-sim-23/index.html" class="no-external"></a></p><a href="./posts/rosie-game-sim-23/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/rosie-game-sim-23/images/game_box.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/rosie-game-sim-23/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/rosie-game-sim-23/index.html" class="no-external">Simulating My Daughter’s First Board Game in Python</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/rosie-game-sim-23/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2ltdWxhdGlvbnM='); return false;">
+Simulations
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2FtZXM='); return false;">
+Games
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzZXM='); return false;">
+Analyses
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/rosie-game-sim-23/index.html" class="no-external"><strong>Children learn as they play. Most importantly, in play children learn how to learn.</strong></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/rosie-game-sim-23/index.html" class="no-external">
+<div class="listing-date">
+Feb 16, 2023
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-categories="RXNzYXlzJTJDUmV2aWV3cw==" data-listing-date-sort="1667797200000" data-listing-file-modified-sort="1767670217496" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2312">
+<div class="thumbnail">
+<p><a href="./posts/theory-reality-book-review/index.html" class="no-external"></a></p><a href="./posts/theory-reality-book-review/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/theory-reality-book-review/images/book_cover.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/theory-reality-book-review/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/theory-reality-book-review/index.html" class="no-external">Book Review: Theory and Reality</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/theory-reality-book-review/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmV2aWV3cw=='); return false;">
+Reviews
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/theory-reality-book-review/index.html" class="no-external"><em>Theory and Reality</em> is an ambitious book that aims to accessibly cover a large swath of historical and philosophical ground. In many ways, it lives up to that ambition…<em></em></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/theory-reality-book-review/index.html" class="no-external">
+<div class="listing-date">
+Nov 7, 2022
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-categories="RXNzYXlz" data-listing-date-sort="1604552400000" data-listing-file-modified-sort="1767667237316" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2542">
+<div class="thumbnail">
+<p><a href="./posts/thoughts-prior-2020-election/index.html" class="no-external"></a></p><a href="./posts/thoughts-prior-2020-election/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/thoughts-prior-2020-election/images/likelyoutcome.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/thoughts-prior-2020-election/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/thoughts-prior-2020-election/index.html" class="no-external">Thoughts on the 2020 Election</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/thoughts-prior-2020-election/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/thoughts-prior-2020-election/index.html" class="no-external">I thought I would post my prediction for the election and a few thoughts regarding it more generally. I’ll be peppering in some maps that I’ve made to help illustrate my…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/thoughts-prior-2020-election/index.html" class="no-external">
+<div class="listing-date">
+Nov 5, 2020
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="15" data-categories="VHV0b3JpYWxzJTJDTWV0aG9kb2xvZ3klMkNTdXJ2ZXlz" data-listing-date-sort="1596600000000" data-listing-file-modified-sort="1767669990675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="942">
+<div class="thumbnail">
+<p><a href="./posts/Qualtrics-random-groups/index.html" class="no-external"></a></p><a href="./posts/Qualtrics-random-groups/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/Qualtrics-random-groups/images/2.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/Qualtrics-random-groups/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/Qualtrics-random-groups/index.html" class="no-external">How to Do Unequal Randomization in Qualtrics Surveys</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/Qualtrics-random-groups/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWxz'); return false;">
+Tutorials
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TWV0aG9kb2xvZ3k='); return false;">
+Methodology
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('U3VydmV5cw=='); return false;">
+Surveys
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/Qualtrics-random-groups/index.html" class="no-external">Recently, some coauthors and I were working on a survey experiment in Qualtrics where we were assigning people into 4 different groups. This is something that Qualtrics can…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/Qualtrics-random-groups/index.html" class="no-external">
+<div class="listing-date">
+Aug 5, 2020
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-categories="RXNzYXlzJTJDUmV2aWV3cw==" data-listing-date-sort="1596427200000" data-listing-file-modified-sort="1767670026339" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="553">
+<div class="thumbnail">
+<p><a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external"></a></p><a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external">Surveying is a Beautifully Foolish Endeavor</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('RXNzYXlz'); return false;">
+Essays
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UmV2aWV3cw=='); return false;">
+Reviews
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external">I binged Hank Green’s <em>A Beautifully Foolish Endeavor</em> yesterday and it is, let me tell you, just fantastic. I don’t plan on writing a longer review because I didn’t really…<em></em></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/surveying-beautiful-endeavor/index.html" class="no-external">
+<div class="listing-date">
+Aug 3, 2020
+</div>
+<div class="listing-author">
+Peter Licari
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="17" data-categories="VHV0b3JpYWxz" data-listing-date-sort="1583812800000" data-listing-file-modified-sort="1767670267216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2742">
+<div class="thumbnail">
+<p><a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external"></a></p><a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external">
+<p class="card-img-top"><img src="posts\covid-video-lecture-tutorial\images\1.gif"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external">Capturing a PowerPoint/Google Slides Lecture with Open Source Software</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('VHV0b3JpYWxz'); return false;">
+Tutorials
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external">A number of schools are either shutting down or transitioning classes to an online format due to the novel corona virus (also known as COVID-19). (UF just let us know…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/covid-video-lecture-tutorial/index.html" class="no-external">
+<div class="listing-date">
+Mar 10, 2020
+</div>
+<div class="listing-author">
+Peter Licari
 </div>
 </a>
 </div>

@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -74,7 +40,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-20ccb148dd7f6e8e09bca34974d845f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-bdd451b8c37d5477585f4a08a533b110.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-7db286dc42b9221aca8806963730e5b9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -142,13 +108,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.technites.io"> 
+<span class="menu-text">Consulting</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/prlitics"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/PRLPoliSci"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://bsky.app/profile/peterlicari.bsky.social"> <i class="bi bi-bluesky" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -161,47 +131,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Now</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../garden.html"> 
 <span class="menu-text">Digital Garden</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../archive.html"> 
-<span class="menu-text">Archive</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://www.technites.io"> 
-<span class="menu-text">Consulting</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../writing.html"> 
-<span class="menu-text">Writing</span></a>
-  </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ongoing-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Ongoing Projects</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-stuff-i-make" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Stuff I Make</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-ongoing-projects">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-stuff-i-make">    
         <li>
     <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
  <span class="dropdown-text">YouTube Channel</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://peterlicari.substack.com/">
- <span class="dropdown-text">Pulse of the Polis (Substack)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://p05comics-blog.tumblr.com/">
- <span class="dropdown-text">Comics (Rarely)</span></a>
-  </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../../other_things.html"> 
-<span class="menu-text">Other Things I’ve Made</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Resources</span>
@@ -251,9 +201,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">How to add a Variable Font to a Quarto PDF on Windows</h1>
 <p class="subtitle lead">Or: How I was driven completely insane by Google Fonts</p>
   <div class="quarto-categories">
+    <div class="quarto-category">Tutorials</div>
     <div class="quarto-category">R</div>
     <div class="quarto-category">Quarto</div>
-    <div class="quarto-category">tutorial</div>
   </div>
   </div>
 
@@ -302,17 +252,17 @@ Created by Author &amp; Easy Diffusion</figcaption>
 <summary>
 <strong>Code</strong>
 </summary>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{qmd}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">title: "Example"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">author: "Peter Licari"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">editor: visual</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">## This is an example</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">Sphinx of black quartz, judge my vow!</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>``` {{qmd}}
+---
+title: "Example"
+author: "Peter Licari"
+editor: visual
+---
+
+## This is an example
+
+Sphinx of black quartz, judge my vow!
+```</code></pre>
 </details>
 <p><strong>Output</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -328,20 +278,20 @@ Created by Author &amp; Easy Diffusion</figcaption>
 <summary>
 <strong>Code</strong>
 </summary>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{qmd}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">title: "Example 2"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">author: "Peter Licari"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">format: </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  pdf:</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">    mainfont: 'Comic Sans MS'</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">editor: visual</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">## This is an example</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">Sphinx of black quartz, judge my vow!</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>``` {{qmd}}
+---
+title: "Example 2"
+author: "Peter Licari"
+format: 
+  pdf:
+    mainfont: 'Comic Sans MS'
+editor: visual
+---
+
+## This is an example
+
+Sphinx of black quartz, judge my vow!
+```</code></pre>
 </details>
 <p><strong>Output</strong></p>
 <div class="quarto-figure quarto-figure-center">
@@ -353,20 +303,20 @@ Created by Author &amp; Easy Diffusion</figcaption>
 </div>
 </div>
 <p>But let’s take a look at what comes up when I try to use Vollkorn:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">running xelatex - 1</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">  This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">   restricted \write18 enabled.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">  entering extended mode</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">updating tlmgr</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">updating existing packages</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">finding package for Vollkorn(-(Bold|Italic|Regular).*)?[.](tfm|afm|mf|otf|ttf)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">compilation failed- no matching packages</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">Package fontspec Error: The font "Vollkorn" cannot be found.</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>``` {{r}}
+running xelatex - 1
+  This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+updating tlmgr
+
+updating existing packages
+finding package for Vollkorn(-(Bold|Italic|Regular).*)?[.](tfm|afm|mf|otf|ttf)
+
+compilation failed- no matching packages
+Package fontspec Error: The font "Vollkorn" cannot be found.
+```</code></pre>
 <p>Which is <em>incredibly frustrating</em> because I can go to my Windows fonts<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> I can clearly see the damn font there. All installed. <strong><em>Mockingly.</em></strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -411,19 +361,19 @@ Created by Author &amp; Easy Diffusion</figcaption>
 <h3 class="anchored" data-anchor-id="address-the-files-well-address.">1. Address the file’s, well, address.</h3>
 <p>You’ve got two options for this. The first is to uninstall the fonts<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and then re-install them so that they are installed for all users. You can accomplish this by selecting “Show more options” after right-clicking on the font file(s) you want to install. From there “Install for All Users” should be visible (it’ll often be accompanied by a little shield).</p>
 <p>If you don’t want to reinstall the file, you can use the <code>mainfontoptions</code> parameter and redirect where <code>fontspec</code> is looking:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{qmd}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">title: "Example 3"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">author: "Peter Licari"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">format: </span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">  pdf:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">    mainfont: 'Vollkorn-Regular'</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="in">    mainfontoptions:</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">      - Path = C:/Users/prlic/AppData/Local/Microsoft/Windows/Fonts/</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="in">      - Extension = .ttf </span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">editor: visual</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>``` {{qmd}}
+---
+title: "Example 3"
+author: "Peter Licari"
+format: 
+  pdf:
+    mainfont: 'Vollkorn-Regular'
+    mainfontoptions:
+      - Path = C:/Users/prlic/AppData/Local/Microsoft/Windows/Fonts/
+      - Extension = .ttf 
+editor: visual
+---
+```</code></pre>
 <p>For the remaining bit of advice, I’m going to assume that you’re going with the reinstall option. However, if you didn’t, all you’d have to do is make sure those two parts of <code>mainfontoptions</code> are specified.</p>
 </section>
 <section id="handle-the-variable-font-type" class="level3">
@@ -431,38 +381,38 @@ Created by Author &amp; Easy Diffusion</figcaption>
 <section id="the-easy-way" class="level4">
 <h4 class="anchored" data-anchor-id="the-easy-way">The easy way:</h4>
 <p>While Quarto’s default Tex engine on Windows doesn’t play nice with variable fonts, one of the optional rendering engines, LuaLatex works well! So all you would have to do is specify the <code>pdf-engine</code> parameter:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{qmd}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">title: "Example 3"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">author: "Peter Licari"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">format: </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">  pdf:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">    mainfont: 'Vollkorn-Regular'</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">    pdf-engine: lualatex</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="in">editor: visual</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>``` {{qmd}}
+---
+title: "Example 3"
+author: "Peter Licari"
+format: 
+  pdf:
+    mainfont: 'Vollkorn-Regular'
+    pdf-engine: lualatex
+editor: visual
+---
+```</code></pre>
 <p>Why use xelatex over lulatex or vice-versa? There’s a couple interesting Reddit threads on the topic. It seems that LuaLatex is preferred but xelatex is a bit faster (possibly) and useful for backwards compatibility on older renders.</p>
 </section>
 <section id="the-more-involved-way" class="level4">
 <h4 class="anchored" data-anchor-id="the-more-involved-way">The more involved way</h4>
 <p>But let’s say that you’re committed to xelatex. Or you’re me and you didn’t realize that a way easier option existed <strong><em>the whole goddamn time</em></strong> prior to writing a blog post.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>Fortunately, many of the variable font styles available from Google Fonts <em>also</em> come pre-packaged with the so-called “Static” files (the aforementioned separate <em>italic,</em> <strong>bold</strong>, and <strong><em>bold-italic</em></strong> files). So instead of installing the variable-font, you would install all of the individual types, which you can set manually in <code>mainfontoptions</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{qmd}</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">title: "Example 3"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">author: "Peter Licari"</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">format: </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="in">  pdf:</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">    mainfont: 'Vollkorn-Regular'</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">    mainfontoptions:</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="in">      - BoldFont = Vollkorn-Bold</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="in">      - ItalicFont = Vollkorn-Italic</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="in">      - BoldItalicFont= Vollkorn-Bolditalic</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="in">      - Extension = .ttf </span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="in">editor: visual</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="in">---</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>``` {{qmd}}
+---
+title: "Example 3"
+author: "Peter Licari"
+format: 
+  pdf:
+    mainfont: 'Vollkorn-Regular'
+    mainfontoptions:
+      - BoldFont = Vollkorn-Bold
+      - ItalicFont = Vollkorn-Italic
+      - BoldItalicFont= Vollkorn-Bolditalic
+      - Extension = .ttf 
+editor: visual
+---
+```</code></pre>
 </section>
 <section id="et-viola" class="level4">
 <h4 class="anchored" data-anchor-id="et-viola">Et viola!</h4>
