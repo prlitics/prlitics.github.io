@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peter Licari">
+<meta name="dcterms.date" content="2027-07-06">
+
+<title>Solving Poople Using Python – Peter Licari</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-20ccb148dd7f6e8e09bca34974d845f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e925b15e596aef75d9bb143f3dd0bbcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Solving Poople Using Python – Peter Licari">
+<meta property="og:description" content="A serious-ish post about solving a silly word game">
+<meta property="og:image" content="https://www.peterlicari.com/posts/solving_poople_26/img/title.png">
+<meta property="og:site_name" content="Peter Licari">
+<meta property="og:image:height" content="799">
+<meta property="og:image:width" content="915">
+<meta name="twitter:title" content="Solving Poople Using Python – Peter Licari">
+<meta name="twitter:description" content="A serious-ish post about solving a silly word game">
+<meta name="twitter:image" content="https://www.peterlicari.com/posts/solving_poople_26/img/title.png">
+<meta name="twitter:creator" content="@PRLPoliSci">
+<meta name="twitter:image-height" content="799">
+<meta name="twitter:image-width" content="915">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Peter Licari</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.technites.io"> 
+<span class="menu-text">Consulting</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prlitics"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://bsky.app/profile/peterlicari.bsky.social"> <i class="bi bi-bluesky" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/peterlicari/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Now</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-stuff-i-make" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Stuff I Make</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-stuff-i-make">    
+        <li>
+    <a class="dropdown-item" href="https://www.youtube.com/channel/UCuCCVkVbWmYmgg7W9x2Y30g">
+ <span class="dropdown-text">YouTube Channel</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="https://www.r-bloggers.com/">
+ <span class="dropdown-text">R Bloggers</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-poople" id="toc-what-is-poople" class="nav-link active" data-scroll-target="#what-is-poople">What is Poople?</a></li>
+  <li><a href="#calculating-route" id="toc-calculating-route" class="nav-link" data-scroll-target="#calculating-route">Calculating Route…</a></li>
+  <li><a href="#monkeys-flinging-poop-at-a-typewriter" id="toc-monkeys-flinging-poop-at-a-typewriter" class="nav-link" data-scroll-target="#monkeys-flinging-poop-at-a-typewriter">Monkeys Flinging Poop at a Typewriter</a></li>
+  <li><a href="#coming-out-clean-on-the-other-side10" id="toc-coming-out-clean-on-the-other-side10" class="nav-link" data-scroll-target="#coming-out-clean-on-the-other-side10">Coming Out Clean on the Other Side</a></li>
+  <li><a href="#the-exact-implementation-of-the-word-graph-search" id="toc-the-exact-implementation-of-the-word-graph-search" class="nav-link" data-scroll-target="#the-exact-implementation-of-the-word-graph-search">The Exact Implementation of the Word Graph Search</a></li>
+  <li><a href="#the-poople-solver-in-action" id="toc-the-poople-solver-in-action" class="nav-link" data-scroll-target="#the-poople-solver-in-action">The POOPLE Solver In Action</a></li>
+  <li><a href="#testing-the-solver-the-importance-of-the-right-dictionary" id="toc-testing-the-solver-the-importance-of-the-right-dictionary" class="nav-link" data-scroll-target="#testing-the-solver-the-importance-of-the-right-dictionary">Testing the Solver (the Importance of the Right Dictionary)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Solving Poople Using Python</h1>
+<p class="subtitle lead">A serious-ish post about solving a silly word game</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Simulations</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Games</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter Licari <a href="https://orcid.org/0000-0001-9701-6006" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 6, 2027</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/title.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>“Have you played Poople?”, my coworker asked me.</p>
+<p>“<em>Poop</em>le?” I asked quizzically, wondering if the heavy-metal induced hearing loss had finally kicked in.</p>
+<p>“Yeah, Poople!” my other coworker (and my first coworker’s husband) enthused. “It’s great, you’ve got to try it!”</p>
+<p>And, dear friends, I did try it. And it is indeed great. So great that it inspired this post: a 4 hour, ADHD-fueled quest to code-up a program that can solve it. In so doing, I learned that nearly 98% of roads<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> lead to “poop.” And that’s not just a joke about my state’s poor infrastructure—<em>waka waka</em>.</p>
+<section id="what-is-poople" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-poople">What is Poople?</h2>
+<p>Poople is a word game where you’re given a 4 letter word and you have to iteratively transform that word into the word “poop” by changing one letter in-place per turn, with each change creating a still-valid English word. Today’s puzzle<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, for example, is “Suck”. My solution was:</p>
+<ol start="0" type="1">
+<li>Suck</li>
+<li>Luck</li>
+<li>Lock</li>
+<li>Look</li>
+<li>Loop</li>
+<li>Poop</li>
+</ol>
+<p>Today, I happened to get it in the fewest possible steps<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Most of the time, I’m off the optimum by a move or two. But <em>Poople</em> will only tell you how far off the optimum you are; it doesn’t give you an example of a shortest-route. It makes you wait until the next day’s puzzle to know the current day’s solution. This is, almost certainly, to prevent folks from cheating. But I’m very impatient! I want to be able to try my best and then check my answer while my thinking is still fresh!</p>
+<p>“How hard would be to make a solver so I don’t have to wait a day.” I wondered.</p>
+<p>Turns out, not terribly hard thanks to my eclectic YouTube watch history!</p>
+</section>
+<section id="calculating-route" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-route">Calculating Route…</h2>
+<p>Just a few days earlier, I watched <a href="https://www.youtube.com/watch?v=kS-CGkiPetQ">this Veritasium video on Dijkstra’s shortest route algorithm.</a> It’s an excellent watch and really illustrates the logic and the performance of the algorithm beautifully; I actually felt like I understood what was happening as it was being explained. Which, you know, is not my typical experience when learning about algorithms for the first time.</p>
+<p>For those who don’t know<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, Dijkstra’s algorithm is frequently used to calculate the shortest route between two points in a network when the distance between points aren’t all identical. Most of us encounter this in our everyday lives when we use our phone’s GPS to route us to a place we haven’t been to before<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. There isn’t usually just one way to get from point A to point B—there are highways, cross-roads, side-streets—and a dizzying number of ways to combine them to get to where we’re going. Dijkstra’s algorithm constructs, in a wonderfully simple way, the shortest route even with all those alternatives present.</p>
+<p>Apparently that video really stuck with me, because I realized that what Poople players are doing is really no different than trying to navigate from one place to another—except instead of <em>roads</em>, it’s words. Just like how I4 connects to the Florida Turnpike<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, “Lock” connects to “Look” by just changing their third letter. But “Lock” also connects to words like “Lick”, “Luck”, “Lack”, “Mock”, “Sock”, and “Cock”<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. One of them (Luck) would be bad because then I’d be going backwards. Another one of them, clearly, would be just as funny to arrive at as “poop”—but that diversion won’t be helpful if our aim is to minimize our route. So just as we have to avoid going down errant cross-streets, we have to try and find an optimal track through words.</p>
+<div class="cell" data-fig-width="100%" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="NaN" height="480" viewbox="0.00 0.00 406.72 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 402.72,-256 402.72,4 -4,4"></polygon>
+<!-- LOCK -->
+<g id="node1" class="node">
+<title>LOCK</title>
+<ellipse fill="none" stroke="black" cx="246.86" cy="-234" rx="37.15" ry="18"></ellipse>
+<text text-anchor="middle" x="246.86" y="-229.8" font-family="Times,serif" font-size="14.00">LOCK</text>
+</g>
+<!-- LOOK -->
+<g id="node2" class="node">
+<title>LOOK</title>
+<ellipse fill="none" stroke="black" cx="37.86" cy="-162" rx="37.71" ry="18"></ellipse>
+<text text-anchor="middle" x="37.86" y="-157.8" font-family="Times,serif" font-size="14.00">LOOK</text>
+</g>
+<!-- LOCK&#45;&#45;LOOK -->
+<g id="edge1" class="edge">
+<title>LOCK--LOOK</title>
+<path fill="none" stroke="black" d="M216.91,-222.97C177.29,-209.7 107.85,-186.44 68.09,-173.12"></path>
+</g>
+<!-- LICK -->
+<g id="node3" class="node">
+<title>LICK</title>
+<ellipse fill="none" stroke="black" cx="165.86" cy="-162" rx="33.63" ry="18"></ellipse>
+<text text-anchor="middle" x="165.86" y="-157.8" font-family="Times,serif" font-size="14.00">LICK</text>
+</g>
+<!-- LOCK&#45;&#45;LICK -->
+<g id="edge2" class="edge">
+<title>LOCK--LICK</title>
+<path fill="none" stroke="black" d="M229.28,-217.81C215.51,-205.91 196.46,-189.45 182.84,-177.68"></path>
+</g>
+<!-- LUCK -->
+<g id="node4" class="node">
+<title>LUCK</title>
+<ellipse fill="none" stroke="black" cx="114.86" cy="-90" rx="37.15" ry="18"></ellipse>
+<text text-anchor="middle" x="114.86" y="-85.8" font-family="Times,serif" font-size="14.00">LUCK</text>
+</g>
+<!-- LOCK&#45;&#45;LUCK -->
+<g id="edge3" class="edge">
+<title>LOCK--LUCK</title>
+<path fill="none" stroke="black" d="M211.59,-227.94C182.78,-221.81 143.57,-208.51 122.86,-180 107.63,-159.04 108.87,-127.55 111.56,-108.19"></path>
+</g>
+<!-- LACK -->
+<g id="node5" class="node">
+<title>LACK</title>
+<ellipse fill="none" stroke="black" cx="179.86" cy="-18" rx="37.15" ry="18"></ellipse>
+<text text-anchor="middle" x="179.86" y="-13.8" font-family="Times,serif" font-size="14.00">LACK</text>
+</g>
+<!-- LOCK&#45;&#45;LACK -->
+<g id="edge4" class="edge">
+<title>LOCK--LACK</title>
+<path fill="none" stroke="black" d="M241.49,-215.85C228.91,-175.68 197.67,-75.89 185.16,-35.94"></path>
+</g>
+<!-- MOCK -->
+<g id="node6" class="node">
+<title>MOCK</title>
+<ellipse fill="none" stroke="black" cx="333.86" cy="-162" rx="40.02" ry="18"></ellipse>
+<text text-anchor="middle" x="333.86" y="-157.8" font-family="Times,serif" font-size="14.00">MOCK</text>
+</g>
+<!-- LOCK&#45;&#45;MOCK -->
+<g id="edge5" class="edge">
+<title>LOCK--MOCK</title>
+<path fill="none" stroke="black" d="M260.84,-217.12C274.48,-205.01 295.07,-188.52 311.03,-176.93"></path>
+</g>
+<!-- LOCK&#45;&#45;MOCK -->
+<g id="edge7" class="edge">
+<title>LOCK--MOCK</title>
+<path fill="none" stroke="black" d="M269.09,-219.5C285.12,-207.9 306.04,-191.16 319.85,-178.91"></path>
+</g>
+<!-- SOCK -->
+<g id="node7" class="node">
+<title>SOCK</title>
+<ellipse fill="none" stroke="black" cx="295.86" cy="-90" rx="36.59" ry="18"></ellipse>
+<text text-anchor="middle" x="295.86" y="-85.8" font-family="Times,serif" font-size="14.00">SOCK</text>
+</g>
+<!-- LOCK&#45;&#45;SOCK -->
+<g id="edge6" class="edge">
+<title>LOCK--SOCK</title>
+<path fill="none" stroke="black" d="M252.67,-216.15C262.1,-188.82 280.63,-135.14 290.05,-107.82"></path>
+</g>
+<!-- COCK -->
+<g id="node8" class="node">
+<title>COCK</title>
+<ellipse fill="none" stroke="black" cx="360.86" cy="-18" rx="37.73" ry="18"></ellipse>
+<text text-anchor="middle" x="360.86" y="-13.8" font-family="Times,serif" font-size="14.00">COCK</text>
+</g>
+<!-- LOCK&#45;&#45;COCK -->
+<g id="edge8" class="edge">
+<title>LOCK--COCK</title>
+<path fill="none" stroke="black" d="M283.31,-229.9C315.51,-225.02 360.69,-212.43 382.86,-180 413.42,-135.28 385.77,-67.08 370.03,-35.77"></path>
+</g>
+<!-- LICK&#45;&#45;LUCK -->
+<g id="edge10" class="edge">
+<title>LICK--LUCK</title>
+<path fill="none" stroke="black" d="M154.03,-144.76C145.79,-133.46 134.85,-118.44 126.62,-107.15"></path>
+</g>
+<!-- LICK&#45;&#45;LACK -->
+<g id="edge9" class="edge">
+<title>LICK--LACK</title>
+<path fill="none" stroke="black" d="M167.55,-143.87C170.24,-116.58 175.47,-63.52 178.16,-36.19"></path>
+</g>
+<!-- LUCK&#45;&#45;LACK -->
+<g id="edge11" class="edge">
+<title>LUCK--LACK</title>
+<path fill="none" stroke="black" d="M129.61,-73.12C140.24,-61.66 154.54,-46.26 165.17,-34.82"></path>
+</g>
+<!-- MOCK&#45;&#45;SOCK -->
+<g id="edge12" class="edge">
+<title>MOCK--SOCK</title>
+<path fill="none" stroke="black" d="M324.85,-144.41C318.79,-133.25 310.84,-118.6 304.8,-107.47"></path>
+</g>
+<!-- MOCK&#45;&#45;COCK -->
+<g id="edge13" class="edge">
+<title>MOCK--COCK</title>
+<path fill="none" stroke="black" d="M337.11,-143.87C342.3,-116.58 352.39,-63.52 357.59,-36.19"></path>
+</g>
+<!-- SOCK&#45;&#45;COCK -->
+<g id="edge14" class="edge">
+<title>SOCK--COCK</title>
+<path fill="none" stroke="black" d="M310.61,-73.12C321.24,-61.66 335.54,-46.26 346.17,-34.82"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>In order to do that, we’ll need to identify all the links that exist between all of English’s 4 letter words. Once we do that, we’ll be able to use a slightly modified version of Dijkstra’s algorithm to figure out the minimum distance each of those words have to “poop”. Once we have that, we’ll be able to backtrace the route to get there.</p>
+</section>
+<section id="monkeys-flinging-poop-at-a-typewriter" class="level2">
+<h2 class="anchored" data-anchor-id="monkeys-flinging-poop-at-a-typewriter">Monkeys Flinging Poop at a Typewriter</h2>
+<p>There are 26 letters in English. In theory, that means that there are <span class="math inline">26^4</span> different combinations of letters—or 456,976. Fortunately for my computer (which was looking at that number with a lot of trepidation), for every “poop”, there’s about a hundred “xccz”s. Seriously. There’s literally a hundred times the number of the gibberish letter permutations than there are valid English 4 letter words. Which, depending on your source, numbers somewhere between about 4,000–6,000<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<p>So let’s go ahead and pull an Eminem and read-in a dictionary. I’m going to use the most recent North American scrabble dictionary at time of writing (NSWL2023)—which I happened to find in a handy <code>txt</code> file. (Thanks, Internet!) This has about 196,000 entries, but only 4,218 of which are 4 letters long. The <code>txt</code> file contains definitions, which are extraneous for our current purposes<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. But, fortunately, the words are always first and followed by a space—so it can be extracted with some handy-dandy regex.</p>
+<div id="eac2223a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"C:/Users/prlic/Downloads/NSWL2023.txt"</span>,<span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>scrabble_words <span class="op">=</span> []</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(lines)):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    extracted_word <span class="op">=</span> re.search(<span class="vs">r'[A-Z]+(?=\s)'</span>,lines[l]).group(<span class="dv">0</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    scrabble_words.append(extracted_word)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>four_letter <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> scrabble_words <span class="cf">if</span> <span class="bu">len</span>(w)<span class="op">==</span><span class="dv">4</span>]    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we make my computer suffer. We’ll go through each of those 4,218 words and create a list of all of the other 4,218 words which are the same except for 1 letter. Fortunately, Python treats the subparts of a string as strings in and of themselves. So it’s pretty easy to blow-apart a word and test to see if they differ by only 1 letter in 1 position:</p>
+<div id="dae4b59a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_adjacency(w1,w2):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    comparison_array <span class="op">=</span> []</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Check every letter in order to see if they match</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        comparison_array.append(w1[i] <span class="op">==</span> w2[i])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">sum</span>(comparison_array) <span class="op">==</span> <span class="dv">3</span>: <span class="co">#If three match, then they connect!</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="21789394" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>adjacency_dictionary <span class="op">=</span> {}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> four_letter:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Going through every word out of the 4,000ish...</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    adjacent_words <span class="op">=</span> []</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> w2 <span class="kw">in</span> four_letter:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> w <span class="op">==</span> w2: <span class="co"># Skip over the same word</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> test_adjacency(w,w2):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            adjacent_words.append(w2) <span class="co"># adding every adjacent word to the list.</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    adjacency_dictionary[w] <span class="op">=</span> adjacent_words <span class="co"># Adding the full list to the dictionary for the word in the loop. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s see how many words are adjacent to “POOP”!</p>
+<div id="0ef29258" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>adjacency_dictionary[<span class="st">'POOP'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>['COOP',
+ 'GOOP',
+ 'HOOP',
+ 'LOOP',
+ 'PLOP',
+ 'POMP',
+ 'POOD',
+ 'POOF',
+ 'POOH',
+ 'POOL',
+ 'POON',
+ 'POOR',
+ 'POOS',
+ 'PROP']</code></pre>
+</div>
+</div>
+<p>That’s quite a lot! And then we can go even further still and map out the words that are adjacent to those, and the ones adjacent to <em>those</em>, on and on, until we either run out of words or out of connections. Which is where that YouTube video of Dijkstra’s algorithm comes in. If we tilt our head and squint, we realize that our adjancency dictionary is a (rough) way of writing out a <em>network</em>. And if it’s a network, than we can use Dijkstra’s algorithm to traverse it in the shortest number of steps. And, helpfully, we always know where we’re trying to go!</p>
+</section>
+<section id="coming-out-clean-on-the-other-side10" class="level2">
+<h2 class="anchored" data-anchor-id="coming-out-clean-on-the-other-side10">Coming Out Clean on the Other Side<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></h2>
+<p>Now that we have our adjacency information, we could make a function that encodes Dijkstra’s algorithm from an arbitrary start word to “poop” and call it a day. But that’s not only no fun<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>, it’s also inefficient. 4,000 words is short enough that we could simply compute the shortest route to each word <em>once</em>, save that info, and then look it up later. Basically: pre-compile and cache rather than waste compute multiple times later. And this way is especially more efficient once we remember that Dijkstra’s algorithm <em>already</em> gives us the shortest route to every node in the network as a matter of course—we just don’t stop running it until all the possible connections have been mapped.</p>
+<p>To see what I mean, let’s look at the pseudocode for Dijkstra’s algorithm, adapted from the algorithm’s <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Pseudocode">Wikipedia page</a>:</p>
+<pre><code>function Dijkstra(Graph, first_point, target):
+
+    dist &lt;- []
+    prev &lt;- []
+
+    for each vertex v in Graph.vertices:
+        dist[v] &lt;- inf
+        prev[v] &lt;- NULL
+        Q.append(v)
+        dist[first_point] &lt;- 0
+
+    while Q is not empty:
+        u &lt;- v in Q with min(dist[u])
+        Q.pop(u)
+        if u = target:
+            Q = []
+
+        for each edge (u,v) in Graph:
+            alt &lt;- dist[u] + Graph.Distance(u,v)
+            if alt &lt; dist[v]:
+                dist[v] &lt;- alt
+                prev[v] &lt;- u
+
+    return dist[], prev[]</code></pre>
+<p>To translate into English: collect all of the vertices in the graph and initialize their values to be infinity (except for the first point, which is 0). Then, go through each connection beginning from the first point, and check if the distance to that point is less than the recorded distance. If it is, replace the distance and note the previous node. Rinse and repeat until you get to the target.</p>
+<p>The only reason the algorithm terminates once the target is found is because we specify what the target is. Indeed, in Wiki’s psuedocode, that step isn’t even in there! So we can continue onwards until we’ve got everything that can be got.</p>
+<p>There are a few changes that we can do here for the current problem. First off, Dijkstra’s algorithm was intended for graphs of non-uniform weights—where the distances between two points can vary. That’s not the case here. All the distances are 1 since each adjacent word is, by definition, only 1 letter off<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. Second, is the fact that I don’t have an end-point in mind, so I’m going to need another way for the procedure to stop. Finally, I’m not sure of the structure of the graph: there may be cases of 4 letter words that are disconnected from the main structure. To see what I mean, look at the graph below:</p>
+<div class="cell" data-fig-width="100%" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="NaN" height="480" viewbox="0.00 0.00 302.00 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 298,-256 298,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<ellipse fill="none" stroke="black" cx="54" cy="-234" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="54" y="-229.8" font-family="Times,serif" font-size="14.00">A</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-157.8" font-family="Times,serif" font-size="14.00">B</text>
+</g>
+<!-- A&#45;&#45;B -->
+<g id="edge1" class="edge">
+<title>A--B</title>
+<path fill="none" stroke="black" d="M47.6,-216.41C43.36,-205.41 37.81,-191.03 33.54,-179.96"></path>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<ellipse fill="none" stroke="black" cx="64" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="64" y="-85.8" font-family="Times,serif" font-size="14.00">C</text>
+</g>
+<!-- B&#45;&#45;C -->
+<g id="edge2" class="edge">
+<title>B--C</title>
+<path fill="none" stroke="black" d="M35.58,-144.76C41.56,-133.46 49.5,-118.44 55.46,-107.15"></path>
+</g>
+<!-- C&#45;&#45;A -->
+<g id="edge3" class="edge">
+<title>C--A</title>
+<path fill="none" stroke="black" d="M64.6,-108.1C65.05,-126.05 65.24,-155.07 63,-180 61.91,-192.08 59.61,-205.56 57.6,-215.9"></path>
+</g>
+<!-- E -->
+<g id="node4" class="node">
+<title>E</title>
+<ellipse fill="none" stroke="black" cx="265" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="265" y="-157.8" font-family="Times,serif" font-size="14.00">E</text>
+</g>
+<!-- D -->
+<g id="node5" class="node">
+<title>D</title>
+<ellipse fill="none" stroke="black" cx="231" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="231" y="-85.8" font-family="Times,serif" font-size="14.00">D</text>
+</g>
+<!-- E&#45;&#45;D -->
+<g id="edge4" class="edge">
+<title>E--D</title>
+<path fill="none" stroke="black" d="M257.11,-144.76C251.7,-133.62 244.53,-118.87 239.08,-107.63"></path>
+</g>
+<!-- G -->
+<g id="node7" class="node">
+<title>G</title>
+<ellipse fill="none" stroke="black" cx="267" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="267" y="-13.8" font-family="Times,serif" font-size="14.00">G</text>
+</g>
+<!-- E&#45;&#45;G -->
+<g id="edge7" class="edge">
+<title>E--G</title>
+<path fill="none" stroke="black" d="M265.81,-143.82C266.26,-133.45 266.77,-119.97 267,-108 267.47,-82.97 267.35,-53.98 267.19,-36.06"></path>
+</g>
+<!-- F -->
+<g id="node6" class="node">
+<title>F</title>
+<ellipse fill="none" stroke="black" cx="176" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="176" y="-13.8" font-family="Times,serif" font-size="14.00">F</text>
+</g>
+<!-- D&#45;&#45;F -->
+<g id="edge5" class="edge">
+<title>D--F</title>
+<path fill="none" stroke="black" d="M219.07,-73.81C209.84,-62.07 197.13,-45.89 187.91,-34.16"></path>
+</g>
+<!-- D&#45;&#45;G -->
+<g id="edge6" class="edge">
+<title>D--G</title>
+<path fill="none" stroke="black" d="M239.35,-72.76C245.17,-61.46 252.89,-46.44 258.7,-35.15"></path>
+</g>
+<!-- I -->
+<g id="node8" class="node">
+<title>I</title>
+<ellipse fill="none" stroke="black" cx="193" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="193" y="-157.8" font-family="Times,serif" font-size="14.00">I</text>
+</g>
+<!-- I&#45;&#45;D -->
+<g id="edge8" class="edge">
+<title>I--D</title>
+<path fill="none" stroke="black" d="M201.81,-144.76C207.95,-133.46 216.11,-118.44 222.23,-107.15"></path>
+</g>
+<!-- I&#45;&#45;F -->
+<g id="edge9" class="edge">
+<title>I--F</title>
+<path fill="none" stroke="black" d="M190.95,-143.87C187.68,-116.58 181.33,-63.52 178.06,-36.19"></path>
+</g>
+<!-- J -->
+<g id="node9" class="node">
+<title>J</title>
+<ellipse fill="none" stroke="black" cx="201" cy="-234" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="201" y="-229.8" font-family="Times,serif" font-size="14.00">J</text>
+</g>
+<!-- J&#45;&#45;E -->
+<g id="edge10" class="edge">
+<title>J--E</title>
+<path fill="none" stroke="black" d="M214.57,-218.15C225.43,-206.28 240.59,-189.7 251.45,-177.82"></path>
+</g>
+<!-- J&#45;&#45;F -->
+<g id="edge11" class="edge">
+<title>J--F</title>
+<path fill="none" stroke="black" d="M184.7,-219.07C174.6,-209.3 162.52,-195.3 157,-180 138.84,-129.7 158.1,-65.38 169.24,-35.56"></path>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Nodes {A,B,C} can’t ever be reached by any of {J,I,E,D,F,G}. That is, there may be some words that “Poop”, alas, will never be able to connect to. If we assume that <code>Graph.Distance</code> in the pseudocode returns <code>inf</code> when the nodes are unconnected then this will work eventually—but it’s a tad inefficient. But, I mean, it’s pseudocode: it’s not meant to be the exact implementation of the word graph search. We’ll do better.</p>
+<p>The next section <em>is</em> the exact implementation of the word graph search—with ample details for those who want to follow along! For those who don’t, you can feel free to skip on ahead to the section where I demonstrate the solver.</p>
+</section>
+<section id="the-exact-implementation-of-the-word-graph-search" class="level2">
+<h2 class="anchored" data-anchor-id="the-exact-implementation-of-the-word-graph-search">The Exact Implementation of the Word Graph Search</h2>
+<p>This is one of those things where it helps to begin with how you want to end.</p>
+<p>What we want to be able to do is select any word in our list and not only know how many steps it takes to get there but <em>what</em> steps, specifically it takes to get there. Our first guess may be to record, for each word, the exact distance and the path it takes to get there. This is sub-optimal for a couple of reasons:</p>
+<ol type="1">
+<li>There may be multiple valid paths of the same length.</li>
+<li>It will take a lot of time (relatively) 4,000 or so unique paths.</li>
+</ol>
+<p>First, let’s remember that the minimum distance from any word <span class="math inline">\rightarrow</span> POOP is the same as the minimum distance from POOP <span class="math inline">\rightarrow</span> that word. So we start our graph search with the word we know we’re always going to end with.</p>
+<p>Once we do that, we can figure out that we actually don’t need to need to record the full path for each word To quote AA: “You just need to take the next right step.” More accurately, you just need to know what the right previous step was.</p>
+<p>If our word is POLL, then we just need to know that POOL is the right previous word when starting from POOP. So, in POLL’s entry, we don’t need to record [‘POOL’,‘POOP’], we just need to record [‘POOL’]. Once we know that we need to go to [‘POOL’], we can then look up POOL’s best previous word, which happens to be our starting point. This way, you can iteratively construct the path between POOP and any arbitrary starting point quickly without needless pre-calculation<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p>
+<p>Alright, all that’s to say, we’ll need to store the distance for the word and the immediately previous word from POOP to it. POOP has no parent word and the distance to itself is 0. Let’s set that up.</p>
+<div id="df6dbd7f" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>all_words <span class="op">=</span> adjacency_dictionary.keys()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>poop_distances <span class="op">=</span> {w:{<span class="st">'distance'</span>: <span class="va">None</span>, <span class="st">'previous'</span>: []} <span class="cf">for</span> w <span class="kw">in</span> all_words}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>poop_distances[<span class="st">'POOP'</span>][<span class="st">'distance'</span>] <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, let’s think through how we’ll get to each word to calculate the distances. We’ll start by going to the words that immediately neighbor POOP. These will all be given a weight of 1 because it takes 1 turn to get to them. For each, we’ll record that POOP is the previous word.</p>
+<p>Next, we’ll go to all of the words that are reachable by all of the level 1 words. From this level onward, we’ll start seeing duplicates—both in words of this level and to words seen in previous levels. The first type of duplicate can be dealt with by only considering the full set of <em>unique</em> words in that level. The second can be dealth with by keeping a running list of every word we’ve visited thusfar. If we’ve already seen a word at a previous level we know (by dint of it being a <em>previous</em> level) that we’ve already found the shortest path to it; this new route can be disregarded.</p>
+<div id="259c5dff" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>visited <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we haven’t seen a word before, we go to its entry in our <code>poop_distances</code> dictionary and note what level it is; that’s its distance from POOP. We’ll then pop its parent word(s) into the list of previous words. Rinse and repeat until…</p>
+<p>Wait, how do we get this ride to stop?</p>
+<p>Fortunately, because we’re going level-by-level rather than exploring every path (breadth rather than depth-first), if we come to a situation where every word we’re seeing at this level is one we’ve seen before, that means that we’ve exhausted the search. After all, if we’ve seen every word that means we’ve seen all of their parents—and if we’ve seen all of their parents that means we’ve seen all of the parents’ adjacencies.</p>
+<p>So, our steps, in sum:</p>
+<ol type="1">
+<li>Check our current level (the number of moves away from POOP)</li>
+<li>Identify all of the words adjacent to all the words on the current level.</li>
+<li>Remove any words that are duplicates of any other on this level or that have already been visited.</li>
+<li>If removing words that have already been visited leaves us with 0 words, quit-out. We’re done.</li>
+<li>Put every new, unique word here into the list of already-visited words.</li>
+<li>For every new, unique word (<span class="math inline">W</span>), go to the <code>poop_distances</code> dictionary and record the current level as the distance.</li>
+<li>Record every word that (<span class="math inline">W</span>) is adjacent to that are <em>also</em> within the current level’s list of words as the parents.</li>
+<li>Increment the level.</li>
+</ol>
+<p>Rinse and repeat until we quit out as noted at step 4.</p>
+<p>I don’t get many chances to work with recursive functions in my day-to-day so I thought it’d be fun to code it up that way—especially because I don’t expect the number of recursive steps to explode or anything. I’d be shocked if this took more than 100. You could also do this as a for or while loop, though, to avoid any chance of Python getting snippy with you.</p>
+<div id="6f5e5fd1" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_distances(current_level_words, current_distance): </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Level </span><span class="sc">{</span>current_distance<span class="sc">}</span><span class="ss"> reached"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initializing</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Current distance is fed in via `current_distance` (step 1)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    all_current_level_children <span class="op">=</span> [] </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    current_level_adjacency_dict <span class="op">=</span> {}</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cw <span class="kw">in</span> current_level_words:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        all_current_level_children <span class="op">=</span> all_current_level_children <span class="op">+</span> adjacency_dictionary[cw] <span class="co"># identifying all of the children of all of the current level's words (step 2)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        current_level_adjacency_dict[cw] <span class="op">=</span> adjacency_dictionary[cw] <span class="co"># Creating a per-level adjacency dictionary to help with a later step.</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    all_unique_children <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(all_current_level_children))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    new_visits <span class="op">=</span> [child <span class="cf">for</span> child <span class="kw">in</span> all_unique_children <span class="cf">if</span> child <span class="kw">not</span> <span class="kw">in</span> visited] <span class="co"># First get all the unique children. Then only those that have not been visited (step 3)</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(new_visits) <span class="op">==</span> <span class="dv">0</span>: </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span> <span class="co"># If there aren't any new words we're done (step 4)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> v <span class="kw">in</span> new_visits:</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        visited.append(v) <span class="co"># Pop each new unique word into the visited list (step 5)</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        poop_distances[v][<span class="st">'distance'</span>] <span class="op">=</span> current_distance <span class="co"># Note the current distance (step 6)</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> prev <span class="kw">in</span> [w <span class="cf">for</span> w <span class="kw">in</span> current_level_adjacency_dict.keys() <span class="cf">if</span> v <span class="kw">in</span> current_level_adjacency_dict[w]]:</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>            poop_distances[v][<span class="st">'previous'</span>].append(prev)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Adding only the adjacencies that are within the current level as "previous" nodes (step 7)</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    calculate_distances(new_visits, current_distance <span class="op">+</span> <span class="dv">1</span>) <span class="co"># Increment (step 8) The fact that it's recursive handles the rinse-and-repeat.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ok, so, <em>technically</em> this isn’t Dijkstra’s algorithm anymore. Remember how I said his innovation was to solve for instances where nodes have differing weights? The fact that they don’t here—but instead all have a weight of 1—means that this decomposes into breadth-first search. But, hey, that’s how inspiration works sometimes! You start off somewhere, tweak it a bit, wind up somewhere new…except “new” only means “new” if this were the 1950s. But, hey, it’s new to me!</p>
+<p>Alright, let’s start off at our initial parent word (POOP) and the level (1).</p>
+<div id="849c419a" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>calculate_distances([<span class="st">'POOP'</span>],<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Level 1 reached
+Level 2 reached
+Level 3 reached
+Level 4 reached
+Level 5 reached
+Level 6 reached
+Level 7 reached
+Level 8 reached
+Level 9 reached
+Level 10 reached
+Level 11 reached
+Level 12 reached
+Level 13 reached
+Level 14 reached</code></pre>
+</div>
+</div>
+<p>14 levels! I wonder how many words have zero route to POOP at all.</p>
+<div id="fd8a7ec8" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>([word <span class="cf">for</span> word <span class="kw">in</span> poop_distances.keys() <span class="cf">if</span> poop_distances[word][<span class="st">'distance'</span>] <span class="kw">is</span> <span class="va">None</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>98</code></pre>
+</div>
+</div>
+<p>Nearly 100 words! That’s a lot, but it’s only 2% of English 4 letter words. It’s a good thing that I thought ahead with disconnected graphs. Thanks, Past Peter!<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+</section>
+<section id="the-poople-solver-in-action" class="level2">
+<h2 class="anchored" data-anchor-id="the-poople-solver-in-action">The POOPLE Solver In Action</h2>
+<p>And now we’re ready to see how well to the actual Poople solver works! Those who read the previous section should (hopefully) have an appreciation for how we went from a list of English 4 letter words to a bit of code that can solve a random browser game about poop in about .003 seconds. For those who didn’t read through, you didn’t miss all that much: just some Python code, an air-tight solution to peace in the middle east, and the last digit of <span class="math inline">\pi</span><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>. The Python code returned a dictionary of about 4,000 words that tells us:</p>
+<ol type="1">
+<li>How many steps it takes to get to that word from “POOP” (or has <code>None</code> if it’s not possible)</li>
+<li>What the previous word(s) were that would permit you to get to that particular word in that number of sets.</li>
+</ol>
+<p>So, using the word “RUNS” as an example:</p>
+<div id="01f0a52b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>poop_distances[<span class="st">'RUNS'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>{'distance': 4, 'previous': ['PUNS']}</code></pre>
+</div>
+</div>
+<p>Which let’s us do</p>
+<div id="14b1aa73" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>poop_distances[<span class="st">'PUNS'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>{'distance': 3, 'previous': ['PONS']}</code></pre>
+</div>
+</div>
+<p>And then “PONS” -&gt; “POOS” -&gt; “POOP”!</p>
+<p>The function below will just loop through that process for us.</p>
+<div id="79c11825" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optimal_path(word):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    word_list <span class="op">=</span> []</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> poop_distances[word][<span class="st">'distance'</span>] <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'There is no path from POOP to </span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">!'</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    past_word <span class="op">=</span> word</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="st">'POOP'</span> <span class="kw">not</span> <span class="kw">in</span> word_list:</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        word_list.append(past_word)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Sometimes multiple words can funnel into each other. This just selects one from the options available. </span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        past_word <span class="op">=</span> random.sample(poop_distances[past_word][<span class="st">'previous'</span>], k <span class="op">=</span> <span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'POOP has been reached in </span><span class="sc">{</span><span class="bu">len</span>(word_list)<span class="op">-</span><span class="dv">1</span><span class="sc">}</span><span class="ss">!'</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    word_list.reverse() <span class="co"># Making it pretty to see the path</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-&gt;"</span>.join(word_list))</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4408e710" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'RUNS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POOP has been reached in 4!
+POOP-&gt;POOS-&gt;PONS-&gt;PUNS-&gt;RUNS</code></pre>
+</div>
+</div>
+<p>When I told my siblings about this when we gathered on Father’s day, the consensus was, and I quote: “You huge nerd.” Joke’s on them though—NERD gets to POOP in 6.</p>
+<div id="eb812dd2" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'NERD'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POOP has been reached in 6!
+POOP-&gt;HOOP-&gt;HOLP-&gt;HOLD-&gt;HELD-&gt;HERD-&gt;NERD</code></pre>
+</div>
+</div>
+</section>
+<section id="testing-the-solver-the-importance-of-the-right-dictionary" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-solver-the-importance-of-the-right-dictionary">Testing the Solver (the Importance of the Right Dictionary)</h2>
+<p>Let’s go through a couple of days of Poople puzzles to see how well the solver performs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/poople_check.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div id="d0f6d6de" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'LATE'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'----'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'TEAK'</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'----'</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'NETS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POOP has been reached in 5!
+POOP-&gt;POOS-&gt;POTS-&gt;PATS-&gt;PATE-&gt;LATE
+----
+POOP has been reached in 5!
+POOP-&gt;POON-&gt;PEON-&gt;PEAN-&gt;PEAK-&gt;TEAK
+----
+POOP has been reached in 4!
+POOP-&gt;POOS-&gt;POTS-&gt;PETS-&gt;NETS</code></pre>
+</div>
+</div>
+<p>It seems like the solver actually performs better than Poople’s own logic. And, thanks to my daily Poople playing, I have a good guess as to why. The Scrabble dictionary has substantially more 4-letter words than the Poople’s does.</p>
+<p>In fact, this is why I’ve started cooling down on Poople a bit. Not because the game isn’t fun in theory, or because having a solver made it less enjoyable (if anything, comparing myself to the optimum afterwards made it more fun for me!). It was because I started having BEEF<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> with the game’s dictionary. There were some omissions I could accept—but you’re going to tell a political scientist <em>and</em> someone who works with computers that <a href="https://en.wiktionary.org/wiki/bork">BORK</a> isn’t a word! Get the FUCK<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> out of here!</p>
+<p>So, in my frustration-laden curiosity, I looked to see if I could find Poople’s dictionary in the game’s source code. And, dear reader, I <em>could</em>. Which meant that I could run through the same exercise again pretty trivially and update the solver to use use Poople’s own words.</p>
+<p>BEHOLD!</p>
+<div id="9fcd6798" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">"VIEW"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POOP has been reached in 6!
+POOP-&gt;PLOP-&gt;PLOD-&gt;PLED-&gt;PIED-&gt;VIED-&gt;VIEW</code></pre>
+</div>
+</div>
+<p>Ok, admittedly, it’s a bit anti-climactic just to put it out like that—that’s because I’ve hidden the dictionary and the code block that generated the function. I want to respect the Poople dev and not broadcast the dictionary for any random reader (or LLM agent) to see. But once you manage to find that, you just have to copy-paste the code above and follow the steps.</p>
+<p>If we put it through the same paces we get the same solutions as the game does:</p>
+<div id="b26006b1" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">'LATE'</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'----'</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">'TEAK'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'----'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">'NETS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>POOP has been reached in 6!
+POOP-&gt;POMP-&gt;POME-&gt;SOME-&gt;SAME-&gt;LAME-&gt;LATE
+----
+POOP has been reached in 6!
+POOP-&gt;POOL-&gt;TOOL-&gt;TOLL-&gt;TELL-&gt;TEAL-&gt;TEAK
+----
+POOP has been reached in 5!
+POOP-&gt;BOOP-&gt;BOOS-&gt;BOTS-&gt;BETS-&gt;NETS</code></pre>
+</div>
+</div>
+<p>Which I think is nice because it validates that the core logic of the original solver was correct, it just needed the “proper” dictionary.</p>
+<p>But it’s not like swapping out the dictionaries are marginal changes! Poople’s dictionary has 2,398 words—nearly about 40% fewer than the Scrabble dictionary! The absences include words <em>immediately proximal</em> to POOP (POOS is a particularly frustrating omission). Poople’s dictionary has 11 words off of POOP by one letter. Scrabble’s has 14. As a result, there are loads of cases where the Scrabble dictionary reaches POOP sooner than the dictionary does the game.</p>
+<p>I think that this is a pretty big weakness from a game design perspective: it needlessly punishes the game’s primary audience. Folks who are interested in word games like Poople likely have a larger vocabulary than those who aren’t. That larger vocabulary means that they’ll be much more likely to type in a perfectly acceptable (mayhaps even cromulent) English word that is nonetheless rejected by the game’s dictionary. By analogy, the game is like a foreman who’s hired you to lay a path from one point to another, offering a giant pile of bricks next to the starting point with a sign that says “use us!” But when you pick up about <em>half</em> of them, your employer—without rhyme or reason—goes “ew, gross, not that one—choose another.”</p>
+<p>In that way, Poople ceases to be about picking the shortest lexical route to POOP. It’s about trying to create the shortest route <em>the developer</em> has determined without a mechanism to check or course correct. The dictionary is hidden from the average player meaning that they have to guess, in the moment, whether they’re next step will be accepted. And if it’s not—tough 💩. Poople doesn’t offer a way to delete a step or try again without re-opening the game in an icognito window. There’s been many games where I’ve planned a route only to be told “nope! That ain’t a word”—and because there’s no way fix a mistake that isn’t your fault as the player, you’re forced to double-back and increase your path length.</p>
+<p>Fortunately, I realized that the game resolves whether the word is in the dictionary <em>prior</em> to resolving whether it’s a letter off. So I’ll think a few words down the line and type in a word that’s 2+ letters off to check that it’s in the dictionary. It works fairly well, but it’s not perfect. I seriously wish that it let you reverse course prior to getting to POOP so that it challenges us to get the very best POOP route. Alas…</p>
+<p>Frustrations with the game itself aside, making the solver and writing this post was a lot of fun! But these same friends recently introduced me to Sedecordle. Which is Wordle but solving <strong>16</strong> grids at once in 21 guesses…<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></p>
+<p>So, yeah…see you guys soon with the optimal Sedecordle openings!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>And by “roads” I mean, 4 letter English words.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>June 14th, 2026.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Some of you are going to be like “duh, Peter, this whole post is about how you made a solver for this game”—but, at the time of writing this footnote, I actually <em>haven’t made the solver yet</em>. This post is more about the journey of making the solver. Like with Poople itself, the destination is (relatively) fixed but the adventure is how we get there. So, yeah, I titled it this way without having actually done the work yet. How’s that for confidence?!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>As if I <strong>also</strong> didn’t know prior to writing this blog post.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Or, if you have my poor sense of direction: a place you haven’t visited at least 6 times before.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>In the most cursed fucking interchange in this country, I swear to God.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>I originally had a joke where I said “obviously like the rooster, pervert” but then the very next word I came up with was “lick”—AND, LIKE, HOW COULD I JUDGE?! <strong>I WAS BETRAYED BY MY OWN BRAIN.</strong> Incidentally, that’s why “lick” is at the front of the list rather than following the order that I thought the words up: to try and hide what my shameful brain did. This secret is between us, dear 5% or so of people who actually read the footnotes.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Collins Dictionary puts it at 5,600. The scrabble dictionary has about 4,000.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Though might be useful at the next family game night.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>This subtitle is a reference to the Shawshank Redemption: Andy Dufresne—who crawled through a river of shit and came out clean on the other side.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>You’d think that how (un)fun an implementation is shouldn’t matter whatsoever to whether it’s adopted but, hey, I’m only human.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Technically, this means the algorithm decomposes into an instance of <a href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth-first search</a>. But I’m going to keep the Dijkstra implementation for narrative simplicity. This is a blog post, not production code.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>One thing that I hope is clear throughout this is that these sorts of exercises, both in games about poop and more serious applications, is deciding when it’s better to calculate once and store information or when it’s better to set up your data to run a calculation upon request.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Alas, being in the past, Past Peter will never see this note of appreciation. But since Current Peter will one day be Past Peter to Future Peter, Current Peter accepts the acknowledgement on the Past’s behalf with gratitude.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Shhh! Maybe that’ll encourage them to go back and read the section.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>POOP in 5 moves.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Which reaches POOP in 6, if the Scrabble dictionary folks had the GUTS (4) to include it.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>From the perspective of my productivity: “With friends like these, who needs enemies?”<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2027,
+  author = {Licari, Peter},
+  title = {Solving {Poople} {Using} {Python}},
+  date = {2027-07-06},
+  url = {https://www.peterlicari.com/posts/solving_poople_26/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2027" class="csl-entry quarto-appendix-citeas" role="listitem">
+Licari, Peter. 2027. <span>“Solving Poople Using Python.”</span> July 6,
+2027. <a href="https://www.peterlicari.com/posts/solving_poople_26/">https://www.peterlicari.com/posts/solving_poople_26/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.peterlicari\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

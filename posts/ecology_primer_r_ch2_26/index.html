@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Peter Licari">
+<meta name="dcterms.date" content="2026-06-17">
 
-<title>Digital Garden – Peter Licari</title>
+<title>Reading Notes: A Primer of Ecology with R (Ch 2) – Peter Licari</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-20ccb148dd7f6e8e09bca34974d845f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e925b15e596aef75d9bb143f3dd0bbcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-20ccb148dd7f6e8e09bca34974d845f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e925b15e596aef75d9bb143f3dd0bbcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
@@ -143,24 +114,26 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Digital Garden – Peter Licari">
-<meta property="og:description" content="Notes and thoughts under cultivation">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Reading Notes: A Primer of Ecology with R (Ch 2) – Peter Licari">
+<meta property="og:description" content="The revenge of matrix algebra">
+<meta property="og:image" content="https://www.peterlicari.com/posts/ecology_primer_r_ch2_26/images/title.jpeg">
 <meta property="og:site_name" content="Peter Licari">
-<meta name="twitter:title" content="Digital Garden – Peter Licari">
-<meta name="twitter:description" content="Notes and thoughts under cultivation">
+<meta name="twitter:title" content="Reading Notes: A Primer of Ecology with R (Ch 2) – Peter Licari">
+<meta name="twitter:description" content="The revenge of matrix algebra">
+<meta name="twitter:image" content="https://www.peterlicari.com/posts/ecology_primer_r_ch2_26/images/title.jpeg">
 <meta name="twitter:creator" content="@PRLPoliSci">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Peter Licari</span>
     </a>
   </div>
@@ -171,7 +144,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
@@ -196,11 +169,11 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Now</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -233,120 +206,188 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Digital Garden</h1>
-            <p class="subtitle lead">Notes and thoughts under cultivation</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div></div></div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-
-
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#analyzing-the-projection-matrix" id="toc-analyzing-the-projection-matrix" class="nav-link active" data-scroll-target="#analyzing-the-projection-matrix">Analyzing the Projection Matrix</a></li>
+  <li><a href="#working-with-real-data" id="toc-working-with-real-data" class="nav-link" data-scroll-target="#working-with-real-data">Working with Real Data</a></li>
+  </ul>
+</nav>
     </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Reading Notes: A Primer of Ecology with R (Ch 2)</h1>
+<p class="subtitle lead">The revenge of matrix algebra</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Simulation</div>
+    <div class="quarto-category">Statistics</div>
+    <div class="quarto-category">Reading Notes</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter Licari <a href="https://orcid.org/0000-0001-9701-6006" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 17, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the <a href="../../posts/ecology_primer_r_ch1_26/index.html">last chapter of <em>A Primer of Ecology With R</em></a>, we looked at ecological processes with simple exponential growth—so called “density independent” growth. Chapter 2 looks at “density independent <em>demography</em>” (emphasis mine), which looks to understand more about the population than just its growth rate. Per Stevens: “Demography is the study of populations with special attention to age or stage structure” with “stage” being both the obvious (life stage) but also “useful categories of individuals” which would include things like sex and ancestry.</p>
+<p>Stevens introduces the idea of a life cycle graph which can then be translated into a matrix called the “population projection matrix”.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 372.81 81.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 77)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-77 368.81,-77 368.81,4 -4,4"></polygon>
+<!-- seeds -->
+<g id="node1" class="node">
+<title>seeds</title>
+<ellipse fill="none" stroke="black" cx="31.95" cy="-35" rx="31.91" ry="18"></ellipse>
+<text text-anchor="middle" x="31.95" y="-30.8" font-family="Times,serif" font-size="14.00">seeds</text>
+</g>
+<!-- A_Small -->
+<g id="node2" class="node">
+<title>A_Small</title>
+<ellipse fill="none" stroke="black" cx="177.57" cy="-55" rx="45.25" ry="18"></ellipse>
+<text text-anchor="middle" x="177.57" y="-50.8" font-family="Times,serif" font-size="14.00">A_Small</text>
+</g>
+<!-- seeds&#45;&gt;A_Small -->
+<g id="edge1" class="edge">
+<title>seeds-&gt;A_Small</title>
+<path fill="none" stroke="black" d="M57.66,-45.89C65.28,-48.75 73.81,-51.47 81.91,-53 94.91,-55.46 109.09,-56.57 122.43,-56.93"></path>
+<polygon fill="black" stroke="black" points="122.37,-60.43 132.42,-57.08 122.48,-53.43 122.37,-60.43"></polygon>
+<text text-anchor="middle" x="98.05" y="-60.2" font-family="Times,serif" font-size="14.00">P_2,1</text>
+</g>
+<!-- A_Small&#45;&gt;seeds -->
+<g id="edge5" class="edge">
+<title>A_Small-&gt;seeds</title>
+<path fill="none" stroke="black" d="M146.7,-41.68C136.59,-37.82 125.09,-34.13 114.19,-32.2 100.06,-29.7 96.25,-31.79 81.91,-32.2 79.34,-32.27 76.69,-32.37 74.03,-32.48"></path>
+<polygon fill="black" stroke="black" points="73.58,-29 63.76,-32.97 73.91,-35.99 73.58,-29"></polygon>
+<text text-anchor="middle" x="98.05" y="-36.2" font-family="Times,serif" font-size="14.00">F_2</text>
+</g>
+<!-- A_Big -->
+<g id="node3" class="node">
+<title>A_Big</title>
+<ellipse fill="none" stroke="black" cx="328.02" cy="-18" rx="36.58" ry="18"></ellipse>
+<text text-anchor="middle" x="328.02" y="-13.8" font-family="Times,serif" font-size="14.00">A_Big</text>
+</g>
+<!-- A_Small&#45;&gt;A_Big -->
+<g id="edge2" class="edge">
+<title>A_Small-&gt;A_Big</title>
+<path fill="none" stroke="black" d="M216.41,-45.57C237.32,-40.36 263.36,-33.87 284.91,-28.49"></path>
+<polygon fill="black" stroke="black" points="285.92,-31.85 294.78,-26.04 284.23,-25.06 285.92,-31.85"></polygon>
+<text text-anchor="middle" x="257.08" y="-42.2" font-family="Times,serif" font-size="14.00">P_3,2</text>
+</g>
+<!-- A_Big&#45;&gt;seeds -->
+<g id="edge4" class="edge">
+<title>A_Big-&gt;seeds</title>
+<path fill="none" stroke="black" d="M292.04,-13.59C252.95,-9.39 187.82,-4.62 132.19,-11.2 111.41,-13.66 88.68,-18.91 70.22,-23.86"></path>
+<polygon fill="black" stroke="black" points="69.15,-20.53 60.44,-26.56 71.01,-27.28 69.15,-20.53"></polygon>
+<text text-anchor="middle" x="177.57" y="-15.2" font-family="Times,serif" font-size="14.00">F_3</text>
+</g>
+<!-- A_Big&#45;&gt;A_Big -->
+<g id="edge3" class="edge">
+<title>A_Big-&gt;A_Big</title>
+<path fill="none" stroke="black" d="M315.61,-35.04C313.08,-44.86 317.22,-54 328.02,-54 334.77,-54 338.91,-50.43 340.46,-45.35"></path>
+<polygon fill="black" stroke="black" points="343.96,-45.03 340.42,-35.04 336.96,-45.05 343.96,-45.03"></polygon>
+<text text-anchor="middle" x="328.02" y="-58.2" font-family="Times,serif" font-size="14.00">P_3,3</text>
+</g>
+</g>
+</svg>
 </div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1745466521808" data-listing-reading-time-sort="2" data-listing-word-count-sort="326" data-listing-filename-sort="proof.md">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./garden/proof.html" class="title listing-title">&nbsp;</a>
-</td>
-<td>
-<span class="listing-author">&nbsp;</span>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1736053200000" data-listing-file-modified-sort="1745466620390" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1534" data-listing-title-sort="LLMs can't replace expert qualitative research" data-listing-filename-sort="llms_not_replace_qual.qmd">
-<td>
-<span class="listing-date">Jan 5, 2025</span>
-</td>
-<td>
-<a href="./garden/llms_not_replace_qual.html" class="title listing-title">LLMs can’t replace expert qualitative research</a>
-</td>
-<td>
-<span class="listing-author">&nbsp;</span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1713153600000" data-listing-file-modified-sort="1745466521808" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356" data-listing-title-sort="I usually want my prediction models to be wrong" data-listing-filename-sort="want_models_to_be_wrong.qmd">
-<td>
-<span class="listing-date">Apr 15, 2024</span>
-</td>
-<td>
-<a href="./garden/want_models_to_be_wrong.html" class="title listing-title">I usually want my prediction models to be wrong</a>
-</td>
-<td>
-<span class="listing-author">&nbsp;</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<p></p></figure><p></p>
 </div>
-</div></main> <!-- /main -->
+</div>
+</div>
+<span class="math display">\begin{bmatrix} 0 &amp; F_2 &amp; F_3 \\ P_{2,1} &amp; 0 &amp; 0 \\ 0 &amp; P_{3,2} &amp; P_{3,3}  \end{bmatrix}</span>
+<p>It looks like the first row of the matrix relates to how things relate to the initial stage (seeds in this case). Since only one known organism ever regresses in their development<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, this reflects the <span class="math inline">F</span>ecundity of the subject at that life stage. <span class="math inline">P_{3,3}</span> reflects the fact that fully grown adults tend to stay fully grown until they die.</p>
+<p>The book then goes through how to use this matrix to forecast into the future. Basically, the proccess involves:</p>
+<ol type="1">
+<li>Taking your current population projection matrix</li>
+<li>Identifying the numbers of members at each stage, stored as a vector.</li>
+<li>Using matrix multiplication to multiply the matrix <span class="math inline">\times</span> the population vector.</li>
+<li>Saving this new value as the new vector of members at each stage.</li>
+</ol>
+<p>Rinse and repeat however many times you want.</p>
+<p>From here, you’re able to calculate annual population changes, which allows us to calculate <span class="math inline">r</span> from Chapter 1.</p>
+<section id="analyzing-the-projection-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-the-projection-matrix">Analyzing the Projection Matrix</h2>
+<p>The fact that we’ve contorted our knowledge into a matrix means we can <del>abuse ourselves</del> use all of the machinery of matrix algebra to learn some really interesting things!</p>
+<p>For example: What if we wanted to summarize, in one clean(ish) number, what the projection matrix entails for the population? We can use eigenanlysis, which seeks to find a solution to the following:</p>
+<p><span class="math display">\begin{align*}\bf{Aw} = \lambda\bf{w}\end{align*}</span></p>
+<p>Where <span class="math inline">\bf{A}</span> is your population projection matrix, <span class="math inline">\bf{w}</span> is an eigenvector and <span class="math inline">\lambda</span> is an eigenvalue.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> We’re not limited to <span class="math inline">\bf{A}</span> being your projection matrix, though as we’ll see in a bit.</p>
+<p>If <span class="math inline">\bf{A}</span> is a diagonalizable<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <span class="math inline">n \times n</span> matrix, there will be <span class="math inline">n</span> independent eigen(value/vector) solutions with the largest eigenvalue being the “dominant” one. So, in practice, the above equation is more like:</p>
+<p><span class="math display">\begin{align*} \bf{A} = \bf{Q\Lambda Q^{-1}}  \end{align*}</span></p>
+<p>Where <span class="math inline">Q</span> is a matrix where column <span class="math inline">i</span> is the <span class="math inline">i</span>th eigenvector and <span class="math inline">\Lambda</span> is a diagonal matrix of eigenvalues. (Thanks, <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix">Wikipedia!</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>) The dominant eigenvalue, <span class="math inline">\lambda_1</span> is “the finite rate of increase”—which I think is the same as <span class="math inline">\lambda</span> from chapter 1?</p>
+<p>To find the stable stage distribution, we can look to <span class="math inline">w_1</span>, or the eigenvector associated with <span class="math inline">\lambda_1</span> and softmax it. This sort of seems to be taken as a given in this book and in other resources I quickly skimmed online. I’m assuming that this is due to the fact that the first eigenvalue is (typically) much larger than the remaining ones and, thus, it and its associated vector “explain” more of the system. But <em>why</em> it wins out probably merits some deeper investigations on my part…</p>
+<p>If we pivot instead to the <em>left</em> eigenvalue (something I hadn’t even come into contact before in psychometrics!<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>) we get the “reproductive value”—which is how important each stage is to contributing to future reproduction. It took me some time to get some kind of intuition around this, but what helped was learning that the <em>left</em> eigenmatrix is the transpose of the right (<span class="math inline">\bf{Q}^{-1}</span>) and is generated by doing a standard egienvalue analysis on the transpose of your original matrix. That transpose effectively makes it so you’re understanding the fitness of individuals looking backwards<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+<p>Finally, this section introduces <em>sensitivities</em> and <em>elasticities</em>. Sensitivities are how much each stage transition contributes to the <span class="math inline">\lambda</span>.</p>
+<p><span class="math display">\begin{align*} \frac{\delta\lambda}{\delta a_{i,j}} = \frac{v_{i,j}w_{i,j}}{\bf{v \cdot w}} \end{align*}</span></p>
+<p>Which is how much a very small change in the <span class="math inline">i,j</span>th element in <span class="math inline">\bf{A}</span> contributes to the (dominant) <span class="math inline">\lambda</span>. Elastitcities are the same idea, but are weighted by the transition probability which allows us to look at things on a percentage level (similar to elasticities in economics). This weighting, to me, fixes up an otherwise annoying property of the sensitiviy matrix: impossible transitions have non-zero values in the sensitivity matrix but not in the elasticity matrix. Which makes sense! What happens when something becomes marginally less impossible? It’s still impossible!</p>
+<p>One thing that would make this relevant to my work almost immediately is if this can be generalized to more complex transition states. For example, someone may be a non-visitor, an ocassional visitor, or an annual pass holder—each of these with transition states to each other. Some quick googling/gemini-ing<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> suggests that this is a thing for network analysis, which makes sense! Look at that, this is professionally useful already!</p>
+</section>
+<section id="working-with-real-data" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-real-data">Working with Real Data</h2>
+<p>The next section involves data wrangling. I <em>truly</em> hate to be that guy—but I’m going to leave that as an exercise for the reader. I don’t feel a strong urge to go through the exercise myself here since the data can take damn-near any shape on initial ingestion. More what I need to know is what I’m transforming the data <em>to</em>. And that’s already known—the transition matrix! What we need is longitudinal data on known individuals to be able to create it.</p>
+<p>The big thing that this mentions is the use of <em>bootstrapping</em> to get a sense of how certain we are of the estimands. Since bootstrapping has come up in both chapters now, I’m getting the feeling that it’s a quite important method. Which makes sense—we often are dealing with very small numbers of observations in total. (It also makes sense why bayesian methods can be useful here, <em>vis</em> McElreath). Fortunately, Stevens suggests some resources on bootstrapping…which triggered an ADHD rabbithole that added 3 more stats books to my “to-read” pile. Oh well. There are definitely worse problems to have!</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>The fact that this is not <em>zero</em> is absolutely insane to me. We have actual pheonixes in our midst and they take the form of <a href="https://en.wikipedia.org/wiki/Turritopsis_dohrnii">the immortal jellyfish</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Hooray, I recognize these things! Thanks psychometrics! But, also, oh no! I recognize these things! Damn you psychometrics!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Don’t worry, virtually every real-world matrix you will deal with in statistics is diagonalizable.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Now I <em>really</em> owe Jimmy $3 next time the donation campaign rolls around.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>This is probably because you deal pretty much exclusively with symmetrical matrices in that context—e.g., covariance and correlation matrices—meaning that the left and right eigenvectors are equivalent. So there was probably no real reason to differentiate between the two.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Full disclosure: I had gemini help me here to make sure I was understanding it properly. I had it point me to <a href="https://www.uwyo.edu/dbmcd/popecol/feblects/lect12.html">some resources</a> that let me work on it a bit deeper. Which is good because my original intuition was wrong! These things <em>can</em> be used for pedagogy—but you’ve got to introduce some friction.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Not sure if that’ll ever take off as a verb—but who knows?!<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2026,
+  author = {Licari, Peter},
+  title = {Reading {Notes:} {A} {Primer} of {Ecology} with {R} {(Ch} 2)},
+  date = {2026-06-17},
+  url = {https://www.peterlicari.com/posts/ecology_primer_r_ch2_26/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Licari, Peter. 2026. <span>“Reading Notes: A Primer of Ecology with R
+(Ch 2).”</span> June 17, 2026. <a href="https://www.peterlicari.com/posts/ecology_primer_r_ch2_26/">https://www.peterlicari.com/posts/ecology_primer_r_ch2_26/</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
