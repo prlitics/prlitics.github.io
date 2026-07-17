@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Peter Licari">
-<meta name="dcterms.date" content="2027-07-17">
+<meta name="dcterms.date" content="2026-07-17">
 
 <title>Testing Poople Strategies with Python – Peter Licari</title>
 <style>
@@ -238,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 17, 2027</p>
+      <p class="date">July 17, 2026</p>
     </div>
   </div>
   
@@ -279,15 +279,15 @@ Spoiler for the analysis!
 <p>When I first started playing, I started by trying to get the first or the last to be a “P” as quickly as possible. I think that this is probably the most intuitive approach for many players; <a href="https://en.wikipedia.org/wiki/Letter_frequency">P is a relatively uncommon consanant in English,</a> so minimizing your way to the rarest part of the word seems like it’d be the way to go.</p>
 <p>But, through my play, I’ve organically settled on a different strategy: target the first “O”. “O” is pretty common as far as letters go—and that’s actually why I think it’s been helpful. “P”, being rare, limits your dictionarial<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> options. “O” <strong>O</strong>pens up the space<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> of possibilities. So many more words have an “O” in that position that it allows you to traverse other parts of the network of adjoining words much more quickly.</p>
 <p>But that’s my hunch! The great thing about having made the solver and a decent home computer is that I can make it go brrrr to investigate such hunches!<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<p>Let’s go ahead and reconstruct the adjacency network using Poople’s dictionary. If you want to see how this process works, you can read <a href="../../posts/poople_strategy_26/index.html#solving-poople-using-python">this part of the previous post</a>. But, for the sake of brevity, let’s</p>
-<div id="bf40492d" class="cell" data-execution_count="2">
+<p>Let’s go ahead and reconstruct the adjacency network using Poople’s dictionary. If you want to see how this process works, you can read <a href="../../posts/poople_strategy_26/index.html#solving-poople-using-python">this part of the previous post</a>. But, for the sake of brevity, let’s just wave our hands a bit.</p>
+<div id="f990a6e2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>do_all_the_previous_poople_stuff()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Poople dictionary read-in and adjacency list created!</code></pre>
 </div>
 </div>
 <p>The main thing that we’re changing from last time is with the function that recursively determines the optimum path. Previously, I had it print the list of words that it traversed but return <code>None</code>. This time, I actually want it to return the path. We’re going to use this to see what letter typically gets put into place first.</p>
-<div id="0fe37dfa" class="cell" data-execution_count="3">
+<div id="7efc4924" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optimal_path(word):</span>
@@ -308,20 +308,20 @@ Spoiler for the analysis!
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> word_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have this, we’ll apply it to all of the words in the dictionary, giving us a route for each word.</p>
-<div id="c63f9bcc" class="cell" data-execution_count="4">
+<div id="072b1459" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>all_routes <span class="op">=</span> {word:optimal_path(word) <span class="cf">for</span> word <span class="kw">in</span> all_words}</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>all_routes[<span class="st">'RUNS'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="114">
-<pre><code>['RUNS', 'RUMS', 'RUMP', 'PUMP', 'POMP', 'POOP']</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>['RUNS', 'RUMS', 'RUMP', 'ROMP', 'POMP', 'POOP']</code></pre>
 </div>
 </div>
 <p>Let’s focus only on those words with a length away from POOP of at least 5. That’s the shortest “optimal” route I’ve ever seen in the game<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
-<div id="221e9145" class="cell" data-execution_count="5">
+<div id="27ce3937" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_routes_5 <span class="op">=</span> {word:optimal_path(word) <span class="cf">for</span> word <span class="kw">in</span> all_words <span class="cf">if</span> <span class="bu">len</span>(all_routes[word])<span class="op">&gt;</span><span class="dv">5</span>}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(all_routes_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="115">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>1627</code></pre>
 </div>
 </div>
@@ -336,7 +336,7 @@ Spoiler for the analysis!
 <li>Profit?</li>
 </ol>
 <p>The code chunk below details all of the helper functions that will make that process happen; you can expand it if you’d like. The chunk beneath that is the implementation.</p>
-<div id="c34d34af" class="cell" data-execution_count="6">
+<div id="79ac3818" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Click to see the magic 🎩🐇</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -405,7 +405,7 @@ Spoiler for the analysis!
 <span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rank_results_dict(results_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="60820f45" class="cell" data-execution_count="7">
+<div id="b680ff3c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dict_list <span class="op">=</span> []</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> all_routes_5.keys():</span>
@@ -417,7 +417,7 @@ Spoiler for the analysis!
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>results_dataframe <span class="op">=</span> pd.DataFrame(dict_list)</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>results_dataframe.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="117">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
@@ -459,10 +459,10 @@ Spoiler for the analysis!
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>3</td>
+<td>2</td>
 <td>0</td>
 <td>1</td>
-<td>2</td>
+<td>3</td>
 <td>NEAR</td>
 </tr>
 <tr class="odd">
@@ -481,7 +481,7 @@ Spoiler for the analysis!
 </div>
 <p><br></p>
 <p>Now that we’ve got a dataframe, let’s go ahead and do data-sciency stuff! And by that I mean—tabulate proportions and put them into a pretty graph.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
-<div id="dc603e34" class="cell" data-execution_count="8">
+<div id="9febccfe" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Click to see the magic 🎩🐇</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> pn</span>
@@ -514,7 +514,7 @@ Spoiler for the analysis!
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="118">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-9-output-1.png" width="672" height="480" class="figure-img"></p>
@@ -526,7 +526,7 @@ Spoiler for the analysis!
 <p>Another thing I found interesting here is that the final P is usually the third one put into place. That tends to track with my experience—I’m using BOOP and LOOP far more than POOL or POOR. It probably reflects the structure of the words most adjacent to POOP. Of those 11 words<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, 8 have the ending-P in place, and 6 have the starting-P in place. (For those counting—yes, that adds-up to more than 11. PROP, POMP, and PLOP get counted both times).</p>
 <p>Ok, so we’ve determined that my hunch about the pattern is correct. Let’s see if we can corroborate my hypothesis about <em>why</em> this is the case. To reiterate, my supposition is that there are more words with O as the second letter than there are words with P as the first letter. As a corollary, I’m also betting that the average linkage of the words with O as the second letter is greater than those of the other letters. By that I mean that the words that have an O as their second letter tend to have more words adjacent to them than the words that have P as their first letter, O as their third, or P as their fourth.</p>
 <p>The code chunk below investigates that.</p>
-<div id="899d52db" class="cell" data-execution_count="9">
+<div id="706c55e3" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>results_dict <span class="op">=</span> {<span class="st">"P(1)"</span>:<span class="va">None</span>, <span class="st">"O(2)"</span>:<span class="va">None</span>, <span class="st">"O(3)"</span>:<span class="va">None</span>, <span class="st">"P(4)"</span>:<span class="va">None</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> [(<span class="st">"P"</span>,<span class="dv">1</span>),(<span class="st">"O"</span>,<span class="dv">2</span>),(<span class="st">"O"</span>,<span class="dv">3</span>),(<span class="st">"P"</span>,<span class="dv">4</span>)]:</span>
@@ -542,7 +542,7 @@ There are 100 words that have P as letter 4</code></pre>
 </div>
 <p>Dang! There are more words with O as the 2nd letter than there are words with P as first, O as third, and P as fourth <em>combined</em><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 <p>But how about each one’s average number of connections? We can plot that out to give us our answer.</p>
-<div id="724a2545" class="cell" data-execution_count="10">
+<div id="48eae693" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Click to see the magic 🎩🐇</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>results_dataframe <span class="op">=</span> pd.DataFrame({i:pd.Series(j) <span class="cf">for</span> i,j <span class="kw">in</span> results_dict.items()})</span>
@@ -579,7 +579,7 @@ There are 100 words that have P as letter 4</code></pre>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="120">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-11-output-1.png" width="672" height="480" class="figure-img"></p>
@@ -589,7 +589,7 @@ There are 100 words that have P as letter 4</code></pre>
 </div>
 <p><br></p>
 <p>O(2) is definitely more connected than either O(3) and P(4) but P(1) looks like it might be pretty close—especially with that outlier hanging out all the way to the right.</p>
-<div id="1d191506" class="cell" data-execution_count="11">
+<div id="8bedb632" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> [(<span class="st">"P"</span>,<span class="dv">1</span>),(<span class="st">"O"</span>,<span class="dv">2</span>),(<span class="st">"O"</span>,<span class="dv">3</span>),(<span class="st">"P"</span>,<span class="dv">4</span>)]:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> t[<span class="dv">0</span>] <span class="op">+</span> <span class="st">'('</span><span class="op">+</span> <span class="bu">str</span>(t[<span class="dv">1</span>]) <span class="op">+</span><span class="st">')'</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> np.mean(results_dict[key]).<span class="bu">round</span>(<span class="dv">2</span>)</span>
@@ -620,16 +620,16 @@ There are 100 words that have P as letter 4</code></pre>
 <li id="fn7"><p>BOOP,COOP,POOF,PROP,POOR,LOOP,POMP,PLOP,GOOP,POOL,HOOP. Goddamn, feel like I just spat out a Dr.&nbsp;Suess book.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>“But, Peter, what about words that satisfy multiple letter placement criteria—aren’t you double-counting?” Hush, dear reader, let me have my dramatic point!<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2027,
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2026,
   author = {Licari, Peter},
   title = {Testing {Poople} {Strategies} with {Python}},
-  date = {2027-07-17},
+  date = {2026-07-17},
   url = {https://www.peterlicari.com/posts/poople_strategy_26/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2027" class="csl-entry quarto-appendix-citeas" role="listitem">
-Licari, Peter. 2027. <span>“Testing Poople Strategies with
-Python.”</span> July 17, 2027. <a href="https://www.peterlicari.com/posts/poople_strategy_26/">https://www.peterlicari.com/posts/poople_strategy_26/</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Licari, Peter. 2026. <span>“Testing Poople Strategies with
+Python.”</span> July 17, 2026. <a href="https://www.peterlicari.com/posts/poople_strategy_26/">https://www.peterlicari.com/posts/poople_strategy_26/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

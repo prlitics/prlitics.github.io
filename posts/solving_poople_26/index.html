@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Peter Licari">
-<meta name="dcterms.date" content="2027-07-06">
+<meta name="dcterms.date" content="2026-07-06">
 
 <title>Solving Poople Using Python – Peter Licari</title>
 <style>
@@ -290,7 +290,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 6, 2027</p>
+      <p class="date">July 6, 2026</p>
     </div>
   </div>
   
@@ -471,7 +471,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="monkeys-flinging-poop-at-a-typewriter">Monkeys Flinging Poop at a Typewriter</h2>
 <p>There are 26 letters in English. In theory, that means that there are <span class="math inline">26^4</span> different combinations of letters—or 456,976. Fortunately for my computer (which was looking at that number with a lot of trepidation), for every “poop”, there’s about a hundred “xccz”s. Seriously. There’s literally a hundred times the number of the gibberish letter permutations than there are valid English 4 letter words. Which, depending on your source, numbers somewhere between about 4,000–6,000<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 <p>So let’s go ahead and pull an Eminem and read-in a dictionary. I’m going to use the most recent North American scrabble dictionary at time of writing (NSWL2023)—which I happened to find in a handy <code>txt</code> file. (Thanks, Internet!) This has about 196,000 entries, but only 4,218 of which are 4 letters long. The <code>txt</code> file contains definitions, which are extraneous for our current purposes<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. But, fortunately, the words are always first and followed by a space—so it can be extracted with some handy-dandy regex.</p>
-<div id="eac2223a" class="cell" data-execution_count="1">
+<div id="ed31a559" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -488,7 +488,7 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>four_letter <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> scrabble_words <span class="cf">if</span> <span class="bu">len</span>(w)<span class="op">==</span><span class="dv">4</span>]    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we make my computer suffer. We’ll go through each of those 4,218 words and create a list of all of the other 4,218 words which are the same except for 1 letter. Fortunately, Python treats the subparts of a string as strings in and of themselves. So it’s pretty easy to blow-apart a word and test to see if they differ by only 1 letter in 1 position:</p>
-<div id="dae4b59a" class="cell" data-execution_count="2">
+<div id="b02dd0b2" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_adjacency(w1,w2):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    comparison_array <span class="op">=</span> []</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]:</span>
@@ -500,7 +500,7 @@ window.Quarto = {
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="21789394" class="cell" data-execution_count="3">
+<div id="0b30235a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>adjacency_dictionary <span class="op">=</span> {}</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> four_letter:</span>
@@ -518,7 +518,7 @@ window.Quarto = {
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    adjacency_dictionary[w] <span class="op">=</span> adjacent_words <span class="co"># Adding the full list to the dictionary for the word in the loop. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s see how many words are adjacent to “POOP”!</p>
-<div id="0ef29258" class="cell" data-execution_count="4">
+<div id="8e4c0653" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>adjacency_dictionary[<span class="st">'POOP'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>['COOP',
@@ -710,7 +710,7 @@ window.Quarto = {
 <p>Once we do that, we can figure out that we actually don’t need to need to record the full path for each word To quote AA: “You just need to take the next right step.” More accurately, you just need to know what the right previous step was.</p>
 <p>If our word is POLL, then we just need to know that POOL is the right previous word when starting from POOP. So, in POLL’s entry, we don’t need to record [‘POOL’,‘POOP’], we just need to record [‘POOL’]. Once we know that we need to go to [‘POOL’], we can then look up POOL’s best previous word, which happens to be our starting point. This way, you can iteratively construct the path between POOP and any arbitrary starting point quickly without needless pre-calculation<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p>
 <p>Alright, all that’s to say, we’ll need to store the distance for the word and the immediately previous word from POOP to it. POOP has no parent word and the distance to itself is 0. Let’s set that up.</p>
-<div id="df6dbd7f" class="cell" data-execution_count="5">
+<div id="26c5f52d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>all_words <span class="op">=</span> adjacency_dictionary.keys()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>poop_distances <span class="op">=</span> {w:{<span class="st">'distance'</span>: <span class="va">None</span>, <span class="st">'previous'</span>: []} <span class="cf">for</span> w <span class="kw">in</span> all_words}</span>
@@ -718,7 +718,7 @@ window.Quarto = {
 </div>
 <p>Next, let’s think through how we’ll get to each word to calculate the distances. We’ll start by going to the words that immediately neighbor POOP. These will all be given a weight of 1 because it takes 1 turn to get to them. For each, we’ll record that POOP is the previous word.</p>
 <p>Next, we’ll go to all of the words that are reachable by all of the level 1 words. From this level onward, we’ll start seeing duplicates—both in words of this level and to words seen in previous levels. The first type of duplicate can be dealt with by only considering the full set of <em>unique</em> words in that level. The second can be dealth with by keeping a running list of every word we’ve visited thusfar. If we’ve already seen a word at a previous level we know (by dint of it being a <em>previous</em> level) that we’ve already found the shortest path to it; this new route can be disregarded.</p>
-<div id="259c5dff" class="cell" data-execution_count="6">
+<div id="8bdf0012" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>visited <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we haven’t seen a word before, we go to its entry in our <code>poop_distances</code> dictionary and note what level it is; that’s its distance from POOP. We’ll then pop its parent word(s) into the list of previous words. Rinse and repeat until…</p>
@@ -737,7 +737,7 @@ window.Quarto = {
 </ol>
 <p>Rinse and repeat until we quit out as noted at step 4.</p>
 <p>I don’t get many chances to work with recursive functions in my day-to-day so I thought it’d be fun to code it up that way—especially because I don’t expect the number of recursive steps to explode or anything. I’d be shocked if this took more than 100. You could also do this as a for or while loop, though, to avoid any chance of Python getting snippy with you.</p>
-<div id="6f5e5fd1" class="cell" data-execution_count="7">
+<div id="483d73ee" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_distances(current_level_words, current_distance): </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Level </span><span class="sc">{</span>current_distance<span class="sc">}</span><span class="ss"> reached"</span>)</span>
@@ -773,7 +773,7 @@ window.Quarto = {
 </div>
 <p>Ok, so, <em>technically</em> this isn’t Dijkstra’s algorithm anymore. Remember how I said his innovation was to solve for instances where nodes have differing weights? The fact that they don’t here—but instead all have a weight of 1—means that this decomposes into breadth-first search. But, hey, that’s how inspiration works sometimes! You start off somewhere, tweak it a bit, wind up somewhere new…except “new” only means “new” if this were the 1950s. But, hey, it’s new to me!</p>
 <p>Alright, let’s start off at our initial parent word (POOP) and the level (1).</p>
-<div id="849c419a" class="cell" data-execution_count="8">
+<div id="77180305" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>calculate_distances([<span class="st">'POOP'</span>],<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Level 1 reached
@@ -793,7 +793,7 @@ Level 14 reached</code></pre>
 </div>
 </div>
 <p>14 levels! I wonder how many words have zero route to POOP at all.</p>
-<div id="fd8a7ec8" class="cell" data-execution_count="9">
+<div id="8b5e9a32" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>([word <span class="cf">for</span> word <span class="kw">in</span> poop_distances.keys() <span class="cf">if</span> poop_distances[word][<span class="st">'distance'</span>] <span class="kw">is</span> <span class="va">None</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>98</code></pre>
@@ -809,14 +809,14 @@ Level 14 reached</code></pre>
 <li>What the previous word(s) were that would permit you to get to that particular word in that number of sets.</li>
 </ol>
 <p>So, using the word “RUNS” as an example:</p>
-<div id="01f0a52b" class="cell" data-execution_count="10">
+<div id="4f03e01c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>poop_distances[<span class="st">'RUNS'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>{'distance': 4, 'previous': ['PUNS']}</code></pre>
 </div>
 </div>
 <p>Which let’s us do</p>
-<div id="14b1aa73" class="cell" data-execution_count="11">
+<div id="a4885f81" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>poop_distances[<span class="st">'PUNS'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>{'distance': 3, 'previous': ['PONS']}</code></pre>
@@ -824,7 +824,7 @@ Level 14 reached</code></pre>
 </div>
 <p>And then “PONS” -&gt; “POOS” -&gt; “POOP”!</p>
 <p>The function below will just loop through that process for us.</p>
-<div id="79c11825" class="cell" data-execution_count="12">
+<div id="3e0871ee" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> optimal_path(word):</span>
@@ -848,7 +848,7 @@ Level 14 reached</code></pre>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-&gt;"</span>.join(word_list))</span>
 <span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="4408e710" class="cell" data-execution_count="13">
+<div id="39e7f2a4" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'RUNS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>POOP has been reached in 4!
@@ -856,11 +856,11 @@ POOP-&gt;POOS-&gt;PONS-&gt;PUNS-&gt;RUNS</code></pre>
 </div>
 </div>
 <p>When I told my siblings about this when we gathered on Father’s day, the consensus was, and I quote: “You huge nerd.” Joke’s on them though—NERD gets to POOP in 6.</p>
-<div id="eb812dd2" class="cell" data-execution_count="14">
+<div id="4b4f34e9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'NERD'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>POOP has been reached in 6!
-POOP-&gt;HOOP-&gt;HOLP-&gt;HOLD-&gt;HELD-&gt;HERD-&gt;NERD</code></pre>
+POOP-&gt;PLOP-&gt;PLOD-&gt;PLED-&gt;PEED-&gt;NEED-&gt;NERD</code></pre>
 </div>
 </div>
 </section>
@@ -872,7 +872,7 @@ POOP-&gt;HOOP-&gt;HOLP-&gt;HOLD-&gt;HELD-&gt;HERD-&gt;NERD</code></pre>
 <p><img src="img/poople_check.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<div id="d0f6d6de" class="cell" data-execution_count="15">
+<div id="43d2970c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'LATE'</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'----'</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'TEAK'</span>)</span>
@@ -880,7 +880,7 @@ POOP-&gt;HOOP-&gt;HOLP-&gt;HOLD-&gt;HELD-&gt;HERD-&gt;NERD</code></pre>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>optimal_path(<span class="st">'NETS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>POOP has been reached in 5!
-POOP-&gt;POOS-&gt;POTS-&gt;PATS-&gt;PATE-&gt;LATE
+POOP-&gt;POOS-&gt;POTS-&gt;PATS-&gt;LATS-&gt;LATE
 ----
 POOP has been reached in 5!
 POOP-&gt;POON-&gt;PEON-&gt;PEAN-&gt;PEAK-&gt;TEAK
@@ -893,7 +893,7 @@ POOP-&gt;POOS-&gt;POTS-&gt;PETS-&gt;NETS</code></pre>
 <p>In fact, this is why I’ve started cooling down on Poople a bit. Not because the game isn’t fun in theory, or because having a solver made it less enjoyable (if anything, comparing myself to the optimum afterwards made it more fun for me!). It was because I started having BEEF<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> with the game’s dictionary. There were some omissions I could accept—but you’re going to tell a political scientist <em>and</em> someone who works with computers that <a href="https://en.wiktionary.org/wiki/bork">BORK</a> isn’t a word! Get the FUCK<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> out of here!</p>
 <p>So, in my frustration-laden curiosity, I looked to see if I could find Poople’s dictionary in the game’s source code. And, dear reader, I <em>could</em>. Which meant that I could run through the same exercise again pretty trivially and update the solver to use use Poople’s own words.</p>
 <p>BEHOLD!</p>
-<div id="9fcd6798" class="cell" data-execution_count="17">
+<div id="67cd66cd" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">"VIEW"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>POOP has been reached in 6!
@@ -902,7 +902,7 @@ POOP-&gt;PLOP-&gt;PLOD-&gt;PLED-&gt;PIED-&gt;VIED-&gt;VIEW</code></pre>
 </div>
 <p>Ok, admittedly, it’s a bit anti-climactic just to put it out like that—that’s because I’ve hidden the dictionary and the code block that generated the function. I want to respect the Poople dev and not broadcast the dictionary for any random reader (or LLM agent) to see. But once you manage to find that, you just have to copy-paste the code above and follow the steps.</p>
 <p>If we put it through the same paces we get the same solutions as the game does:</p>
-<div id="b26006b1" class="cell" data-execution_count="18">
+<div id="9bf5817d" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">'LATE'</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'----'</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">'TEAK'</span>)</span>
@@ -910,10 +910,10 @@ POOP-&gt;PLOP-&gt;PLOD-&gt;PLED-&gt;PIED-&gt;VIED-&gt;VIEW</code></pre>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>optimal_path_poople_words(<span class="st">'NETS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>POOP has been reached in 6!
-POOP-&gt;POMP-&gt;POME-&gt;SOME-&gt;SAME-&gt;LAME-&gt;LATE
+POOP-&gt;POMP-&gt;POME-&gt;SOME-&gt;SAME-&gt;SATE-&gt;LATE
 ----
 POOP has been reached in 6!
-POOP-&gt;POOL-&gt;TOOL-&gt;TOLL-&gt;TELL-&gt;TEAL-&gt;TEAK
+POOP-&gt;LOOP-&gt;LOOM-&gt;LOAM-&gt;LEAM-&gt;TEAM-&gt;TEAK
 ----
 POOP has been reached in 5!
 POOP-&gt;BOOP-&gt;BOOS-&gt;BOTS-&gt;BETS-&gt;NETS</code></pre>
@@ -953,16 +953,16 @@ POOP-&gt;BOOP-&gt;BOOS-&gt;BOTS-&gt;BETS-&gt;NETS</code></pre>
 <li id="fn17"><p>Which reaches POOP in 6, if the Scrabble dictionary folks had the GUTS (4) to include it.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn18"><p>From the perspective of my productivity: “With friends like these, who needs enemies?”<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2027,
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{licari2026,
   author = {Licari, Peter},
   title = {Solving {Poople} {Using} {Python}},
-  date = {2027-07-06},
+  date = {2026-07-06},
   url = {https://www.peterlicari.com/posts/solving_poople_26/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2027" class="csl-entry quarto-appendix-citeas" role="listitem">
-Licari, Peter. 2027. <span>“Solving Poople Using Python.”</span> July 6,
-2027. <a href="https://www.peterlicari.com/posts/solving_poople_26/">https://www.peterlicari.com/posts/solving_poople_26/</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-licari2026" class="csl-entry quarto-appendix-citeas" role="listitem">
+Licari, Peter. 2026. <span>“Solving Poople Using Python.”</span> July 6,
+2026. <a href="https://www.peterlicari.com/posts/solving_poople_26/">https://www.peterlicari.com/posts/solving_poople_26/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
